@@ -31,7 +31,7 @@ class GlobalFooter extends Component {
           {isMobile ? null : (
             <React.Fragment>
               <Col sm={{ span: 2 }} xs={{ span: 4 }}>
-                {/* <a href="https://github.com/rai-project" style={{ color: "white" }}>
+                {/* <a href="https://github.com/c3sr" style={{ color: "white" }}>
               GitHub
             </a> */}
               </Col>

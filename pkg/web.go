@@ -13,8 +13,8 @@ import (
 	"github.com/k0kubun/pp"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/rai-project/uuid"
-	echologger "github.com/rai-project/web/logger"
+	"github.com/c3sr/uuid"
+	echologger "github.com/c3sr/web/logger"
 )
 
 func webRoutes(e *echo.Echo) error {

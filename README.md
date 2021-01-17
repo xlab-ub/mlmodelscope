@@ -1,15 +1,4 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/009d36fb286249bd904c4f3b489d53f5)](https://www.codacy.com/app/abduld/mlmodelscope?utm_source=github.com&utm_medium=referral&utm_content=rai-project/carml&utm_campaign=badger)
-[![Build Status](https://dev.azure.com/dakkak/rai/_apis/build/status/rai-project.mlmodelscope?branchName=master)](https://dev.azure.com/dakkak/rai/_build/latest?definitionId=27&branchName=master)
-[![Build Status](https://travis-ci.org/rai-project/mlmodelscope.svg?branch=master)](https://travis-ci.org/rai-project/mlmodelscope)
- [![Docker Stars](https://img.shields.io/docker/stars/carml/web.svg?style=plastic)](https://registry.hub.docker.com/v2/repositories/carml/web/stars/count/) [![Docker pulls](https://img.shields.io/docker/pulls/carml/web.svg?style=plastic)](https://registry.hub.docker.com/v2/repositories/carml/web/)
-[![Docker Automated build](https://img.shields.io/docker/automated/carml/web.svg?style=plastic)](https://cloud.docker.com/app/carml/repository/docker/carml/web)
-[![](https://images.microbadger.com/badges/image/carml/web:amd64.svg)](https://microbadger.com/images/carml/web:amd64 "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/carml/web:amd64.svg)](https://microbadger.com/images/carml/web:amd64 "Get your own version badge on microbadger.com")
-
-
 # [Documentation](https://docs.mlmodelscope.org/)
-
-
 
 The current landscape of Machine Learning (ML) and Deep Learning (DL) is rife with non-uniform models, frameworks, and system stacks but lacks standard tools to evaluate and profile models or systems.
 Due to the absence of such tools, the current practice for evaluating and comparing the benefits of proposed AI innovations (be it hardware or software) on end-to-end AI pipelines is both arduous and error prone --- stifling the adoption of the innovations.

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/pkg/profile"
-	"github.com/rai-project/mlmodelscope/cmd"
+	"github.com/c3sr/mlmodelscope/cmd"
 )
 
 func pprof() {

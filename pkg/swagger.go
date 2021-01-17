@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	dlframework "github.com/rai-project/dlframework/httpapi/restapi"
-	swaggerui "github.com/rai-project/web/swaggerui"
+	dlframework "github.com/c3sr/dlframework/httpapi/restapi"
+	swaggerui "github.com/c3sr/web/swaggerui"
 )
 
 func swaggerUIAssets(e *echo.Echo) error {

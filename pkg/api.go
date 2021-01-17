@@ -4,11 +4,11 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/rai-project/config"
-	"github.com/rai-project/tracer"
-	_ "github.com/rai-project/tracer/jaeger"
-	tracermiddleware "github.com/rai-project/tracer/middleware"
-	_ "github.com/rai-project/tracer/noop"
+	"github.com/c3sr/config"
+	"github.com/c3sr/tracer"
+	_ "github.com/c3sr/tracer/jaeger"
+	tracermiddleware "github.com/c3sr/tracer/middleware"
+	_ "github.com/c3sr/tracer/noop"
 )
 
 func apiRoutes(e *echo.Echo) error {

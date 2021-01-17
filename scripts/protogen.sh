@@ -16,8 +16,8 @@ protoc \
   --js_service_out=./src/proto \
   --ts_out=service=true:./src/proto \
   ../../../github.com/gogo/protobuf/gogoproto/gogo.proto \
-  ../../../github.com/rai-project/carml/proto/carml.org/inference/inference.proto \
-  ../../../github.com/rai-project/dlframework/dlframework.proto
+  ../../../github.com/c3sr/carml/proto/carml.org/inference/inference.proto \
+  ../../../github.com/c3sr/dlframework/dlframework.proto
 
 echo "**/*js" >> ./src/proto/.eslintignore
 

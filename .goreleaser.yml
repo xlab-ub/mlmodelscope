@@ -48,7 +48,7 @@ archive:
 
 # brew:
 #   github:
-#     owner: rai-project
+#     owner: c3sr
 #     name: homebrew-tap
 #   folder: Formula
 #   homepage: *homepage

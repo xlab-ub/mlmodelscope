@@ -15,7 +15,7 @@ import (
 
 	"github.com/bugsnag/osext"
 	"github.com/labstack/echo"
-	"github.com/rai-project/config"
+	"github.com/c3sr/config"
 )
 
 func pprofRoutes(e *echo.Echo) error {

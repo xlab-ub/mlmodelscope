@@ -5,9 +5,9 @@ import (
 
 	"github.com/go-openapi/loads"
 
-	dlframework "github.com/rai-project/dlframework/http"
-	"github.com/rai-project/dlframework/httpapi/restapi"
-	"github.com/rai-project/dlframework/httpapi/restapi/operations"
+	dlframework "github.com/c3sr/dlframework/http"
+	"github.com/c3sr/dlframework/httpapi/restapi"
+	"github.com/c3sr/dlframework/httpapi/restapi/operations"
 )
 
 func getDlframeworkHandler() (http.Handler, error) {

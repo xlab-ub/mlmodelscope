@@ -68,7 +68,7 @@ async.waterfall(
               .replace(/carml/g, "mlmodelscope")
               .replace(/CarML/g, "MLModelScope")
               .replace(/ARtifacts/g, "Artifacts")
-              .replace(/rai-project\/mlmodelscope/g, "rai-project/carml");
+              .replace(/c3sr\/mlmodelscope/g, "c3sr/carml");
 
             fs.writeFileSync(filePath, result, "utf8");
         }

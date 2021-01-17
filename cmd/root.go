@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/fatih/color"
-	"github.com/rai-project/config"
+	"github.com/c3sr/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

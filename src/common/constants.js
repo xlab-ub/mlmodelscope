@@ -1,25 +1,25 @@
 export const BASE_ASSETS_URL =
-  "https://raw.githubusercontent.com/rai-project/ml-arc-web/master/src/assets/";
+  "https://raw.githubusercontent.com/c3sr/ml-arc-web/master/src/assets/";
 
 export const BASE_MICROBENCH_ASSETS_URL =
-  "https://raw.githubusercontent.com/rai-project/microbench/master/results/raw_data/";
+  "https://raw.githubusercontent.com/c3sr/microbench/master/results/raw_data/";
 
 export const FRAMEWORK_GITHUB_URL = {
-  caffe: "https://github.com/rai-project/caffe/",
-  caffe2: "https://github.com/rai-project/caffe2/",
-  tensorrt: "https://github.com/rai-project/tensorrt/",
-  mxnet: "https://github.com/rai-project/mxnet/",
-  tensorflow: "https://github.com/rai-project/tensorflow/",
-  cntk: "https://github.com/rai-project/cntk/",
+  caffe: "https://github.com/c3sr/caffe/",
+  caffe2: "https://github.com/c3sr/caffe2/",
+  tensorrt: "https://github.com/c3sr/tensorrt/",
+  mxnet: "https://github.com/c3sr/mxnet/",
+  tensorflow: "https://github.com/c3sr/tensorflow/",
+  cntk: "https://github.com/c3sr/cntk/",
 };
 
 export const FRAMEWORK_GITHUB_RAW_URL = {
-  caffe: "https://raw.githubusercontent.com/rai-project/caffe/",
-  caffe2: "https://raw.githubusercontent.com/rai-project/caffe2/",
-  tensorrt: "https://raw.githubusercontent.com/rai-project/tensorrt/",
-  mxnet: "https://raw.githubusercontent.com/rai-project/mxnet/",
-  tensorflow: "https://raw.githubusercontent.com/rai-project/tensorflow/",
-  cntk: "https://raw.githubusercontent.com/rai-project/cntk/",
+  caffe: "https://raw.githubusercontent.com/c3sr/caffe/",
+  caffe2: "https://raw.githubusercontent.com/c3sr/caffe2/",
+  tensorrt: "https://raw.githubusercontent.com/c3sr/tensorrt/",
+  mxnet: "https://raw.githubusercontent.com/c3sr/mxnet/",
+  tensorflow: "https://raw.githubusercontent.com/c3sr/tensorflow/",
+  cntk: "https://raw.githubusercontent.com/c3sr/cntk/",
 };
 
 export const NODE_ENV = process.env.NODE_ENV;

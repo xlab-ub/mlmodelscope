@@ -16,7 +16,7 @@ published models. And, finally, system developers often fail to keep
 up with current trends, and lag behind in measuring and optimizing
 frameworks, libraries, and hardware.
 
-We propose MLModelScope, an open source(available on Github at [here](https://github.com/rai-project/mlmodelscope)), extensible, and
+We propose MLModelScope, an open source(available on Github at [here](https://github.com/c3sr/mlmodelscope)), extensible, and
 customizable platform to facilitate evaluation and measurements of
 ML models within AI pipelines. It is a batteries-included platform
 for evaluating and profiling ML models across datasets, frameworks,

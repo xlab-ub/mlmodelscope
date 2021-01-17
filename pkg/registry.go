@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/rai-project/config"
-	"github.com/rai-project/libkv/store"
-	"github.com/rai-project/registry"
+	"github.com/c3sr/config"
+	"github.com/c3sr/libkv/store"
+	"github.com/c3sr/registry"
 )
 
 func registryRoutes(e *echo.Echo) error {

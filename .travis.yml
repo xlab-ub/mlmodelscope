@@ -23,9 +23,9 @@ before_install:
 - go get github.com/elazarl/go-bindata-assetfs/...
 - export GOPATH=$HOME/gopath
 - export PATH=$HOME/gopath/bin:$PATH
-- mkdir -p $HOME/gopath/src/github.com/rai-project/mlmodelscope
-- rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/rai-project/mlmodelscope/
-- export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/rai-project/mlmodelscope
+- mkdir -p $HOME/gopath/src/github.com/c3sr/mlmodelscope
+- rsync -az ${TRAVIS_BUILD_DIR}/ $HOME/gopath/src/github.com/c3sr/mlmodelscope/
+- export TRAVIS_BUILD_DIR=$HOME/gopath/src/github.com/c3sr/mlmodelscope
 install:
 - cd ${TRAVIS_BUILD_DIR}
 - npm install

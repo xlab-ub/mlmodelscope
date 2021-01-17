@@ -2,7 +2,7 @@ package web
 
 import (
 	"github.com/labstack/echo"
-	"github.com/rai-project/web/jaegerui"
+	"github.com/c3sr/web/jaegerui"
 )
 
 func jaegerAssets(e *echo.Echo) error {

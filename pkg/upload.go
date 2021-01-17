@@ -8,8 +8,8 @@ import (
 
 	"github.com/Unknwon/com"
 	"github.com/labstack/echo"
-	"github.com/rai-project/config"
-	"github.com/rai-project/store/tus/localstore"
+	"github.com/c3sr/config"
+	"github.com/c3sr/store/tus/localstore"
 	"github.com/tus/tusd"
 	"github.com/tus/tusd/memorylocker"
 )

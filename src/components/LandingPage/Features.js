@@ -97,13 +97,13 @@ class Features extends Component {
           link={<LearnMore link={""} />}
         >
           Builtin framework support for{" "}
-          <Link href={"https://github.com/rai-project/tensorflow"}>TensorFlow</Link>,
-          <Link href={"https://github.com/rai-project/tflite"}>TFLite</Link>,{" "}
-          <Link href={"https://github.com/rai-project/pytorch"}>PyTorch</Link>, MXNet,
-          <Link href={"https://github.com/rai-project/caffe2"}>Caffe2</Link>,{" "}
-          <Link href={"https://github.com/rai-project/tensorrt"}>TensorRT</Link>,{" "}
-          <Link href={"https://github.com/rai-project/caffe"}>Caffe</Link>, and{" "}
-          <Link href={"https://github.com/rai-project/cntk"}>CNTK</Link> and Support for
+          <Link href={"https://github.com/c3sr/tensorflow"}>TensorFlow</Link>,
+          <Link href={"https://github.com/c3sr/tflite"}>TFLite</Link>,{" "}
+          <Link href={"https://github.com/c3sr/pytorch"}>PyTorch</Link>, MXNet,
+          <Link href={"https://github.com/c3sr/caffe2"}>Caffe2</Link>,{" "}
+          <Link href={"https://github.com/c3sr/tensorrt"}>TensorRT</Link>,{" "}
+          <Link href={"https://github.com/c3sr/caffe"}>Caffe</Link>, and{" "}
+          <Link href={"https://github.com/c3sr/cntk"}>CNTK</Link> and Support for
           Linux, macOS, Windows, Android, and iOS on ARM, Power, and X86 with CPU, GPU, or
           FPGA acceleration.
         </Panel>
