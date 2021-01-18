@@ -252,6 +252,16 @@ class SelectModel extends Component {
       });
     }
 
+    const selectedModels = this.props.context.models;
+    if (selectedModels.length !== 0) {
+      // filter other frameworks and version
+      models = filter(models, function(o) {		
+        return (
+          o.framework.name === selectedModels[0].framework.name && o.framework.version === selectedModels[0].framework.version
+        );
+      });
+    }
+
     // Sort by model name to make sure the same model will showup side by side
     models = orderBy(models, ["name", "version"]);
 
