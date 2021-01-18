@@ -1,3 +1,7 @@
+# MLModelScope
+
+[![Build Status](https://www.travis-ci.org/c3sr/mlmodelscope.svg?branch=master)](https://www.travis-ci.org/c3sr/mlmodelscope)
+
 # [Documentation](https://docs.mlmodelscope.org/)
 
 The current landscape of Machine Learning (ML) and Deep Learning (DL) is rife with non-uniform models, frameworks, and system stacks but lacks standard tools to evaluate and profile models or systems.
