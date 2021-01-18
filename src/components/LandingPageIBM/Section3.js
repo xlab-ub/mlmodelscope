@@ -142,7 +142,7 @@ export default class Section3 extends Component {
           </Title>
           <Body color="white" isMobile={isMobile}>
             Run and compare performance and accuracy results of the same models on a wide
-            range of deep learning frameworks, such as Tensorflow, MXNet, PyTorch, Caffe,
+            range of deep learning frameworks, such as Tensorflow, MXNet, PyTorch, OnnxRunTime, Caffe,
             Caffe2, CNTK, TensorRT and more. Side-by-side comparison results clearly
             reveal the pros and cons of various framework.
           </Body>
