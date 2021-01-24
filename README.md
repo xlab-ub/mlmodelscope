@@ -1,6 +1,6 @@
 # MLModelScope
 
-[![Build Status](https://www.travis-ci.org/c3sr/mlmodelscope.svg?branch=master)](https://www.travis-ci.org/c3sr/mlmodelscope)
+[![Build Status](https://dev.azure.com/yhchang/c3sr/_apis/build/status/c3sr.mlmodelscope?branchName=master)](https://dev.azure.com/yhchang/c3sr/_build/latest?definitionId=10&branchName=master)
 
 # [Documentation](https://docs.mlmodelscope.org/)
 
