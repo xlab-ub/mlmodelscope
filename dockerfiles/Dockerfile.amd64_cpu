@@ -30,4 +30,4 @@ RUN dep ensure -v -vendor-only
 
 RUN go install -tags=nogpu -a -installsuffix cgo -ldflags "-s -w -X ${PKG}/Version=${VERSION} -X ${PKG}/GitCommit=${VCS_REF} -X ${PKG}/BuildDate=${BUILD_DATE}"
 
-ENTRYPOINT ["mlmodelscope web"]
+ENTRYPOINT ["mlmodelscope", "web"]
