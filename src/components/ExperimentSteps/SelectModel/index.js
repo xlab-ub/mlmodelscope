@@ -222,7 +222,7 @@ class SelectModel extends Component {
       console.log(true);
     } else {
       console.log(false);
-      this.props.context.removeFramework(index);
+      this.props.context.removeFrameworkByName(item.name, item.version);
     }
   }
 
@@ -284,7 +284,7 @@ class SelectModel extends Component {
                   style={{ paddingBottom: "10px", paddingTop: "10px" }}
                 >
                   {frameworkLogo(item.name.toLowerCase())}
-                  <Checkbox onChange={e => this.handleCheck(e, item, index)}>
+                  <Checkbox onChange={e => this.handleCheck(e, item, index)} disabled={selectedModels.length !== 0}>
                     {item.name + " V" + item.version}
                   </Checkbox>
                 </Col>

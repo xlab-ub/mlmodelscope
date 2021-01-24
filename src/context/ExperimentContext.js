@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+import {
+  filter,
+} from "lodash";
+
 export const ExperimentContext = React.createContext();
 
 export default class ExperimentProvider extends Component {
@@ -71,6 +75,12 @@ export default class ExperimentProvider extends Component {
           return;
         }
         this.state.frameworks.splice(index, 1)
+        this.setState({ frameworks: this.state.frameworks });
+      },
+      removeFrameworkByName: (name, version) => {
+      	this.state.frameworks = filter(this.state.frameworks, function(o) {
+          return name !== o.name || version !== o.version;
+        });
         this.setState({ frameworks: this.state.frameworks });
       },
       addMachine: (name, version) =>

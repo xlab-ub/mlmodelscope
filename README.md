@@ -32,3 +32,17 @@ To achieve this, MLModelScope:
 
 
 MLModelScope can be used as an application with a command line, API or web interface, or can be compiled into a standalone library. We also provide an online hub of continuously updated assets, evaluation results, and access to hardware resources — allowing users to discover and evaluate models without installing or configuring systems.
+
+# Use the Web UI through Pre-built Docker Images
+
+We have [pre-built docker images](https://hub.docker.com/r/c3sr/mlmodelscope/tags) on Dockerhub. The image is `c3sr/mlmodelscope:amd64-cpu-latest`. The entrypoint is set as `mlmodelscope web` and the port is 8088.
+
+An example run is
+
+```
+docker run --rm -d -p 8088:8088 --name=mlmodelscope_web_ui \
+           -v ~/.carml_config.yml:/root/.carml_config.yml \
+           c3sr/mlmodelscope:amd64-cpu-latest
+```
+
+Then the web will be on [http://localhost:8088](localhost:8088).
