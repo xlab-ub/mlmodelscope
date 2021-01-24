@@ -1,0 +1,33 @@
+FROM c3sr/base:amd64-cpu-latest
+MAINTAINER Yen-Hsiang Chang <yhchang3@illinois.edu>
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VCS_URL
+ARG VERSION
+ARG ARCH
+LABEL org.mlmodelscope.base.build-date=$BUILD_DATE \
+  org.mlmodelscope.web.name="mlmodelscope web ui image" \
+  org.mlmodelscope.web.description="" \
+  org.mlmodelscope.web.url="https://www.mlmodelscope.org/" \
+  org.mlmodelscope.web.vcs-ref=$VCS_REF \
+  org.mlmodelscope.web.vcs-url=$VCS_URL \
+  org.mlmodelscope.web.vendor="MLModelScope" \
+  org.mlmodelscope.web.arch=$ARCH \
+  org.mlmodelscope.web.version=$VERSION \
+  org.mlmodelscope.web.schema-version="1.0"
+
+#########################################################################
+
+# Get Go bindings
+ENV PKG github.com/c3sr/mlmodelscope
+WORKDIR $GOPATH/src/$PKG
+
+RUN git clone --depth=1 --branch=master https://${PKG}.git .
+
+RUN dep ensure -v -vendor-only
+
+RUN go install -tags=nogpu -a -installsuffix cgo -ldflags "-s -w -X ${PKG}/Version=${VERSION} -X ${PKG}/GitCommit=${VCS_REF} -X ${PKG}/BuildDate=${BUILD_DATE}"
+
+ENTRYPOINT ["mlmodelscope web"]
