@@ -284,6 +284,7 @@ class SelectModel extends Component {
                   style={{ paddingBottom: "10px", paddingTop: "10px" }}
                 >
                   {frameworkLogo(item.name.toLowerCase())}
+                  <br />
                   <Checkbox onChange={e => this.handleCheck(e, item, index)} disabled={selectedModels.length !== 0}>
                     {item.name + " V" + item.version}
                   </Checkbox>
