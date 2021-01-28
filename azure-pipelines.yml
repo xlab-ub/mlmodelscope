@@ -5,8 +5,8 @@ jobs:
   - job: Web
     timeoutInMinutes: 0
     steps:
-      - bash: |
-          $(isMain) && docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
-          cd dockerfiles
-          make docker_build_cpu
-          $(isMain) && ./push.sh docker_push_cpu
+      - script: docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
+        condition: eq(variables.isMain, true)
+      - script: cd dockerfiles && make docker_build_cpu
+      - script: ./push.sh docker_push_cpu
+        condition: eq(variables.isMain, true)
