@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import SelectDataset from "../components/ExperimentSteps/SelectDataset";
 import ExperimentSetupSider from "../components/ExperimentSteps/ExperimentSetupSider";
 import SelectTask from "../components/ExperimentSteps/SelectTask";
+import SelectFramework from "../components/ExperimentSteps/SelectFramework";
 import SelectModel from "../components/ExperimentSteps/SelectModel";
 import SelectMachine from "../components/ExperimentSteps/SelectMachine";
 import InferenceResult from "../components/InferenceResult";
@@ -15,6 +16,8 @@ export default class ExperimentPage extends Component {
     switch (currentPage) {
       case "task":
         return <SelectTask />;
+      case "framework":
+        return <SelectFramework />;
       case "dataset":
         return <SelectDataset />;
       case "model":

@@ -59,6 +59,7 @@ class ExperimentSetupSider extends Component {
       this.props.context.isPredicting ||
       (this.props.context.imageUrls.length === 0 &&
         this.props.context.dataset === null) ||
+      this.props.context.frameworks.length === 0 ||
       this.props.context.models.length === 0 ||
       this.props.context.machines.length === 0
     ) {
@@ -119,6 +120,31 @@ class ExperimentSetupSider extends Component {
             </div>
             {this.props.context.task !== null && (
               <Tag>{this.props.context.task.name}</Tag>
+            )}
+          </Menu.Item>
+          
+          <Menu.Item
+            key="framework"
+            style={{
+              margin: 0,
+              paddingTop: "30px",
+              paddingBottom: "30px",
+              paddingleft: "40px",
+              minHeight: "60px",
+              height: "auto",
+              backgroundColor:
+                this.props.context.currentPage === "framework" ? orangeColor : "white",
+            }}
+          >
+            <div
+              style={{
+                color: this.props.context.currentPage === "framework" ? "white" : "black",
+              }}
+            >
+              FRAMEWORKS
+            </div>
+            {this.props.context.frameworks.length !== 0 && (
+              <Tag>{this.props.context.frameworks[0].name + " V" + this.props.context.frameworks[0].version}</Tag>
             )}
           </Menu.Item>
 

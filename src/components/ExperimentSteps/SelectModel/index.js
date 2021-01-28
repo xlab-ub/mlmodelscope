@@ -17,7 +17,7 @@ import {
   truncate,
   size,
 } from "lodash";
-import { ModelManifests, FrameworkManifests } from "../../../swagger";
+import { ModelManifests} from "../../../swagger";
 import { ExperimentContext } from "../../../context/ExperimentContext";
 import ExperimentContentTitle from "../ExperimentContentTitle";
 
@@ -128,17 +128,6 @@ class SelectModel extends Component {
         console.error(err);
       }
     }
-    if (this.props.context.frameworkManifests === null) {
-      try {
-        const req = await FrameworkManifests({
-          frameworkName: "*",
-          frameworkVersion: "*",
-        });
-        this.props.context.setFrameworkManifests(req.manifests);
-      } catch (err) {
-        console.error(err);
-      }
-    }
   }
 
   handleSelect(isSelected, key) {
@@ -215,24 +204,11 @@ class SelectModel extends Component {
     });
   }
 
-  handleCheck(e, item, index) {
-    // console.log(e.target)
-    if (e.target.checked === true) {
-      this.props.context.addFramework(item.name, item.version);
-      console.log(true);
-    } else {
-      console.log(false);
-      this.props.context.removeFrameworkByName(item.name, item.version);
-    }
-  }
-
   render() {
     var models = this.props.context.modelManifests;
-    var frameworks = this.props.context.frameworkManifests;
-    if (!isArray(models) || !isArray(frameworks)) {
+    if (!isArray(models)) {
       return <div />;
     }
-    // console.log(this.props.context);
 
     // Filter by selected framework
     const selectedFrameworks = this.props.context.frameworks;
@@ -242,22 +218,16 @@ class SelectModel extends Component {
         return findIndex(selectedFrameworks, o.framework) !== -1;
       });
     }
+    else {
+      models = [];
+    }
+
     // Filter by selected task
     var selectedTask = this.props.context.task;
     if (selectedTask !== null) {
       models = filter(models, function(o) {
         return (
           o.inputs[0].type === selectedTask.input && o.output.type === selectedTask.output
-        );
-      });
-    }
-
-    const selectedModels = this.props.context.models;
-    if (selectedModels.length !== 0) {
-      // filter other frameworks and version
-      models = filter(models, function(o) {		
-        return (
-          o.framework.name === selectedModels[0].framework.name && o.framework.version === selectedModels[0].framework.version
         );
       });
     }
@@ -275,23 +245,6 @@ class SelectModel extends Component {
           <ExperimentContentTitle text="Select a model" />
 
           <div style={{ width: "90%", margin: "auto" }}>
-            <Row>
-              {frameworks.map((item, index) => (
-                <Col
-                  key={"model-" + index.toString()}
-                  sm={4}
-                  xs={8}
-                  style={{ paddingBottom: "10px", paddingTop: "10px" }}
-                >
-                  {frameworkLogo(item.name.toLowerCase())}
-                  <br />
-                  <Checkbox onChange={e => this.handleCheck(e, item, index)} disabled={selectedModels.length !== 0}>
-                    {item.name + " V" + item.version}
-                  </Checkbox>
-                </Col>
-              ))}
-            </Row>
-
             <Row gutter={16} type="flex" justify="start" align="middle">
               {modelsKey.map(key => {
                 const model = models[key];
