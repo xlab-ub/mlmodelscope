@@ -38,6 +38,15 @@ export default class ExperimentProvider extends Component {
           models: [],
         })
       },
+      setFramework: framework => {
+        if (this.state.frameworks.length !== 0 && framework.name === this.state.frameworks[0].name && framework.version === this.state.frameworks[0].version) {
+          return;
+        }
+        this.setState({
+          frameworks: [framework],
+          models: [],
+        })
+      },
       addUrl: url =>
         this.setState({
           imageUrls: this.state.imageUrls.concat(url),
