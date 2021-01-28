@@ -1,9 +1,12 @@
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
 jobs:
   - job: Web
     timeoutInMinutes: 0
     steps:
       - bash: |
-          docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
+          $(isMain) && docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)
           cd dockerfiles
           make docker_build_cpu
-          ./push.sh docker_push_cpu
+          $(isMain) && ./push.sh docker_push_cpu
