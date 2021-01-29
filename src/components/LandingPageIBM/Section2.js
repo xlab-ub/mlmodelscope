@@ -5,6 +5,18 @@ import "./LandingPage.css";
 
 export default class Section2 extends Component {
   render() {
+    var docslocation = window.location.hostname 
+    if (docslocation.split(".")[0] === "www") {
+      docslocation = "docs." + docslocation.substring(4);
+    }
+    else if (window.location.hostname !== "localhost") {
+      docslocation = "docs." + docslocation;	
+    }
+    else {
+      docslocation = "docs.mlmodelscope.org";		
+    }
+    docslocation = window.location.protocol + "//" + docslocation;
+
     return (
       <div>
         <Row type="flex" justify="space-around" align="middle">
@@ -34,7 +46,7 @@ export default class Section2 extends Component {
         <Row type="flex" justify="space-around">
           <Col>
             <p style={{ fontSize: "8pt", marginTop: "10px", color: "#0FACAC" }}>
-              <a href="docs.mlmodelscope.org">LEARN MORE</a>
+              <a href=docslocation>LEARN MORE</a>
             </p>
           </Col>
         </Row>

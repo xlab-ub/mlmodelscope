@@ -94,6 +94,18 @@ class GlobalHeader extends Component {
 
     const link_active_style = css({ fontWeight: "600" });
 
+    var docslocation = window.location.hostname 
+    if (docslocation.split(".")[0] === "www") {
+      docslocation = "docs." + docslocation.substring(4);
+    }
+    else if (window.location.hostname !== "localhost") {
+      docslocation = "docs." + docslocation;	
+    }
+    else {
+      docslocation = "docs.mlmodelscope.org";		
+    }
+    docslocation = window.location.protocol + "//" + docslocation;
+
     return (
       <UserContext.Consumer>
         {context => (
@@ -136,7 +148,7 @@ class GlobalHeader extends Component {
               </NavLink>
             </Menu.Item>
             <Menu.Item key="about" {...menu_item_style}>
-              <a {...link_style} href="https://docs.mlmodelscope.org/">
+              <a {...link_style} href={docslocation}>
                 About
               </a>
             </Menu.Item>

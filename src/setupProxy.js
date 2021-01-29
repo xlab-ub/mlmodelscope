@@ -2,7 +2,7 @@ const proxy = require("http-proxy-middleware");
 const _ = require("lodash");
 
 module.exports = function(app) {
-  let target = "https://www.mlmodelscope.org";
+  let target = window.location.protocol + "//" + window.location.hostname;
   if (!_.isUndefined(process.env.REACT_APP_IS_LOCAL)) {
     target = "http://localhost:8088";
   }

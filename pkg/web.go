@@ -54,6 +54,8 @@ func Start(addr string) {
 			"https://www.carml.org",
 			"https://mlmodelscope.org",
 			"https://www.mlmodelscope.org",
+			"https://mlmodelscope.net",
+			"https://www.mlmodelscope.net",
 			"https://mlmodelscope.netlify.com",
 		},
 		AllowMethods:     []string{echo.GET, echo.PUT, echo.POST, echo.DELETE, echo.OPTIONS},

@@ -75,8 +75,21 @@ export const PanelsHeading = function({ isMobile = false, children, style = {} }
 };
 
 export const LearnMoreButton = function({ link }) {
+  var docslocation = window.location.hostname 
+  if (docslocation.split(".")[0] === "www") {
+    docslocation = "docs." + docslocation.substring(4);
+  }
+  else if (window.location.hostname !== "localhost") {
+    docslocation = "docs." + docslocation;	
+  }
+  else {
+    docslocation = "docs.mlmodelscope.org";		
+  }
+  docslocation = window.location.protocol + "//" + docslocation;
+
+
   return (
-    <Button ghost type="dashed" href={(link = "http://docs.mlmodelscope.org")}>
+    <Button ghost type="dashed" href={(link = docslocation)}>
       <div style={{ color: TextColor }}>
         Learn More
         <Icon type="right" />

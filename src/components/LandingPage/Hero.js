@@ -23,6 +23,19 @@ const infoStyle = {
 @withSizes(({ width }, { breakpoint }) => ({ isMobile: width < breakpoint }))
 class Hero extends Component {
   render() {
+    var docslocation = window.location.hostname 
+    if (docslocation.split(".")[0] === "www") {
+      docslocation = "docs." + docslocation.substring(4);
+    }
+    else if (window.location.hostname !== "localhost") {
+      docslocation = "docs." + docslocation;	
+    }
+    else {
+      docslocation = "docs.mlmodelscope.org";		
+    }
+
+	docslocation = window.location.protocol + "//" + docslocation;
+
     const lightPrimary = Color(primaryColor)
       .lighten(0.5)
       .hex();
@@ -77,7 +90,7 @@ class Hero extends Component {
               }}
             >
               <a
-                href="http://docs.mlmodelscope.org"
+                href={docslocation}
                 style={{
                   color: "white",
                   margin: "auto",
@@ -104,7 +117,7 @@ class Hero extends Component {
                   }}
                 >
                   <a
-                    href="http://docs.mlmodelscope.org"
+                    href={docslocation}
                     style={{
                       color: "white",
                       margin: "auto",
