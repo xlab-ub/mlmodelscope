@@ -48,9 +48,17 @@ function renderResult(d, target, imgIndex, imgUrl, displayTrace = false) {
       return <div>{"Type " + features.type + " is not supported yet!"}</div>;
     }
     else {
+      var tracelocation = window.location.hostname 
+      if (tracelocation.split(".")[0] === "www") {
+        tracelocation = "trace." + tracelocation.substring(4);
+      }
+      else if (window.location.hostname !== "localhost") {
+        tracelocation = "trace." + tracelocation;	
+      }
+
       var traceComponent = d.traceId ? (
         <TraceInfo
-          traceURL={`http://trace.mlmodelscope.org:16686/trace/${d.traceId}?uiEmbed=v0`}
+          traceURL={`http://` + tracelocation + `:16686/trace/${d.traceId}?uiEmbed=v0`}
           traceID={d.traceId}
           displayTrace={displayTrace}
         />
