@@ -94,6 +94,21 @@ export default function predict(imageUrls, models, batch_size, trace_level, useG
           });
         })
         .then(response => {
+          if (predictor && predictor.id) {
+            Close({
+              requestId,
+              headers: spanHeaders,
+              body: {
+                predictor: {
+                  id: predictor.id,
+                },
+              },
+            }).catch(function(e) {});
+            predictor = null;
+          }
+          return response;
+        })
+        .then(response => {
           console.log({ response: response.responses });
           return {
             model: model,
@@ -102,20 +117,7 @@ export default function predict(imageUrls, models, batch_size, trace_level, useG
             response: response.responses,
           };
         }),
-      function() {
-        if (predictor && predictor.id) {
-          Close({
-            requestId,
-            headers: spanHeaders,
-            body: {
-              predictor: {
-                id: predictor.id,
-              },
-            },
-          }).catch(function(e) {});
-          predictor = null;
-        }
-      }
+      (() => {})
     );
     return res;
   };
