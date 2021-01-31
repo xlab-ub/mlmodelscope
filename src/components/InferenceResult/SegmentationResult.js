@@ -155,7 +155,7 @@ export default class SegmentationResult extends Component {
         {
           key: index,
           index: d.bounding_box.index,
-          label: processLabel(d.bounding_box.label),
+          label: d.bounding_box.label,
           probability: d.probability,
         }
       )
