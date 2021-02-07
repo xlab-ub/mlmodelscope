@@ -138,8 +138,7 @@
   revision = "e9d07ff805c35518081968c3cdb61e2a452cacff"
 
 [[projects]]
-  branch = "master"
-  digest = "1:c2559e4cbc28f6c9e9d1e7ef61483f60e6f13955d7711c691a3f6063de9ad492"
+  digest = "1:049ee4c23b1b7e21582690cd2500d43325d2d7aecaa08c181121ee25cae6ecb9"
   name = "github.com/c3sr/dlframework"
   packages = [
     ".",
@@ -153,7 +152,8 @@
     "registryquery",
   ]
   pruneopts = "UT"
-  revision = "fbc5e1537a3c9d25dd88b1db3046d51f48e10706"
+  revision = "09cb32a3a2c8e82fdaf04c89fc58a1496cb2d86e"
+  version = "v0.3.3"
 
 [[projects]]
   branch = "master"
