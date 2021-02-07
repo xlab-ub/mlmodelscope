@@ -154,7 +154,7 @@ export default class SegmentationResult extends Component {
       return (
         {
           key: index,
-          index: d.bounding_box.index,
+          index: (typeof d.bounding_box.index === 'undefined') ? 0 : d.bounding_box.index,
           label: d.bounding_box.label,
           probability: d.probability,
         }

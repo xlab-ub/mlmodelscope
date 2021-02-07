@@ -24,6 +24,10 @@
 #   go-tests = true
 #   unused-packages = true
 
+[[constraint]]
+  name = "github.com/c3sr/dlframework"
+  version = "0.3.3"
+
 [[override]]
   name = "github.com/labstack/echo"
   version = "3.3.10"
