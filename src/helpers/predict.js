@@ -66,8 +66,7 @@ export default function predict(imageUrls, models, batch_size, trace_level, useG
           throw error;
         })
         .then(response => {
-          // console.log("URLs", { response });
-          // console.log({ urls: imageUrls });
+          console.log(response);
           predictor = response;
           spanHeaders = predictor.headers;
           return URLs({
