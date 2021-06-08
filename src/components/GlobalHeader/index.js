@@ -82,13 +82,10 @@ class GlobalHeader extends Component {
     });
     const link_style = css({
       fontSize: "16px",
+      marginTop: "-3px",
+      borderBottom: "3px solid transparent",
       "&:hover": {
-        // background: Color("#19263a")
-        //   .lighten(0.2)
-        //   .hex(),
-
-        textWeight: "bold",
-        borderBottom: "2px solid currentColor",
+        borderBottom: "3px solid white",
       },
     });
 
