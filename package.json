@@ -1,6 +1,6 @@
 {
   "name": "mlmodelscope",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^2.1.1",
