@@ -23,10 +23,11 @@ export default class TraceInfo extends Component {
     }
 
     try {
-      var traceData = fetch("http://" + tracelocation + ":16686/api/traces/" + this.props.traceID);
+      var traceurl = "http://" + tracelocation + ":16686/api/traces/" + this.props.traceID;
       if(window.location.protocol === "https:"){
-        traceData = fetch("https://secure-" + tracelocation + "/api/traces/" + this.props.traceID);
+        traceurl = "https://secure-" + tracelocation + "/api/traces/" + this.props.traceID;
       }
+      var traceData = fetch(traceurl);
       // const traceData = require("../../docs/sampleTraceData.json");
       if (isPromise(traceData)) {
         console.log("isPromise");
