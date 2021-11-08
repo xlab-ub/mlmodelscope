@@ -11,7 +11,7 @@ import {
     assign
 } from "lodash";
 
-const baseURL = process.env.REACT_APP_NETLIFY_API_URL || ""
+const baseURL = process.env.API_URL || ""
 
 function serializeQueryParams(parameters) {
     let str = [];
