@@ -11,13 +11,15 @@ import { BrowserRouter as ReactRouter } from "react-router-dom";
 import Error from "./components/Error";
 
 class App extends Component {
+
+  getSiteTitle= () => { return process.env.REACT_APP_SITE_TITLE; }
+
   render() {
     return (
 
       <div>
-        <Helmet>
+        <Helmet title={this.getSiteTitle()}>
           <meta charSet="utf-8" />
-          <title>STAGING MLModelScope</title>
           <link rel="canonical" href="https://mlmodelscope.org" />
         </Helmet>
         <BackTop />
