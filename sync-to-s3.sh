@@ -15,13 +15,12 @@ if [ -z `stat ./aws/dist/aws` ]; then
 fi
 
 pwd
-ls
-ls ./aws
+ls /aws/dist
 
-./aws/dist/aws s3 sync /usr/share/nginx/html s3://staging.mlmodelscope.org
+/aws/dist/aws s3 sync /usr/share/nginx/html s3://staging.mlmodelscope.org
 
 if [ -n "$CLOUDFRONT_ID" ]; then
-    ./aws/dist/aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --path "/*"
+    /aws/dist/aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --path "/*"
 fi
 
 echo "S3 Bucket has been updated."
