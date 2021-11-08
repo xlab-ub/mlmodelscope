@@ -23,15 +23,15 @@ const infoStyle = {
 @withSizes(({ width }, { breakpoint }) => ({ isMobile: width < breakpoint }))
 class Hero extends Component {
   render() {
-    var docslocation = window.location.hostname 
+    var docslocation = window.location.hostname
     if (docslocation.split(".")[0] === "www") {
       docslocation = "docs." + docslocation.substring(4);
     }
     else if (window.location.hostname !== "localhost") {
-      docslocation = "docs." + docslocation;	
+      docslocation = "docs." + docslocation;
     }
     else {
-      docslocation = "docs.mlmodelscope.org";		
+      docslocation = "docs.mlmodelscope.org";
     }
 
 	docslocation = window.location.protocol + "//" + docslocation;
@@ -142,7 +142,7 @@ class Hero extends Component {
                   }}
                 >
                   <a
-                    href="/demo"
+                    href="/playground"
                     style={{
                       color: "white",
                       margin: "auto",
@@ -150,7 +150,7 @@ class Hero extends Component {
                       textAlign: "center",
                     }}
                   >
-                    Demo
+                    Playground
                   </a>
                 </Col>
               </React.Fragment>

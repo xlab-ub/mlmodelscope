@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { UserInfo } from "../swagger";
+//import { UserInfo } from "../swagger";
 
 const UserContext = React.createContext();
 export default UserContext;
@@ -29,21 +29,21 @@ export class UserProvider extends Component {
   }
 
   componentWillMount() {
-    this.setState({loading: true})
-    UserInfo({})
-    .then(result =>{
-      if (result.outcome === "success") {
-        this.setState({
-          username: result.username,
-          firstname: result.first_name,
-          lastname: result.last_name,
-          email: result.email,
-          loading: false
-        })
-      } else {
-        this.setState({loading: false})
-      }
-    })
+    // this.setState({loading: true})
+    // UserInfo({})
+    // .then(result =>{
+    //   if (result.outcome === "success") {
+    //     this.setState({
+    //       username: result.username,
+    //       firstname: result.first_name,
+    //       lastname: result.last_name,
+    //       email: result.email,
+    //       loading: false
+    //     })
+    //   } else {
+    //     this.setState({loading: false})
+    //   }
+    // })
   }
 
   render() {

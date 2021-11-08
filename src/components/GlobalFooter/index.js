@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { Layout, Row, Col } from "antd";
 import withSizes from "react-sizes";
 
-import C3SRLogo from "@/resources/logo/logo-c3sr.png";
-import { ReactComponent as IBMLogo } from "@/resources/logo/logo-ibm.svg";
-import { ReactComponent as UIUCLogo } from "@/resources/logo/logo-uiuc.svg";
+import C3SRLogo from "@resources/logo/logo-c3sr.png";
+import { ReactComponent as IBMLogo } from "@resources/logo/logo-ibm.svg";
+import { ReactComponent as UIUCLogo } from "@resources/logo/logo-uiuc.svg";
 
 const { Footer } = Layout;
 
-@withSizes(({ width }, { breakpoint }) => ({ isMobile: width < breakpoint }))
+//@withSizes(({ width }, { breakpoint }) => ({ isMobile: width < breakpoint }))
 class GlobalFooter extends Component {
   render() {
     const { isMobile } = this.props;
@@ -76,4 +76,7 @@ class GlobalFooter extends Component {
   }
 }
 
-export default GlobalFooter;
+
+const mapSizesToProps = ({ width }, { breakpoint }) => ({ isMobile: width < breakpoint });
+
+export default withSizes(mapSizesToProps)(GlobalFooter);

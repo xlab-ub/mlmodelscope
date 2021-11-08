@@ -30,7 +30,7 @@ function dateToYMD(date) {
 }
 
 @withSizes(({ width }) => ({ isMobile: width < 1010 }))
-export default class News extends Component {
+class News extends Component {
   render() {
     console.log(this.props.isMobile)
     return (
@@ -66,3 +66,5 @@ export default class News extends Component {
     );
   }
 }
+
+export default News;

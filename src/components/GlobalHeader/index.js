@@ -44,7 +44,7 @@ class GlobalHeader extends Component {
     }
   }
 
-  renderUser({ username, menu_item_style, link_style, link_active_style }) {
+  renderUser({ username, menu_item_style, link_style, link_active_style, item_style }) {
     if (userLoginEnabled === false) {
       return null;
     }
@@ -91,15 +91,15 @@ class GlobalHeader extends Component {
 
     const link_active_style = css({ fontWeight: "600" });
 
-    var docslocation = window.location.hostname 
+    var docslocation = window.location.hostname
     if (docslocation.split(".")[0] === "www") {
       docslocation = "docs." + docslocation.substring(4);
     }
     else if (window.location.hostname !== "localhost") {
-      docslocation = "docs." + docslocation;	
+      docslocation = "docs." + docslocation;
     }
     else {
-      docslocation = "docs.mlmodelscope.org";		
+      docslocation = "docs.mlmodelscope.org";
     }
     docslocation = window.location.protocol + "//" + docslocation;
 

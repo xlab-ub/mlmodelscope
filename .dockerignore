@@ -1,0 +1,6 @@
+.git
+build
+cmd
+node_modules
+pkg
+

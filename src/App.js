@@ -7,16 +7,17 @@ import GlobalFooter from "./components/GlobalFooter";
 import Router from "./router/router";
 import { Layout, BackTop } from "antd";
 import { BrowserRouter as ReactRouter } from "react-router-dom";
-import { UserProvider } from "./context/UserContext";
+//import { UserProvider } from "./context/UserContext";
 import Error from "./components/Error";
 
 class App extends Component {
   render() {
     return (
-      <UserProvider>
+
+      <div>
         <Helmet>
           <meta charSet="utf-8" />
-          <title>MLModelScope</title>
+          <title>STAGING MLModelScope</title>
           <link rel="canonical" href="https://mlmodelscope.org" />
         </Helmet>
         <BackTop />
@@ -37,7 +38,7 @@ class App extends Component {
             <GlobalFooter breakpoint={850} />
           </Layout>
         </ReactRouter>
-      </UserProvider>
+      </div>
     );
   }
 }
