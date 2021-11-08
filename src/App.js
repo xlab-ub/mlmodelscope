@@ -12,7 +12,7 @@ import Error from "./components/Error";
 
 class App extends Component {
 
-  getSiteTitle= () => { return process.env.REACT_APP_SITE_TITLE; }
+  getSiteTitle= () => { return process.env.SITE_TITLE || "MLModelScope"; }
 
   render() {
     return (
