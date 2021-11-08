@@ -8,7 +8,7 @@ RUN npm install
 # add app after dependencies have been installed to stop cache busting
 COPY ./public ./public
 COPY ./src ./src
-COPY ./* .
+COPY ./* ./
 
 RUN npm run build
 
