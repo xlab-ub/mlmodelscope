@@ -116,17 +116,6 @@ class Hero extends Component {
                     padding: "10px",
                   }}
                 >
-                  <a
-                    href={docslocation}
-                    style={{
-                      color: "white",
-                      margin: "auto",
-                      verticalAlign: "middle",
-                      textAlign: "center",
-                    }}
-                  >
-                    Get Started
-                  </a>
                 </Col>
                 <Col
                   lg={{ span: 4 }}
