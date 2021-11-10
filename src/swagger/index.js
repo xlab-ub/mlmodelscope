@@ -11,7 +11,7 @@ import {
     assign
 } from "lodash";
 
-const baseURL = process.env.API_URL || ""
+const baseURL = process.env.REACT_APP_API_URL || ""
 
 function serializeQueryParams(parameters) {
     let str = [];
@@ -528,7 +528,7 @@ export async function URLs(params) {
 };
 
 /**
- * 
+ *
  * @method
  * @name DLFramework#FrameworkAgents
  * @param {object} parameters - method options and parameters
@@ -604,7 +604,7 @@ export async function FrameworkAgents(params) {
 };
 
 /**
- * 
+ *
  * @method
  * @name DLFramework#FrameworkManifests
  * @param {object} parameters - method options and parameters
@@ -680,7 +680,7 @@ export async function FrameworkManifests(params) {
 };
 
 /**
- * 
+ *
  * @method
  * @name DLFramework#ModelAgents
  * @param {object} parameters - method options and parameters
@@ -766,7 +766,7 @@ export async function ModelAgents(params) {
 };
 
 /**
- * 
+ *
  * @method
  * @name DLFramework#ModelManifests
  * @param {object} parameters - method options and parameters
