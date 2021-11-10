@@ -12,11 +12,10 @@ import Error from "./components/Error";
 
 class App extends Component {
 
-  getSiteTitle= () => { return process.env.SITE_TITLE || "MLModelScope"; }
+  getSiteTitle= () => { return process.env.REACT_APP_SITE_TITLE || "MLModelscope"; }
 
   render() {
     return (
-
       <div>
         <Helmet title={this.getSiteTitle()}>
           <meta charSet="utf-8" />

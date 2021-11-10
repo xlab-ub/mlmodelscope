@@ -48,7 +48,7 @@ function renderResult(d, target, imgIndex, imgUrl, displayTrace = false) {
       return <div>{"Type " + features.type + " is not supported yet!"}</div>;
     }
     else {
-      var tracelocation = process.env.TRACE_URL || "http://localhost:16686";
+      var tracelocation = process.env.REACT_APP_TRACE_URL || "http://localhost:16686";
 
       var traceComponent = d.traceId ? (
         <TraceInfo

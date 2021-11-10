@@ -32,7 +32,7 @@ class Hero extends Component {
 
     const { isMobile } = this.props;
     return (
-      <div class="Hero" style={{paddingLeft: isMobile ? "50px" : "150px",}}>
+      <div className="Hero" style={{paddingLeft: isMobile ? "50px" : "150px",}}>
         <QueueAnim type={isMobile ? "bottom" : "left"} delay={300}>
           <Row type="flex" justify="start" style={{ paddingTop: "5vh" }}>
             <Col
