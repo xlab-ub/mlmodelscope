@@ -12,7 +12,7 @@ export default class UploadArea extends Component {
   constructor(props) {
     super(props);
     this.uppy = Uppy({ restrictions: { maxNumberOfFiles: 5 } });
-    this.uppy.use(Tus, { endpoint: "/api/upload", resume: true }).use(Webcam);
+    this.uppy.use(Tus, { endpoint: process.env.REACT_APP_UPLOAD_URL, resume: true }).use(Webcam);
   }
 
   render() {
