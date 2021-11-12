@@ -56,46 +56,19 @@ function registerValidSW(swUrl) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === "installed") {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the old content will have been purged and
-              // the fresh content will have been added to the cache.
-              // It's the perfect time to display a "New content is
-              // available; please refresh." message in your web app.
-              console.log("New content is available; please refresh.");
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log("Content is cached for offline use.");
-            }
-          }
-        };
-      };
 
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;
-        console.log("updatefound - new service worker", newWorker.state);
-
         newWorker.addEventListener('statechange', () => {
-          console.log("statechange - new service worker", newWorker.state);
           if(newWorker.state==="installed"){
-            console.log("telling installed service worker to skip waiting");
             newWorker.postMessage({type: 'SKIP_WAITING'});
-          }
-          if(newWorker.state==="activated"){
-            console.log("new service worker has activated - restarting app to load changes");
-            window.location.reload();
           }
         });
       });
 
     })
     .catch(error => {
-      // console.error('Error during service worker registration:', error);
+       console.error('Error during service worker registration:', error);
     });
 }
 
