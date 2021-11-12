@@ -10,11 +10,11 @@ import SemanticSegmentationResult from "./SemanticSegmentationResult";
 import InstanceSegmentationResult from "./InstanceSegmentationResult";
 import TraceInfo from "./TraceInfo";
 
-function renderResult(d, target, imgIndex, imgUrl, displayTrace = false) {
-  if (isNil(d)) {
+function renderResult(prediction, target, imgIndex, imgUrl, displayTrace = false) {
+  if (isNil(prediction)) {
     return null;
   }
-  var features = idx(d, _ => _.response[imgIndex].features);
+  var features = idx(prediction, _ => _.response[imgIndex].features);
   var resultComponent = null;
   try {
     if (features[0].type === "CLASSIFICATION") {
@@ -49,11 +49,10 @@ function renderResult(d, target, imgIndex, imgUrl, displayTrace = false) {
     }
     else {
       var tracelocation = process.env.REACT_APP_TRACE_URL || "http://localhost:16686";
-
-      var traceComponent = d.traceId ? (
+      var traceComponent = prediction.traceId ? (
         <TraceInfo
-          traceURL={ tracelocation + `trace/${d.traceId}?uiEmbed=v0`}
-          traceID={d.traceId}
+          traceURL={ tracelocation + `/trace/${prediction.traceId}?uiEmbed=v0`}
+          traceID={prediction.traceId}
           displayTrace={displayTrace}
         />
       ) : null;
@@ -65,6 +64,7 @@ function renderResult(d, target, imgIndex, imgUrl, displayTrace = false) {
       )
     }
   } catch (err) {
+    console.log(err);
     return <div>{"Something Went Wrong"}</div>;
   }
 }
@@ -154,10 +154,10 @@ export default class ResultTab extends Component {
     return (
       <Tabs defaultActiveKey={this.data.length > 1 ? "0" : "1"}>
         {this.data.length > 1 ? this.renderComparisonPane() : null}
-        {this.data.map(function(d, index) {
+        {this.data.map(function(predictResultsFromApi, index) {
           return (
-            <Tabs.TabPane tab={_this.nameVersionFormat(d[target])} key={index + 1}>
-              {renderResult(d, target, imgIndex, imgUrl, true)}
+            <Tabs.TabPane tab={_this.nameVersionFormat(predictResultsFromApi[target])} key={index + 1}>
+              {renderResult(predictResultsFromApi, target, imgIndex, imgUrl, true)}
             </Tabs.TabPane>
           );
         })}

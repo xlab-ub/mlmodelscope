@@ -14,20 +14,9 @@ export default class TraceInfo extends Component {
   }
 
   async componentDidMount() {
-    var tracelocation = window.location.hostname;
-    if (tracelocation.split(".")[0] === "www") {
-      tracelocation = "trace." + tracelocation.substring(4);
-    }
-    else if (window.location.hostname !== "localhost") {
-      tracelocation = "trace." + tracelocation;
-    }
 
     try {
-      var traceurl = "http://" + tracelocation + ":16686/api/traces/" + this.props.traceID;
-      if(window.location.protocol === "https:"){
-        traceurl = "https://secure-" + tracelocation + "/api/traces/" + this.props.traceID;
-      }
-      var traceData = fetch(traceurl);
+      var traceData = fetch(this.props.traceurl);
       // const traceData = require("../../docs/sampleTraceData.json");
       if (isPromise(traceData)) {
         console.log("isPromise");
