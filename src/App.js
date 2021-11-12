@@ -16,7 +16,7 @@ class App extends Component {
 
   render() {
 
-    console.log("App Version: " + process.env.REACT_APP_VERSION);
+    console.log("App GIT Commit: " + process.env.REACT_APP_VERSION);
 
     return (
       <div>
