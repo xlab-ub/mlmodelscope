@@ -10,7 +10,7 @@ if [ -z ${AWS_DEFAULT_REGION} ]; then echo "Required environment var AWS_DEFAULT
 # download awscli if not already
 if [ -z `stat ./aws/dist/aws` ]; then
     echo "aws cli is not available, downloading one now"
-    apt update && apt install awscli -y
+    apt-get update && apt-get install awscli -y -qq
 fi
 
 aws s3 sync /usr/share/nginx/html s3://staging.mlmodelscope.org
