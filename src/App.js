@@ -15,6 +15,9 @@ class App extends Component {
   getSiteTitle= () => { return process.env.REACT_APP_SITE_TITLE || "MLModelscope"; }
 
   render() {
+
+    console.log("App Version: " + process.env.REACT_APP_VERSION);
+
     return (
       <div>
         <Helmet title={this.getSiteTitle()}>

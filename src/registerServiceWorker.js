@@ -75,6 +75,24 @@ function registerValidSW(swUrl) {
           }
         };
       };
+
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        console.log("updatefound - new service worker", newWorker.state);
+
+        newWorker.addEventListener('statechange', () => {
+          console.log("statechange - new service worker", newWorker.state);
+          if(newWorker.state==="installed"){
+            console.log("telling installed service worker to skip waiting");
+            newWorker.postMessage({type: 'SKIP_WAITING'});
+          }
+          if(newWorker.state==="activated"){
+            console.log("new service worker has activated - restarting app to load changes");
+            window.location.reload();
+          }
+        });
+      });
+
     })
     .catch(error => {
       // console.error('Error during service worker registration:', error);
