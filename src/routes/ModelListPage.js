@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 import { Row, Col, Layout } from "antd";
 import ModelHeader from "../components/ModelList/ModelHeader"
 import FilterPanel from "../components/ModelList/FilterPanel";
-import ModelBox from "../components/ModelList/ModelBox";
+import ModelsContainer from "../components/ModelList/ModelsContainer";
 
 export default class ModelListPage extends Component {
   render(){
@@ -21,7 +21,7 @@ export default class ModelListPage extends Component {
             <FilterPanel />
           </Col>
           <Col span="22">
-            <ModelBox />
+            <ModelsContainer />
           </Col>
         </Row>
       </Layout>
