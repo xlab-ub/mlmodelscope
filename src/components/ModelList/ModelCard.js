@@ -6,8 +6,12 @@ export default class ModelCard extends Component{
     const model = this.props.model;
     return(
       <div className="ModelCardDiv">
-        <p>{model.name} {model.version}</p>
-        <p>{model.description}</p>
+        <div className="ModelTagsBox">
+          <button>{model.framework.name}</button>
+        </div>
+        <p className="ModelName">{model.name}</p>
+        <p className="ModelVersion">Version {model.version}</p>
+        <p className="ModelDescription">{model.description}</p>
       </div>
     )
   }
