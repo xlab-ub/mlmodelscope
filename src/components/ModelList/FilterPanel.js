@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./FilterPanel.css"
 
 export default class FilterPanel extends Component{
+  activeTag="ActiveTag";
+  inactiveTag="InactiveTag";
+
   OnClickFramework = (e) => {
     let target = e.target;
     let tag = target.innerHTML;
@@ -11,7 +14,7 @@ export default class FilterPanel extends Component{
   frameworkButtons = () => {
     let buttons = [];
     for(let i = 0; i < this.props.frameworks.length; i++){
-      let className = this.props.frameworks[i].isActive?"ActiveTag":"InactiveTag";
+      let className = this.props.frameworks[i].isActive?this.activeTag:this.inactiveTag;
       let text = this.props.frameworks[i].name;
       buttons.push(<button className={className} onClick={this.OnClickFramework}>{text}</button>);
     }
@@ -27,7 +30,7 @@ export default class FilterPanel extends Component{
   taskButtons = () => {
     let buttons = [];
     for(let i = 0; i < this.props.tasks.length; i++){
-      let className = this.props.tasks[i].isActive?"ActiveTag":"InactiveTag";
+      let className = this.props.tasks[i].isActive?this.activeTag:this.inactiveTag;
       let text = this.props.tasks[i].label;
       buttons.push(<button className={className} onClick={this.OnClickTask}>{text}</button>);
     }
