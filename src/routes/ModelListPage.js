@@ -14,17 +14,35 @@ export default class ModelListPage extends Component {
         {name: "MXNet", isActive: false},
         {name: "PyTorch", isActive: false},
         {name: "TensorFlow", isActive: false}
+      ],
+      tasks: [
+        {name: "classification", label: "Classification", isActive: false},
+        {name: "boundingbox", label: "Object Detection", isActive: false},
+        {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
+        {name: "instancesegment", label: "Instance Segmentation", isActive: false},
+        {name: "image", label: "Image Enhancement", isActive: false}
       ]
     }
   }
 
   toggleFramework = framework => {
     let filters = this.state.frameworks;
-    let i = filters.findIndex(filter => filter.name == framework);
+    let i = filters.findIndex(filter => filter.name === framework);
     if(i >= 0 && i < filters.length){
       filters[i].isActive = !filters[i].isActive;
       this.setState(oldState => ({
         frameworks: [...filters]
+      }));
+    }
+  }
+
+  toggleTask = task => {
+    let filters = this.state.tasks;
+    let i = filters.findIndex(filter => filter.label === task);
+    if(i >= 0 && i < filters.length){
+      filters[i].isActive = !filters[i].isActive;
+      this.setState(oldState => ({
+        tasks: [...filters]
       }));
     }
   }
@@ -41,10 +59,10 @@ export default class ModelListPage extends Component {
 
         <Row>
           <Col span="2">
-            <FilterPanel frameworks={this.state.frameworks} toggleFramework={this.toggleFramework}/>
+            <FilterPanel frameworks={this.state.frameworks} tasks={this.state.tasks} toggleFramework={this.toggleFramework} toggleTask={this.toggleTask} />
           </Col>
           <Col span="22">
-            <ModelsContainer frameworks={this.state.frameworks} />
+            <ModelsContainer frameworks={this.state.frameworks} tasks={this.state.tasks} />
           </Col>
         </Row>
       </Layout>

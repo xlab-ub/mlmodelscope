@@ -6,19 +6,41 @@ export default class ModelsContainer extends Component{
   modelCards = () => {
     let modelKey = 0;
     let models = require('./tmp_model_data.json');
+    let modelList = this.filteredModels()
+    return modelList.map(model => <ModelCard key={modelKey++} model={model}/>);
+  }
 
-    let filteredModels = [];
+  filteredModels = () => {
+    let result = models.manifests;
+
+    result = this.filterByFramework(result);
+    result = this.filterByTask(result);
+    return result;
+  }
+
+  filterByFramework = (unfilteredModels) => {
     let activeFrameworks = this.props.frameworks.filter(fr => fr.isActive);
-    console.log(activeFrameworks)
-    if(activeFrameworks.length == 0 || activeFrameworks.length == this.props.frameworks.length){
-      filteredModels = models.manifests;
+    if(activeFrameworks.length === 0 || activeFrameworks.length === this.props.frameworks.length){
+      return unfilteredModels;
     }
-    else{
-      for(let i = 0; i < activeFrameworks.length; i++) {
-        filteredModels = filteredModels.concat(models.manifests.filter(model => model.framework.name == activeFrameworks[i].name));
-      }
+    let filteredModels=[];
+    for(let i = 0; i < activeFrameworks.length; i++){
+      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model.framework.name === activeFrameworks[i].name));
     }
-    return filteredModels.map(model => <ModelCard key={modelKey++} model={model}/>);
+    return filteredModels;
+  }
+
+  filterByTask = (unfilteredModels) => {
+    let activeTasks = this.props.tasks.filter(tk => tk.isActive);
+    if(activeTasks.length === 0 || activeTasks.length === this.props.tasks.length){
+      return unfilteredModels;
+    }
+    let filteredModels=[];
+    for(let i = 0; i < activeTasks.length; i++){
+      console.log("Looking for model.output.type == " + activeTasks[i].name);
+      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model.output.type === activeTasks[i].name));
+    }
+    return filteredModels;
   }
 
   render() {

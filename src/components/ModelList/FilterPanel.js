@@ -17,11 +17,30 @@ export default class FilterPanel extends Component{
     }
     return buttons;
   }
+
+  OnClickTask = (e) => {
+    let target = e.target;
+    let tag = target.innerHTML;
+    this.props.toggleTask(tag);
+  }
+
+  taskButtons = () => {
+    let buttons = [];
+    for(let i = 0; i < this.props.tasks.length; i++){
+      let className = this.props.tasks[i].isActive?"ActiveTag":"InactiveTag";
+      let text = this.props.tasks[i].label;
+      buttons.push(<button className={className} onClick={this.OnClickTask}>{text}</button>);
+    }
+    return buttons;
+  }
+
   render() {
     return(
       <div style={{background: "gainsboro", padding: "12px"}}>
-        <p>Framework</p>
+        <p>Frameworks</p>
         {this.frameworkButtons()}
+        <p>Tasks</p>
+        {this.taskButtons()}
       </div>
     );
   }
