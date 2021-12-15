@@ -1,5 +1,6 @@
 import LandingPage from "../routes/LandingPage";
 import ExperimentPage from "../routes/ExperimentPage";
+import ModelListPage from "../routes/ModelListPage"
 // import LogInPage from "../routes/LogInPage";
 // import LogoutPage from "../routes/LogoutPage";
 import InitialSetupPage from "../routes/InitialSetupPage";
@@ -62,6 +63,10 @@ const routes = [
     path: "/news",
     component: NewsPage,
     exact: false,
+  },
+  {
+    path: "/models",
+    component: ModelListPage,
   },
 ];
 

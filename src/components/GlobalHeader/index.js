@@ -139,6 +139,15 @@ class GlobalHeader extends Component {
                 Playground
               </NavLink>
             </Menu.Item>
+            <Menu.Item key="models" {...menu_item_style}>
+              <NavLink
+                to={"/models"}
+                {...link_style}
+                link_active_style={link_active_style}
+              >
+                Models
+              </NavLink>
+            </Menu.Item>
             <Menu.Item key="news" {...menu_item_style}>
               <NavLink to={"/news"} {...link_style} link_active_style={link_active_style}>
                 News
