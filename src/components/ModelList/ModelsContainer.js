@@ -37,7 +37,6 @@ export default class ModelsContainer extends Component{
     }
     let filteredModels=[];
     for(let i = 0; i < activeTasks.length; i++){
-      console.log("Looking for model.output.type == " + activeTasks[i].name);
       filteredModels = filteredModels.concat(unfilteredModels.filter(model => model.output.type === activeTasks[i].name));
     }
     return filteredModels;
