@@ -16,7 +16,7 @@ export default class ModelListPage extends Component {
         {name: "TensorFlow", isActive: false}
       ],
       tasks: [
-        {name: "classification", label: "Classification", isActive: false},
+        {name: "classification", label: "Classification", isActive: true},
         {name: "boundingbox", label: "Object Detection", isActive: false},
         {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
         {name: "instancesegment", label: "Instance Segmentation", isActive: false},
@@ -38,13 +38,17 @@ export default class ModelListPage extends Component {
 
   toggleTask = task => {
     let filters = this.state.tasks;
-    let i = filters.findIndex(filter => filter.label === task);
-    if(i >= 0 && i < filters.length){
-      filters[i].isActive = !filters[i].isActive;
-      this.setState(oldState => ({
-        tasks: [...filters]
-      }));
+    for(let i = 0 ; i < filters.length; i++){
+      if(filters[i].label === task){
+        filters[i].isActive = true;
+      }
+      else{
+        filters[i].isActive = false;
+      }
     }
+    this.setState(oldState => ({
+      tasks: [...filters]
+    }));
   }
 
   render(){

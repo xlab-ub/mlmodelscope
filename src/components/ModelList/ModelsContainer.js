@@ -31,15 +31,11 @@ export default class ModelsContainer extends Component{
   }
 
   filterByTask = (unfilteredModels) => {
-    let activeTasks = this.props.tasks.filter(tk => tk.isActive);
-    if(activeTasks.length === 0 || activeTasks.length === this.props.tasks.length){
+    let activeTask = this.props.tasks.filter(tk => tk.isActive);
+    if(activeTask.length !== 1){
       return unfilteredModels;
     }
-    let filteredModels=[];
-    for(let i = 0; i < activeTasks.length; i++){
-      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model.output.type === activeTasks[i].name));
-    }
-    return filteredModels;
+    return unfilteredModels.filter(model => model.output.type === activeTask[0].name);
   }
 
   render() {
