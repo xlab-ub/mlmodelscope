@@ -46,7 +46,7 @@ export default class ModelListPage extends Component {
 
         <Row>
           <Col span="2">
-            <FilterPanel toggleFramework={this.toggleFramework}/>
+            <FilterPanel frameworks={this.state.frameworks} toggleFramework={this.toggleFramework}/>
           </Col>
           <Col span="22">
             <ModelsContainer frameworks={this.state.frameworks} />
