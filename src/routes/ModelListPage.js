@@ -20,7 +20,6 @@ export default class ModelListPage extends Component {
 
   toggleFramework = framework => {
     let filters = this.state.frameworks;
-    console.log("Searching for: " + framework);
     let i = filters.findIndex(filter => filter.name == framework);
     if(i >= 0 && i < filters.length){
       filters[i].isActive = !filters[i].isActive;
@@ -28,10 +27,6 @@ export default class ModelListPage extends Component {
         frameworks: [...filters]
       }));
     }
-    else{
-      console.log("filter not found");
-    }
-    console.log(this.state.frameworks);
   }
 
   render(){

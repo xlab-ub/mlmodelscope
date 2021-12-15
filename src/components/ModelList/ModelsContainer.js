@@ -4,7 +4,6 @@ import models from "./tmp_model_data.json";
 
 export default class ModelsContainer extends Component{
   modelCards = () => {
-    console.log("Getting models...");
     let modelKey = 0;
     let models = require('./tmp_model_data.json');
 
