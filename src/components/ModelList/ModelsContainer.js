@@ -12,30 +12,24 @@ export default class ModelsContainer extends Component{
 
   filteredModels = () => {
     let result = models.manifests;
-
-    result = this.filterByFramework(result);
-    result = this.filterByTask(result);
+    for(let i = 0; i < this.props.filterGroups.length; i++){
+      result = this.filterByOneField(result, this.props.filterGroups[i]);
+    }
     return result;
   }
 
-  filterByFramework = (unfilteredModels) => {
-    let activeFrameworks = this.props.frameworks.filter(fr => fr.isActive);
-    if(activeFrameworks.length === 0 || activeFrameworks.length === this.props.frameworks.length){
+  filterByOneField = (unfilteredModels, filterGroup) => {
+    let activeOptions = filterGroup.options.filter(o => o.isActive);
+    if(activeOptions.length === 0 || activeOptions.length === filterGroup.options.length){
       return unfilteredModels;
     }
     let filteredModels=[];
-    for(let i = 0; i < activeFrameworks.length; i++){
-      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model.framework.name === activeFrameworks[i].name));
+    let j = filterGroup.fieldA;
+    let k = filterGroup.fieldB;
+    for(let i = 0; i < activeOptions.length; i++){
+      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model[j][k] === activeOptions[i].name));
     }
     return filteredModels;
-  }
-
-  filterByTask = (unfilteredModels) => {
-    let activeTask = this.props.tasks.filter(tk => tk.isActive);
-    if(activeTask.length !== 1){
-      return unfilteredModels;
-    }
-    return unfilteredModels.filter(model => model.output.type === activeTask[0].name);
   }
 
   render() {

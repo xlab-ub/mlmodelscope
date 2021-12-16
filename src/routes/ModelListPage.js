@@ -9,46 +9,67 @@ export default class ModelListPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      frameworks: [
-        {name: "Onnxruntime", isActive: false},
-        {name: "MXNet", isActive: false},
-        {name: "PyTorch", isActive: false},
-        {name: "TensorFlow", isActive: false}
-      ],
-      tasks: [
-        {name: "classification", label: "Classification", isActive: true},
-        {name: "boundingbox", label: "Object Detection", isActive: false},
-        {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
-        {name: "instancesegment", label: "Instance Segmentation", isActive: false},
-        {name: "image", label: "Image Enhancement", isActive: false}
+      filterGroups: [
+        {
+          header: "Frameworks",
+          select: "multi",
+          fieldA: "framework",
+          fieldB: "name",
+          options: [
+            {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
+            {name: "MXNet", label: "MXNet", isActive: false},
+            {name: "PyTorch", label: "PyTorch", isActive: false},
+            {name: "TensorFlow", label: "TensorFlow", isActive: false}
+          ]
+        },
+        {
+          header: "Tasks",
+          select: "single",
+          fieldA: "output",
+          fieldB: "type",
+          options: [
+            {name: "classification", label: "Classification", isActive: true},
+            {name: "boundingbox", label: "Object Detection", isActive: false},
+            {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
+            {name: "instancesegment", label: "Instance Segmentation", isActive: false},
+            {name: "image", label: "Image Enhancement", isActive: false}
+          ]
+        }
       ]
     }
   }
 
-  toggleFramework = framework => {
-    let filters = this.state.frameworks;
-    let i = filters.findIndex(filter => filter.name === framework);
-    if(i >= 0 && i < filters.length){
-      filters[i].isActive = !filters[i].isActive;
-      this.setState(oldState => ({
-        frameworks: [...filters]
-      }));
+  toggleFilter = (filterName, selectMode, target) => {
+    let filterGroupsCopy = [...this.state.filterGroups];
+    let i = filterGroupsCopy.findIndex(group => group.header === filterName);
+    let filterGroup = {...filterGroupsCopy[i]};
+
+    if(selectMode === "multi"){
+      this.toggleFilterMulti(filterGroup, target);
     }
+    else{
+      this.toggleFilterSingle(filterGroup, target)
+    }
+
+    filterGroupsCopy[i] = filterGroup;
+    this.setState(oldState => ({filterGroups: filterGroupsCopy}));
   }
 
-  toggleTask = task => {
-    let filters = this.state.tasks;
-    for(let i = 0 ; i < filters.length; i++){
-      if(filters[i].label === task){
-        filters[i].isActive = true;
+  toggleFilterMulti = (filterGroup, target) => {
+    let targetOption = filterGroup.options.find(option => option.label === target);
+    targetOption.isActive = !targetOption.isActive;
+  }
+
+  toggleFilterSingle = (filterGroup, target) => {
+    let options = filterGroup.options;
+    for(let i = 0 ; i < options.length; i++){
+      if(options[i].label === target){
+        options[i].isActive = true;
       }
       else{
-        filters[i].isActive = false;
+        options[i].isActive = false;
       }
     }
-    this.setState(oldState => ({
-      tasks: [...filters]
-    }));
   }
 
   render(){
@@ -63,10 +84,10 @@ export default class ModelListPage extends Component {
 
         <Row>
           <Col span="2">
-            <FilterPanel frameworks={this.state.frameworks} tasks={this.state.tasks} toggleFramework={this.toggleFramework} toggleTask={this.toggleTask} />
+            <FilterPanel filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
           </Col>
           <Col span="22">
-            <ModelsContainer frameworks={this.state.frameworks} tasks={this.state.tasks} />
+            <ModelsContainer filterGroups={this.state.filterGroups} />
           </Col>
         </Row>
       </Layout>
