@@ -4,10 +4,12 @@ import { Row, Col, Layout } from "antd";
 import ModelHeader from "../components/ModelList/ModelHeader"
 import FilterPanel from "../components/ModelList/FilterPanel";
 import ModelsContainer from "../components/ModelList/ModelsContainer";
+import GetApiHelper from "../helpers/api";
 
 export default class ModelListPage extends Component {
   constructor(props){
     super(props);
+    this.api = GetApiHelper();
     this.state = {
       filterGroups: [
         {
@@ -35,7 +37,8 @@ export default class ModelListPage extends Component {
             {name: "image", label: "Image Enhancement", isActive: false}
           ]
         }
-      ]
+      ],
+      models: []
     }
   }
 
@@ -72,6 +75,16 @@ export default class ModelListPage extends Component {
     }
   }
 
+  componentDidMount() {
+    this.api.Models.subscribe({
+      next: (models) => {
+        console.log('got models from api', models)
+        this.setState({ models: models });
+      }
+    });
+    this.api.getModels();
+  }
+
   render(){
     return(
       <Layout>
@@ -87,7 +100,7 @@ export default class ModelListPage extends Component {
             <FilterPanel filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
           </Col>
           <Col span="22">
-            <ModelsContainer filterGroups={this.state.filterGroups} />
+            <ModelsContainer filterGroups={this.state.filterGroups} models={this.state.models} />
           </Col>
         </Row>
       </Layout>

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ModelCard from "./ModelCard";
-import models from "./tmp_model_data.json";
 
 export default class ModelsContainer extends Component{
   modelCards = () => {
     let modelKey = 0;
-    let models = require('./tmp_model_data.json');
-    let modelList = this.filteredModels()
-    return modelList.map(model => <ModelCard key={modelKey++} model={model}/>);
+    // let modelList = this.filteredModels()
+    // return modelList.map(model => <ModelCard key={modelKey++} model={model}/>);
+    console.log(this.props);
+    return this.props.models.map(model => <ModelCard key={modelKey++} model={model}/>);
   }
 
   filteredModels = () => {
-    let result = models.manifests;
+    let result = this.props.models.manifests;
     for(let i = 0; i < this.props.filterGroups.length; i++){
       result = this.filterByOneField(result, this.props.filterGroups[i]);
     }

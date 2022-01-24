@@ -73,6 +73,7 @@
     "react-syntax-highlighter": "^11.0.2",
     "react-window-size": "^1.2.2",
     "recompose": "^0.30.0",
+    "rxjs": "^7.5.2",
     "snappyjs": "^0.6.0",
     "speedscope": "^1.5.2",
     "styled-components": "^4.4.0",
@@ -101,9 +102,10 @@
     "build:assets": "node scripts/build_go_assets.js"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
     "@svgr/webpack": "^4.3.3",
     "babel-plugin-import": "^1.12.2",
-    "babel-preset-flow": "^6.23.0",
     "customize-cra": "^0.8.0",
     "eslint-config-prettier": "^6.4.0",
     "husky": "^3.0.9",
