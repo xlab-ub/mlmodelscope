@@ -100,7 +100,7 @@ export default class InstanceSegmentationResult extends Component {
     var maskColors = [];
     for (var i = 0; i < filteredFeatures.length; i++) {
       maskColors.push(getRandomColor())
-    } 
+    }
     this.state = {
       image: null,
       width: (window.innerWidth - 380)/2,
@@ -112,7 +112,7 @@ export default class InstanceSegmentationResult extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.loadImage();
   }
 
@@ -286,7 +286,7 @@ export default class InstanceSegmentationResult extends Component {
     if (this.state.height === null) {
       return null;
     }
-    
+
     var filterValue = this.state.filterValue;
 
     return (

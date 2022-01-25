@@ -18,7 +18,7 @@ export default class FilterGroup extends Component{
     for(let i = 0; i < options.length; i++){
       let className = options[i].isActive?this.activeTag:this.inactiveTag;
       let text = options[i].label;
-      buttons.push(<button className={className} onClick={this.onClick}>{text}</button>);
+      buttons.push(<button key={i} className={className} onClick={this.onClick}>{text}</button>);
     }
 
     return(

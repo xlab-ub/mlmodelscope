@@ -134,10 +134,10 @@ export default class ModelListPage extends Component {
         </Row>
 
         <Row>
-          <Col span="2">
+          <Col span={2}>
             <FilterPanel filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
           </Col>
-          <Col span="22">
+          <Col span={22}>
             <ModelsContainer filterGroups={this.state.filterGroups} models={this.state.models} />
           </Col>
         </Row>
