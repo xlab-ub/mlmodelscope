@@ -4,9 +4,6 @@ import ModelCard from "./ModelCard";
 export default class ModelsContainer extends Component{
   modelCards = () => {
     let modelKey = 0;
-    // let modelList = this.filteredModels()
-    // return modelList.map(model => <ModelCard key={modelKey++} model={model}/>);
-    console.log(this.props);
     return this.props.models.map(model => <ModelCard key={modelKey++} model={model}/>);
   }
 

@@ -2,14 +2,25 @@ import GetApiHelper from "./api";
 import expect from "expect";
 import fetchMock from "fetch-mock";
 
-const ApiRoot = 'http://localhost:8080';
+const ApiRoot = process.env.REACT_APP_API_URL;
 
 describe('The API helper', () => {
+
+  beforeEach(() => {
+    fetchMock.resetHistory();
+  });
+
+  let api = GetApiHelper();
+
+  fetchMock.get(`begin:${ApiRoot}/models`, {
+    models: [{}]
+  });
+
+  fetchMock.get(`begin:${ApiRoot}/frameworks`, {
+    frameworks: [{}]
+  });
+
   it('requests all models', async () => {
-    fetchMock.get(`${ApiRoot}/models`, {
-      models: [{}]
-    });
-    let api = GetApiHelper();
     let results;
 
     api.Models.subscribe({
@@ -23,4 +34,46 @@ describe('The API helper', () => {
     expect(results.length).toBe(1);
   });
 
-})
+  it('requests all frameworks', async () => {
+    let results;
+
+    api.Frameworks.subscribe({
+      next: (frameworks) => {
+        results = frameworks;
+      }
+    });
+
+    await api.getFrameworks();
+    expect(fetchMock.called(`${ApiRoot}/frameworks`)).toBe(true);
+    expect(results.length).toBe(1);
+  });
+
+  it('requests models of one framework', async () => {
+    let results;
+
+    api.Models.subscribe({
+      next: (models) => {
+        results = models;
+      }
+    });
+
+    await api.getModels({ framework: 1 });
+    expect(fetchMock.lastUrl()).toBe(`${ApiRoot}/models?framework=1`);
+    expect(results.length).toBe(1);
+  });
+
+  it('requests models of one task', async () => {
+    let results;
+
+    api.Models.subscribe({
+      next: (models) => {
+        results = models;
+      }
+    });
+
+    await api.getModels({ task: 1 });
+    expect(fetchMock.lastUrl()).toBe(`${ApiRoot}/models?task=1`);
+    expect(results.length).toBe(1);
+  });
+
+});
