@@ -4,12 +4,13 @@ class Api {
   Models: Subject;
 
   constructor() {
+    this.apiUrl = process.env.REACT_APP_API_URL;
     this.Models = new BehaviorSubject([]);
   }
 
   async getModels() {
     console.log("Getting models...")
-    let result = await fetch('https://staging.api.mlmodelscope.org/models');
+    let result = await fetch(`${this.apiUrl}/models`);
     let data = await result.json();
     //console.log(data);
 

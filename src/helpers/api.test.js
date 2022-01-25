@@ -1,17 +1,26 @@
 import GetApiHelper from "./api";
 import expect from "expect";
+import fetchMock from "fetch-mock";
 
-it('exists', () => {
-  let api = GetApiHelper();
-});
+const ApiRoot = 'http://localhost:8080';
 
-it('can get models', async () => {
-  let api = GetApiHelper();
-  let results;
-  api.Models.subscribe({
-    next: (models) => {
-      results = models;
-    }
+describe('The API helper', () => {
+  it('requests all models', async () => {
+    fetchMock.get(`${ApiRoot}/models`, {
+      models: [{}]
+    });
+    let api = GetApiHelper();
+    let results;
+
+    api.Models.subscribe({
+      next: (models) => {
+        results = models;
+      }
+    });
+    await api.getModels();
+
+    expect(fetchMock.called(`${ApiRoot}/models`)).toBe(true);
+    expect(results.length).toBe(1);
   });
-  expect(results.length).greaterThan(0);
-});
+
+})
