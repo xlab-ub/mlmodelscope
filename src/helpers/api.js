@@ -3,11 +3,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 class Api {
   Models: Subject;
   Frameworks: Subject;
+  ActiveModel: Subject;
 
   constructor() {
     this.apiUrl = process.env.REACT_APP_API_URL;
     this.Models = new BehaviorSubject([]);
     this.Frameworks = new BehaviorSubject([]);
+    this.ActiveModel = new BehaviorSubject([]);
   }
 
   async getModels(filters) {
@@ -19,6 +21,13 @@ class Api {
     let data = await result.json();
 
     this.Models.next(data.models);
+  }
+
+  async getModel(id) {
+    let result = await fetch(`${this.apiUrl}/models/${id}`);
+    let data = await result.json();
+
+    this.ActiveModel.next(data.models);
   }
 
   async getFrameworks() {

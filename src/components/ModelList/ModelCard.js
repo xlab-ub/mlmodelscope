@@ -21,13 +21,14 @@ export default class ModelCard extends Component{
   render() {
     const model = this.props.model;
     const task = this.taskNameToLabel(model.output.type);
+    const modelLink = "/model/" + model.id;
     return(
       <div className="ModelCardDiv">
         <div className="ModelTagsBox">
           <button>{model.framework.name}</button>
           <button>{task}</button>
         </div>
-        <p className="ModelName">{model.name}</p>
+        <a className="ModelCard__model-name" href={modelLink}>{model.name}</a>
         <p className="ModelVersion">Version {model.version}</p>
         <p className="ModelDescription">{model.description}</p>
       </div>

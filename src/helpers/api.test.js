@@ -76,4 +76,18 @@ describe('The API helper', () => {
     expect(results.length).toBe(1);
   });
 
+  it('requests model by ID', async () => {
+    let results;
+
+    api.ActiveModel.subscribe({
+      next: (model) => {
+        results = model;
+      }
+    });
+
+    await api.getModel(1);
+    expect(fetchMock.lastUrl()).toBe(`${ApiRoot}/models/1`);
+    expect(results.length).toBe(1);
+  })
+
 });
