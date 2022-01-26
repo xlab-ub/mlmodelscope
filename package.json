@@ -99,11 +99,19 @@
     "build:swaggeri": "node scripts/build_swagger.js",
     "clean:swagger": "rimraf src/swagger",
     "clean:build": "rimraf build",
-    "build:assets": "node scripts/build_go_assets.js"
+    "build:assets": "node scripts/build_go_assets.js",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.14",
+    "@storybook/addon-essentials": "^6.4.14",
+    "@storybook/addon-links": "^6.4.14",
+    "@storybook/node-logger": "^6.4.14",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.4.14",
     "@svgr/webpack": "^4.3.3",
     "babel-plugin-import": "^1.12.2",
     "customize-cra": "^0.8.0",
@@ -142,5 +150,17 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  }
 }

@@ -36,3 +36,6 @@ vendor
 *.pprof
 debug
 mlmodelscope
+
+#Jetbrains IDE files
+.idea
