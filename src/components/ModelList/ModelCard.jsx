@@ -2,6 +2,11 @@ import React, {Component} from "react";
 import './ModelCard.css'
 
 export default class ModelCard extends Component{
+  constructor() {
+    super();
+    this.type = "test";
+  }
+
   taskNameToLabel = (taskName) => {
     // Just a quick solution for the prototype; DO NOT KEEP THIS
     switch (taskName){
