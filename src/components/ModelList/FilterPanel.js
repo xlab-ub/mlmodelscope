@@ -7,7 +7,7 @@ export default class FilterPanel extends Component{
   makeFilterGroupsFromState = () => {
     let groups = [];
     for(let i = 0; i < this.props.filterGroups.length; i++){
-      groups.push(<FilterGroup filterGroup={this.props.filterGroups[i]} toggleFilter = {this.props.toggleFilter} />);
+      groups.push(<FilterGroup key={i} filterGroup={this.props.filterGroups[i]} toggleFilter = {this.props.toggleFilter} />);
     }
     return groups;
   }
