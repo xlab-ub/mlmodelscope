@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import './ModelCard.css'
+require('./ModelCard.styl')
+//import { style } from './ModelCard.styl';
 
 export default class ModelCard extends Component{
   constructor() {
