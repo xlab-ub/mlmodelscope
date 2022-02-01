@@ -1,5 +1,12 @@
+@import './BaseStyles/type.scss';
+@import './BaseStyles/gutters.scss';
+
 :root {
   --primaryColor: #1A263A;
+}
+
+body{
+  font-family: $sans-serif;
 }
 
 .App {

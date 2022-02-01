@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import "./share/style.css";
 import Helmet from "react-helmet";
 import React, { Component } from "react";

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ModelDetailHeader from "./ModelDetailHeader";
 import {useParams} from "react-router-dom";
 import GetApiHelper from "../../helpers/api";
+import "./ModelDetailPage.scss";
 
 export default class ModelDetailPage extends Component{
   constructor(props){
@@ -28,7 +29,7 @@ export default class ModelDetailPage extends Component{
 
   render(){
     return(
-      <div>
+      <div className="model-detail-page">
         <ModelDetailHeader model={this.state.model}/>
       </div>
     )
