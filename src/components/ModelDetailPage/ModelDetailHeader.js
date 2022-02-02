@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Task from "../../helpers/Task";
-import './ModelDetailHeader.scss';
 import 'typeface-lato';
 
 export default class ModelDetailHeader extends Component{

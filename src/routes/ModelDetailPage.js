@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import ModelDetailHeader from "./ModelDetailHeader";
+import ModelDetailHeader from "../components/ModelDetailPage/ModelDetailHeader";
 import {useParams} from "react-router-dom";
-import GetApiHelper from "../../helpers/api";
-import "./ModelDetailPage.scss";
+import GetApiHelper from "../helpers/api";
 
 export default class ModelDetailPage extends Component{
   constructor(props){

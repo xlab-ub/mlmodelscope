@@ -12,7 +12,7 @@ import ConferencePage from "../routes/ConferencePage";
 import NewsPage from "../routes/NewsPage";
 import SignupPage from "../routes/SignupPage";
 import { Signup } from "../swagger";
-import ModelDetailPage from "../components/ModelDetailPage/ModelDetailPage";
+import ModelDetailPage from "../routes/ModelDetailPage";
 
 const routes = [
   {
