@@ -39,3 +39,6 @@ mlmodelscope
 
 #Jetbrains IDE files
 .idea
+
+# Storybook output
+storybook-static
