@@ -1,13 +1,17 @@
 @import
-  'abstracts/gutters';
+  'abstracts/colors',
+  'abstracts/gutters',
+  'abstracts/type';
 
 @import
-  'base/type',
   'base/base';
 
-@import 'src/share/style';
+@import
+  'share/style';
 
-@import 'src/components/ModelList/ModelCard',
-'src/components/ModelDetailPage/ModelDetailHeader';
+@import
+  'components/ModelList/ModelCard',
+  'components/ModelDetailPage/ModelDetailHeader';
 
-@import 'src/routes/ModelDetailPage';
+@import
+  'routes/ModelDetailPage';
