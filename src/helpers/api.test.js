@@ -90,4 +90,15 @@ describe('The API helper', () => {
     expect(results.length).toBe(1);
   })
 
+  it('reports the anonymous user by default', async () => {
+    let userId;
+
+    api.ActiveUser.subscribe({
+      next: (user) => {
+        userId = user.id;
+      }
+    });
+
+    expect(userId).toBe('anonymous');
+  })
 });

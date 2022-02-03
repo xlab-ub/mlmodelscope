@@ -1,5 +1,7 @@
 import { BehaviorSubject, Subject } from 'rxjs';
 
+const AnonymousUserId = 'anonymous';
+
 class Api {
   Models: Subject;
   Frameworks: Subject;
@@ -10,6 +12,7 @@ class Api {
     this.Models = new BehaviorSubject([]);
     this.Frameworks = new BehaviorSubject([]);
     this.ActiveModel = new BehaviorSubject([]);
+    this.ActiveUser = new BehaviorSubject({ id: AnonymousUserId })
   }
 
   async getModels(filters) {
