@@ -7,22 +7,6 @@ export default class ModelCard extends Component{
     this.type = "test";
   }
 
-  taskNameToLabel = (taskName) => {
-    // Just a quick solution for the prototype; DO NOT KEEP THIS
-    switch (taskName){
-      case "classification":
-        return "Classification";
-      case "boundingbox":
-        return "Object Detection";
-      case "semanticsegment":
-        return "Semantic Segmentation";
-      case "instancesegment":
-        return "Instance Segmentation";
-      case "image":
-        return "Image Enhancement";
-    }
-  }
-
   render() {
     const model = this.props.model;
     let task = Task[model.output.type];
