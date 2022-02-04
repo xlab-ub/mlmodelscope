@@ -31,7 +31,7 @@ export default class ModelsContainer extends Component{
 
   render() {
     return(
-      <div style={{background: "gainsboro", padding: "12px"}}>
+      <div>
         {this.modelCards()}
       </div>
     );

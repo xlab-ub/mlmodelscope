@@ -14,7 +14,7 @@ export default class FilterPanel extends Component{
 
   render() {
     return(
-      <div style={{background: "gainsboro", padding: "12px"}}>
+      <div>
         {this.makeFilterGroupsFromState()}
       </div>
     );

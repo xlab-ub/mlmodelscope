@@ -1,0 +1,16 @@
+.model-list-page {
+  &__content {
+    @include gutters;
+    display: grid;
+    grid-template-areas: "filter list";
+    grid-template-columns: 200px 1fr;
+  }
+
+  &__filters {
+    grid-area: filter;
+  }
+
+  &__list {
+    grid-area: list;
+  }
+}

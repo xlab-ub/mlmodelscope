@@ -1,0 +1,15 @@
+.model-header {
+  @include paddingGutters;
+  background-color: $lightGray;
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  &__title {
+    font-size: $jumboText;
+    font-weight: bold;
+  }
+
+  &__description {
+    font-size: $mediumText
+  }
+}

@@ -125,23 +125,14 @@ export default class ModelListPage extends Component {
 
   render(){
     return(
-      <Layout>
+      <div className="model-list-page">
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
-        <Row>
-          <Col>
-            <ModelHeader />
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={2}>
-            <FilterPanel filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
-          </Col>
-          <Col span={22}>
-            <ModelsContainer filterGroups={this.state.filterGroups} models={this.state.models} />
-          </Col>
-        </Row>
-      </Layout>
+        <ModelHeader />
+        <div className="model-list-page__content">
+          <FilterPanel className="model-list-page__filters" filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
+          <ModelsContainer className="model-list-page__list" filterGroups={this.state.filterGroups} models={this.state.models} />
+        </div>
+      </div>
     );
   }
 }

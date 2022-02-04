@@ -1,4 +1,11 @@
+$gutterSize: 150px;
+
 @mixin gutters {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: $gutterSize;
+  margin-right: $gutterSize;
+}
+
+@mixin paddingGutters {
+  padding-left: $gutterSize;
+  padding-right: $gutterSize;
 }

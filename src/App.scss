@@ -11,7 +11,9 @@
 
 @import
   'components/ModelList/ModelCard',
+  'components/ModelList/ModelHeader',
   'components/ModelDetailPage/ModelDetailHeader';
 
 @import
-  'routes/ModelDetailPage';
+  'routes/ModelDetailPage',
+  'routes/ModelListPage';
