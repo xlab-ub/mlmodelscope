@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 export default class FilterGroup extends Component{
-  activeTag="ActiveTag";
-  inactiveTag="InactiveTag";
+  activeTag="active";
+  inactiveTag="inactive";
 
   onClick = (e) => {
     let target = e.target;
@@ -16,14 +16,15 @@ export default class FilterGroup extends Component{
     let options = this.props.filterGroup.options;
     let buttons = [];
     for(let i = 0; i < options.length; i++){
-      let className = options[i].isActive?this.activeTag:this.inactiveTag;
+      let classNameAddon = options[i].isActive?this.activeTag:this.inactiveTag;
+      let className = "filter-group__button-" + classNameAddon;
       let text = options[i].label;
       buttons.push(<button key={i} className={className} onClick={this.onClick}>{text}</button>);
     }
 
     return(
-      <div>
-        <p>{this.props.filterGroup.header}</p>
+      <div className="filter-group">
+        <p className="filter-group__header">{this.props.filterGroup.header}</p>
         {buttons}
       </div>
     );

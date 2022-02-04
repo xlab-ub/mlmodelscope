@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./FilterPanel.css"
 import "./FilterGroup.js"
 import FilterGroup from "./FilterGroup";
 
@@ -14,7 +13,8 @@ export default class FilterPanel extends Component{
 
   render() {
     return(
-      <div>
+      <div className="filter-panel">
+        <p className="filter-panel__header">Filter Models By</p>
         {this.makeFilterGroupsFromState()}
       </div>
     );
