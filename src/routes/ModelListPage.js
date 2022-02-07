@@ -129,6 +129,9 @@ export default class ModelListPage extends Component {
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
         <ModelHeader />
         <div className="model-list-page__content">
+          <div className="model-listpage__search">
+            <input type="search" placeholder="Search models" name="search" id="search" />
+          </div>
           <div className="model-list-page__filters">
             <FilterPanel className="model-list-page__filters" filterGroups={this.state.filterGroups} toggleFramework={this.toggleFilterMulti} toggleTask={this.toggleFilterSingle} toggleFilter={this.toggleFilter} />
           </div>
