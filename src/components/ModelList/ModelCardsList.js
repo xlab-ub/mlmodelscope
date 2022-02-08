@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ModelCard from "./ModelCard";
 
-export default class ModelsContainer extends Component{
+export default class ModelCardsList extends Component{
   modelCards = () => {
     let modelKey = 0;
     return this.props.models.map(model => <ModelCard key={modelKey++} model={model}/>);
   }
 
-  filteredModels = () => {
+  /*filteredModels = () => {
     let result = this.props.models.manifests;
     for(let i = 0; i < this.props.filterGroups.length; i++){
       result = this.filterByOneField(result, this.props.filterGroups[i]);
@@ -27,7 +27,7 @@ export default class ModelsContainer extends Component{
       filteredModels = filteredModels.concat(unfilteredModels.filter(model => model[j][k] === activeOptions[i].name));
     }
     return filteredModels;
-  }
+  } */
 
   render() {
     return(

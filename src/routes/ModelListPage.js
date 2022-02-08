@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 import { Row, Col, Layout } from "antd";
 import ModelHeader from "../components/ModelList/ModelHeader"
 import FilterPanel from "../components/ModelList/FilterPanel";
-import ModelsContainer from "../components/ModelList/ModelsContainer";
+import ModelCardsList from "../components/ModelList/ModelCardsList";
 import GetApiHelper from "../helpers/api";
 
 export default class ModelListPage extends Component {
@@ -20,7 +20,7 @@ export default class ModelListPage extends Component {
             <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups} toggleFilter={this.props.toggleFilter} />
           </div>
           <div className="model-list-page__list">
-            <ModelsContainer className="model-list-page__list" filterGroups={this.props.filterGroups} models={this.props.models} />
+            <ModelCardsList className="model-list-page__list" filterGroups={this.props.filterGroups} models={this.props.models} />
           </div>
         </div>
       </div>
