@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <ModelListWithFilters {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const LoneModel = Template.bind({});
+LoneModel.args = {
   key: 'key',
   frameworkOptions: [
     {name: "Onnxruntime", label: "Onnxruntime", isActive: true},
@@ -52,3 +52,15 @@ Primary.args = {
     }
   ]
 };
+
+export const FullList = Template.bind({});
+FullList.args = {
+  key: 'FullList',
+  frameworkOptions: [
+    {name: "MXNet", label: "MXNet", isActive: false},
+    {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
+    {name: "PyTorch", label: "PyTorch", isActive: false},
+    {name: "TensorFlow", label: "TensorFlow", isActive: false},
+  ],
+  models: require('./assets/model_data.json').manifests,
+}
