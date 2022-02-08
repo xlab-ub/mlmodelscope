@@ -1,53 +1,15 @@
 import React, { Component } from "react";
 import ModelListPage from "./ModelListPage";
 import GetApiHelper from "../helpers/api";
+import ModelListWithFilters from "./ModelListWithFilters";
 
 export default class ModelListContainer extends Component {
   constructor(props){
     super(props);
-    this.frameworkOptions = [];
     this.api = GetApiHelper();
     this.state = {
-      filterGroups: this.makeFilterGroups(),
+      frameworkOptions: [],
       models: []
-    }
-  }
-
-  toggleFilter = (filterName, selectMode, target) => {
-    let filterGroupsCopy = [...this.state.filterGroups];
-    let i = filterGroupsCopy.findIndex(group => group.header === filterName);
-    let filterGroup = {...filterGroupsCopy[i]};
-
-    if(selectMode === "multi"){
-      this.toggleFilterMulti(filterGroup, target);
-    }
-    else{
-      this.toggleFilterSingle(filterGroup, target)
-    }
-
-    filterGroupsCopy[i] = filterGroup;
-    this.setState(oldState => ({filterGroups: filterGroupsCopy}));
-    this.getModels();
-  }
-
-  toggleFilterMulti = (filterGroup, target) => {
-    let targetOption = filterGroup.options.find(option => option.label === target);
-    if(!!targetOption)
-      targetOption.isActive = !targetOption.isActive;
-  }
-
-  toggleFilterSingle = (filterGroup, target) => {
-    let options = filterGroup.options;
-    if (!options){
-      return;
-    }
-    for(let i = 0 ; i < options.length; i++){
-      if(options[i].label === target){
-        options[i].isActive = !options[i].isActive;
-      }
-      else{
-        options[i].isActive = false;
-      }
     }
   }
 
@@ -62,13 +24,13 @@ export default class ModelListContainer extends Component {
         this.setState({models: models});
       }
     });
-    this.api.getModels(this.getActiveFilters());
+    this.api.getModels();
   }
 
   getFrameworks() {
     this.api.Frameworks.subscribe({
       next: (frameworks) => {
-        this.frameworkOptions = frameworks.map(framework => {
+        let frameworkOptionsFromApi = frameworks.map(framework => {
           return {
             id: framework.id,
             name: framework.name,
@@ -78,8 +40,8 @@ export default class ModelListContainer extends Component {
         });
 
         this.setState({
-          filterGroups: this.makeFilterGroups()
-        })
+          frameworkOptions: frameworkOptionsFromApi
+        });
       }
     });
     this.api.getFrameworks();
@@ -103,32 +65,8 @@ export default class ModelListContainer extends Component {
     return filters;
   }
 
-  makeFilterGroups() {
-    return [
-      {
-        header: "Frameworks",
-        select: "single",
-        fieldA: "framework",
-        fieldB: "name",
-        options: this.frameworkOptions
-      },
-      {
-        header: "Tasks",
-        select: "single",
-        fieldA: "output",
-        fieldB: "type",
-        options: [
-          {name: "classification", label: "Classification", isActive: false},
-          {name: "boundingbox", label: "Object Detection", isActive: false},
-          {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
-          {name: "instancesegment", label: "Instance Segmentation", isActive: false},
-          {name: "image", label: "Image Enhancement", isActive: false}
-        ]
-      }
-    ];
-  }
 
   render() {
-    return <ModelListPage filterGroups={this.state.filterGroups} models={this.state.models} toggleFilter={this.toggleFilter}/>;
+    return <ModelListWithFilters frameworkOptions={this.state.frameworkOptions} models={this.state.models} />;
   }
 }
