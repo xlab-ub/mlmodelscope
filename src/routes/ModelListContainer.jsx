@@ -19,7 +19,7 @@ export default class ModelListContainer extends Component {
   }
 
   getModels() {
-    this.api.Models.subscribe({
+    this.modelSubscription = this.api.Models.subscribe({
       next: (models) => {
         this.setState({models: models});
       }
@@ -28,7 +28,7 @@ export default class ModelListContainer extends Component {
   }
 
   getFrameworks() {
-    this.api.Frameworks.subscribe({
+    this.frameworkSubscription = this.api.Frameworks.subscribe({
       next: (frameworks) => {
         let frameworkOptionsFromApi = frameworks.map(framework => {
           return {
@@ -48,8 +48,8 @@ export default class ModelListContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.api.Models.unsubscribe();
-    this.api.Frameworks.unsubscribe();
+    this.modelSubscription.unsubscribe();
+    this.frameworkSubscription.unsubscribe();
   }
 
   getActiveFilters() {
