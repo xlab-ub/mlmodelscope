@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 import { Row, Col, Layout } from "antd";
-import ModelHeader from "../components/ModelList/ModelHeader"
-import FilterPanel from "../components/ModelList/FilterPanel";
-import ModelCardsList from "../components/ModelList/ModelCardsList";
-import GetApiHelper from "../helpers/api";
+import ModelHeader from "./ModelHeader"
+import FilterPanel from "./FilterPanel";
+import ModelCardsList from "./ModelCardsList";
+import GetApiHelper from "../../helpers/api";
 
-export default class ModelListPage extends Component {
+export default class ModelList extends Component {
   render(){
     return(
       <div className="model-list-page">
@@ -20,7 +20,7 @@ export default class ModelListPage extends Component {
             <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups} toggleFilter={this.props.toggleFilter} />
           </div>
           <div className="model-list-page__list">
-            <ModelCardsList className="model-list-page__list" filterGroups={this.props.filterGroups} models={this.props.models} />
+            <ModelCardsList className="model-list-page__list" models={this.props.models} />
           </div>
         </div>
       </div>

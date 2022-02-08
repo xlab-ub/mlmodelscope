@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ModelListPage from "./ModelListPage";
+import ModelList from "./ModelList";
 
 export default class ModelListWithFilters extends Component {
 
@@ -108,6 +108,6 @@ export default class ModelListWithFilters extends Component {
   }
 
   render() {
-    return <ModelListPage filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter}/>;
+    return <ModelList filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter}/>;
   }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import ModelListPage from "../routes/ModelListPage";
+import ModelList from "../components/ModelList/ModelList";
 
 export default {
   title: 'Models/Model List Page',
-  component: ModelListPage,
+  component: ModelList,
 };
 
-const Template = (args) => <ModelListPage {...args} />;
+const Template = (args) => <ModelList {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

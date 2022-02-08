@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ModelListPage from "./ModelListPage";
+import ModelList from "../components/ModelList/ModelList";
 import GetApiHelper from "../helpers/api";
-import ModelListWithFilters from "./ModelListWithFilters";
+import ModelListWithFilters from "../components/ModelList/ModelListWithFilters";
 
 export default class ModelListContainer extends Component {
   constructor(props){

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ModelListWithFilters from "../routes/ModelListWithFilters";
+import ModelListWithFilters from "../components/ModelList/ModelListWithFilters";
 
 export default {
   title: 'Models/Model List Page With Filtering',
