@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ModelListPage from "./ModelListPage";
 import GetApiHelper from "../helpers/api";
 
-export default class ModelListLogic extends Component {
+export default class ModelListContainer extends Component {
   constructor(props){
     super(props);
     this.frameworkOptions = [];

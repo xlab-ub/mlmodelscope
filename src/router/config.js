@@ -13,7 +13,7 @@ import NewsPage from "../routes/NewsPage";
 import SignupPage from "../routes/SignupPage";
 import { Signup } from "../swagger";
 import ModelDetailPage from "../routes/ModelDetailPage";
-import ModelListLogic from "../routes/ModelListLogic";
+import ModelListContainer from "../routes/ModelListContainer";
 
 const routes = [
   {
@@ -68,7 +68,7 @@ const routes = [
   },
   {
     path: "/models",
-    component: ModelListLogic,
+    component: ModelListContainer,
   },
   {
     path: "/model/:modelId",
