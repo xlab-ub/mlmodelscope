@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Task from "../../helpers/Task";
+import 'typeface-lato';
 
 export default class ModelDetailHeader extends Component{
   render(){
@@ -8,19 +9,42 @@ export default class ModelDetailHeader extends Component{
       const task = Task[model.output.type];
       console.log(task);
       return(
-        <div>
-          <p>Modified: N/A</p>
-          <p>{model.name}</p>
-          <p>{model.description}</p>
-          <div className="ModelDetailHeader__task-box">
-            <p>Task: {task.name}</p>
+        <div className="model-detail-header">
+          <div className="model-detail-header__title-box">
+            <dl>
+              <div className="model-detail-header__detail-container">
+                <dt className="model-detail-header__date-label">Modified:</dt>
+                <dd className="model-detail-header__detail">N/A</dd>
+              </div>
+            </dl>
+            <p className="model-detail-header__model-name">{model.name} Version {model.version}</p>
+            <p className="model-detail-header__model-description">{model.description}</p>
+          </div>
+          <div className="model-detail-header__task-box">
+            <dl>
+              <div className="model-detail-header__detail-container">
+                <dt className="model-detail-header__task-label">Task:</dt>
+                <dd className="model-detail-header__detail">{task.name}</dd>
+              </div>
+            </dl>
             <p>{task.description}</p>
           </div>
-          <div className="ModelDetailHeader__advanced-details-box">
-            <p>Advanced Details</p>
-            <p>Framework: {model.framework.name}</p>
-            <p>Trained on: {model.attributes.training_dataset}</p>
-            <p>Machines: N/A</p>
+          <div className="model-detail-header__advanced-details-box">
+            <p className="model-detail-header__advanced-details-label">Advanced Details</p>
+            <dl>
+              <div className="model-detail-header__detail-container">
+                <dt className="model-detail-header__detail-label">Framework:</dt>
+                <dd className="model-detail-header__detail">{model.framework.name}</dd>
+              </div>
+              <div className="model-detail-header__detail-container">
+                <dt className="model-detail-header__detail-label">Trained on:</dt>
+                <dd className="model-detail-header__detail">{model.attributes.training_dataset}</dd>
+              </div>
+              <div className="model-detail-header__detail-container">
+                <dt className="model-detail-header__detail-label">Machines:</dt>
+                <dd className="model-detail-header__detail">N/A</dd>
+              </div>
+            </dl>
           </div>
         </div>
       );

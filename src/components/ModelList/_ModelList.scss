@@ -1,0 +1,23 @@
+.model-list-page {
+  &__content {
+    @include gutters;
+    display: grid;
+    grid-template-areas:
+      "search sort"
+      "filter list";
+    grid-template-columns: 200px 1fr;
+    margin-top: 32px;
+  }
+
+  &__search {
+    grid-area: search;
+  }
+
+  &__filters {
+    grid-area: filter;
+  }
+
+  &__list {
+    grid-area: list;
+  }
+}

@@ -1,0 +1,26 @@
+.filter-group {
+  &__header {
+    font-size: $mediumText;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  &__button-active,
+  &__button-inactive {
+    border: solid 1px $skyBlue;
+    border-radius: 2px;
+    font-size: $smallText;
+    padding: 4px;
+    margin: 4px;
+  }
+
+  &__button-active{
+    background: $skyBlue;
+    color: white;
+  }
+
+  &__button-inactive{
+    background: white;
+    color: $skyBlue;
+  }
+}

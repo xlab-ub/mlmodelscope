@@ -1,0 +1,52 @@
+.model-detail-header {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-areas:
+    "title title"
+    "task details";
+  grid-template-columns: 200px 1fr;
+
+  &__title-box {
+    grid-area: title;
+  }
+
+  &__model-name{
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__task-box, &__advanced-details-box {
+    background-color: gainsboro;
+    padding: 8px;
+  }
+
+  &__task-box {
+    grid-area: task;
+  }
+
+  &__details-box {
+    grid-area: details;
+  }
+
+  &__advanced-details-label{
+    font-weight: bold;
+  }
+
+  &__detail-container {
+    display: flex;
+  }
+
+  &__detail-label, &__date-label, &__task-label {
+    font-weight: bold;
+  }
+
+  &__detail-label {
+    width: 100px;
+  }
+
+  &__detail {
+    margin-left: 8px;
+  }
+}

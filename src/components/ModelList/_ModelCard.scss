@@ -1,0 +1,50 @@
+.model-card {
+  background: white;
+  border: 3px solid black;
+  padding: 12px;
+  margin: 12px;
+  overflow-wrap: anywhere;
+  width: 600px;
+
+  &__tags-box {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  &__tag-label {
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-right: 2px;
+    margin-top: 0px;
+  }
+
+  &__tag {
+    background: none;
+    border: none;
+    color: $skyBlue;
+    margin-right: 16px;
+    text-decoration: underline;
+  }
+
+  &__model-name {
+    font-size: 24px;
+  }
+
+  &__actions-box {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__try-model-button,
+  &__learn-more-button {
+    background-color: $skyBlue;
+    border-radius: 4px;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+  }
+
+  &__try-model-button {
+    margin-right: 8px;
+  }
+}
