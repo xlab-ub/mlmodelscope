@@ -8,6 +8,7 @@ export default class ModelListWithFilters extends Component {
     this.state = {
       filterGroups: this.makeFilterGroups(),
       filteredModels: this.props.models,
+      searchText: "",
     }
   }
 
@@ -54,6 +55,7 @@ export default class ModelListWithFilters extends Component {
     for(let i = 0; i < this.state.filterGroups.length; i++){
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
+    result = this.search(result);
     this.setState({filteredModels: result});
   }
 
@@ -109,7 +111,17 @@ export default class ModelListWithFilters extends Component {
     }
   }
 
+  updateSearchText = (inputText) => {
+    this.setState({searchText: inputText});
+    this.filterModels();
+  }
+
+  search = (unfilteredModels) => {
+    const lowerCaseSearch = this.state.searchText.toLowerCase();
+    return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
+  }
+
   render() {
-    return <ModelList filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter}/>;
+    return <ModelList filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter} updateSearchText={this.updateSearchText}/>;
   }
 }
