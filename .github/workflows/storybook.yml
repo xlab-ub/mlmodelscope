@@ -1,0 +1,21 @@
+name: Deploy Storybook to S3
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'src/stories/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run deployment script
+        run: ./scripts/deploy-storybook-to-s3.sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.storybook-updater-access-key-id }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.storybook-updater-secret-access-key }}
+          AWS_DEFAULT_REGION: us-east-1
+          S3_BUCKET_NAME: storybook.mlmodelscope.org
