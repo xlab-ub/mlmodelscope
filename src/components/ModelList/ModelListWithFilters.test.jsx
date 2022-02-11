@@ -1,7 +1,6 @@
 import ModelListWithFilters from "./ModelListWithFilters";
 import expect from "expect";
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import {shallow} from 'enzyme';
 
 describe('The Model List Filters', () => {
@@ -17,23 +16,46 @@ describe('The Model List Filters', () => {
     createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification"),
     createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox"),
     createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification"),
+    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification"),
+    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment"),
+    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment"),
   ];
 
-  let modelList;
-
-  beforeEach(() => {
-    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />).instance();
-  })
-
   it('creates framework options for filter group', () => {
-    let frameworkFilterGroup = modelList.state.filterGroups.find(group => group.header == "Frameworks");
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    let frameworkFilterGroup = modelList.state("filterGroups").find(group => group.header == "Frameworks");
     expect(frameworkFilterGroup.options).toEqual(defaultFrameworks);
   });
 
-  it('can filter by framework', async () => {
-    modelList.toggleFilter("Frameworks", "single", "PyTorch");
-    expect(modelList.state.filteredModels[0]).toEqual(defaultModels[1]);
+  it('can filter by framework', () => {
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList.instance().toggleFilter("Frameworks", "single", "PyTorch");
+    expect(modelList.state("filteredModels").length).toEqual(1);
+    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[1]);
   });
+
+  it('can filter by task', () => {
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList.instance().toggleFilter("Tasks", "single", "boundingbox");
+    expect(modelList.state("filteredModels").length).toEqual(1);
+    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[2]);
+  });
+
+  it('can search', () => {
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList.instance().updateSearchText("ChICKeN");
+    expect(modelList.state("filteredModels").length).toEqual(1);
+    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[0]);
+  });
+
+  it('can combine filters', () => {
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
+    modelList.instance().toggleFilter("Tasks", "single", "classification");
+    modelList.instance().updateSearchText("tigershark");
+    expect(modelList.state("filteredModels").length).toEqual(1);
+    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[4]);
+  })
 });
 
 function createModel(name, description, framework, task) {

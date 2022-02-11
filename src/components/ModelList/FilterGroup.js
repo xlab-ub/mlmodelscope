@@ -4,12 +4,10 @@ export default class FilterGroup extends Component{
   activeTag="active";
   inactiveTag="inactive";
 
-  onClick = (e) => {
-    let target = e.target;
-    let name = this.props.filterGroup.header;
+  onClick = (name) => {
+    let filterGroupName = this.props.filterGroup.header;
     let select = this.props.filterGroup.select;
-    let tag = target.innerHTML;
-    this.props.toggleFilter(name, select, tag);
+    this.props.toggleFilter(filterGroupName, select, name);
   }
 
   render(){
@@ -19,7 +17,7 @@ export default class FilterGroup extends Component{
       let classNameAddon = options[i].isActive?this.activeTag:this.inactiveTag;
       let className = "filter-group__button-" + classNameAddon;
       let text = options[i].label;
-      buttons.push(<button key={i} className={className} onClick={this.onClick}>{text}</button>);
+      buttons.push(<button key={i} className={className} onClick={() => this.onClick(options[i].name)}>{text}</button>);
     }
 
     return(
