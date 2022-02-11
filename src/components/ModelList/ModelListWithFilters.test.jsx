@@ -53,6 +53,7 @@ describe('The Model List Filters', () => {
     modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
     modelList.instance().toggleFilter("Tasks", "single", "classification");
     modelList.instance().updateSearchText("tigershark");
+    expect(modelList.state("searchText")).toEqual("tigershark");
     expect(modelList.state("filteredModels").length).toEqual(1);
     expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[4]);
   })

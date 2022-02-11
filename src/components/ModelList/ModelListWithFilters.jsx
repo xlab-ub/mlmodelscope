@@ -8,19 +8,13 @@ export default class ModelListWithFilters extends Component {
     super(props);
     this.state = {
       filterGroups: this.makeFilterGroups(),
-      filteredModels: clone(this.props.models),
       searchText: "",
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if(this.props.frameworkOptions !== prevProps.frameworkOptions){
       this.setState({filterGroups: this.makeFilterGroups()});
-    }
-
-    if(this.props.models !== prevProps.models){
-      this.setState({filteredModels: clone(this.props.models)});
-      this.filterModels();
     }
   }
 
@@ -57,7 +51,7 @@ export default class ModelListWithFilters extends Component {
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
     result = this.search(result);
-    this.setState({filteredModels: result});
+    return result;
   }
 
   filterByOneField = (unfilteredModels, filterGroup) => {
@@ -114,15 +108,17 @@ export default class ModelListWithFilters extends Component {
 
   updateSearchText = (inputText) => {
     this.setState({searchText: inputText});
+    console.log("search text state changed to: " + this.state.searchText);
     this.filterModels();
   }
 
   search = (unfilteredModels) => {
+    console.log("searching for: " + this.state.searchText);
     const lowerCaseSearch = this.state.searchText.toLowerCase();
     return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
   }
 
   render() {
-    return <ModelList filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter} updateSearchText={this.updateSearchText}/>;
+    return <ModelList filterGroups={this.state.filterGroups} models={this.filterModels()} toggleFilter={this.toggleFilter} updateSearchText={this.updateSearchText}/>;
   }
 }
