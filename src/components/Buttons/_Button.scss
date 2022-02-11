@@ -1,0 +1,10 @@
+.button {
+  @include primaryButton;
+  &__primary {
+    @include primaryButton;
+  }
+
+  &__secondary {
+    @include secondaryButton;
+  }
+}

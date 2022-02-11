@@ -1,5 +1,5 @@
 .model-card {
-  background: white;
+  background: $white;
   border: 3px solid black;
   padding: 12px;
   margin: 12px;
@@ -12,6 +12,7 @@
   }
 
   &__tag-label {
+    @include bodySmall;
     font-weight: bold;
     margin-bottom: 0px;
     margin-right: 2px;
@@ -19,6 +20,7 @@
   }
 
   &__tag {
+    @include bodySmall;
     background: none;
     border: none;
     color: $skyBlue;
@@ -27,7 +29,11 @@
   }
 
   &__model-name {
-    font-size: 24px;
+    @include linkHeadline3;
+  }
+
+  &__model-description {
+    @include bodySmall;
   }
 
   &__actions-box {
@@ -37,11 +43,7 @@
 
   &__try-model-button,
   &__learn-more-button {
-    background-color: $skyBlue;
-    border-radius: 4px;
-    color: white;
-    padding: 8px;
-    text-decoration: none;
+    @include primaryButtonSmall;
   }
 
   &__try-model-button {

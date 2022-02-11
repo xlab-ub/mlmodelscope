@@ -1,0 +1,25 @@
+@mixin primaryButton {
+  @include headline5;
+  background: rgb(125,49,226);
+  background: linear-gradient(180deg, rgba(125,49,226,1) 7%, rgba(0,114,246,1) 70%, rgba(103,173,255,1) 100%);
+  border: none;
+  border-radius: 26px;
+  color: $white;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+@mixin primaryButtonSmall {
+  @include primaryButton;
+  @include headline6;
+}
+
+@mixin secondaryButton {
+  @include headline5;
+  background: $white;
+  border: solid 1px $purple;
+  border-radius: 26px;
+  color: $purple;
+  padding: 8px 16px;
+  text-decoration: none;
+}

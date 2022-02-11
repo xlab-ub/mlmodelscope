@@ -23,7 +23,7 @@ export default class ModelCard extends Component{
           <button className="model-card__tag">{task.name}</button>
         </div>
         <a className="model-card__model-name" href={modelLink}>{model.name} Version {model.version}</a>
-        <p className="model-card__model-desc">{model.description}</p>
+        <p className="model-card__model-description">{model.description}</p>
         <div className="model-card__actions-box">
           <a className="model-card__try-model-button" href={modelLink}>Try this model</a>
           <a className="model-card__learn-more-button" href={modelLink}>Learn more</a>
