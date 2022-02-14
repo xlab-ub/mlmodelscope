@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
-export default function withPagination(WrappedComponent, dataSubject) {
+export default function withPagination(WrappedComponent) {
   return class extends Component {
     constructor(props) {
       super(props);
       this.selectPage = this.selectPage.bind(this);
-      this.dataSubject = dataSubject;
       this.state = {
         data: [],
         pageCount: 0,
@@ -13,24 +12,18 @@ export default function withPagination(WrappedComponent, dataSubject) {
       };
     }
 
+    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+      if (prevProps.data !== this.props.data) {
+        this.setState({
+          data: this.props.data
+        });
+      }
+    }
+
     selectPage(selectedPage) {
       this.setState({
         selectedPage
       })
-    }
-
-    componentDidMount() {
-      this.dataSubscription = this.dataSubject.subscribe({
-        next: (data) => {
-          this.setState({
-            data
-          });
-        }
-      });
-    }
-
-    componentWillUnmount() {
-      this.dataSubscription.unsubscribe();
     }
 
     render() {
