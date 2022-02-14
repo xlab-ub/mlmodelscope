@@ -1,28 +1,36 @@
+@mixin fitToContent {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+}
+
 @mixin primaryButton {
   @include headline5;
+  @include fitToContent;
   background: rgb(125,49,226);
   background: linear-gradient(180deg, rgba(125,49,226,1) 7%, rgba(0,114,246,1) 70%, rgba(103,173,255,1) 100%);
   border: none;
   border-radius: 26px;
   color: $white;
-  padding: 8px 16px;
+  padding: 10px 18px;
   text-decoration: none;
 }
 
 @mixin primaryButtonSmall {
   @include primaryButton;
   @include headline6;
+  @include fitToContent;
 }
 
 @mixin secondaryButton {
   @include headline5;
+  @include fitToContent;
 
   background: $white;
   background-clip: padding-box;
   box-sizing: border-box;
   $borderSize: 2px;
   border: solid $borderSize transparent;
-  border-radius: 1em;
+  border-radius: 26px;
   color: $azul;
   padding: 8px 16px;
   position: relative;

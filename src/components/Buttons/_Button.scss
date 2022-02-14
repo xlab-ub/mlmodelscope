@@ -1,10 +1,43 @@
-.button {
+%largeIcon {
+  margin-left: 8px;
+  width: 16px;
+  height: 15px;
+}
+
+.primary-button {
   @include primaryButton;
-  &__primary {
-    @include primaryButton;
+  &__text {
+    color: $white;
+    text-decoration: none;
   }
 
-  &__secondary {
-    @include secondaryButton;
+  &__icon {
+    @extend %largeIcon;
+  }
+
+  &__icon path {
+    fill: white;
+  }
+}
+
+.secondary-button {
+  @include secondaryButton;
+
+  &__text {
+    color: $azul;
+    text-decoration: none;
+  }
+
+  &__icon {
+    @extend %largeIcon;
+  }
+}
+
+.small-button {
+  @include headline6;
+
+  &__icon {
+    width: 13px;
+    height: 12px;
   }
 }

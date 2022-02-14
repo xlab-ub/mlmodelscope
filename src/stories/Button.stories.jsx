@@ -3,7 +3,7 @@ import Button from '../components/Buttons/Button'
 import ModelCard from "../components/ModelList/ModelCard";
 
 export default {
-  title: 'Buttons /Primary Button',
+  title: 'Buttons / Button',
   component: Button,
 };
 
@@ -13,12 +13,28 @@ export const Primary = Template.bind({});
 Primary.args = {
   content: "Primary Button",
   link: "",
-  primary: "primary",
+  isPrimary: true,
+};
+
+export const PrimarySmall = Template.bind({});
+PrimarySmall.args = {
+  content: "Primary Button",
+  link: "",
+  isPrimary: true,
+  isSmall: true,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   content: "Secondary Button",
   link: "",
-  primary: "secondary",
+  isPrimary: false,
+};
+
+export const SecondarySmall = Template.bind({});
+SecondarySmall.args = {
+  content: "Secondary Button",
+  link: "",
+  isPrimary: false,
+  isSmall: true,
 };
