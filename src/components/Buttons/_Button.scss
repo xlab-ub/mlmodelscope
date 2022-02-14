@@ -1,18 +1,22 @@
-%largeIcon {
+$duration: 0.5s;
+
+%baseIcon {
   margin-left: 8px;
-  width: 16px;
   height: 15px;
+  transition: $duration;
+  width: 16px;
 }
 
 .primary-button {
   @include primaryButton;
+  transition: $duration;
   &__text {
     color: $white;
     text-decoration: none;
   }
 
   &__icon {
-    @extend %largeIcon;
+    @extend %baseIcon;
   }
 
   &__icon path {
@@ -22,15 +26,31 @@
 
 .secondary-button {
   @include secondaryButton;
+  transition: background $duration;
 
   &__text {
     color: $azul;
     text-decoration: none;
+    transition: color $duration;
   }
 
   &__icon {
-    @extend %largeIcon;
+    @extend %baseIcon;
   }
+
+  &__icon path {
+    transition: fill $duration;
+  }
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  background-position: bottom center;
+}
+
+.primary-button:hover .primary-button__icon,
+.secondary-button:hover .secondary-button__icon {
+  transform: translateX(6px);
 }
 
 .small-button {

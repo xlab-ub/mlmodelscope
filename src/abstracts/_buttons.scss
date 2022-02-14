@@ -1,3 +1,5 @@
+$primaryGradient: linear-gradient(to bottom, rgba(125,49,226,1) 0%, rgba(73,76,234,1) 10%, rgba(30,99,242,1) 50%, rgba(73,76,234,1) 90%, rgba(125,49,226,1) 100%);
+
 @mixin fitToContent {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -7,11 +9,12 @@
   @include headline5;
   @include fitToContent;
   background: rgb(125,49,226);
-  background: linear-gradient(180deg, rgba(125,49,226,1) 7%, rgba(0,114,246,1) 70%, rgba(103,173,255,1) 100%);
+  background: $primaryGradient;
+  background-size: 200% 200%;
   border: none;
   border-radius: 26px;
   color: $white;
-  padding: 10px 18px;
+  padding: 10px 24px;
   text-decoration: none;
 }
 
@@ -32,12 +35,13 @@
   border: solid $borderSize transparent;
   border-radius: 26px;
   color: $azul;
-  padding: 8px 16px;
+  padding: 8px 22px;
   position: relative;
   text-decoration: none;
+  transition: background 1s;
 
   &:before {
-    background: linear-gradient(180deg, rgba(125,49,226,1) 7%, rgba(0,114,246,1) 70%, rgba(103,173,255,1) 100%);
+    background: $primaryGradient;
     border-radius: inherit;
     content: '';
     margin: -$borderSize;
