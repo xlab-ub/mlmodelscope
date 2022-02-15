@@ -33,8 +33,10 @@ export default class button extends Component {
   render() {
     return (
       <div className={this.generateBlockName()}>
-        <a href={this.props.link} className={this.generateClassName("text")}>{this.props.content}</a>
-        <RightArrowIcon className={this.generateClassName("icon")} />
+        <div className={this.generateClassName("fill")}>
+          <a href={this.props.link} className={this.generateClassName("text")}>{this.props.content}</a>
+          <RightArrowIcon className={this.generateClassName("icon")} />
+        </div>
       </div>
     )
   }

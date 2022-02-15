@@ -7,8 +7,17 @@ $duration: 0.5s;
   width: 16px;
 }
 
+.primary-button,
+.secondary-button {
+  @include fitToContent;
+  @include headline5;
+  border-radius: 26px;
+}
+
 .primary-button {
-  @include primaryButton;
+  background: $primaryGradient;
+  background-size: 200% 200%;
+  padding: 10px 24px;
   transition: $duration;
   &__text {
     color: $white;
@@ -25,8 +34,14 @@ $duration: 0.5s;
 }
 
 .secondary-button {
-  @include secondaryButton;
-  transition: background $duration;
+  background: $secondaryGradient;
+  padding: 2px;
+
+  &__fill {
+    background: $white;
+    border-radius: inherit;
+    padding: 8px 22px;
+  }
 
   &__text {
     color: $azul;
@@ -37,14 +52,9 @@ $duration: 0.5s;
   &__icon {
     @extend %baseIcon;
   }
-
-  &__icon path {
-    transition: fill $duration;
-  }
 }
 
-.primary-button:hover,
-.secondary-button:hover {
+.primary-button:hover {
   background-position: bottom center;
 }
 
