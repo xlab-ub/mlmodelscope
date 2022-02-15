@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ModelList from "./ModelList";
+import clone from "../../helpers/cloner";
 
 export default class ModelListWithFilters extends Component {
 
@@ -7,18 +8,13 @@ export default class ModelListWithFilters extends Component {
     super(props);
     this.state = {
       filterGroups: this.makeFilterGroups(),
-      filteredModels: this.props.models,
+      searchText: "",
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if(this.props.frameworkOptions !== prevProps.frameworkOptions){
       this.setState({filterGroups: this.makeFilterGroups()});
-    }
-
-    if(this.props.models !== prevProps.models){
-      this.setState({filteredModels: this.props.models});
-      this.filterModels();
     }
   }
 
@@ -30,7 +26,7 @@ export default class ModelListWithFilters extends Component {
         select: "single",
         fieldA: "framework",
         fieldB: "name",
-        options: this.props.frameworkOptions
+        options: clone(this.props.frameworkOptions),
       },
       {
         header: "Tasks",
@@ -50,11 +46,12 @@ export default class ModelListWithFilters extends Component {
   }
 
   filterModels = () => {
-    let result = this.props.models;
+    let result = clone(this.props.models);
     for(let i = 0; i < this.state.filterGroups.length; i++){
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
-    this.setState({filteredModels: result});
+    result = this.search(result);
+    return result;
   }
 
   filterByOneField = (unfilteredModels, filterGroup) => {
@@ -89,7 +86,7 @@ export default class ModelListWithFilters extends Component {
   }
 
   toggleFilterMulti = (filterGroup, target) => {
-    let targetOption = filterGroup.options.find(option => option.label === target);
+    let targetOption = filterGroup.options.find(option => option.name === target);
     if(!!targetOption)
       targetOption.isActive = !targetOption.isActive;
   }
@@ -100,7 +97,7 @@ export default class ModelListWithFilters extends Component {
       return;
     }
     for(let i = 0 ; i < options.length; i++){
-      if(options[i].label === target){
+      if(options[i].name === target){
         options[i].isActive = !options[i].isActive;
       }
       else{
@@ -109,7 +106,19 @@ export default class ModelListWithFilters extends Component {
     }
   }
 
+  updateSearchText = (inputText) => {
+    this.setState({searchText: inputText});
+    console.log("search text state changed to: " + this.state.searchText);
+    this.filterModels();
+  }
+
+  search = (unfilteredModels) => {
+    console.log("searching for: " + this.state.searchText);
+    const lowerCaseSearch = this.state.searchText.toLowerCase();
+    return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
+  }
+
   render() {
-    return <ModelList filterGroups={this.state.filterGroups} models={this.state.filteredModels} toggleFilter={this.toggleFilter}/>;
+    return <ModelList filterGroups={this.state.filterGroups} models={this.filterModels()} toggleFilter={this.toggleFilter} updateSearchText={this.updateSearchText}/>;
   }
 }
