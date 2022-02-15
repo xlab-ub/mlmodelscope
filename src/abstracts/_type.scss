@@ -1,4 +1,120 @@
+//@import './fluid-type';
+
 $sans-serif: "Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
+
+@mixin billboard {
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 104px;
+}
+
+@mixin headline1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 72px;
+}
+
+@mixin headline2 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 40px;
+}
+
+@mixin headline3 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+@mixin headline4 {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 28px;
+}
+
+@mixin headline5 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 28px;
+}
+
+@mixin headline6 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+@mixin linkHeadline3 {
+  @include headline3;
+  text-decoration-line: underline;
+}
+
+@mixin linkHeadline5 {
+  @include headline5;
+  text-decoration-line: underline;
+}
+
+@mixin linkHeadline6 {
+  @include headline6;
+  text-decoration-line: underline;
+}
+
+@mixin bodyLarge {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 32px;
+  color: $charcoalLightest;
+}
+
+@mixin body {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 28px;
+  color: $charcoalLightest;
+}
+
+@mixin linkLarge {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 28px;
+  text-decoration-line: underline;
+}
+
+@mixin bodySmall {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  color: $charcoalLightest;
+}
+
+@mixin linkSmall {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 24px;
+  text-decoration-line: underline;
+}
+
+@mixin detail {
+  font-size: 14px;
+  line-height: 20px;
+  color: $charcoalLightest;
+}
+
+@mixin label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@mixin labelSmall {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
 $jumboText: 36px;
 $extraLargeText: 24px;

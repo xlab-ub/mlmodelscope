@@ -1,26 +1,33 @@
 .filter-group {
+  margin-bottom: 36px;
+
   &__header {
-    font-size: $mediumText;
-    font-weight: bold;
+    @include headline3;
+    color: $charcoalLightest;
     margin-bottom: 4px;
+  }
+
+  &__description {
+    @include bodySmall;
+    color: $charcoalLightest;
   }
 
   &__button-active,
   &__button-inactive {
-    border: solid 1px $skyBlue;
-    border-radius: 2px;
-    font-size: $smallText;
-    padding: 4px;
+    @include headline6;
+    border: solid 1px $azul;
+    border-radius: 23px;
+    padding: 4px 8px;
     margin: 4px;
   }
 
   &__button-active{
-    background: $skyBlue;
+    background: $azul;
     color: white;
   }
 
   &__button-inactive{
     background: white;
-    color: $skyBlue;
+    color: $azul;
   }
 }

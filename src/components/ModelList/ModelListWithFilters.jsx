@@ -26,6 +26,7 @@ export default class ModelListWithFilters extends Component {
     return [
       {
         header: "Frameworks",
+        description: "What the model is running on",
         select: "single",
         fieldA: "framework",
         fieldB: "name",
@@ -33,6 +34,7 @@ export default class ModelListWithFilters extends Component {
       },
       {
         header: "Tasks",
+        description: "What the model is trying to do with the machine and input data",
         select: "single",
         fieldA: "output",
         fieldB: "type",

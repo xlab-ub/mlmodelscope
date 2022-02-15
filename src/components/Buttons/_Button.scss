@@ -1,0 +1,73 @@
+$duration: 0.5s;
+
+%baseIcon {
+  margin-left: 8px;
+  height: 15px;
+  transition: $duration;
+  width: 16px;
+}
+
+.primary-button,
+.secondary-button {
+  @include fitToContent;
+  @include headline5;
+  border-radius: 26px;
+}
+
+.primary-button {
+  background: $primaryGradient;
+  background-size: 200% 200%;
+  padding: 10px 24px;
+  transition: $duration;
+  &__text {
+    color: $white;
+    text-decoration: none;
+  }
+
+  &__icon {
+    @extend %baseIcon;
+  }
+
+  &__icon path {
+    fill: white;
+  }
+}
+
+.secondary-button {
+  background: $secondaryGradient;
+  padding: 2px;
+
+  &__fill {
+    background: $white;
+    border-radius: inherit;
+    padding: 8px 22px;
+  }
+
+  &__text {
+    color: $azul;
+    text-decoration: none;
+    transition: color $duration;
+  }
+
+  &__icon {
+    @extend %baseIcon;
+  }
+}
+
+.primary-button:hover {
+  background-position: bottom center;
+}
+
+.primary-button:hover .primary-button__icon,
+.secondary-button:hover .secondary-button__icon {
+  transform: translateX(6px);
+}
+
+.small-button {
+  @include headline6;
+
+  &__icon {
+    width: 13px;
+    height: 12px;
+  }
+}

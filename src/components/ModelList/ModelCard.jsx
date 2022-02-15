@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Task from "../../helpers/Task";
+import Button from "../Buttons/Button"
 
 export default class ModelCard extends Component{
   constructor() {
@@ -17,15 +18,16 @@ export default class ModelCard extends Component{
     return(
       <div className="model-card">
         <div className="model-card__tags-box">
-          <p className="model-card__tag-label">Framework:</p>
           <button className="model-card__tag">{model.framework.name}</button>
-          <p className="model-card__tag-label">Task:</p>
           <button className="model-card__tag">{task.name}</button>
         </div>
+        <hr className="model-card__divider"/>
         <a className="model-card__model-name" href={modelLink}>{model.name} Version {model.version}</a>
-        <p className="model-card__model-desc">{model.description}</p>
+        <p className="model-card__model-description">{model.description}</p>
         <div className="model-card__actions-box">
-          <a className="model-card__try-model-button" href={modelLink}>Try this model</a>
+          <div className="model-card__try-model-button">
+            <Button content="Try this model" link={modelLink} isPrimary={false} isSmall={true} />
+          </div>
           <a className="model-card__learn-more-button" href={modelLink}>Learn more</a>
         </div>
       </div>
