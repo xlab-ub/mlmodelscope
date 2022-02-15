@@ -25,6 +25,7 @@ export default class FilterGroup extends Component{
     return(
       <div className="filter-group">
         <p className="filter-group__header">{this.props.filterGroup.header}</p>
+        <p className="filter-group__description">{this.props.filterGroup.description}</p>
         {buttons}
       </div>
     );

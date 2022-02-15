@@ -3,18 +3,33 @@
     @include gutters;
     display: grid;
     grid-template-areas:
-      "search sort"
-      "filter list";
+      "control-panel list";
     grid-template-columns: 200px 1fr;
+    grid-column-gap: 64px;
     margin-top: 32px;
   }
 
-  &__search {
-    grid-area: search;
+  &__filters, &__search {
+    grid-area: control-panel;
   }
 
-  &__filters {
-    grid-area: filter;
+  &__search {
+    align-items: center;
+    border: 2px solid $smokeDark;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 36px;
+  }
+
+  &__search-input {
+    border: none;
+    padding: 16px 0px;
+  }
+
+  &__search-icon {
+    margin-left: 16px;
+    margin-right: 8px;
   }
 
   &__list {

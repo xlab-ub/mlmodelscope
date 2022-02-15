@@ -1,11 +1,10 @@
 .filter-panel {
-  background-color: $smokeDark;
-  padding: 16px;
   color: black;
   margin-top: 12px;
 
   &__header {
-    font-size: $smallText;
+    @include label;
+    color: $charcoalLightest;
     font-weight: bold;
     text-transform: uppercase;
   }

@@ -1,52 +1,56 @@
 .model-card {
   background: $white;
-  border: 3px solid black;
-  padding: 12px;
-  margin: 12px;
+  border: 2px solid $smokeDark;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  padding: 24px;
   overflow-wrap: anywhere;
-  width: 600px;
 
   &__tags-box {
     display: flex;
-    margin-bottom: 8px;
-  }
-
-  &__tag-label {
-    @include bodySmall;
-    font-weight: bold;
-    margin-bottom: 0px;
-    margin-right: 2px;
-    margin-top: 0px;
+    margin-bottom: 16px;
   }
 
   &__tag {
     @include bodySmall;
-    background: none;
+    border-radius: 20px;
+    background: rgba($azul, 0.05);
     border: none;
-    color: $skyBlue;
-    margin-right: 16px;
-    text-decoration: underline;
+    color: $azul;
+    margin-right: 8px;
+    padding: 2px 8px;
+  }
+
+  &__divider {
+    border: 1px solid $smokeDark;
   }
 
   &__model-name {
     @include linkHeadline3;
+    color: $almaMater;
   }
 
   &__model-description {
     @include bodySmall;
+    color: $charcoalLightest;
+    margin-bottom: 24px;
+    margin-top: 16px;
   }
 
   &__actions-box {
+    align-items: center;
     display: flex;
     justify-content: flex-end;
   }
 
-  &__try-model-button,
-  &__learn-more-button {
-    @include primaryButtonSmall;
+  &__try-model-button {
+    margin-right: 24px;
   }
 
-  &__try-model-button {
-    margin-right: 8px;
+  &__learn-more-button {
+    @include headline6;
+    color: $azul;
+    margin-right: 12px;
+    text-decoration: underline;
   }
 }

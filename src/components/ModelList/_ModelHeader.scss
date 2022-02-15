@@ -1,15 +1,28 @@
 .model-header {
   @include paddingGutters;
-  background-color: $smokeDark;
-  padding-top: 32px;
-  padding-bottom: 32px;
+  background-image:
+    url('../../resources/img/cube-splash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  position: relative;
+
+  &:before {
+    content: '';
+    background-image: $secondaryGradient;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    mix-blend-mode: overlay;
+  }
 
   &__title {
-    font-size: $jumboText;
-    font-weight: bold;
+    @include headline1;
+    color: $white;
   }
 
   &__description {
-    font-size: $mediumText
+    @include bodyLarge;
+    color: $white;
   }
 }
