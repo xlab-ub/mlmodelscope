@@ -1,0 +1,22 @@
+.search-bar {
+  @include body;
+  $magGlassSize: 18px;
+  $magGlassLeftMargin: 16px;
+  $leftPadding: $magGlassSize + $magGlassLeftMargin + 8px;
+  background-image: url("../../resources/icons/magnifying-glass.svg");
+  background-position: $magGlassLeftMargin center;
+  background-repeat: no-repeat;
+  background-size: $magGlassSize;
+  border: 2px solid $smokeDark;
+  border-radius: 5px;
+  padding: 16px 4px 16px $leftPadding;
+  transition: border-color 0.3s;
+  width: 100%;
+
+  &:focus {
+    outline: none !important;
+    border-color: $azul;
+  }
+}
+
+
