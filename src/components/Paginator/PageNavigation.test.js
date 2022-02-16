@@ -31,7 +31,7 @@ describe('PageNavigation', () => {
 
     expect(pageButtons.children().length).toEqual(5);
     expect(pageButtons.childAt(0).text()).toEqual('1');
-    expect(pageButtons.childAt(3).text()).toEqual('...');
+    expect(pageButtons.childAt(3).text()).toEqual('<Icon />');
     expect(pageButtons.childAt(4).text()).toEqual('5');
   });
 

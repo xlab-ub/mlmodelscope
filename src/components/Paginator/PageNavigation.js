@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import './PageNavigation.scss';
+import Icon from "../Icon/Icon";
 
 export default class PageNavigation extends Component {
   render() {
@@ -7,11 +9,17 @@ export default class PageNavigation extends Component {
 
     return (
       <div className="page-nav">
-        <div className="page-nav__prev-button" onClick={this.selectPreviousPage}>Previous</div>
+        <button className="page-nav__prev-button" onClick={this.selectPreviousPage}>
+          <Icon icon="arrow" />
+          Previous
+        </button>
         <div className="page-nav__page-buttons">
           { makePageButtons(pages) }
         </div>
-        <div className="page-nav__next-button" onClick={this.selectNextPage}>Next</div>
+        <button className="page-nav__next-button" onClick={this.selectNextPage}>
+          Next
+          <Icon icon="arrow" />
+        </button>
       </div>
     )
 
@@ -22,7 +30,7 @@ export default class PageNavigation extends Component {
 
       return [
         ...pages.slice(0, 3).map(makePageButton),
-        (<div className="page-nav__placeholder" key={4}>...</div>),
+        (<div className="page-nav__placeholder" key={4}><Icon icon="ellipsis" /></div>),
         ...pages.slice(-1).map(makePageButton)
       ];
     }
@@ -33,7 +41,7 @@ export default class PageNavigation extends Component {
       if (pageNumber === selectedPage)
         classes += ` ${className}--selected`;
 
-      return <div className={classes} key={pageNumber} onClick={() => selectPage(pageNumber)}>{pageNumber}</div>;
+      return <button className={classes} key={pageNumber} onClick={() => selectPage(pageNumber)}>{pageNumber}</button>;
     }
   }
 
