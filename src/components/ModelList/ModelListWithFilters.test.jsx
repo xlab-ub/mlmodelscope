@@ -63,7 +63,9 @@ describe('The Model List Filters', () => {
   });
 
   it('sorts the results', () => {
-
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels).toEqual([defaultModels[2], defaultModels[0], defaultModels[6], defaultModels[4], defaultModels[5], defaultModels[3], defaultModels[1]]);
   });
 });
 

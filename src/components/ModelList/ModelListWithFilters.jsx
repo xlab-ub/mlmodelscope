@@ -51,6 +51,7 @@ export default class ModelListWithFilters extends Component {
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
     result = this.search(result);
+    result = result.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
     return result;
   }
 
