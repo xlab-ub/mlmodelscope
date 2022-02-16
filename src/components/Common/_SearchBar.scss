@@ -1,21 +1,21 @@
 .search-bar {
-  align-items: center;
+  @include body;
+  $magGlassSize: 18px;
+  $magGlassLeftMargin: 16px;
+  $leftPadding: $magGlassSize + $magGlassLeftMargin + 8px;
+  background-image: url("../../resources/icons/magnifying-glass.svg");
+  background-position: $magGlassLeftMargin center;
+  background-repeat: no-repeat;
+  background-size: $magGlassSize;
   border: 2px solid $smokeDark;
   border-radius: 5px;
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 36px;
+  padding: 16px 4px 16px $leftPadding;
+  transition: border-color 0.3s;
+  width: 100%;
 
-  &__input {
-    @include body;
-    border: none;
-    padding: 16px 0px;
-    width: 100%;
-  }
-
-  &__icon {
-    margin-left: 16px;
-    margin-right: 8px;
+  &:focus {
+    outline: none !important;
+    border-color: $azul;
   }
 }
 

@@ -13,7 +13,9 @@ export default class ModelList extends Component {
         <ModelHeader />
         <div className="model-list-page__content">
           <div className="model-list-page__filters-search-container">
-            <SearchBar updateSearchText={this.props.updateSearchText}/>
+            <div className="model-list-page__search-bar">
+              <SearchBar updateSearchText={this.props.updateSearchText}/>
+            </div>
             <div className="model-list-page__filters">
               <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups} toggleFilter={this.props.toggleFilter} />
             </div>
