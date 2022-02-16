@@ -108,12 +108,10 @@ export default class ModelListWithFilters extends Component {
 
   updateSearchText = (inputText) => {
     this.setState({searchText: inputText});
-    console.log("search text state changed to: " + this.state.searchText);
     this.filterModels();
   }
 
   search = (unfilteredModels) => {
-    console.log("searching for: " + this.state.searchText);
     const lowerCaseSearch = this.state.searchText.toLowerCase();
     return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
   }
