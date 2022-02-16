@@ -25,14 +25,25 @@ describe('PageNavigation', () => {
     expect(pageButtons.at(1).text()).toEqual('2');
   });
 
-  it('renders buttons for the first three and last page when first page is selected', () => {
-    const nav = shallow(<PageNavigation pageCount={5} selectedPage={1} />);
+  it('adds correct ellipsis when page 1 of 6 is selected', () => {
+    const nav = shallow(<PageNavigation pageCount={6} selectedPage={1} />);
     const pageButtons = nav.find('.page-nav__page-buttons');
 
     expect(pageButtons.children().length).toEqual(5);
     expect(pageButtons.childAt(0).text()).toEqual('1');
     expect(pageButtons.childAt(3).text()).toEqual('<Icon />');
-    expect(pageButtons.childAt(4).text()).toEqual('5');
+    expect(pageButtons.childAt(4).text()).toEqual('6');
+  });
+
+  it('adds correct ellipses when page 5 of 10 is selected', () => {
+    const nav = shallow(<PageNavigation pageCount={10} selectedPage={5} />);
+    const pageButtons = nav.find('.page-nav__page-buttons');
+
+    expect(pageButtons.children().length).toEqual(9);
+    expect(pageButtons.childAt(0).text()).toEqual('1');
+    expect(pageButtons.childAt(1).text()).toEqual('<Icon />');
+    expect(pageButtons.childAt(7).text()).toEqual('<Icon />');
+    expect(pageButtons.childAt(8).text()).toEqual('10');
   });
 
   describe('user interaction', () => {

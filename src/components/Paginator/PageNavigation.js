@@ -24,15 +24,29 @@ export default class PageNavigation extends Component {
     )
 
     function makePageButtons(pages) {
-      if (pages.length < 5) {
+      if (pages.length < 6) {
         return pages.map(makePageButton);
       }
+      let core = pages.slice(Math.max(0, selectedPage - 3), Math.min(pages.length + 1, selectedPage + 2));
+      let buttons = [];
 
-      return [
-        ...pages.slice(0, 3).map(makePageButton),
-        (<div className="page-nav__placeholder" key={4}><Icon icon="ellipsis" /></div>),
-        ...pages.slice(-1).map(makePageButton)
-      ];
+      if (!core.includes(1)) {
+        buttons.push(makePageButton(1));
+
+        if (selectedPage > 4)
+          buttons.push(makeEllipsisButton(2));
+      }
+
+      buttons.push(...core.map(makePageButton));
+
+      if (!core.includes(pages.length)) {
+        if (selectedPage < pages.length - 3)
+          buttons.push(makeEllipsisButton(pages.length - 1));
+
+        buttons.push(makePageButton(pages.length));
+      }
+
+      return buttons;
     }
 
     function makePageButton(pageNumber) {
@@ -42,6 +56,10 @@ export default class PageNavigation extends Component {
         classes += ` ${className}--selected`;
 
       return <button className={classes} key={pageNumber} onClick={() => selectPage(pageNumber)}>{pageNumber}</button>;
+    }
+
+    function makeEllipsisButton(key) {
+      return (<div className="page-nav__placeholder" key={key}><Icon icon="ellipsis" /></div>);
     }
   }
 
