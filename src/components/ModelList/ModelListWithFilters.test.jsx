@@ -30,22 +30,25 @@ describe('The Model List Filters', () => {
   it('can filter by framework', () => {
     const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().toggleFilter("Frameworks", "single", "PyTorch");
-    expect(modelList.state("filteredModels").length).toEqual(1);
-    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[1]);
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[1]);
   });
 
   it('can filter by task', () => {
     const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().toggleFilter("Tasks", "single", "boundingbox");
-    expect(modelList.state("filteredModels").length).toEqual(1);
-    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[2]);
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[2]);
   });
 
   it('can search', () => {
     const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().updateSearchText("ChICKeN");
-    expect(modelList.state("filteredModels").length).toEqual(1);
-    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[0]);
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[0]);
   });
 
   it('can combine filters', () => {
@@ -53,10 +56,15 @@ describe('The Model List Filters', () => {
     modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
     modelList.instance().toggleFilter("Tasks", "single", "classification");
     modelList.instance().updateSearchText("tigershark");
+    let filteredModels = modelList.instance().filterModels();
     expect(modelList.state("searchText")).toEqual("tigershark");
-    expect(modelList.state("filteredModels").length).toEqual(1);
-    expect(modelList.state("filteredModels")[0]).toEqual(defaultModels[4]);
-  })
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[4]);
+  });
+
+  it('sorts the results', () => {
+
+  });
 });
 
 function createModel(name, description, framework, task) {
