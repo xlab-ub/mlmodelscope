@@ -1,0 +1,14 @@
+.sort-button {
+  &__button {
+    @include headline6;
+    background: $smokeDark;
+    border: none;
+    border-radius: 5px;
+    color: $charcoalLightest;
+    padding: 16px;
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+}

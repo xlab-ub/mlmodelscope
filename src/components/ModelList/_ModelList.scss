@@ -5,10 +5,17 @@
     @include gutters;
     display: grid;
     grid-template-areas:
+      "blank sort"
       "control-panel list";
     grid-template-columns: 200px 1fr;
     grid-column-gap: 64px;
-    margin-top: 32px;
+    margin-top: 64px;
+  }
+
+  &__sort-container {
+    grid-area: sort;
+    margin-bottom: 16px;
+    text-align: right;
   }
 
   &__filters-search-container {

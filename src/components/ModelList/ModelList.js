@@ -5,6 +5,7 @@ import FilterPanel from "./FilterPanel";
 import ModelCardsList from "./ModelCardsList";
 import SearchBar from "../Common/SearchBar";
 import withPagination from "../Paginator/Pagination";
+import SortButton from "../Buttons/SortButton";
 
 export default class ModelList extends Component {
   render() {
@@ -15,6 +16,9 @@ export default class ModelList extends Component {
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
         <ModelHeader />
         <div className="model-list-page__content">
+          <div className="model-list-page__sort-container">
+            <SortButton />
+          </div>
           <div className="model-list-page__filters-search-container">
             <div className="model-list-page__search-bar">
               <SearchBar updateSearchText={this.props.updateSearchText}/>
