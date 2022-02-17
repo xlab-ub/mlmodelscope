@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PageNavigation from "./PageNavigation";
 
-export default function withPagination(WrappedComponent) {
+export default function withPagination(WrappedComponent, dataPropertyName) {
   class Paginated extends Component {
     static defaultProps = {
       data: [],
@@ -15,32 +16,41 @@ export default function withPagination(WrappedComponent) {
     }
 
     componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-      if (prevProps.data !== this.props.data) {
+      if (prevState.data !== this.state.data || prevState.selectedPage !== this.state.selectedPage) {
         this.setState(this.paginateData());
       }
     }
 
     paginateData() {
-      const start = 12 * (this.props.selectedPage - 1);
-      const end = 12 * this.props.selectedPage;
-      const data = this.props.data.slice(start, end);
+      const selectedPage = this.state ? this.state.selectedPage : this.props.selectedPage;
+      const start = 12 * (selectedPage - 1);
+      const end = 12 * selectedPage;
+      const pageData = this.props.data.slice(start, end);
       const pageCount = parseInt(1 + this.props.data.length / 12);
 
       return {
-        data,
+        pageData,
         pageCount,
-        selectedPage: 1
+        selectedPage
       }
     }
 
     selectPage(selectedPage) {
       this.setState({
         selectedPage
-      })
+      });
     }
 
     render() {
-      return <WrappedComponent data={this.state.data} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} selectPage={this.selectPage} {...this.props} />;
+      let wrappedProps = {}
+      wrappedProps[dataPropertyName] = this.state.pageData;
+
+      return (
+        <div className="paginated-content">
+          <WrappedComponent pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} {...this.props} {...wrappedProps} />
+          <PageNavigation pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} selectPage={this.selectPage} />
+        </div>
+      );
     }
   }
 
