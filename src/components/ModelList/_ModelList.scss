@@ -1,4 +1,6 @@
 .model-list-page {
+  margin-bottom: 64px;
+
   &__content {
     @include gutters;
     display: grid;
