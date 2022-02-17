@@ -4,10 +4,13 @@ import ModelHeader from "./ModelHeader"
 import FilterPanel from "./FilterPanel";
 import ModelCardsList from "./ModelCardsList";
 import SearchBar from "../Common/SearchBar";
+import withPagination from "../Paginator/pagination";
 
 export default class ModelList extends Component {
-  render(){
-    return(
+  render() {
+    let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models');
+
+    return (
       <div className="model-list-page">
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
         <ModelHeader />
@@ -21,7 +24,7 @@ export default class ModelList extends Component {
             </div>
           </div>
           <div className="model-list-page__list">
-            <ModelCardsList className="model-list-page__list" models={this.props.models} />
+            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} />
           </div>
         </div>
       </div>
