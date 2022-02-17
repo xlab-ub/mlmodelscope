@@ -13,9 +13,10 @@
   }
 
   &__sort-container {
+    display: flex;
     grid-area: sort;
+    justify-content: flex-end;
     margin-bottom: 16px;
-    text-align: right;
   }
 
   &__filters-search-container {

@@ -1,4 +1,7 @@
 .sort-button {
+  @include fitToContent;
+  position: relative;
+
   &__button {
     @include headline6;
     background: $smokeDark;
@@ -10,5 +13,26 @@
 
   &__icon {
     margin-right: 8px;
+  }
+
+  &__option-box {
+    @include fitToContent;
+    background: $charcoalLightest;
+    color: $white;
+    position: absolute;
+    text-align: center;
+  }
+
+  &__option {
+    @include bodySmall;
+    border: none;
+    background: none;
+    color: $white;
+    padding: 4px;
+    width: 100%;
+  }
+
+  &__option:hover {
+    background: $azul;
   }
 }
