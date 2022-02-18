@@ -1,0 +1,12 @@
+@import "../../App";
+
+.page-nav-summary {
+  @include label;
+
+  color: $charcoalLightest;
+  margin-bottom: 16px;
+
+  & > strong {
+    font-weight: 800;
+  }
+}
