@@ -67,6 +67,13 @@ describe('The Model List Filters', () => {
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels).toEqual([defaultModels[2], defaultModels[0], defaultModels[6], defaultModels[4], defaultModels[5], defaultModels[3], defaultModels[1]]);
   });
+
+  it('can sort in reverse order', () => {
+    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList.instance().updateSortIsAscending(false);
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels).toEqual([defaultModels[1], defaultModels[3], defaultModels[5], defaultModels[4], defaultModels[6], defaultModels[0], defaultModels[2]]);
+  });
 });
 
 function createModel(name, description, framework, task) {

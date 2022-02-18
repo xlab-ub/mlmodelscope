@@ -9,6 +9,7 @@ export default class ModelListWithFilters extends Component {
     this.state = {
       filterGroups: this.makeFilterGroups(),
       searchText: "",
+      isSortAscending: true,
     }
   }
 
@@ -51,7 +52,7 @@ export default class ModelListWithFilters extends Component {
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
     result = this.search(result);
-    result = result.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
+    result = this.sortModels(result);
     return result;
   }
 
@@ -109,7 +110,6 @@ export default class ModelListWithFilters extends Component {
 
   updateSearchText = (inputText) => {
     this.setState({searchText: inputText});
-    this.filterModels();
   }
 
   search = (unfilteredModels) => {
@@ -117,7 +117,26 @@ export default class ModelListWithFilters extends Component {
     return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
   }
 
+  updateSortIsAscending = (isAscending) => {
+    this.setState({isSortAscending: isAscending});
+  }
+
+  sortModels = (unfilteredModels) => {
+    let result = unfilteredModels;
+    if(this.state.isSortAscending){
+      result = result.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
+    }
+    else {
+      result = result.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase()) ? 1 : -1);
+    }
+    return result;
+  }
+
   render() {
-    return <ModelList filterGroups={this.state.filterGroups} models={this.filterModels()} toggleFilter={this.toggleFilter} updateSearchText={this.updateSearchText}/>;
+    return <ModelList filterGroups={this.state.filterGroups}
+                      models={this.filterModels()}
+                      toggleFilter={this.toggleFilter}
+                      updateSearchText={this.updateSearchText}
+                      updateSortIsAscending={this.updateSortIsAscending} />;
   }
 }
