@@ -4,7 +4,7 @@ import ModelHeader from "./ModelHeader"
 import FilterPanel from "./FilterPanel";
 import ModelCardsList from "./ModelCardsList";
 import SearchBar from "../Common/SearchBar";
-import withPagination from "../Paginator/pagination";
+import withPagination from "../Paginator/Pagination";
 
 export default class ModelList extends Component {
   render() {
