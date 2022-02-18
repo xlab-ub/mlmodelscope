@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../components/Buttons/Button'
-import ModelCard from "../components/ModelList/ModelCard";
 
 export default {
   title: 'Buttons / Button',
