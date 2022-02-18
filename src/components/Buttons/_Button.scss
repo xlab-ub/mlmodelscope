@@ -34,7 +34,8 @@ $duration: 0.5s;
 }
 
 .secondary-button {
-  background: $secondaryGradient;
+  background: $primaryGradient;
+  background-size: 200% 200%;
   padding: 2px;
 
   &__fill {
@@ -51,6 +52,9 @@ $duration: 0.5s;
 
   &__icon {
     @extend %baseIcon;
+    stop {
+      transition: stop-color $duration;
+    }
   }
 }
 
@@ -58,9 +62,22 @@ $duration: 0.5s;
   background-position: bottom center;
 }
 
+.secondary-button:hover {
+  background-position: bottom center;
+}
+
 .primary-button:hover .primary-button__icon,
 .secondary-button:hover .secondary-button__icon {
   transform: translateX(6px);
+}
+
+.secondary-button:hover .secondary-button__icon {
+  .top-stop {
+    stop-color: $skyBlue;
+  }
+  .bottom-stop {
+    stop-color: $purple;
+  }
 }
 
 .small-button {
