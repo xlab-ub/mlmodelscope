@@ -21,6 +21,10 @@ export default class SortButton extends Component {
     });
   }
 
+  updateSortOrder = (isAscending) => {
+    this.props.updateSortIsAscending(isAscending);
+  }
+
   render() {
     return (
       <div className="sort-button">
@@ -29,8 +33,8 @@ export default class SortButton extends Component {
           Sort by
         </button>
         <div className="sort-button__option-box" hidden={this.state.optionsHidden}>
-          <button className="sort-button__option">Ascending</button>
-          <button className="sort-button__option">Descending</button>
+          <div className="sort-button__option" onMouseDown={() => this.updateSortOrder(true)}>Name - Ascending</div>
+          <div className="sort-button__option" onMouseDown={() => this.updateSortOrder(false)}>Name - Descending</div>
         </div>
       </div>
     );
