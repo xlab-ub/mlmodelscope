@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import expect from 'expect';
 import {mount} from 'enzyme';
-import withPagination from "./pagination";
+import withPagination from "./Pagination";
 import PageNavigation from "./PageNavigation";
+import PageNavigationSummary from "./PageNavigationSummary";
 
 class PaginationSpy extends Component {
-  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-    console.log('spy component updated with props', this.props);
-  }
-
   render() {
     return <div></div>;
   }
@@ -37,7 +34,24 @@ describe('withPagination()', () => {
   it('adds a PageNavigation component after the wrapped component', () => {
     const paginated = wrapper.find('.paginated-content');
 
-    expect(paginated.childAt(1).is(PageNavigation)).toBe(true);
+    expect(paginated.childAt(2).is(PageNavigation)).toBe(true);
+  });
+
+  it('adds a PageNavigationSummary component before the wrapped component', () => {
+    const paginated = wrapper.find('.paginated-content');
+
+    expect(paginated.childAt(0).is(PageNavigationSummary)).toBe(true);
+  });
+
+  it('passes page navigation props to PageNavigationSummary', () => {
+    wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} selectedPage={2}/>);
+
+    expect(wrapper.find(PageNavigationSummary).props()).toEqual({
+      data: [13],
+      pageCount: 2,
+      selectedPage: 2,
+      totalCount: 13
+    });
   });
 
   it('splits input data into pages of 12 items', () => {
