@@ -7,7 +7,13 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <input className="search-bar" type="search" placeholder="Search" name="search" id="search" onChange={this.onSearchChange} />
+      <input className="search-bar"
+             type="search"
+             placeholder="Search"
+             name="search"
+             id="search"
+             onChange={this.onSearchChange}
+             aria-label="Search models by name or description" />
     );
   }
 }

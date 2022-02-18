@@ -21,14 +21,18 @@ describe('The Model List Filters', () => {
     createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment"),
   ];
 
+  let modelList;
+
+  beforeEach(() => {
+    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+  });
+
   it('creates framework options for filter group', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     let frameworkFilterGroup = modelList.state("filterGroups").find(group => group.header == "Frameworks");
     expect(frameworkFilterGroup.options).toEqual(defaultFrameworks);
   });
 
   it('can filter by framework', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().toggleFilter("Frameworks", "single", "PyTorch");
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels.length).toEqual(1);
@@ -36,7 +40,6 @@ describe('The Model List Filters', () => {
   });
 
   it('can filter by task', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().toggleFilter("Tasks", "single", "boundingbox");
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels.length).toEqual(1);
@@ -44,7 +47,6 @@ describe('The Model List Filters', () => {
   });
 
   it('can search', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().updateSearchText("ChICKeN");
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels.length).toEqual(1);
@@ -52,7 +54,6 @@ describe('The Model List Filters', () => {
   });
 
   it('can combine filters', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
     modelList.instance().toggleFilter("Tasks", "single", "classification");
     modelList.instance().updateSearchText("tigershark");
@@ -63,13 +64,11 @@ describe('The Model List Filters', () => {
   });
 
   it('sorts the results', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels).toEqual([defaultModels[2], defaultModels[0], defaultModels[6], defaultModels[4], defaultModels[5], defaultModels[3], defaultModels[1]]);
   });
 
   it('can sort in reverse order', () => {
-    const modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
     modelList.instance().updateSortIsAscending(false);
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels).toEqual([defaultModels[1], defaultModels[3], defaultModels[5], defaultModels[4], defaultModels[6], defaultModels[0], defaultModels[2]]);

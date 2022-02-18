@@ -117,7 +117,7 @@ export default class ModelListWithFilters extends Component {
     return unfilteredModels.filter(model => model.name.toLowerCase().includes(lowerCaseSearch) || model.description.toLowerCase().includes(lowerCaseSearch));
   }
 
-  updateSortIsAscending = (isAscending) => {
+  updateSortByNameIsAscending = (isAscending) => {
     this.setState({isSortAscending: isAscending});
   }
 
@@ -137,6 +137,6 @@ export default class ModelListWithFilters extends Component {
                       models={this.filterModels()}
                       toggleFilter={this.toggleFilter}
                       updateSearchText={this.updateSearchText}
-                      updateSortIsAscending={this.updateSortIsAscending} />;
+                      updateSortByNameIsAscending={this.updateSortByNameIsAscending} />;
   }
 }
