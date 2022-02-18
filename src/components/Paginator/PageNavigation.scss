@@ -7,6 +7,10 @@
   color: $grayDarkest;
   margin: 0 4px;
   padding: 8px 16px;
+
+  &:hover {
+    border-color: $gray;
+  }
 }
 
 @mixin prevNextButton {
@@ -19,10 +23,21 @@
 
   & > svg {
     height: 12px;
+    transition: transform 0.5s;
     width: 13px;
 
     & > path {
       fill: $grayDarkest;
+    }
+  }
+
+  &:hover {
+    & > svg {
+      transform: translateX(-6px);
+
+      & > path {
+        fill: $gray;
+      }
     }
   }
 }
@@ -45,6 +60,10 @@
   &--selected {
     background-color: $grayDarkest;
     color: $white;
+
+    &:hover {
+      border-color: $grayDarkest;
+    }
   }
 }
 
@@ -76,5 +95,11 @@
   & > svg {
     margin-left: 8px;
     transform: rotate(180deg);
+  }
+
+  &:hover {
+    & > svg {
+      transform: rotate(180deg) translateX(-6px);
+    }
   }
 }
