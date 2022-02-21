@@ -10,5 +10,5 @@ const Template = (args) => <SortButton {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-
+  isSortAscending: true,
 };

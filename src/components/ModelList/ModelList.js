@@ -17,7 +17,7 @@ export default class ModelList extends Component {
         <ModelHeader />
         <div className="model-list-page__content">
           <div className="model-list-page__sort-container">
-            <SortButton updateSortByNameIsAscending={this.props.updateSortByNameIsAscending} />
+            <SortButton isSortAscending={this.props.isSortAscending} updateSortByNameIsAscending={this.props.updateSortByNameIsAscending} />
           </div>
           <div className="model-list-page__filters-search-container">
             <div className="model-list-page__search-bar">

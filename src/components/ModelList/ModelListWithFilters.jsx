@@ -134,6 +134,7 @@ export default class ModelListWithFilters extends Component {
 
   render() {
     return <ModelList filterGroups={this.state.filterGroups}
+                      isSortAscending={this.state.isSortAscending}
                       models={this.filterModels()}
                       toggleFilter={this.toggleFilter}
                       updateSearchText={this.updateSearchText}
