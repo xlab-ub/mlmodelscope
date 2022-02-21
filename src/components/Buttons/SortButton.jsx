@@ -21,8 +21,16 @@ export default class SortButton extends Component {
     });
   }
 
-  updateSortOrder = (isAscending) => {
-    this.props.updateSortByNameIsAscending(isAscending);
+  preventFocus = (e) => {
+    e.preventDefault();
+  }
+
+  onOptionClick = (isAscending) => {
+    if(!!this.props.updateSortByNameIsAscending){
+      this.props.updateSortByNameIsAscending(isAscending);
+    }
+    document.activeElement.blur();
+    this.hideOptions();
   }
 
   render() {
@@ -33,8 +41,10 @@ export default class SortButton extends Component {
           Sort by
         </button>
         <div className="sort-button__option-box" hidden={this.state.optionsHidden}>
-          <button className="sort-button__option" onMouseDown={() => this.updateSortOrder(true)}>Name - Ascending</button>
-          <button className="sort-button__option" onMouseDown={() => this.updateSortOrder(false)}>Name - Descending</button>
+          <input className="sort-button__radio" type="radio" id="name-ascend" name="sort-option" value="true" defaultChecked={this.props.isSortAscending} />
+          <label className="sort-button__option" htmlFor="name-ascend" onMouseDown={this.preventFocus} onClick={() => this.onOptionClick(true)}>Name ascending</label>
+          <input className="sort-button__radio" type="radio" id="name-descend" name="sort-option" value="false" defaultChecked={!this.props.isSortAscending} />
+          <label className="sort-button__option" htmlFor="name-descend" onMouseDown={this.preventFocus} onClick={() => this.onOptionClick(false)}>Name descending</label>
         </div>
       </div>
     );
