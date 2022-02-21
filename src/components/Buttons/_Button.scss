@@ -64,20 +64,24 @@ $duration: 0.5s;
 
 .secondary-button:hover {
   background-position: bottom center;
+
+  .secondary-button__icon {
+    .top-stop {
+      stop-color: $skyBlue;
+    }
+    .bottom-stop {
+      stop-color: $purple;
+    }
+  }
+
+  .secondary-button__text {
+    color: $purple;
+  }
 }
 
 .primary-button:hover .primary-button__icon,
 .secondary-button:hover .secondary-button__icon {
   transform: translateX(6px);
-}
-
-.secondary-button:hover .secondary-button__icon {
-  .top-stop {
-    stop-color: $skyBlue;
-  }
-  .bottom-stop {
-    stop-color: $purple;
-  }
 }
 
 .small-button {

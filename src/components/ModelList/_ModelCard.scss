@@ -30,6 +30,10 @@
     color: $almaMater;
   }
 
+  &__model-name:hover {
+    color: $azulDark;
+  }
+
   &__model-description {
     @include bodySmall;
     color: $charcoalLightest;
@@ -52,5 +56,10 @@
     color: $azul;
     margin-right: 12px;
     text-decoration: underline;
+    transition: 0.3s;
+  }
+
+  &__learn-more-button:hover {
+    color: $purple;
   }
 }

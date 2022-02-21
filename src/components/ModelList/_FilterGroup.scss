@@ -10,6 +10,7 @@
   &__description {
     @include bodySmall;
     color: $charcoalLightest;
+    margin-top: 0px;
   }
 
   &__button-active,
@@ -19,15 +20,20 @@
     border-radius: 23px;
     padding: 4px 8px;
     margin: 4px;
+    transition: background 0.3s;
   }
 
-  &__button-active{
+  &__button-active {
     background: $azul;
     color: white;
   }
 
-  &__button-inactive{
+  &__button-inactive {
     background: white;
     color: $azul;
+  }
+
+  &__button-inactive:hover {
+    background: rgba($azul, 0.07);
   }
 }
