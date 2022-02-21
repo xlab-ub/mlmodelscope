@@ -69,7 +69,7 @@ describe('The Model List Filters', () => {
   });
 
   it('can sort in reverse order', () => {
-    modelList.instance().updateSortIsAscending(false);
+    modelList.instance().updateSortByNameIsAscending(false);
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels).toEqual([defaultModels[1], defaultModels[3], defaultModels[5], defaultModels[4], defaultModels[6], defaultModels[0], defaultModels[2]]);
   });
