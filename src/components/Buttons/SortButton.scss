@@ -23,6 +23,10 @@
     text-align: center;
   }
 
+  &__radio {
+    visibility: hidden;
+  }
+
   &__option {
     @include bodySmall;
     border: none;
@@ -34,5 +38,9 @@
 
   &__option:hover {
     background: $azul;
+  }
+
+  &__option:checked {
+    background: green;
   }
 }
