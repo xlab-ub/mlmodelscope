@@ -18,8 +18,8 @@ export default class ModelCard extends Component{
     return(
       <div className="model-card">
         <div className="model-card__tags-box">
-          <button className="model-card__tag">{model.framework.name}</button>
-          <button className="model-card__tag">{task.name}</button>
+          <button className="model-card__task-tag">{task.name}</button>
+          <button className="model-card__framework-tag">{model.framework.name}</button>
         </div>
         <hr className="model-card__divider"/>
         <a className="model-card__model-name" href={modelLink}>{model.name} Version {model.version}</a>
