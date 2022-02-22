@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import SampleInputsTab from "./SampleInputsTab";
+import UploadInputsTab from "./UploadInputsTab";
+import URLInputsTab from "./URLInputsTab";
 import "./QuickInput.scss";
 
 export default class QuickInput extends Component {
@@ -7,9 +10,9 @@ export default class QuickInput extends Component {
 
     this.classname = "quick-input";
     this.tabs = [
-      { id: 'sample-input', title: 'Sample inputs' },
-      { id: 'upload-input', title: 'Upload' },
-      { id: 'url-input', title: 'URL' }
+      { id: 'sample-input', title: 'Sample inputs', component: SampleInputsTab },
+      { id: 'upload-input', title: 'Upload', component: UploadInputsTab },
+      { id: 'url-input', title: 'URL', component: URLInputsTab }
     ];
     this.state = {
       selectedTab: 0
@@ -58,12 +61,15 @@ export default class QuickInput extends Component {
   }
 
   makeTab = (index, tab) => {
+    let Component = tab.component || (() => {return <div />});
     let classes = `${this.classname}__tab`;
     if (index === this.state.selectedTab)
       classes = `${classes} ${this.classname}__tab--selected`;
 
     return (
-      <div key={index} className={classes} role="tabpanel" aria-labelledby={`${tab.id}`} id={`${tab.id}-panel`}></div>
+      <div key={index} className={classes} role="tabpanel" aria-labelledby={`${tab.id}`} id={`${tab.id}-panel`}>
+        <Component />
+      </div>
     )
   }
 }
