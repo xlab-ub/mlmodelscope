@@ -62,5 +62,5 @@ FullList.args = {
     {name: "PyTorch", label: "PyTorch", isActive: false},
     {name: "TensorFlow", label: "TensorFlow", isActive: false},
   ],
-  models: require('./assets/model_data.json').manifests,
+  models: require('./assets/model_data.json').models,
 }
