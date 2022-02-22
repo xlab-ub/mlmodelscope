@@ -15,6 +15,9 @@ LoneModel.args = {
   frameworkOptions: [
     {name: "Onnxruntime", label: "Onnxruntime", isActive: true},
   ],
+  machineOptions: [
+    {name: "amd64", label: "Amd64", isActive: false},
+  ],
   models: [
     {
       "id": 129,
@@ -61,6 +64,9 @@ FullList.args = {
     {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
     {name: "PyTorch", label: "PyTorch", isActive: false},
     {name: "TensorFlow", label: "TensorFlow", isActive: false},
+  ],
+  machineOptions: [
+    {name: "amd64", label: "Amd64", isActive: false},
   ],
   models: require('./assets/model_data.json').models,
 }

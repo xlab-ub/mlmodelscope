@@ -12,19 +12,24 @@ describe('The Model List Filters', () => {
     ];
 
   const defaultModels = [
-    createModel("ChickenModel", "chicken", "MXNet", "classification"),
-    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification"),
-    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox"),
-    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification"),
-    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification"),
-    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment"),
-    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment"),
+    createModel("ChickenModel", "chicken", "MXNet", "classification", "amd64"),
+    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification", "amd64"),
+    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox", "amd64"),
+    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification", "ILLIAC"),
+    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification", "amd64"),
+    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment", "amd64"),
+    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment", "amd64"),
   ];
+
+  const defaultMachines = [
+    {name: "amd64", label: "Amd64", isActive: false},
+    {name: "ILLIAC", label: "ILLIAC", isActive: false},
+  ]
 
   let modelList;
 
   beforeEach(() => {
-    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} />);
+    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} machineOptions={defaultMachines} />);
   });
 
   it('creates framework options for filter group', () => {
@@ -73,8 +78,27 @@ describe('The Model List Filters', () => {
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels).toEqual([defaultModels[1], defaultModels[3], defaultModels[5], defaultModels[4], defaultModels[6], defaultModels[0], defaultModels[2]]);
   });
+
+  it('can filter by first machine', () => {
+    modelList.instance().toggleFilter("Machines", "single", "ILLIAC");
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[3]);
+  });
 });
 
-function createModel(name, description, framework, task) {
-  return {name: name, description: description, framework: {name: framework}, output: {type: task}};
+function createModel(name, description, framework, task, machine) {
+  return {
+    name: name,
+    description: description,
+    framework: {
+      name: framework,
+      architectures: [
+        {
+          name: machine
+        }
+      ]
+    },
+    output: {type: task}
+  };
 }

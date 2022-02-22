@@ -60,4 +60,8 @@
   &__button-tasks {
     @include baseFilterButton($azul);
   }
+
+  &__button-machines {
+    @include baseFilterButton($altgeld)
+  }
 }

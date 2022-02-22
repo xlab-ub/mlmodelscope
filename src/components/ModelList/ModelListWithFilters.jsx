@@ -25,8 +25,7 @@ export default class ModelListWithFilters extends Component {
         header: "Tasks",
         description: "What the model is trying to do with the machine and input data",
         select: "single",
-        fieldA: "output",
-        fieldB: "type",
+        dataPath: ["output", "type"],
         options: [
           {name: "classification", label: "Classification", isActive: false},
           {name: "boundingbox", label: "Object Detection", isActive: false},
@@ -39,10 +38,16 @@ export default class ModelListWithFilters extends Component {
         header: "Frameworks",
         description: "What the model is running on",
         select: "single",
-        fieldA: "framework",
-        fieldB: "name",
+        dataPath: ["framework", "name"],
         options: clone(this.props.frameworkOptions),
       },
+      {
+        header: "Machines",
+        description: "Hardware that processes the model's functions",
+        select: "single",
+        dataPath: ["framework", "architectures", "0", "name"],
+        options: clone(this.props.machineOptions),
+      }
     ];
   }
 
@@ -62,12 +67,19 @@ export default class ModelListWithFilters extends Component {
       return unfilteredModels;
     }
     let filteredModels=[];
-    let j = filterGroup.fieldA;
-    let k = filterGroup.fieldB;
+    let fields = filterGroup.dataPath;
     for(let i = 0; i < activeOptions.length; i++){
-      filteredModels = filteredModels.concat(unfilteredModels.filter(model => model[j][k] === activeOptions[i].name));
+      filteredModels = filteredModels.concat(unfilteredModels.filter(model => this.getDataFromFieldPath(model, fields) === activeOptions[i].name));
     }
     return filteredModels;
+  }
+
+  getDataFromFieldPath(object, fields) {
+    let result = object;
+    for(let i = 0; i < fields.length; i++) {
+      result = result[fields[i]];
+    }
+    return result;
   }
 
   toggleFilter = (filterName, selectMode, target) => {
@@ -83,8 +95,7 @@ export default class ModelListWithFilters extends Component {
     }
 
     filterGroupsCopy[i] = filterGroup;
-    this.setState(oldState => ({filterGroups: filterGroupsCopy}));
-    this.filterModels();
+    this.setState({filterGroups: filterGroupsCopy});
   }
 
   toggleFilterMulti = (filterGroup, target) => {
