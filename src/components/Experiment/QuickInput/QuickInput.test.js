@@ -111,10 +111,27 @@ describe('Experiment Quick Input Component', () => {
       });
     });
 
-    it('a run button', () => {
-      const button = wrapper.find('.quick-input').find('button.quick-input__run-model');
+    describe('a run button', () => {
+      it('with the correct label', () => {
+        const button = wrapper.find('.quick-input').find('button.quick-input__run-model');
 
-      expect(button.length).toBe(1);
+        expect(button.length).toBe(1);
+        expect(button.text()).toBe('Run model and see results');
+      });
+
+      it('that is disabled by default', () => {
+        const button = wrapper.find('.quick-input__run-model');
+
+        expect(button.prop('disabled')).toBeTruthy();
+      });
+
+      it('that becomes enabled when an input is selected', () => {
+        wrapper.instance().selectInput('http://example.com/image1.jpg');
+        wrapper.update();
+        const button = wrapper.find('.quick-input__run-model');
+
+        expect(button.prop('disabled')).toBeFalsy();
+      });
     });
   });
 });

@@ -15,6 +15,7 @@ export default class QuickInput extends Component {
       { id: 'url-input', title: 'URL', component: URLInputsTab }
     ];
     this.state = {
+      selectedInputUrl: "",
       selectedTab: 0
     }
   }
@@ -30,9 +31,15 @@ export default class QuickInput extends Component {
           </div>
           {this.tabs.map((tab, index) => this.makeTab(index, tab))}
         </div>
-        <button className={`${this.classname}__run-model`} />
+        <button className={`${this.classname}__run-model`} disabled={this.state.selectedInputUrl === ""}>Run model and see results</button>
       </div>
     );
+  }
+
+  selectInput = (url) => {
+    this.setState({
+      selectedInputUrl: url
+    });
   }
 
   makeTabTitle = (index, tab) => {
