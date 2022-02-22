@@ -32,7 +32,11 @@ Standard.args = {
       "id": 2,
       "name": "Onnxruntime",
       "version": "1.6.0",
-      "architectures": []
+      "architectures": [
+        {
+          "name": "amd64",
+        }
+      ]
     },
     "input": {
       "description": "",
@@ -71,7 +75,11 @@ LongName.args = {
       "id": 4,
       "name": "TensorFlow",
       "version": "1.14.0",
-      "architectures": null
+      "architectures": [
+        {
+          "name": "amd64"
+        }
+      ]
     },
     "input": {
       "description": "",

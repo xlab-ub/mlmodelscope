@@ -3,7 +3,7 @@ import React from 'react';
 import ModelListWithFilters from "../components/ModelList/ModelListWithFilters";
 
 export default {
-  title: 'Models/Model List Page With Filtering',
+  title: 'Models/Model List With Filtering',
   component: ModelListWithFilters,
 };
 
@@ -39,7 +39,11 @@ LoneModel.args = {
         "id": 2,
         "name": "Onnxruntime",
         "version": "1.6.0",
-        "architectures": []
+        "architectures": [
+          {
+            "name": "amd64",
+          }
+        ]
       },
       "input": {
         "description": "",
