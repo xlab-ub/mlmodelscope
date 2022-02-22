@@ -22,14 +22,6 @@ export default class ModelListWithFilters extends Component {
   makeFilterGroups() {
     return [
       {
-        header: "Frameworks",
-        description: "What the model is running on",
-        select: "single",
-        fieldA: "framework",
-        fieldB: "name",
-        options: clone(this.props.frameworkOptions),
-      },
-      {
         header: "Tasks",
         description: "What the model is trying to do with the machine and input data",
         select: "single",
@@ -42,7 +34,15 @@ export default class ModelListWithFilters extends Component {
           {name: "instancesegment", label: "Instance Segmentation", isActive: false},
           {name: "image", label: "Image Enhancement", isActive: false}
         ]
-      }
+      },
+      {
+        header: "Frameworks",
+        description: "What the model is running on",
+        select: "single",
+        fieldA: "framework",
+        fieldB: "name",
+        options: clone(this.props.frameworkOptions),
+      },
     ];
   }
 

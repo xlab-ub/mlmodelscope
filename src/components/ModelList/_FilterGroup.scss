@@ -1,3 +1,43 @@
+@mixin baseFilterButton($color) {
+  &-active,
+  &-inactive {
+    @include headline6;
+    border: solid 1px $color;
+    border-radius: 23px;
+    padding: 4px 8px;
+    margin: 4px;
+    transition: background 0.3s;
+  }
+
+  &-active {
+    background: $color;
+    color: $white;
+  }
+
+  &-inactive {
+    background: white;
+    color: $color;
+
+    &:hover {
+      background: rgba($color, 0.07);
+    }
+  }
+}
+
+@mixin activeFilterButton($color) {
+  background: $color;
+  color: $white;
+}
+
+@mixin inactiveFilterButton($color) {
+  background: white;
+  color: $color;
+
+  &:hover {
+    background: rgba($azul, 0.07);
+  }
+}
+
 .filter-group {
   margin-bottom: 36px;
 
@@ -13,27 +53,11 @@
     margin-top: 0px;
   }
 
-  &__button-active,
-  &__button-inactive {
-    @include headline6;
-    border: solid 1px $azul;
-    border-radius: 23px;
-    padding: 4px 8px;
-    margin: 4px;
-    transition: background 0.3s;
+  &__button-frameworks {
+    @include baseFilterButton($purple);
   }
 
-  &__button-active {
-    background: $azul;
-    color: white;
-  }
-
-  &__button-inactive {
-    background: white;
-    color: $azul;
-  }
-
-  &__button-inactive:hover {
-    background: rgba($azul, 0.07);
+  &__button-tasks {
+    @include baseFilterButton($azul);
   }
 }

@@ -12,12 +12,14 @@ export default class FilterGroup extends Component{
 
   render(){
     let options = this.props.filterGroup.options;
+    let lowerCaseGroupName = this.props.filterGroup.header.toLowerCase();
     let buttons = [];
     for(let i = 0; i < options.length; i++){
       let classNameAddon = options[i].isActive?this.activeTag:this.inactiveTag;
-      let className = "filter-group__button-" + classNameAddon;
+      let className = `filter-group__button-${lowerCaseGroupName}-${classNameAddon}`;
       let text = options[i].label;
-      buttons.push(<button key={i} className={className} onClick={() => this.onClick(options[i].name)}>{text}</button>);
+      buttons.push(<button key={i} className={className} data-group-name={lowerCaseGroupName}
+                           onClick={() => this.onClick(options[i].name)}>{text}</button>);
     }
 
     return(

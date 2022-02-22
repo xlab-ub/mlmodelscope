@@ -11,14 +11,23 @@
     margin-bottom: 16px;
   }
 
-  &__tag {
+  &__task-tag,
+  &__framework-tag {
     @include bodySmall;
     border-radius: 20px;
-    background: rgba($azul, 0.05);
     border: none;
-    color: $azul;
     margin-right: 8px;
     padding: 2px 8px;
+  }
+
+  &__task-tag {
+    background: rgba($azul, 0.05);
+    color: $azul;
+  }
+
+  &__framework-tag {
+    background: rgba($purple, 0.05);
+    color: $purple;
   }
 
   &__divider {
