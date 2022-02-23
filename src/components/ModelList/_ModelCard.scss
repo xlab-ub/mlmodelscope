@@ -12,7 +12,8 @@
   }
 
   &__task-tag,
-  &__framework-tag {
+  &__framework-tag,
+  &__machine-tag {
     @include bodySmall;
     border-radius: 20px;
     border: none;
@@ -28,6 +29,11 @@
   &__framework-tag {
     background: rgba($purple, 0.05);
     color: $purple;
+  }
+
+  &__machine-tag {
+    background: rgba($altgeld, 0.05);
+    color: $altgeld;
   }
 
   &__divider {

@@ -3,7 +3,7 @@ import React from 'react';
 import ModelListWithFilters from "../components/ModelList/ModelListWithFilters";
 
 export default {
-  title: 'Models/Model List Page With Filtering',
+  title: 'Models/Model List With Filtering',
   component: ModelListWithFilters,
 };
 
@@ -14,6 +14,9 @@ LoneModel.args = {
   key: 'key',
   frameworkOptions: [
     {name: "Onnxruntime", label: "Onnxruntime", isActive: true},
+  ],
+  machineOptions: [
+    {name: "amd64", label: "amd64", isActive: false},
   ],
   models: [
     {
@@ -36,7 +39,11 @@ LoneModel.args = {
         "id": 2,
         "name": "Onnxruntime",
         "version": "1.6.0",
-        "architectures": []
+        "architectures": [
+          {
+            "name": "amd64",
+          }
+        ]
       },
       "input": {
         "description": "",
@@ -62,5 +69,8 @@ FullList.args = {
     {name: "PyTorch", label: "PyTorch", isActive: false},
     {name: "TensorFlow", label: "TensorFlow", isActive: false},
   ],
-  models: require('./assets/model_data.json').manifests,
+  machineOptions: [
+    {name: "amd64", label: "amd64", isActive: false},
+  ],
+  models: require('./assets/model_data.json').models,
 }

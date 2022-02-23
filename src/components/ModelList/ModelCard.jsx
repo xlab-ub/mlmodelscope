@@ -14,12 +14,15 @@ export default class ModelCard extends Component{
     if (!task) {
       task = new Task(model.output.type, "This task has no definition");
     }
+    let machineTagKey = 0;
+    let machineTags = model.framework.architectures.map(machine => <button key={machineTagKey++} className="model-card__machine-tag">{machine.name}</button> );
     const modelLink = "/model/" + model.id;
     return(
       <div className="model-card">
         <div className="model-card__tags-box">
           <button className="model-card__task-tag">{task.name}</button>
           <button className="model-card__framework-tag">{model.framework.name}</button>
+          {machineTags}
         </div>
         <hr className="model-card__divider"/>
         <a className="model-card__model-name" href={modelLink}>{model.name} Version {model.version}</a>

@@ -65,8 +65,10 @@ export default class ModelListContainer extends Component {
     return filters;
   }
 
-
   render() {
-    return <ModelListWithFilters frameworkOptions={this.state.frameworkOptions} models={this.state.models} />;
+    let machineOptions = [
+      {name: "amd64", label: "amd64", isActive: false},
+    ];
+    return <ModelListWithFilters frameworkOptions={this.state.frameworkOptions} machineOptions={machineOptions} models={this.state.models} />;
   }
 }
