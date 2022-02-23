@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ModelCard from '../components/ModelList/ModelCard';
 import ModelDetailHeader from "../components/ModelDetailPage/ModelDetailHeader";
 
 export default {
