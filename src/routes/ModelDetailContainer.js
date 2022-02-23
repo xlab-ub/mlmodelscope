@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ModelDetailHeader from "../components/ModelDetailPage/ModelDetailHeader";
+import ModelDetailPage from "../components/ModelDetailPage/ModelDetailPage"
 import {useParams} from "react-router-dom";
 import GetApiHelper from "../helpers/api";
 
-export default class ModelDetailPage extends Component{
+export default class ModelDetailContainer extends Component{
   constructor(props){
     super(props);
     this.api = GetApiHelper();
@@ -28,9 +28,7 @@ export default class ModelDetailPage extends Component{
 
   render(){
     return(
-      <div className="model-detail-page">
-        <ModelDetailHeader model={this.state.model}/>
-      </div>
+      <ModelDetailPage model={this.state.model}/>
     )
   }
 }
