@@ -12,18 +12,19 @@ describe('The Model List Filters', () => {
     ];
 
   const defaultModels = [
-    createModel("ChickenModel", "chicken", "MXNet", "classification", "amd64"),
-    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification", "amd64"),
-    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox", "amd64"),
-    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification", "ILLIAC"),
-    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification", "amd64"),
-    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment", "amd64"),
-    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment", "amd64"),
+    createModel("ChickenModel", "chicken", "MXNet", "classification", ["amd64"]),
+    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification", ["amd64"]),
+    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox", ["amd64"]),
+    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification", ["ILLIAC", "ENIAC"]),
+    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification", ["amd64"]),
+    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment", ["amd64"]),
+    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment", ["amd64"]),
   ];
 
   const defaultMachines = [
     {name: "amd64", label: "Amd64", isActive: false},
     {name: "ILLIAC", label: "ILLIAC", isActive: false},
+    {name: "ENIAC", label: "ENIAC", isActive: false},
   ]
 
   let modelList;
@@ -85,19 +86,23 @@ describe('The Model List Filters', () => {
     expect(filteredModels.length).toEqual(1);
     expect(filteredModels[0]).toEqual(defaultModels[3]);
   });
+
+  it('can filter by machine when model has more than one machine', () => {
+    modelList.instance().toggleFilter("Machines", "single", "ENIAC");
+    let filteredModels = modelList.instance().filterModels();
+    expect(filteredModels.length).toEqual(1);
+    expect(filteredModels[0]).toEqual(defaultModels[3]);
+  });
 });
 
-function createModel(name, description, framework, task, machine) {
+function createModel(name, description, framework, task, machines) {
+  let architectures = machines.map(machine => ({ name: machine }));
   return {
     name: name,
     description: description,
     framework: {
       name: framework,
-      architectures: [
-        {
-          name: machine
-        }
-      ]
+      architectures: architectures,
     },
     output: {type: task}
   };
