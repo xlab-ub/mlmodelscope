@@ -144,5 +144,15 @@ describe('Experiment Quick Input Component', () => {
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
+
+    describe('a URL Inputs Tab', () => {
+      it('that calls back to selectInput()', () => {
+        wrapper.find('.url-inputs__url').simulate('change', { target: { value: SampleInputs[0] }});
+        wrapper.update();
+
+        expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[0]);
+        expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
+      });
+    })
   });
 });
