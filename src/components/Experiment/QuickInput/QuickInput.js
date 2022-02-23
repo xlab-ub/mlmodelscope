@@ -5,12 +5,16 @@ import URLInputsTab from "./URLInputsTab";
 import "./QuickInput.scss";
 
 export default class QuickInput extends Component {
+  static defaultProps = {
+    sampleInputs: []
+  }
+
   constructor(props) {
     super(props);
 
     this.classname = "quick-input";
     this.tabs = [
-      { id: 'sample-input', title: 'Sample inputs', component: SampleInputsTab },
+      { id: 'sample-input', title: 'Sample inputs', component: SampleInputsTab, props: { sampleInputs: props.sampleInputs } },
       { id: 'upload-input', title: 'Upload', component: UploadInputsTab },
       { id: 'url-input', title: 'URL', component: URLInputsTab }
     ];
@@ -75,7 +79,7 @@ export default class QuickInput extends Component {
 
     return (
       <div key={index} className={classes} role="tabpanel" aria-labelledby={`${tab.id}`} id={`${tab.id}-panel`}>
-        <Component />
+        <Component inputSelected={this.selectInput} {...tab.props} />
       </div>
     )
   }

@@ -3,7 +3,7 @@ import expect from 'expect';
 import {shallow} from 'enzyme';
 import SampleInputsTab from "./SampleInputsTab";
 
-const SampleInputs = [
+export const SampleInputs = [
   'https://example.com/sample1.jpg',
   'https://example.com/sample2.jpg',
   'https://example.com/sample2.jpg',

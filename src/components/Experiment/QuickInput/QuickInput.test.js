@@ -3,6 +3,7 @@ import expect from 'expect';
 import {mount} from 'enzyme';
 import QuickInput from "./QuickInput";
 import SampleInputsTab from "./SampleInputsTab";
+import {SampleInputs} from "./SampleInputsTab.test";
 import UploadInputsTab from "./UploadInputsTab";
 import URLInputsTab from "./URLInputsTab";
 
@@ -11,7 +12,7 @@ describe('Experiment Quick Input Component', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = mount(<QuickInput />);
+      wrapper = mount(<QuickInput sampleInputs={SampleInputs} />);
     });
 
     it('the correct container class', () => {
@@ -54,7 +55,7 @@ describe('Experiment Quick Input Component', () => {
       it('that contain the correct components', () => {
         const tabs = wrapper.find('.quick-input__tab');
 
-        expect(tabs.at(0).containsMatchingElement(<SampleInputsTab />)).toBeTruthy();
+        expect(tabs.at(0).containsMatchingElement(<SampleInputsTab sampleInputs={SampleInputs} />)).toBeTruthy();
         expect(tabs.at(1).containsMatchingElement(<UploadInputsTab />)).toBeTruthy();
         expect(tabs.at(2).containsMatchingElement(<URLInputsTab />)).toBeTruthy();
       });
@@ -131,6 +132,16 @@ describe('Experiment Quick Input Component', () => {
         const button = wrapper.find('.quick-input__run-model');
 
         expect(button.prop('disabled')).toBeFalsy();
+      });
+    });
+
+    describe('a Sample Inputs Tab', () => {
+      it('that calls back to selectInput()', () => {
+        wrapper.find('SampleInputsTab').instance().selectInput(0);
+        wrapper.update();
+
+        expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[0]);
+        expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
   });
