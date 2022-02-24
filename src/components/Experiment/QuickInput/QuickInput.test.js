@@ -153,6 +153,16 @@ describe('Experiment Quick Input Component', () => {
         expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[0]);
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
+    });
+
+    describe('an Upload Inputs Tab', () => {
+      it('that calls back to selectInput()', () => {
+        wrapper.find(UploadInputsTab).instance().onUploadSuccess({uploadURL: SampleInputs[2]}, {});
+        wrapper.update();
+
+        expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[2]);
+        expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
+      });
     })
   });
 });

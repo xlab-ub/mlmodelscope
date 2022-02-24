@@ -6,7 +6,7 @@ import SampleInputsTab from "./SampleInputsTab";
 export const SampleInputs = [
   'https://example.com/sample1.jpg',
   'https://example.com/sample2.jpg',
-  'https://example.com/sample2.jpg',
+  'https://example.com/sample3.jpg',
 ];
 
 describe('Sample Inputs Tab', () => {
