@@ -1,41 +1,34 @@
 .model-detail-header {
-  display: grid;
-  grid-gap: 16px;
-  grid-template-areas:
-    "title title"
-    "task details";
-  grid-template-columns: 200px 1fr;
-
   &__title-box {
+    @include paddingGutters;
+    background: $almaMater;
+    color: white;
     grid-area: title;
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 
-  &__model-name{
+  &__model-name {
     font-size: 36px;
     font-weight: bold;
     margin: 0;
     overflow-wrap: anywhere;
   }
 
-  &__task-box, &__advanced-details-box {
-    background-color: gainsboro;
-    padding: 8px;
+  &__data-box {
+    @include gutters;
+    background: $smokeDarkest;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  &__task-box {
-    grid-area: task;
-  }
-
-  &__details-box {
-    grid-area: details;
-  }
-
-  &__advanced-details-label{
-    font-weight: bold;
-  }
-
-  &__detail-container {
-    display: flex;
+  &__task-box,
+  &__framework-box,
+  &__machines-box,
+  &__training-set-box {
+    background-color: white;
+    padding: 2px 16px;
   }
 
   &__detail-label, &__date-label, &__task-label {
