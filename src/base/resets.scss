@@ -1,0 +1,33 @@
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-size: 1rem;
+}
+button {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+iframe {
+  max-width: 100%;
+}
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+main {
+  display: block;
+}

@@ -32,7 +32,10 @@ Standard.args = {
       "id": 2,
       "name": "Onnxruntime",
       "version": "1.6.0",
-      "architectures": []
+      "architectures": [
+        {"name": "amd64"},
+        {"name": "ILLIAC"},
+      ]
     },
     "input": {
       "description": "",

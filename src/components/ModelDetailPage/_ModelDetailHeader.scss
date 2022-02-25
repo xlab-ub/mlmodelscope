@@ -1,4 +1,6 @@
 .model-detail-header {
+  $data-left-right-padding: 16px;
+
   &__title-box {
     @include paddingGutters;
     background: $almaMater;
@@ -6,6 +8,21 @@
     grid-area: title;
     padding-top: 32px;
     padding-bottom: 32px;
+  }
+
+  &__date-container {
+    display: flex;
+  }
+
+  &__date-label {
+    @include labelSmall;
+  }
+
+  &__date {
+    @include bodySmall;
+    line-height: 20px;
+    margin-left: 8px;
+    color: white;
   }
 
   &__model-name {
@@ -16,11 +33,14 @@
   }
 
   &__data-box {
-    @include gutters;
     background: $smokeDarkest;
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(4, 1fr);
+    $data-gutters: $gutterSize - $data-left-right-padding;
+    margin-left: $data-gutters;
+    margin-right: $data-gutters;
+    margin-top: 32px;
   }
 
   &__task-box,
@@ -28,18 +48,11 @@
   &__machines-box,
   &__training-set-box {
     background-color: white;
-    padding: 2px 16px;
+    padding: 2px $data-left-right-padding;
   }
 
-  &__detail-label, &__date-label, &__task-label {
-    font-weight: bold;
-  }
-
-  &__detail-label {
-    width: 100px;
-  }
-
-  &__detail {
-    margin-left: 8px;
+  &__label {
+    @include labelSmall;
+    color: $grayDarker;
   }
 }
