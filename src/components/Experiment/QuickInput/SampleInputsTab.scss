@@ -1,0 +1,37 @@
+@import "../../../App";
+
+.sample-inputs {
+  margin: 32px 0;
+
+  &__title {
+    @include body;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__input {
+    line-height: 0;
+
+    & > img {
+      border: 6px solid transparent;
+    }
+
+    &:not(:first-child) {
+      margin-left: 4px;
+    }
+
+    &--selected {
+      & > img {
+        border-color: $azul;
+        box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    &--unselected {
+      opacity: 0.5;
+    }
+  }
+}
