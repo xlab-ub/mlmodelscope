@@ -8,7 +8,7 @@
   margin: 0 4px;
   padding: 8px 16px;
 
-  &:hover {
+  &:not(:disabled):hover {
     border-color: $gray;
   }
 }
@@ -31,7 +31,7 @@
     }
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     & > svg {
       transform: translateX(-6px);
 
@@ -39,6 +39,10 @@
         fill: $gray;
       }
     }
+  }
+
+  &:disabled {
+    opacity: 0.6;
   }
 }
 
@@ -97,7 +101,7 @@
     transform: rotate(180deg);
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     & > svg {
       transform: rotate(180deg) translateX(-6px);
     }
