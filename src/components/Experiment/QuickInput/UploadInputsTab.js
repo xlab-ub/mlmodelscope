@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Uppy from '@uppy/core';
 import {Dashboard} from '@uppy/react';
 import AwsS3Multipart from '@uppy/aws-s3-multipart';
+import "@uppy/core/dist/style.css";
+import "@uppy/dashboard/dist/style.css";
+import "./UploadInputsTab.scss";
 
 export default class UploadInputsTab extends Component {
   constructor(props) {
