@@ -48,7 +48,7 @@ export default class QuickInput extends Component {
 
   makeTabTitle = (index, tab) => {
     let classes = `${this.classname}__tab-title`;
-    if (index === 0)
+    if (index === this.state.selectedTab)
       classes = `${classes} ${this.classname}__tab-title--selected`;
 
     return (

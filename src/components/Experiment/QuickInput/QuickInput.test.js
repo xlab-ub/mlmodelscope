@@ -104,10 +104,12 @@ describe('Experiment Quick Input Component', () => {
         wrapper.find('.quick-input__tab-title').at(1).simulate('click');
         const titles = wrapper.find('.quick-input__tab-title');
         const tabs = wrapper.find('.quick-input__tab');
+        const selectedTitle = wrapper.find('.quick-input__tab-title--selected');
         const selectedTab = wrapper.find('.quick-input__tab--selected');
 
         expect(titles.at(0).prop('aria-selected')).toBe('false');
         expect(titles.at(1).prop('aria-selected')).toBe('true');
+        expect(titles.at(1).prop('id')).toBe(selectedTitle.prop('id'));
         expect(tabs.at(1).prop('id')).toBe(selectedTab.prop('id'));
       });
     });
