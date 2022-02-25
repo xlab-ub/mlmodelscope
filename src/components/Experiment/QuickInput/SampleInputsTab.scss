@@ -1,8 +1,6 @@
 @import "../../../App";
 
 .sample-inputs {
-  margin: 32px 0;
-
   &__title {
     @include body;
     margin-bottom: 24px;
