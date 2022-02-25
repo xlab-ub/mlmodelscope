@@ -18,12 +18,19 @@ describe('URL Inputs Tab', () => {
       expect(title.text()).toBe('Paste URL of image');
     });
 
-    it('a text input box', () => {
-      const input = wrapper.find('.url-inputs').childAt(1);
+    describe('a URL input box', () => {
+      let input;
 
-      expect(input.type()).toBe('input');
-      expect(input.prop('type')).toBe('url');
-      expect(input.prop('className')).toBe('url-inputs__url');
+      beforeEach(() => {
+        input = wrapper.find('.url-inputs').childAt(1);
+      });
+
+      it('with the expected properties', () => {
+        expect(input.type()).toBe('input');
+        expect(input.prop('type')).toBe('url');
+        expect(input.prop('className')).toBe('url-inputs__url');
+        expect(input.prop('placeholder')).toBe('Paste any image URL');
+      });
     });
   });
 

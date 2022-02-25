@@ -12,7 +12,7 @@ export default class URLInputsTab extends Component {
     return (
       <div className={this.classname}>
         <div className={`${this.classname}__title`}>Paste URL of image</div>
-        <input className={`${this.classname}__url`} type="url" onChange={this.urlChanged} />
+        <input className={`${this.classname}__url`} placeholder="Paste any image URL" type="url" onChange={this.urlChanged} />
       </div>
     );
   }
