@@ -1,0 +1,18 @@
+@import "../../../App";
+
+.uppy-Root {
+  font-family: $sans-serif;
+}
+
+.uppy-Dashboard-browse {
+  color: $azul;
+}
+
+.uppy-StatusBar.is-waiting
+.uppy-StatusBar-actionBtn--upload {
+  background-color: $azul;
+
+  &:hover {
+    background-color: $purple;
+  }
+}

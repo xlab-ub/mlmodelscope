@@ -10,6 +10,18 @@ button {
   font-family: inherit;
 }
 
+input {
+  @include bodySmall;
+  border: 2px solid $smokeDark;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    outline: none !important;
+    border-color: $azul;
+  }
+}
+
 .App {
   text-align: center;
 }
