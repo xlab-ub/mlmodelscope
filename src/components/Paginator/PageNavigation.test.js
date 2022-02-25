@@ -77,6 +77,13 @@ describe('PageNavigation', () => {
       expect(selectPage.mock.calls[0][0]).toBe(4);
     });
 
+    it('disables the next button when last page is selected', () => {
+      nav = shallow(<PageNavigation pageCount={4} selectedPage={4} />);
+      const next = nav.find('.page-nav__next-button');
+
+      expect(next.prop('disabled')).toBeTruthy();
+    });
+
     it('passes previous button click through to selectPage', () => {
       nav.find('.page-nav__prev-button').simulate('click');
 
@@ -90,6 +97,13 @@ describe('PageNavigation', () => {
 
       expect(selectPage.mock.calls.length).toBe(1);
       expect(selectPage.mock.calls[0][0]).toBe(1);
+    });
+
+    it('disables the previous button when last page is selected', () => {
+      nav = shallow(<PageNavigation pageCount={4} selectedPage={1} />);
+      const previous = nav.find('.page-nav__prev-button');
+
+      expect(previous.prop('disabled')).toBeTruthy();
     });
   });
 });
