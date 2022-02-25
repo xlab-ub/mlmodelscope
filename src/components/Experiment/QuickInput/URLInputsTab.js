@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./URLInputsTab.scss";
 
 const UrlMatcher = /https?:\/\/.+/;
 
