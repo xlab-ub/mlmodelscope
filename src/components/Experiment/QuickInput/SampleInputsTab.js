@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./SampleInputsTab.scss";
 
 export default class SampleInputsTab extends Component {
   static defaultProps = {
@@ -27,8 +28,12 @@ export default class SampleInputsTab extends Component {
 
   makeSampleInput = (url, index) => {
     let classes = `${this.classname}__input`;
-    if (this.state.selectedIndex === index)
-      classes = `${classes} ${this.classname}__input--selected`;
+    if (this.state.selectedIndex >= 0) {
+      if (this.state.selectedIndex === index)
+        classes = `${classes} ${this.classname}__input--selected`;
+      else
+        classes = `${classes} ${this.classname}__input--unselected`;
+    }
 
     return (
       <div key={index} className={classes}>

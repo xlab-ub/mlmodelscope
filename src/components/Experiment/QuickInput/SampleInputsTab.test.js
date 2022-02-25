@@ -62,6 +62,16 @@ describe('Sample Inputs Tab', () => {
       expect(selected.length).toBe(1);
     });
 
+    it('marking the unselected inputs with the correct class', () => {
+      const image = wrapper.find('.sample-inputs__input').at(0).find('img');
+      image.simulate('click');
+      const unselected = wrapper.find('.sample-inputs__input--unselected');
+
+      expect(unselected.length).toBe(2);
+      expect(unselected.at(0).find('img').prop('src')).toBe(SampleInputs[1]);
+      expect(unselected.at(1).find('img').prop('src')).toBe(SampleInputs[2]);
+    });
+
     it('calling the inputSelected callback when an input is selected', () => {
       const inputSelected = jest.fn();
       wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs} inputSelected={inputSelected} />);
