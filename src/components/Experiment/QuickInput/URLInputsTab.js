@@ -18,10 +18,10 @@ export default class URLInputsTab extends Component {
   }
 
   urlChanged = (event) => {
-    const url = event.target.value;
+    let url = event.target.value;
 
     if (url.match(UrlMatcher) === null)
-      return;
+      url = "";
 
     if (typeof(this.props.inputSelected) === 'function')
       this.props.inputSelected(url);

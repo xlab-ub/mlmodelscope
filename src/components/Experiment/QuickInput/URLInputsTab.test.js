@@ -46,10 +46,11 @@ describe('URL Inputs Tab', () => {
       expect(inputSelected.mock.calls.length).toBe(2);
     });
 
-    it('not when non-URL formatted text is input', () => {
+    it('with an empty string when non-URL formatted text is input', () => {
       wrapper.find('.url-inputs__url').simulate('change', { target: { value: 'not a URL' }});
 
-      expect(inputSelected.mock.calls.length).toBe(0);
+      expect(inputSelected.mock.calls.length).toBe(1);
+      expect(inputSelected.mock.calls[0][0]).toBe("");
     });
   });
 });
