@@ -1,52 +1,73 @@
 .model-detail-header {
-  display: grid;
-  grid-gap: 16px;
-  grid-template-areas:
-    "title title"
-    "task details";
-  grid-template-columns: 200px 1fr;
+  $data-left-right-padding: 16px;
+  background: white;
+  padding-bottom: 32px;
 
   &__title-box {
-    grid-area: title;
+    @include paddingGutters;
+    background-image:
+      url('../../resources/img/round-splash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding-top: 64px;
+    padding-bottom: 48px;
   }
 
-  &__model-name{
-    font-size: 36px;
-    font-weight: bold;
-    margin: 0;
+  &__date-container {
+    display: flex;
+    margin-bottom: 16px;
+  }
+
+  &__date-label {
+    @include labelSmall;
+  }
+
+  &__date {
+    @include bodySmall;
+    line-height: 20px;
+    margin-left: 8px;
+    color: white;
+  }
+
+  &__model-name {
+    @include headline1;
+    margin-bottom: 16px;
     overflow-wrap: anywhere;
   }
 
-  &__task-box, &__advanced-details-box {
-    background-color: gainsboro;
-    padding: 8px;
+  &__data-box {
+    background: $smokeDarkest;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
+    $data-gutters: $gutterSize - $data-left-right-padding;
+    margin-left: $data-gutters;
+    margin-right: $data-gutters;
+    margin-top: 32px;
   }
 
-  &__task-box {
-    grid-area: task;
+  &__task-box,
+  &__framework-box,
+  &__machines-box,
+  &__training-set-box {
+    background-color: white;
+    padding: 2px $data-left-right-padding;
   }
 
-  &__details-box {
-    grid-area: details;
-  }
-
-  &__advanced-details-label{
-    font-weight: bold;
-  }
-
-  &__detail-container {
+  &__machine-tags-box {
     display: flex;
   }
 
-  &__detail-label, &__date-label, &__task-label {
-    font-weight: bold;
+  &__task-description {
+    @include bodySmall;
+    color: $charcoalLightest;
+    margin-top: 8px;
   }
 
-  &__detail-label {
-    width: 100px;
-  }
-
-  &__detail {
-    margin-left: 8px;
+  &__label {
+    @include labelSmall;
+    color: $grayDarker;
+    margin-bottom: 12px;
   }
 }

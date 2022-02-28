@@ -5,6 +5,7 @@
   'abstracts/type';
 
 @import
+  'base/resets',
   'base/base';
 
 @import
@@ -14,12 +15,11 @@
   'components/Buttons/Button',
   'components/Buttons/SortButton',
   'components/Common/SearchBar',
+  'components/Common/ModelTag',
   'components/ModelList/FilterGroup',
   'components/ModelList/FilterPanel',
   'components/ModelList/ModelCard',
   'components/ModelList/ModelHeader',
   'components/ModelList/ModelList',
-  'components/ModelDetailPage/ModelDetailHeader';
-
-@import
-  'routes/ModelDetailPage';
+  'components/ModelDetailPage/ModelDetailHeader',
+  'components/ModelDetailPage/ModelDetailPage';

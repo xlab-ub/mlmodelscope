@@ -5,7 +5,7 @@ import UseCasesPage from "../routes/UseCasesPage";
 import EvaluationsPage from "../routes/EvaluationsPage";
 import ConferencePage from "../routes/ConferencePage";
 import NewsPage from "../routes/NewsPage";
-import ModelDetailPage from "../routes/ModelDetailPage";
+import ModelDetailContainer from "../routes/ModelDetailContainer";
 import ModelListContainer from "../routes/ModelListContainer";
 
 const routes = [
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: "/model/:modelId",
-    component: ModelDetailPage,
+    component: ModelDetailContainer,
     exact: false,
   },
 ];
