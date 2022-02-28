@@ -1,1 +1,8 @@
-
+.model-detail-page {
+  &__quick-input {
+    @include paddingGutters;
+    background: $smoke;
+    padding-bottom: 56px;
+    padding-top: 56px;
+  }
+}
