@@ -1,19 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BEMComponent from "../../Common/BEMComponent";
 import "./URLInputsTab.scss";
 
 const UrlMatcher = /https?:\/\/.+/;
 
-export default class URLInputsTab extends Component {
+export default class URLInputsTab extends BEMComponent {
+  static defaultProps = {
+    className: "url-inputs"
+  }
+
   constructor(props) {
     super(props);
-    this.classname = "url-inputs";
   }
 
   render() {
     return (
-      <div className={this.classname}>
-        <div className={`${this.classname}__title`}>Paste URL of image</div>
-        <input className={`${this.classname}__url`} placeholder="Paste any image URL" type="url" onChange={this.urlChanged} />
+      <div className={this.block()}>
+        <div className={this.element('title')}>Paste URL of image</div>
+        <input className={this.element('url')} placeholder="Paste any image URL" type="url" onChange={this.urlChanged} />
       </div>
     );
   }

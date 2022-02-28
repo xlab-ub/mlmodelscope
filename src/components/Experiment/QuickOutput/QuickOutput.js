@@ -1,27 +1,23 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BEMComponent from "../../Common/BEMComponent";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/ClassificationOutput";
 
-export default class QuickOutput extends Component {
-  constructor(props) {
-    super(props);
-    this.classname = "quick-output";
-  }
-
+export default class QuickOutput extends BEMComponent {
   render() {
     return (
-      <div className={this.classname}>
-        <div className={`${this.classname}__header`}>
-          <div className={`${this.classname}__title`}>Try This Model</div>
-          <button className={`${this.classname}__share-button`}>Share with community</button>
+      <div className={this.block()}>
+        <div className={this.element('header')}>
+          <div className={this.element('title')}>Try This Model</div>
+          <button className={this.element('share-button')}>Share with community</button>
         </div>
-        <div className={`${this.classname}__content`}>
+        <div className={this.element('content')}>
           <InputPreview />
           <ClassificationOutput />
         </div>
-        <div className={`${this.classname}__footer`}>
-          <a className={`${this.classname}__try-again`}>Try this again</a>
-          <button className={`${this.classname}__experiment-button`}>Use in advanced experiment</button>
+        <div className={this.element('footer')}>
+          <a className={this.element('try-again')}>Try this again</a>
+          <button className={this.element('experiment-button')}>Use in advanced experiment</button>
         </div>
       </div>
     );
