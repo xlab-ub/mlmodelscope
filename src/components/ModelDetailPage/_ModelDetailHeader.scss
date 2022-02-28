@@ -1,18 +1,22 @@
 .model-detail-header {
   $data-left-right-padding: 16px;
   background: white;
+  padding-bottom: 32px;
 
   &__title-box {
     @include paddingGutters;
-    background: $almaMater;
+    background-image:
+      url('../../resources/img/round-splash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-    grid-area: title;
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 64px;
+    padding-bottom: 48px;
   }
 
-  &__date-container, &__machine-tags-box {
+  &__date-container {
     display: flex;
+    margin-bottom: 16px;
   }
 
   &__date-label {
@@ -27,9 +31,8 @@
   }
 
   &__model-name {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 0;
+    @include headline1;
+    margin-bottom: 16px;
     overflow-wrap: anywhere;
   }
 
@@ -52,8 +55,19 @@
     padding: 2px $data-left-right-padding;
   }
 
+  &__machine-tags-box {
+    display: flex;
+  }
+
+  &__task-description {
+    @include bodySmall;
+    color: $charcoalLightest;
+    margin-top: 8px;
+  }
+
   &__label {
     @include labelSmall;
     color: $grayDarker;
+    margin-bottom: 12px;
   }
 }
