@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Task from "../../helpers/Task";
+import formatDate from "../../helpers/dateFormatter";
 import ModelTag from "../Common/ModelTag";
 import 'typeface-lato';
 
@@ -12,17 +13,22 @@ export default class ModelDetailHeader extends Component{
       let machineTagKey = 0;
       let machineTags = <dd>N/A</dd>
 
+      let dateModified = "N/A";
+      if(!!model.updated_at && model.updated_at != "") {
+        dateModified = formatDate(model.updated_at);
+      }
+
       if (!!model.framework.architectures) {
         machineTags = model.framework.architectures.map(machine => <dd><ModelTag key={machineTagKey++} type="machine" content={machine.name}/></dd> );
       }
-      
+
       return(
         <div className="model-detail-header">
           <div className="model-detail-header__title-box">
             <dl>
               <div className="model-detail-header__date-container">
                 <dt className="model-detail-header__date-label">Modified:</dt>
-                <dd className="model-detail-header__date">N/A</dd>
+                <dd className="model-detail-header__date">{dateModified}</dd>
               </div>
             </dl>
             <p className="model-detail-header__model-name">{model.name} Version {model.version}</p>
@@ -44,7 +50,9 @@ export default class ModelDetailHeader extends Component{
             </div>
             <div className="model-detail-header__machines-box">
               <dt className="model-detail-header__label">Machines:</dt>
-              {machineTags}
+              <div className="model-detail-header__machine-tags-box">
+                {machineTags}
+              </div>
             </div>
             <div className="model-detail-header__training-set-box">
               <dt className="model-detail-header__label">Trained on:</dt>

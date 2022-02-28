@@ -14,6 +14,8 @@ Standard.args = {
   key: 'key',
   model: {
     "id": 129,
+    created_at: "2022-01-10T20:03:20.352408Z",
+    updated_at: "2022-01-10T20:03:20.352408Z",
     "attributes": {
       "Top1": "",
       "Top5": "",

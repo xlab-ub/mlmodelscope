@@ -1,5 +1,6 @@
 .model-detail-header {
   $data-left-right-padding: 16px;
+  background: white;
 
   &__title-box {
     @include paddingGutters;
@@ -10,7 +11,7 @@
     padding-bottom: 32px;
   }
 
-  &__date-container {
+  &__date-container, &__machine-tags-box {
     display: flex;
   }
 
