@@ -10,14 +10,19 @@ export default class ModelDetailHeader extends Component{
 
     if(!!model){
       const task = Task[model.output.type];
-      let machineTagKey = 0;
-      let machineTags = <dd>N/A</dd>
 
+      let dateLabel = "Created:";
       let dateModified = "N/A";
+
       if(!!model.updated_at && model.updated_at != "") {
+        if(model.updated_at != model.created_at) {
+          dateLabel = "Modified:"
+        }
         dateModified = formatDate(model.updated_at);
       }
 
+      let machineTagKey = 0;
+      let machineTags = <dd>N/A</dd>
       if (!!model.framework.architectures) {
         machineTags = model.framework.architectures.map(machine => <dd><ModelTag key={machineTagKey++} type="machine" content={machine.name}/></dd> );
       }
@@ -27,7 +32,7 @@ export default class ModelDetailHeader extends Component{
           <div className="model-detail-header__title-box">
             <dl>
               <div className="model-detail-header__date-container">
-                <dt className="model-detail-header__date-label">Modified:</dt>
+                <dt className="model-detail-header__date-label">{dateLabel}</dt>
                 <dd className="model-detail-header__date">{dateModified}</dd>
               </div>
             </dl>
