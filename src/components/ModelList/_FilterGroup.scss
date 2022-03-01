@@ -5,7 +5,7 @@
     border: solid 1px $color;
     border-radius: 23px;
     padding: 4px 8px;
-    margin: 4px;
+    margin: 0 8px 8px 0;
     transition: background 0.3s;
   }
 
@@ -50,7 +50,7 @@
   &__description {
     @include bodySmall;
     color: $charcoalLightest;
-    margin-top: 0px;
+    margin-bottom: 4px;
   }
 
   &__button-frameworks {
