@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Task from "../../helpers/Task";
 import Button from "../Buttons/Button"
+import ModelTag from "../Common/ModelTag";
 
 export default class ModelCard extends Component{
   constructor() {
@@ -15,13 +16,13 @@ export default class ModelCard extends Component{
       task = new Task(model.output.type, "This task has no definition");
     }
     let machineTagKey = 0;
-    let machineTags = model.framework.architectures.map(machine => <button key={machineTagKey++} className="model-card__machine-tag">{machine.name}</button> );
+    let machineTags = model.framework.architectures.map(machine => <ModelTag key={machineTagKey++} type="machine" content={machine.name}/> );
     const modelLink = "/model/" + model.id;
     return(
       <div className="model-card">
         <div className="model-card__tags-box">
-          <button className="model-card__task-tag">{task.name}</button>
-          <button className="model-card__framework-tag">{model.framework.name}</button>
+          <ModelTag type="task" content={task.name} />
+          <ModelTag type="framework" content={model.framework.name} />
           {machineTags}
         </div>
         <hr className="model-card__divider"/>

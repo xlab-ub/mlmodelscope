@@ -11,31 +11,6 @@
     margin-bottom: 16px;
   }
 
-  &__task-tag,
-  &__framework-tag,
-  &__machine-tag {
-    @include bodySmall;
-    border-radius: 20px;
-    border: none;
-    margin-right: 8px;
-    padding: 2px 8px;
-  }
-
-  &__task-tag {
-    background: rgba($azul, 0.05);
-    color: $azul;
-  }
-
-  &__framework-tag {
-    background: rgba($purple, 0.05);
-    color: $purple;
-  }
-
-  &__machine-tag {
-    background: rgba($altgeld, 0.05);
-    color: $altgeld;
-  }
-
   &__divider {
     border: 1px solid $smokeDark;
   }

@@ -36,6 +36,11 @@
     overflow-wrap: anywhere;
   }
 
+  &__model-description {
+    @include body;
+    color: white;
+  }
+
   &__data-box {
     background: $smokeDarkest;
     display: grid;
