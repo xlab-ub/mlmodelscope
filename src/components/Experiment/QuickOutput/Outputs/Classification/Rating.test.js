@@ -43,6 +43,7 @@ describe('Classification Rating component', () => {
         expect(button.prop('className')).toBe('rating__correct');
         expect(button.prop('role')).toBe('radio');
         expect(button.childAt(0).type()).toBe(Icon);
+        expect(button.childAt(0).prop('icon')).toBe('check');
         expect(button.childAt(1).text()).toBe('Correct');
       });
 
@@ -53,6 +54,7 @@ describe('Classification Rating component', () => {
         expect(button.prop('className')).toBe('rating__incorrect');
         expect(button.prop('role')).toBe('radio');
         expect(button.childAt(0).type()).toBe(Icon);
+        expect(button.childAt(0).prop('icon')).toBe('x');
         expect(button.childAt(1).text()).toBe('Incorrect');
       });
 

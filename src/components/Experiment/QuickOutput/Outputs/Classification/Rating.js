@@ -11,11 +11,13 @@ export default class Rating extends BEMComponent {
         {
           title: "Correct",
           element: "correct",
+          icon: "check",
           checked: false
         },
         {
           title: "Incorrect",
           element: "incorrect",
+          icon: "x",
           checked: false
         }
       ]
@@ -49,7 +51,7 @@ export default class Rating extends BEMComponent {
 
     return (
       <div key={index} className={this.element(rating.element, index)} role="radio" aria-checked={rating.checked} tabIndex={tabIndex} onClick={() => this.clickRating(index)}>
-        <Icon />
+        <Icon icon={rating.icon} />
         <span>{rating.title}</span>
       </div>
     )
