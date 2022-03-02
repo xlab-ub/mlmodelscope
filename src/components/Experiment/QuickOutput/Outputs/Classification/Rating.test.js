@@ -69,12 +69,12 @@ describe('Classification Rating component', () => {
 
         it('clicking Incorrect updates the selection state', () => {
           buttons.childAt(1).simulate('click');
-          wrapper.update();
           const correct = wrapper.childAt(1).childAt(0);
           const incorrect = wrapper.childAt(1).childAt(1);
 
           expect(correct.prop('tabIndex')).toBe(-1);
           expect(correct.prop('aria-checked')).toBeFalsy();
+          expect(incorrect.prop('className')).toBe('rating__incorrect rating__incorrect--checked');
           expect(incorrect.prop('tabIndex')).toBe(0);
           expect(incorrect.prop('aria-checked')).toBeTruthy();
         });

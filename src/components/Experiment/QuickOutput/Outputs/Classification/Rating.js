@@ -20,6 +20,15 @@ export default class Rating extends BEMComponent {
         }
       ]
     };
+
+    this.modifiers = {
+      correct: {
+        checked: (state, index) => state.ratings[index].checked
+      },
+      incorrect: {
+        checked: (state, index) => state.ratings[index].checked
+      }
+    }
   }
 
   render() {
@@ -39,7 +48,7 @@ export default class Rating extends BEMComponent {
     const tabIndex = rating.checked ? 0 : (this.state.ratings.some(r => r.checked) || index > 0) ? -1 : 0;
 
     return (
-      <div key={index} className={this.element(rating.element)} role="radio" aria-checked={rating.checked} tabIndex={tabIndex} onClick={() => this.clickRating(index)}>
+      <div key={index} className={this.element(rating.element, index)} role="radio" aria-checked={rating.checked} tabIndex={tabIndex} onClick={() => this.clickRating(index)}>
         <Icon />
         <span>{rating.title}</span>
       </div>
