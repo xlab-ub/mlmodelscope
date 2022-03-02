@@ -9,7 +9,7 @@ import SortButton from "../Buttons/SortButton";
 
 export default class ModelList extends Component {
   render() {
-    let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models');
+    let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models', this.props.searchText);
 
     return (
       <div className="model-list-page">

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PageNavigation from "./PageNavigation";
 import PageNavigationSummary from "./PageNavigationSummary";
 
-export default function withPagination(WrappedComponent, dataPropertyName) {
+export default function withPagination(WrappedComponent, dataPropertyName, searchText) {
   class Paginated extends Component {
     static defaultProps = {
       data: [],
@@ -49,7 +49,7 @@ export default function withPagination(WrappedComponent, dataPropertyName) {
 
       return (
         <div className="paginated-content">
-          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} totalCount={this.props.data.length} />
+          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} totalCount={this.props.data.length} searchText={searchText}/>
           <WrappedComponent pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} {...this.props} {...wrappedProps} />
           <PageNavigation pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} selectPage={this.selectPage} />
         </div>
