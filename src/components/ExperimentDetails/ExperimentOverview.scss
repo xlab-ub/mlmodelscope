@@ -1,0 +1,19 @@
+.experiment-overview {
+  @include fitToContent;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+
+  &__title {
+    @include headline3;
+    color: $almaMater;
+    margin-bottom: 16px;
+  }
+
+  &__header {
+    @include labelSmall;
+    color: $charcoalLightest;
+    margin-bottom: 12px;
+  }
+}
