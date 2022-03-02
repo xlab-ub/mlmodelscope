@@ -1,6 +1,7 @@
 import React from 'react';
 import BEMComponent from "../../../../Common/BEMComponent";
 import Rating from "./Rating";
+import formatProbability from "./ProbabilityFormatter";
 
 export default class TopPrediction extends BEMComponent {
   static defaultProps = {
@@ -27,6 +28,6 @@ export default class TopPrediction extends BEMComponent {
   }
 
   getPredictionProbability = () => {
-    return `${(this.props.feature.probability * 100).toFixed()}%`;
+    return formatProbability(this.props.feature.probability);
   }
 }
