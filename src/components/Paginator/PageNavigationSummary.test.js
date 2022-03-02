@@ -22,13 +22,13 @@ describe('PageNavigationSummary', () => {
   });
 
   it('does not add for "" if search term is empty string', () => {
-    wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchTerm="" />);
+    wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchText="" />);
 
     expect(wrapper.text()).toEqual('page 3 of 4, showing 4 of 30 results');
   });
 
   it('adds search term if one is active', () => {
-    wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchTerm="illiac" />);
+    wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchText="illiac" />);
 
     expect(wrapper.text()).toEqual('page 3 of 4, showing 4 of 30 results for "illiac"');
   });

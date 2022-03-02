@@ -147,7 +147,7 @@ export default class ModelListWithFilters extends Component {
     return <ModelList filterGroups={this.state.filterGroups}
                       isSortAscending={this.state.isSortAscending}
                       models={this.filterModels()}
-                      searchTerm={this.state.searchText}
+                      searchText={this.state.searchText}
                       toggleFilter={this.toggleFilter}
                       updateSearchText={this.updateSearchText}
                       updateSortByNameIsAscending={this.updateSortByNameIsAscending} />;
