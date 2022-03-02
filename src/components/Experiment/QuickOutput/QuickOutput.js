@@ -1,7 +1,7 @@
 import React from 'react';
 import BEMComponent from "../../Common/BEMComponent";
 import InputPreview from "./InputPreview";
-import ClassificationOutput from "./Outputs/ClassificationOutput";
+import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 
 export default class QuickOutput extends BEMComponent {
   render() {

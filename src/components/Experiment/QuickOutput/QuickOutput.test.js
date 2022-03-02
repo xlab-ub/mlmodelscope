@@ -3,7 +3,7 @@ import expect from 'expect';
 import {shallow} from 'enzyme';
 import QuickOutput from "./QuickOutput";
 import InputPreview from "./InputPreview";
-import ClassificationOutput from "./Outputs/ClassificationOutput";
+import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 
 describe('Experiment Quick Output component', () => {
   describe('Renders', () => {
