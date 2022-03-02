@@ -5,12 +5,14 @@ import QuickOutput from "./QuickOutput";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 
+const TestInput = "http://example.com/image1.jpeg";
+
 describe('Experiment Quick Output component', () => {
   describe('Renders', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<QuickOutput />);
+      wrapper = shallow(<QuickOutput input={TestInput} />);
     });
 
     it('a container div', () => {
@@ -60,6 +62,7 @@ describe('Experiment Quick Output component', () => {
         const preview = content.childAt(0);
 
         expect(preview.type()).toBe(InputPreview);
+        expect(preview.prop('input')).toBe(TestInput);
       });
 
       it('that contains a classification output', () => {

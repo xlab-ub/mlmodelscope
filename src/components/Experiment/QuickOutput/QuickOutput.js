@@ -4,6 +4,10 @@ import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 
 export default class QuickOutput extends BEMComponent {
+  static defaultProps = {
+    input: ""
+  }
+
   render() {
     return (
       <div className={this.block()}>
@@ -12,7 +16,7 @@ export default class QuickOutput extends BEMComponent {
           <button className={this.element('share-button')}>Share with community</button>
         </div>
         <div className={this.element('content')}>
-          <InputPreview />
+          <InputPreview input={this.props.input} />
           <ClassificationOutput />
         </div>
         <div className={this.element('footer')}>
