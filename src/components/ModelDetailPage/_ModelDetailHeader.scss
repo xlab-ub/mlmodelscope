@@ -5,9 +5,7 @@
 
   &__title-box {
     @include paddingGutters;
-    background-image:
-      url('../../resources/img/round-splash.jpg');
-    background-repeat: no-repeat;
+    background: url('../../resources/img/round-splash.jpg') no-repeat;
     background-size: cover;
     color: white;
     padding-top: 64px;
