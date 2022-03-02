@@ -32,7 +32,7 @@ describe('Experiment Quick Output component', () => {
 
       it('with the correct title', () => {
         const header = wrapper.find('.quick-output__header');
-        expect(header.childAt(0).type()).toBe('div');
+        expect(header.childAt(0).type()).toBe('h2');
         expect(header.childAt(0).prop('className')).toBe('quick-output__title');
         expect(header.childAt(0).text()).toBe('Try This Model');
       });

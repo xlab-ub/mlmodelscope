@@ -8,7 +8,7 @@ export default class QuickOutput extends BEMComponent {
     return (
       <div className={this.block()}>
         <div className={this.element('header')}>
-          <div className={this.element('title')}>Try This Model</div>
+          <h2 className={this.element('title')}>Try This Model</h2>
           <button className={this.element('share-button')}>Share with community</button>
         </div>
         <div className={this.element('content')}>
