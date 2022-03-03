@@ -1,0 +1,10 @@
+@use "../../App" as *;
+
+.experiment-detail-page {
+
+  &__content {
+    @include gutters;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+  }
+}
