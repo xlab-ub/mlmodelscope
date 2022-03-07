@@ -1,7 +1,4 @@
-@use "../../App" as *;
-
 .experiment-detail-page {
-
   &__content {
     @include gutters;
     display: grid;
