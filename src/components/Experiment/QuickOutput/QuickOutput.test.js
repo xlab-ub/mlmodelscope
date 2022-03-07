@@ -84,16 +84,10 @@ describe('Experiment Quick Output component', () => {
         expect(footer.prop('className')).toBe('quick-output__footer');
       });
 
-      it('with a try again link', () => {
-        expect(footer.childAt(0).type()).toBe('a');
-        expect(footer.childAt(0).prop('className')).toBe('quick-output__try-again');
-        expect(footer.childAt(0).text()).toBe('Try this again');
-      });
-
       it('with a use in experiment button', () => {
-        expect(footer.childAt(1).type()).toBe('button');
-        expect(footer.childAt(1).prop('className')).toBe('quick-output__experiment-button');
-        expect(footer.childAt(1).text()).toBe('Use in advanced experiment');
+        expect(footer.childAt(0).type()).toBe('button');
+        expect(footer.childAt(0).prop('className')).toBe('quick-output__compare-button');
+        expect(footer.childAt(0).text()).toBe('Compare with other models');
       });
     });
   });

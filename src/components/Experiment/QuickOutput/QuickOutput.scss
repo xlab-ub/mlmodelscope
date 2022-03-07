@@ -23,4 +23,15 @@
   &__content {
     display: flex;
   }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__compare-button {
+    @include primaryButton();
+    @include buttonWithIconAfter("../../resources/icons/arrow-right-white.svg");
+    margin-top: 42px;
+  }
 }

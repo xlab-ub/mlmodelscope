@@ -22,8 +22,7 @@ export default class QuickOutput extends BEMComponent {
           <ClassificationOutput features={this.props.features} />
         </div>
         <div className={this.element('footer')}>
-          <a className={this.element('try-again')}>Try this again</a>
-          <button className={this.element('experiment-button')}>Use in advanced experiment</button>
+          <button className={this.element('compare-button')}>Compare with other models</button>
         </div>
       </div>
     );
