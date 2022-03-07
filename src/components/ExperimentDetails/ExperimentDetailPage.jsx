@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import ExperimentOverview from "./ExperimentOverview";
+import TrialOutputWrapper from "./TrialOutputWrapper";
 
 export default class ExperimentDetailPage extends Component {
   render() {
+    let trialKey = 0;
+    let trialComponents = this.props.experiment.trials.map(trial => (
+      <div key={trialKey++} className="experiment-detail-page__trial">
+        <TrialOutputWrapper trial={trial} />
+      </div>
+    ));
+
     return (
       <div className="experiment-detail-page">
         <ExperimentDetailHeader />
@@ -12,7 +20,8 @@ export default class ExperimentDetailPage extends Component {
             <ExperimentOverview />
           </div>
           <div className="experiment-detail-page__trials-section">
-            <p>Trial stuff goes here</p>
+            <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
+            {trialComponents}
           </div>
         </div>
       </div>
