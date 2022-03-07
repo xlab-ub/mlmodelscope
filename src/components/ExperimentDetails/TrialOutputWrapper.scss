@@ -1,0 +1,55 @@
+.trial-output-wrapper {
+  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
+
+  &__title-box {
+    background: $almaMater;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    padding: 24px;
+  }
+
+  &__model-label,
+  &__detail-label {
+    @include labelSmall;
+  }
+
+  &__model-name {
+    @include headline2;
+    text-decoration: underline;
+  }
+
+  &__content-box {
+    background: white;
+    border-radius: 0 0 5px 5px;
+    padding: 20px 24px 24px 24px;
+  }
+
+  &__info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  &__model-details {
+    display: flex;
+  }
+
+  &__detail-label {
+    color: $charcoalLightest;
+    line-height: 26px;
+    margin-right: 16px;
+  }
+
+  &__model-tag {
+    margin-right: 24px;
+  }
+
+  &__link {
+    color: $charcoalLightest;
+    transition: color 0.3s;
+  }
+
+  &__link:hover {
+    color: $purple;
+  }
+}

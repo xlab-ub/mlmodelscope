@@ -1,0 +1,14 @@
+.classification-output {
+  border: 1px solid $smokeDarker;
+  padding: 24px 16px;
+
+  &__header {
+    @include labelSmall;
+    color: $charcoalLightest;
+  }
+
+  &__result {
+    display: flex;
+    justify-content: space-between;
+  }
+}
