@@ -1,0 +1,24 @@
+@import "../../../App";
+
+.input-preview {
+  border-radius: 5px;
+  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  padding: 32px;
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__image {
+    max-width: 100%;
+  }
+
+  &__back-button {
+    @include secondaryButtonWithIconBefore("arrow-right.svg");
+    align-self: flex-start;
+    margin-top: 16px;
+  }
+}

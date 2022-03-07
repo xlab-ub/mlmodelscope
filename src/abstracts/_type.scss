@@ -122,3 +122,17 @@ $largeText: 20px;
 $mediumText: 14px;
 $smallText: 12px;
 
+h1 {
+  @include headline1;
+  color: $almaMater;
+}
+
+h2 {
+  @include headline2;
+  color: $almaMater;
+}
+
+h3 {
+  @include headline3;
+  color: $almaMater;
+}

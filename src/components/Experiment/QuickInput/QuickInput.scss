@@ -8,8 +8,6 @@
   padding: 64px 40px 40px 40px;
 
   &__title {
-    @include headline2;
-    color: $almaMater;
     margin-bottom: 8px;
   }
 
@@ -59,6 +57,8 @@
 
   &__run-model {
     @include primaryButton;
+    @include buttonWithIconAfter("arrow-right-white.svg");
+
     align-self: flex-end;
     margin-top: 24px;
   }

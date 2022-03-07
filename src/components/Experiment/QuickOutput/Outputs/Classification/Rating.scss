@@ -1,0 +1,57 @@
+@import "../../../../../App";
+
+@mixin ratingButton($color, $background, $iconWidth) {
+  @include headline6;
+
+  border: 2px solid $color;
+  border-radius: 26px;
+  color: $charcoalLightest;
+  display: flex;
+  padding: 12px 24px;
+
+  & > span {
+    cursor: default;
+  }
+
+  & > svg {
+    margin-right: 8px;
+    width: $iconWidth;
+
+    & > path {
+      fill: $color;
+    }
+  }
+
+  &--checked {
+    background-color: $background;
+
+    & > svg > path {
+      fill: $charcoalLightest;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__title {
+    @include body;
+    font-weight: bold;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  &__correct {
+    @include ratingButton($mint, $mintLight, 19px);
+  }
+
+  &__incorrect {
+    @include ratingButton($pink, $pinkLight, 14px);
+  }
+}

@@ -1,0 +1,38 @@
+@import "../../../App";
+
+.quick-output {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    align-self: flex-end;
+  }
+
+  &__share-button {
+    @include secondaryButtonWithIconAfter("share.svg");
+
+    &:after {
+      height: 22px;
+      width: 22px;
+      vertical-align: text-bottom;
+    }
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__compare-button {
+    @include primaryButton();
+    @include buttonWithIconAfter("../../resources/icons/arrow-right-white.svg");
+    margin-top: 42px;
+  }
+}

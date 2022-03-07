@@ -12,16 +12,24 @@ $duration: 0.5s;
 @mixin button {
   @include headline5;
   border-radius: 26px;
-  border-style: hidden;
+  max-height: 48px;
   padding: 10px 24px;
   transition: $duration;
 
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+@mixin buttonWithIconAfter($icon) {
   &:after {
+    background-image: url("../../resources/icons/" + $icon);
     content: " ";
     display: inline-block;
     height: 15px;
     margin-left: 8px;
     width: 16px;
+    transform: translateX(0px);
     transition: $duration;
   }
 
@@ -30,9 +38,24 @@ $duration: 0.5s;
       transform: translateX(6px);
     }
   }
+}
 
-  &:disabled {
-    opacity: 0.6;
+@mixin buttonWithIconBefore($icon) {
+  &:before {
+    background-image: url("../../resources/icons/" + $icon);
+    content: " ";
+    display: inline-block;
+    height: 15px;
+    margin-right: 8px;
+    width: 16px;
+    transition: $duration;
+    transform: rotate(180deg);
+  }
+
+  &:not(:disabled) {
+    &:hover:before {
+      transform: rotate(180deg) translateX(6px);
+    }
   }
 }
 
@@ -41,18 +64,64 @@ $duration: 0.5s;
 
   background: $primaryGradient;
   background-size: 200% 200%;
+  border-style: hidden;
   color: $white;
-  padding: 10px 24px;
-
-  &:after {
-    background-image: url("../../resources/icons/arrow-right-white.svg");
-  }
 
   &:not(:disabled) {
     &:hover {
       background-position: bottom center;
     }
   }
+}
+
+@mixin primaryButtonWithIcon($position) {
+  @include primaryButton;
+  @include buttonWithIconAfter;
+
+  &:#{$position} {
+    @content
+  }
+}
+
+@mixin primaryButtonWithIconBefore {
+  @include primaryButton;
+  @include buttonWithIconBefore;
+
+  &:before {
+    @content
+  }
+}
+
+@mixin secondaryButton($backgroundPosition) {
+  @include button;
+
+  background: $primaryGradient;
+  border-style: hidden;
+  color: $azul;
+  position: relative;
+  z-index: 0;
+
+  &:#{$backgroundPosition} {
+    background-color: $white;
+    border-radius: 26px;
+    content: " ";
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    top: 2px;
+    z-index: -1;
+  }
+}
+
+@mixin secondaryButtonWithIconAfter($icon) {
+  @include secondaryButton('before');
+  @include buttonWithIconAfter($icon);
+}
+
+@mixin secondaryButtonWithIconBefore($icon) {
+  @include secondaryButton('after');
+  @include buttonWithIconBefore($icon);
 }
 
 .primary-button,

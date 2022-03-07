@@ -1,15 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Uppy from '@uppy/core';
 import {Dashboard} from '@uppy/react';
 import AwsS3Multipart from '@uppy/aws-s3-multipart';
+import BEMComponent from "../../Common/BEMComponent";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import "./UploadInputsTab.scss";
 
-export default class UploadInputsTab extends Component {
+export default class UploadInputsTab extends BEMComponent {
+  static defaultProps = {
+    className: "upload-inputs"
+  }
+
   constructor(props) {
     super(props);
-    this.classname = "upload-inputs";
+
     this.uppy = Uppy({
       onBeforeUpload: this.onBeforeUpload,
       restrictions: { maxNumberOfFiles: 1 }
@@ -44,7 +49,7 @@ export default class UploadInputsTab extends Component {
 
   render() {
     return (
-      <div className={this.classname}>
+      <div className={this.block()}>
         <Dashboard uppy={this.uppy} />
       </div>
     );

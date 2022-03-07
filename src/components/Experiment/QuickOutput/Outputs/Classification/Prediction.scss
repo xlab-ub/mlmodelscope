@@ -1,0 +1,9 @@
+@import "../../../../../App";
+
+.prediction {
+  @include body;
+
+  border-bottom: 1px dashed $smokeDarkest;
+  display: flex;
+  justify-content: space-between;
+}

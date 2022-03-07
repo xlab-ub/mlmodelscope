@@ -1,15 +1,24 @@
-import React, {Component} from 'react';
+import React from 'react';
+import BEMComponent from "../../Common/BEMComponent";
 import "./SampleInputsTab.scss";
 
-export default class SampleInputsTab extends Component {
+export default class SampleInputsTab extends BEMComponent {
   static defaultProps = {
+    className: "sample-inputs",
     inputSelected: undefined,
     sampleInputs: []
   }
 
   constructor(props) {
     super(props);
-    this.classname = "sample-inputs";
+
+    this.modifiers = {
+      input: {
+        selected: (state, index) => state.selectedIndex === index,
+        unselected: (state, index) => state.selectedIndex >= 0 && state.selectedIndex !== index
+      }
+    }
+
     this.state = {
       selectedIndex: -1
     }
@@ -17,9 +26,9 @@ export default class SampleInputsTab extends Component {
 
   render() {
     return (
-      <div className={this.classname}>
-        <div className={`${this.classname}__title`}>Select one of our sample images to run through the model</div>
-        <div className={`${this.classname}__list`}>
+      <div className={this.block()}>
+        <div className={this.element('title')}>Select one of our sample images to run through the model</div>
+        <div className={this.element('list')}>
           {this.props.sampleInputs.map(this.makeSampleInput)}
         </div>
       </div>
@@ -27,16 +36,8 @@ export default class SampleInputsTab extends Component {
   }
 
   makeSampleInput = (url, index) => {
-    let classes = `${this.classname}__input`;
-    if (this.state.selectedIndex >= 0) {
-      if (this.state.selectedIndex === index)
-        classes = `${classes} ${this.classname}__input--selected`;
-      else
-        classes = `${classes} ${this.classname}__input--unselected`;
-    }
-
     return (
-      <div key={index} className={classes}>
+      <div key={index} className={this.element('input', index)}>
         <img src={url} onClick={() => this.selectInput(index)} />
       </div>
     )
