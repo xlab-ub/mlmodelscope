@@ -36,7 +36,7 @@ export default class QuickInput extends BEMComponent {
   render() {
     return (
       <div className={this.block()}>
-        <div className={this.element('title')}>Try this model</div>
+        <h2 className={this.element('title')}>Try this model</h2>
         <div className={this.element('subtitle')}>Choose an image to run through this model and see it's predictions.</div>
         <div className={this.element('tabs')}>
           <div className={this.element('tab-titles')} role="tablist">
