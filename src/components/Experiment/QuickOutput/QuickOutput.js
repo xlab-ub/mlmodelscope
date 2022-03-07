@@ -2,9 +2,11 @@ import React from 'react';
 import BEMComponent from "../../Common/BEMComponent";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
+import "./QuickOutput.scss";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
+    features: [],
     input: ""
   }
 
@@ -17,7 +19,7 @@ export default class QuickOutput extends BEMComponent {
         </div>
         <div className={this.element('content')}>
           <InputPreview input={this.props.input} />
-          <ClassificationOutput />
+          <ClassificationOutput features={this.props.features} />
         </div>
         <div className={this.element('footer')}>
           <a className={this.element('try-again')}>Try this again</a>

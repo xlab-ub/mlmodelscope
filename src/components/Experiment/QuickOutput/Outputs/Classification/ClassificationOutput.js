@@ -2,6 +2,7 @@ import React from 'react';
 import BEMComponent from "../../../../Common/BEMComponent";
 import TopPrediction from "./TopPrediction";
 import Prediction from "./Prediction";
+import "./ClassificationOutput.scss";
 
 export default class ClassificationOutput extends BEMComponent {
   static defaultProps = {

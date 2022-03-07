@@ -1,5 +1,6 @@
 import React from 'react';
 import BEMComponent from "../../Common/BEMComponent";
+import "./InputPreview.scss";
 
 export default class InputPreview extends BEMComponent {
   static defaultProps = {

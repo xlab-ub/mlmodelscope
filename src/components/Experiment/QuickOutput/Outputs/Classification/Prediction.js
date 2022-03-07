@@ -1,6 +1,7 @@
 import React from 'react';
 import BEMComponent from "../../../../Common/BEMComponent";
 import formatProbability from "./ProbabilityFormatter";
+import "./Prediction.scss";
 
 export default class Prediction extends BEMComponent {
   static defaultProps = {

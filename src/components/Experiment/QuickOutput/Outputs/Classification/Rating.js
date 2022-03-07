@@ -1,6 +1,7 @@
 import React from 'react';
 import BEMComponent from "../../../../Common/BEMComponent";
 import Icon from "../../../../Icon/Icon";
+import "./Rating.scss";
 
 export default class Rating extends BEMComponent {
   constructor(props) {
