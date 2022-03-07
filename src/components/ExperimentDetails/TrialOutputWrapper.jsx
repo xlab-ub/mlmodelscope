@@ -10,8 +10,8 @@ export default class TrialOutputWrapper extends Component {
     let machineTags = <dd>N/A</dd>
     if (!!model.framework.architectures) {
       machineTags = model.framework.architectures.map(machine => (
-        <dd className="trial-output-wrapper__model-tag">
-          <ModelTag key={machineTagKey++} type="machine" content={machine.name}/>
+        <dd key={machineTagKey++} className="trial-output-wrapper__model-tag">
+          <ModelTag type="machine" content={machine.name}/>
         </dd>));
     }
 
