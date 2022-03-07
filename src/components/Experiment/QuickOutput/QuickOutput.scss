@@ -4,10 +4,11 @@
   &__header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 32px;
   }
 
   &__title {
-    color: $almaMater;
+    align-self: flex-end;
   }
 
   &__share-button {

@@ -9,6 +9,10 @@
   margin-left: 16px;
   padding: 32px;
 
+  &__title {
+    margin-bottom: 32px;
+  }
+
   &__subtitle {
     @include body;
     border-bottom: 1px solid $smokeDarkest;
