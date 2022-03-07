@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import ExperimentOverview from "./ExperimentOverview";
-import "./ExperimentDetailPage.scss";
 
 export default class ExperimentDetailPage extends Component {
   render() {
