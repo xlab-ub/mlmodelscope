@@ -6,14 +6,14 @@ export default class ClassificationOutput extends Component {
   }
 
   render() {
-    let results = this.props.results;
+    let predictions = this.props.results.responses[0].features;
     return (
       <div className="classification-output">
         <p className="classification-output__header">Output:</p>
         <dl className="classifcation-output__results">
           <div className="classification-output__result -top-result">
-            <dt>{results[0].prediction}</dt>
-            <dd>{results[0].confidence}</dd>
+            <dt>{predictions[0].classification.label}</dt>
+            <dd>{predictions[0].probability}</dd>
           </div>
         </dl>
       </div>
