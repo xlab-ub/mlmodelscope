@@ -18,7 +18,7 @@ export default class QuickOutput extends BEMComponent {
           <button className={this.element('share-button')}>Share with community</button>
         </div>
         <div className={this.element('content')}>
-          <InputPreview input={this.props.input} />
+          <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked} />
           <ClassificationOutput features={this.props.features} />
         </div>
         <div className={this.element('footer')}>

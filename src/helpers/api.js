@@ -40,11 +40,18 @@ class Api {
     this.Frameworks.next(data.frameworks);
   }
 
-  getTrialSubject(trialId) {
+  /*
+   * Look up a trial by ID. Returns an Observable of Trial details. Polls the trial data delivering results to
+   * Observer(s) until either the trial is completed or a timeout has been reached at which time it will result
+   * in an error.
+   *
+   * @param {string} trialId - The UUID of the trial to look up
+   */
+  getTrial(trialId) {
     const trialSubject = new Subject();
 
     this.poll({
-      fn: this.getTrial,
+      fn: this._getTrial,
       params: trialId,
       validate: trial => trial.completed_at !== undefined,
       maxAttempts: 10,
@@ -55,7 +62,7 @@ class Api {
   }
 
 
-  getTrial = async (trialId) => {
+  _getTrial = async (trialId) => {
     let result = await fetch(`${this.apiUrl}/trial/${trialId}`);
     let trial = await result.json();
     if (trial.results.responses === undefined)

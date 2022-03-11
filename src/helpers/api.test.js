@@ -107,33 +107,19 @@ describe('The API helper', () => {
       fetchMock.resetHistory();
     });
 
-    fetchMock.post(`begin:${ApiRoot}/predict`, {trialId: 'test-trial'});
-    fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {} }, {overwriteRoutes: false, repeat: 1});
-    fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {}, completed_at: true }, {overwriteRoutes: false});
-
     it('returns the trial id', async () => {
+      fetchMock.post(`begin:${ApiRoot}/predict`, {trialId: 'test-trial'});
       const trialId = await api.runTrial({id: 12}, 'test input');
 
       expect(trialId).toBe('test-trial');
     });
-
-    // it('subject delivers new trial results until completion', done => {
-    //   const trial = api.runTrial({id: 12}, 'test input');
-    //
-    //   trial.subscribe({
-    //     next: t => {
-    //       if (t.completed_at)
-    //         done();
-    //     }
-    //   });
-    // });
   });
 
   describe('getTrial', () => {
     beforeEach(fetchMock.reset);
 
-    it('returns a subject', done => {
-      fetchMock.post(`begin:${ApiRoot}/predict`, {trialId: 'test-trial'});
+    it('returns an observable', done => {
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {} }, {overwriteRoutes: false, repeat: 1});
       const trial = api.getTrial('test-trial');
 
       trial.subscribe({
@@ -144,6 +130,9 @@ describe('The API helper', () => {
     });
 
     it('that delivers new trial results until completion', done => {
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {} }, {overwriteRoutes: false, repeat: 1});
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {}, completed_at: true }, {overwriteRoutes: false});
+
       const trial = api.getTrial('test-trial');
 
       trial.subscribe({
