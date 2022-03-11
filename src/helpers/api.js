@@ -39,6 +39,85 @@ class Api {
 
     this.Frameworks.next(data.frameworks);
   }
+
+  /*
+   * Look up a trial by ID. Returns an Observable of Trial details. Polls the trial data delivering results to
+   * Observer(s) until either the trial is completed or a timeout has been reached at which time it will result
+   * in an error.
+   *
+   * @param {string} trialId - The UUID of the trial to look up
+   */
+  getTrial(trialId) {
+    const trialSubject = new Subject();
+
+    this.poll({
+      fn: this._getTrial,
+      params: trialId,
+      validate: trial => trial.completed_at !== undefined,
+      maxAttempts: 10,
+      subject: trialSubject
+    });
+
+    return trialSubject;
+  }
+
+
+  _getTrial = async (trialId) => {
+    let result = await fetch(`${this.apiUrl}/trial/${trialId}`);
+    let trial = await result.json();
+    if (trial.results.responses === undefined)
+      trial.results.responses = [{features: []}];
+
+    return trial;
+  }
+
+  async runTrial(model, input) {
+    const requestBody = {
+      architecture: "amd64",
+      inputs: [input],
+      model: model.id,
+      batchSize: 1,
+      traceLevel: "NO_TRACE",
+      gpu: false,
+      desiredResultModality: "image_classification"
+    }
+
+    const response = await fetch(`${this.apiUrl}/predict`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+    const result = await response.json();
+
+    return result.trialId;
+  }
+
+  async poll({ fn, params, validate, maxAttempts, subject }) {
+    let attempts = 0;
+    let timeout = 250;
+
+    const executePoll = async(resolve, reject) => {
+      const result = await fn(params);
+      attempts++;
+
+      if (subject) {
+        subject.next(result);
+      }
+
+      if (validate(result)) {
+        return resolve(result);
+      } else if (maxAttempts && attempts === maxAttempts) {
+        return reject(new Error('max polling attempts exceeded'));
+      } else {
+        setTimeout(executePoll, timeout, resolve, reject);
+        timeout += timeout;
+      }
+    };
+
+    return new Promise(executePoll);
+  }
 }
 
 let api;

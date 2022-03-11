@@ -10,9 +10,11 @@ import URLInputsTab from "./URLInputsTab";
 describe('Experiment Quick Input Component', () => {
   describe('Renders', () => {
     let wrapper;
+    let runModelClicked;
 
     beforeEach(() => {
-      wrapper = mount(<QuickInput sampleInputs={SampleInputs} />);
+      runModelClicked = jest.fn();
+      wrapper = mount(<QuickInput onRunModelClicked={runModelClicked} sampleInputs={SampleInputs} />);
     });
 
     it('the correct container class', () => {
@@ -134,6 +136,15 @@ describe('Experiment Quick Input Component', () => {
         const button = wrapper.find('.quick-input__run-model');
 
         expect(button.prop('disabled')).toBeFalsy();
+      });
+
+      it('where clicking calls the provided onRunModelClicked method with the selected input', () => {
+        wrapper.instance().selectInput('http://example.com/image1.jpg');
+        wrapper.update();
+        wrapper.find('.quick-input__run-model').simulate('click');
+
+        expect(runModelClicked.mock.calls.length).toBe(1);
+        expect(runModelClicked.mock.calls[0][0]).toBe('http://example.com/image1.jpg');
       });
     });
 

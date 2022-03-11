@@ -88,7 +88,7 @@ describe('The API helper', () => {
     await api.getModel(1);
     expect(fetchMock.lastUrl()).toBe(`${ApiRoot}/models/1`);
     expect(results.length).toBe(1);
-  })
+  });
 
   it('reports the anonymous user by default', async () => {
     let userId;
@@ -100,5 +100,47 @@ describe('The API helper', () => {
     });
 
     expect(userId).toBe('anonymous');
-  })
+  });
+
+  describe('runTrial', () => {
+    beforeEach(() => {
+      fetchMock.resetHistory();
+    });
+
+    it('returns the trial id', async () => {
+      fetchMock.post(`begin:${ApiRoot}/predict`, {trialId: 'test-trial'});
+      const trialId = await api.runTrial({id: 12}, 'test input');
+
+      expect(trialId).toBe('test-trial');
+    });
+  });
+
+  describe('getTrial', () => {
+    beforeEach(fetchMock.reset);
+
+    it('returns an observable', done => {
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {} }, {overwriteRoutes: false, repeat: 1});
+      const trial = api.getTrial('test-trial');
+
+      trial.subscribe({
+        next: t => {
+          done();
+        }
+      });
+    });
+
+    it('that delivers new trial results until completion', done => {
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {} }, {overwriteRoutes: false, repeat: 1});
+      fetchMock.get(`begin:${ApiRoot}/trial/test-trial`, { results: {}, completed_at: true }, {overwriteRoutes: false});
+
+      const trial = api.getTrial('test-trial');
+
+      trial.subscribe({
+        next: t => {
+          if (t.completed_at)
+            done();
+        }
+      });
+    });
+  });
 });

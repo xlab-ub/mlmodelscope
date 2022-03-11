@@ -44,6 +44,11 @@ const routes = [
     component: ModelListContainer,
   },
   {
+    path: "/model/:modelId/trial/:trialId",
+    component: ModelDetailContainer,
+    exact: false,
+  },
+  {
     path: "/model/:modelId",
     component: ModelDetailContainer,
     exact: false,
