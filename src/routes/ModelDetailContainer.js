@@ -9,12 +9,18 @@ export default class ModelDetailContainer extends Component{
     this.api = GetApiHelper();
     this.modelId = this.props.match.params.modelId;
     this.state = {
-      model: null
+      model: null,
+      trialId: null
     }
   }
 
   componentDidMount() {
     this.getModel();
+  }
+
+  componentWillUnmount() {
+    if (this.trialSubscription)
+      this.trialSubscription.unsubscribe();
   }
 
   getModel(){
@@ -28,7 +34,22 @@ export default class ModelDetailContainer extends Component{
 
   render(){
     return(
-      <ModelDetailPage model={this.state.model}/>
+      <ModelDetailPage model={this.state.model} onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput}/>
     )
   }
+
+  runModel = async (inputUrl) => {
+    this.trialSubscription = this.api.runTrial(this.state.model, inputUrl).subscribe({
+      next: trial => this.setState({trialOutput: trial})
+    });
+  }
+
+  // lookupTrial = async (trialId) => {
+  //   const trial = await this.api.getTrial(trialId);
+  //   this.setState({trialOutput: trial});
+  //
+  //   if (trial.completed_at === undefined) {
+  //     setTimeout(() => this.lookupTrial(trialId), 1000);
+  //   }
+  // }
 }
