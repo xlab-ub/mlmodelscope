@@ -1,4 +1,4 @@
-import "./App.scss";
+import "./Stopgap.scss";
 import Helmet from "react-helmet";
 import React, { Component } from "react";
 import GlobalHeader from "./components/GlobalHeader";
