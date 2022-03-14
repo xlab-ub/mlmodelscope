@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ClassificationOutput from "./ClassificationOutput";
+import ClassificationSummary from "./ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 
 export default class TrialOutputWrapper extends Component {
@@ -35,7 +35,7 @@ export default class TrialOutputWrapper extends Component {
               <a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>
             </div>
           </div>
-          <ClassificationOutput results={this.props.trial.results} />
+          <ClassificationSummary results={this.props.trial.results} />
         </div>
       </div>
     )
