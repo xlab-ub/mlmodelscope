@@ -1,0 +1,19 @@
+.experiment-detail-page {
+  &__content {
+    @include gutters;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-gap: 64px;
+    margin-top: 42px;
+  }
+
+  &__trials-header {
+    @include headline2;
+    color: $almaMater;
+    margin-bottom: 42px;
+  }
+
+  &__trial {
+    margin-bottom: 24px;
+  }
+}

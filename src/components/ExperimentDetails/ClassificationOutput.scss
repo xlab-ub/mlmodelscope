@@ -1,0 +1,33 @@
+.classification-output {
+  border: 1px solid $smokeDarker;
+  padding: 24px 16px;
+
+  &__header {
+    @include labelSmall;
+    color: $charcoalLightest;
+    margin-bottom: 24px;
+  }
+
+  &__top-result,
+  &__result {
+    display: flex;
+    color: $charcoalLightest;
+    justify-content: space-between;
+    text-transform: capitalize;
+  }
+
+  &__top-result {
+    @include headline3;
+    background: rgba($azul, 0.03);
+    padding: 8px 16px;
+  }
+
+  &__result {
+    @include bodySmall;
+    border: 1px $smokeDarkest;
+    border-bottom-style: dashed;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 18px;
+  }
+}
