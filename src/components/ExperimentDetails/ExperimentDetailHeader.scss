@@ -2,11 +2,11 @@
   @include paddingGutters;
   background: url("../../resources/img/wavy-splash.jpg") no-repeat;
   background-size: cover;
-  color: white;
   padding-top: 72px;
   padding-bottom: 64px;
 
   &__title {
     @include headline1;
+    color: white;
   }
 }
