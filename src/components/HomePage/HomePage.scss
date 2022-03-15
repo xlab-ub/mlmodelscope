@@ -30,7 +30,7 @@
   }
 
   &__content-container {
-    @include paddingGutters
+    @include paddingGutters;
     align-items: center;
     display: flex;
     flex-direction: column;
