@@ -14,7 +14,7 @@ export default class HomePage extends Component {
             MLModelScope is an open source platform for evaluating and profiling machine learning models to help
             app builders, data scientists, and system developers discover, compare and optimize models, frameworks and systems.
           </h2>
-          <Button content="Browse model library" isPrimary={false} isSmall={false}/>
+          <Button content="Browse model library" link={"/models"} isPrimary={false} isSmall={false}/>
         </div>
       </div>
     )

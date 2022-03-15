@@ -1,4 +1,4 @@
-import LandingPage from "../routes/LandingPage";
+import HomePage from "../components/HomePage/HomePage";
 import ExperimentPage from "../routes/ExperimentPage";
 import AboutPage from "../routes/AboutPage";
 import UseCasesPage from "../routes/UseCasesPage";
@@ -11,7 +11,7 @@ import ModelListContainer from "../routes/ModelListContainer";
 const routes = [
   {
     path: "/",
-    component: LandingPage,
+    component: HomePage,
   },
   {
     path: "/usecases",
