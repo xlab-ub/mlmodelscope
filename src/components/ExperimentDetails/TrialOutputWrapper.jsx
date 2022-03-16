@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ClassificationSummary from "./ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
+import {ReactComponent as ExternalLink} from "../../resources/icons/ExternalLink.svg";
 
 export default class TrialOutputWrapper extends Component {
   render() {
@@ -20,7 +21,9 @@ export default class TrialOutputWrapper extends Component {
         <div className="trial-output-wrapper__title-box">
           <dl>
             <dt className="trial-output-wrapper__model-label">Model:</dt>
-            <dd className="trial-output-wrapper__model-name">{model.name}</dd>
+            <dd>
+              <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
+            </dd>
           </dl>
         </div>
         <div className="trial-output-wrapper__content-box">
@@ -33,6 +36,7 @@ export default class TrialOutputWrapper extends Component {
             </dl>
             <div className="trial-output-wrapper__link-box">
               <a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>
+              <ExternalLink />
             </div>
           </div>
           <ClassificationSummary results={this.props.trial.results} />

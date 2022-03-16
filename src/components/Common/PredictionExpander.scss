@@ -32,6 +32,10 @@
     align-self: flex-end;
     color: $azul;
     margin-top: 16px;
+    
+    &:hover {
+      color: $purple;
+    }
 
     &:after {
       content: "";

@@ -16,7 +16,12 @@
 
   &__model-name {
     @include headline2;
+    color: white;
     text-decoration: underline;
+  }
+
+  &__model-name:hover {
+    color: $electricGreen;
   }
 
   &__content-box {
@@ -38,7 +43,7 @@
   &__detail-label {
     color: $charcoalLightest;
     line-height: 26px;
-    margin-right: 16px;
+    margin-right: 8px;
   }
 
   &__model-tag {
@@ -47,6 +52,7 @@
 
   &__link {
     color: $charcoalLightest;
+    margin-right: 6px;
     transition: color 0.3s;
   }
 
