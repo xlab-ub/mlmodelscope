@@ -1,13 +1,11 @@
-import React from 'react';
-import BEMComponent from "../../../../Common/BEMComponent";
-import TopPrediction from "./TopPrediction";
-import Prediction from "./Prediction";
-import "./ClassificationOutput.scss";
-import PredictionExpander from "../../../../Common/PredictionExpander";
+import React, {Component} from 'react';
+import Prediction from "../Experiment/QuickOutput/Outputs/Classification/Prediction";
+import BEMComponent from "./BEMComponent";
+import "./PredictionExpander.scss";
 
-export default class ClassificationOutput extends BEMComponent {
+export default class PredictionExpander extends BEMComponent {
   static defaultProps = {
-    features: []
+    predictions: []
   }
 
   constructor(props) {
@@ -30,14 +28,16 @@ export default class ClassificationOutput extends BEMComponent {
   render() {
     return (
       <div className={this.block()}>
-        <h3 className={this.element('title')}>Output</h3>
-        <div className={this.element('subtitle')}>What this model thinks the image is.</div>
         <div className={this.element('predictions')}>
-          <TopPrediction feature={this.props.features[0]} />
-          <PredictionExpander predictions={this.props.features}></PredictionExpander>
+          {this.props.predictions.slice(1, 3).map(this.makePrediction)}
+
+          <div className={this.element('prediction-overflow')}>
+            {this.props.predictions.slice(3).map(this.makePrediction)}
+          </div>
         </div>
+        <button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>
       </div>
-    );
+    )
   }
 
   makePrediction = (feature, index) => {

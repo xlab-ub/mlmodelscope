@@ -13,6 +13,7 @@ export const Classification = Template.bind({});
 Classification.args = {
   trial: {
     model: {
+      id: 27,
       name: "TorchVision+ResNet18",
       framework: {
         name: "PyTorch",

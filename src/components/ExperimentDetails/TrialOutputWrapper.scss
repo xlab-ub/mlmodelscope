@@ -5,7 +5,9 @@
   &__title-box {
     background: $almaMater;
     border-radius: 5px 5px 0 0;
+    display: flex;
     color: white;
+    justify-content: space-between;
     padding: 24px;
   }
 
@@ -16,7 +18,16 @@
 
   &__model-name {
     @include headline2;
+    color: white;
     text-decoration: underline;
+  }
+
+  &__model-name:hover {
+    color: $electricGreen;
+  }
+
+  &__delete-trial-button {
+    cursor: pointer;
   }
 
   &__content-box {
@@ -38,7 +49,7 @@
   &__detail-label {
     color: $charcoalLightest;
     line-height: 26px;
-    margin-right: 16px;
+    margin-right: 8px;
   }
 
   &__model-tag {
@@ -47,6 +58,7 @@
 
   &__link {
     color: $charcoalLightest;
+    margin-right: 6px;
     transition: color 0.3s;
   }
 
