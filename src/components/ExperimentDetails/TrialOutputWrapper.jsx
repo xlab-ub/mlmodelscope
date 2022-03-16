@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ClassificationSummary from "./ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import {ReactComponent as ExternalLink} from "../../resources/icons/ExternalLink.svg";
+import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
 
 export default class TrialOutputWrapper extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class TrialOutputWrapper extends Component {
               <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
             </dd>
           </dl>
+          <CloseIcon className="trial-output-wrapper__delete-trial-button"/>
         </div>
         <div className="trial-output-wrapper__content-box">
           <div className="trial-output-wrapper__info-row">
