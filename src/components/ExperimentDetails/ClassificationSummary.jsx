@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PredictionExpander from "../Common/PredictionExpander";
 
 export default class ClassificationSummary extends Component {
   predictionsFromInclusiveRange = (x, y) => {
@@ -31,7 +32,7 @@ export default class ClassificationSummary extends Component {
             <dt>{this.makeReadableLabel(predictions[0].classification.label)}</dt>
             <dd>{this.makeProbabilityStringFromDecimal(predictions[0].probability)}</dd>
           </div>
-          {this.predictionsFromInclusiveRange(1, 2)}
+          <PredictionExpander predictions={predictions} />
         </dl>
       </div>
     )

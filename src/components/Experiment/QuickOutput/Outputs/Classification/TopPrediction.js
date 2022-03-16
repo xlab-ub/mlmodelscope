@@ -3,6 +3,7 @@ import BEMComponent from "../../../../Common/BEMComponent";
 import Rating from "./Rating";
 import formatProbability from "./ProbabilityFormatter";
 import "./TopPrediction.scss";
+import trim from "../../../../../helpers/labelTrimmer";
 
 export default class TopPrediction extends BEMComponent {
   static defaultProps = {
@@ -25,7 +26,7 @@ export default class TopPrediction extends BEMComponent {
   }
 
   getPredictionLabel = () => {
-    return this.props.feature.classification.label;
+    return trim(this.props.feature.classification.label);
   }
 
   getPredictionProbability = () => {

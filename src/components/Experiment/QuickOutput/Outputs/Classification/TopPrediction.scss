@@ -12,6 +12,7 @@
   &__prediction {
     @include bodyLarge;
     font-weight: bold;
+    text-transform: capitalize;
   }
 
   &__probability {
