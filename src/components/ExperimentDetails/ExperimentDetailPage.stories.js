@@ -46,7 +46,7 @@ Standard.args = {
                 },
                 {
                   "id": "61afb91c7cc38300018b8a75",
-                  "probability": 0.03022722,
+                  "probability": 0.038271908,
                   "type": "CLASSIFICATION",
                   "classification": {
                     "index": 934,
@@ -55,7 +55,7 @@ Standard.args = {
                 },
                 {
                   "id": "61afb91c7cc38300018b8a91",
-                  "probability": 0.038271908,
+                  "probability": 0.03022722,
                   "type": "CLASSIFICATION",
                   "classification": {
                     "index": 962,
