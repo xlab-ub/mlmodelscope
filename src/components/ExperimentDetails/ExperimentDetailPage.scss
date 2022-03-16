@@ -13,6 +13,15 @@
     margin-bottom: 42px;
   }
 
+  &__overview-section {
+    position: sticky;
+    top: 42px;
+  }
+
+  &__trials-section {
+    grid-column: 2;
+  }
+
   &__trial {
     margin-bottom: 24px;
   }

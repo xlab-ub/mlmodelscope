@@ -19,8 +19,10 @@ export default class ExperimentDetailPage extends Component {
       <div className="experiment-detail-page">
         <ExperimentDetailHeader />
         <div className="experiment-detail-page__content">
-          <div className="experiment-detail-page__overview-section">
-            <ExperimentOverview task={firstModel.output.type} inputs={inputs} />
+          <div className="experiment-detail-page__first-column">
+            <div className="experiment-detail-page__overview-section">
+              <ExperimentOverview task={firstModel.output.type} inputs={inputs} />
+            </div>
           </div>
           <div className="experiment-detail-page__trials-section">
             <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
