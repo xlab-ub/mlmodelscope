@@ -12,12 +12,15 @@ export default class ExperimentDetailPage extends Component {
       </div>
     ));
 
+    let firstModel = this.props.experiment.trials[0].model;
+    let inputs = this.props.experiment.trials[0].inputs;
+
     return (
       <div className="experiment-detail-page">
         <ExperimentDetailHeader />
         <div className="experiment-detail-page__content">
           <div className="experiment-detail-page__overview-section">
-            <ExperimentOverview />
+            <ExperimentOverview task={firstModel.output.type} inputs={inputs} />
           </div>
           <div className="experiment-detail-page__trials-section">
             <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
