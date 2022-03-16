@@ -1,4 +1,5 @@
 import React from 'react';
+import crabby from "../../stories/assets/crabby.png";
 
 import ExperimentDetailPage from "./ExperimentDetailPage";
 
@@ -13,7 +14,6 @@ export const Standard = Template.bind({});
 Standard.args = {
   experiment: {
     id: 0,
-    task: "classification",
     trials: [
       {
         model: {
@@ -23,8 +23,14 @@ Standard.args = {
             architectures: [
               {name: "amd64"}
             ]
+          },
+          output: {
+            type: "classification"
           }
         },
+        inputs: [
+          crabby
+        ],
         "results": {
           "responses": [
             {
@@ -40,7 +46,7 @@ Standard.args = {
                 },
                 {
                   "id": "61afb91c7cc38300018b8a75",
-                  "probability": 0.03022722,
+                  "probability": 0.038271908,
                   "type": "CLASSIFICATION",
                   "classification": {
                     "index": 934,
@@ -49,7 +55,7 @@ Standard.args = {
                 },
                 {
                   "id": "61afb91c7cc38300018b8a91",
-                  "probability": 0.038271908,
+                  "probability": 0.03022722,
                   "type": "CLASSIFICATION",
                   "classification": {
                     "index": 962,
