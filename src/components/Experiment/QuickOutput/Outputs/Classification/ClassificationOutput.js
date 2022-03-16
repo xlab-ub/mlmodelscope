@@ -3,6 +3,7 @@ import BEMComponent from "../../../../Common/BEMComponent";
 import TopPrediction from "./TopPrediction";
 import Prediction from "./Prediction";
 import "./ClassificationOutput.scss";
+import PredictionExpander from "../../../../Common/PredictionExpander";
 
 export default class ClassificationOutput extends BEMComponent {
   static defaultProps = {
@@ -33,13 +34,8 @@ export default class ClassificationOutput extends BEMComponent {
         <div className={this.element('subtitle')}>What this model thinks the image is.</div>
         <div className={this.element('predictions')}>
           <TopPrediction feature={this.props.features[0]} />
-          {this.props.features.slice(1, 3).map(this.makePrediction)}
-
-          <div className={this.element('prediction-overflow')}>
-            {this.props.features.slice(3).map(this.makePrediction)}
-          </div>
+          <PredictionExpander predictions={this.props.features}></PredictionExpander>
         </div>
-        <button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>
       </div>
     );
   }

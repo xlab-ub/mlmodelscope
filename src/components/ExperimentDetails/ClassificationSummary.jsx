@@ -27,13 +27,15 @@ export default class ClassificationSummary extends Component {
     return (
       <div className="classification-summary">
         <p className="classification-summary__header">Output:</p>
-        <dl className="classifcation-output__results">
+        <div className="classifcation-output__results">
           <div className="classification-summary__top-result">
-            <dt>{this.makeReadableLabel(predictions[0].classification.label)}</dt>
-            <dd>{this.makeProbabilityStringFromDecimal(predictions[0].probability)}</dd>
+            <span>{this.makeReadableLabel(predictions[0].classification.label)}</span>
+            <span>{this.makeProbabilityStringFromDecimal(predictions[0].probability)}</span>
           </div>
-          <PredictionExpander predictions={predictions} />
-        </dl>
+          <div className="classification-summary__extra-predictions">
+            <PredictionExpander predictions={predictions} />
+          </div>
+        </div>
       </div>
     )
   }
