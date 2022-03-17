@@ -7,10 +7,10 @@ export default class Header extends Component {
       <div className="header">
         <div className="header__logo-container">
           <p className="header__beta">Beta</p>
-          <div className="header__logotype">
+          <a className="header__logotype" href="/">
             <span className="header__logotype-ml">ML</span>
             <span className="header__logotype-modelscope">Modelscope</span>
-          </div>
+          </a>
         </div>
       </div>
     );
