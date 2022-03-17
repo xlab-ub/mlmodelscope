@@ -20,6 +20,7 @@
     @include headline2;
     color: white;
     text-decoration: underline;
+    transition: color 0.3s;
   }
 
   &__model-name:hover {
@@ -28,6 +29,14 @@
 
   &__delete-trial-button {
     cursor: pointer;
+  }
+
+  &__delete-trial-button path {
+    transition: fill 0.3s;
+  }
+
+  &__delete-trial-button:hover path{
+    fill: $electricGreen;
   }
 
   &__content-box {

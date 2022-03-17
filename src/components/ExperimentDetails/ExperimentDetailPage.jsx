@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import ExperimentOverview from "./ExperimentOverview";
 import TrialOutputWrapper from "./TrialOutputWrapper";
+import Button from "../Buttons/Button";
 
 export default class ExperimentDetailPage extends Component {
   render() {
@@ -25,7 +26,10 @@ export default class ExperimentDetailPage extends Component {
             </div>
           </div>
           <div className="experiment-detail-page__trials-section">
-            <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
+            <div className="experiment-detail-page__trials-header-box">
+              <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
+              <Button content={"Add model"} isPrimary={false} isSmall={false} />
+            </div>
             {trialComponents}
           </div>
         </div>

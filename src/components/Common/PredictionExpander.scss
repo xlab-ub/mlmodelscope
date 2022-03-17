@@ -11,6 +11,7 @@
     margin-top: 16px;
     max-height: 567px;
     overflow-y: auto;
+    padding: 0 16px;
   }
 
   &__prediction-overflow {
@@ -32,7 +33,8 @@
     align-self: flex-end;
     color: $azul;
     margin-top: 16px;
-    
+    transition: color 0.3s;
+
     &:hover {
       color: $purple;
     }

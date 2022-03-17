@@ -13,14 +13,18 @@
   &__header {
     @include labelSmall;
     color: $charcoalLightest;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
 
   &__input-image {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 
   &__task-tag {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+  }
+
+  &__task-description {
+    @include bodySmall;
   }
 }

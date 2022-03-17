@@ -22,6 +22,12 @@
     grid-column: 2;
   }
 
+  &__trials-header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
   &__trial {
     margin-bottom: 24px;
   }
