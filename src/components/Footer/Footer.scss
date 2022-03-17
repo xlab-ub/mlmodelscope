@@ -1,0 +1,16 @@
+@import "../../App";
+
+.footer {
+  background: $richNavy;
+  height: 88px;
+
+  &__logos-container {
+    display: flex;
+    padding: 12px;
+    height: 100%;
+  }
+
+  &__logo {
+    height: 100%;
+  }
+}
