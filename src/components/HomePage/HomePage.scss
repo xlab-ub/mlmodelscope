@@ -3,9 +3,8 @@
 .home-page {
   background: url("../../resources/img/splash_bg.png") no-repeat;
   background-size: cover;
-  height: 100%;
   position: absolute;
-  top: 0; bottom: 0; right: 0; left: 0;
+  top: 0px; bottom: 0px;
 
   &__fun-gradient {
     animation: gradientAnimation 15s ease infinite;

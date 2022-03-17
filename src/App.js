@@ -2,6 +2,7 @@ import "./Stopgap.scss";
 import Helmet from "react-helmet";
 import React, { Component } from "react";
 import GlobalHeader from "./components/GlobalHeader";
+import Header from "./components/Header/Header"
 import GlobalFooter from "./components/GlobalFooter";
 import Router from "./router/router";
 import { Layout, BackTop } from "antd";
@@ -32,8 +33,8 @@ class App extends Component {
               flexDirection: "column",
             }}
           >
-            <GlobalHeader breakpoint={850} />
-            <Layout.Content style={{ flex: 1, marginTop: "64px" }}>
+            <Header />
+            <Layout.Content style={{ flex: 1, marginTop: "64px", position: "relative" }}>
               <Error>
                 <Router />
               </Error>
