@@ -42,16 +42,28 @@
     display: flex;
     gap: 6px;
     margin-top: 56px;
+
+    &:hover {
+      .header__library-link {
+        color: $purple;
+      }
+
+      .header__arrow-icon {
+        transform: translateX(6px);
+      }
+    }
   }
 
   &__library-link {
     @include headline6;
     color: $azulDarkest;
     text-decoration: none;
+    transition: color 0.3s;
   }
 
   &__arrow-icon {
     width: 13px;
     height: 12px;
+    transition: transform 0.3s;
   }
 }
