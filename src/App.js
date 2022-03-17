@@ -34,7 +34,7 @@ class App extends Component {
             }}
           >
             <Header />
-            <Layout.Content style={{ flex: 1, marginTop: "64px", position: "relative" }}>
+            <Layout.Content style={{ flex: 1, marginTop: "108px", position: "relative" }}>
               <Error>
                 <Router />
               </Error>
