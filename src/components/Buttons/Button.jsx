@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { ReactComponent as RightArrowIcon } from "../../resources/icons/arrow-right.svg";
+import { ReactComponent as PlusIcon } from "../../resources/icons/plus-sign.svg";
 
 export default class button extends Component {
+  static defaultProps  = {
+    icon: "arrow"
+  };
+
   generateBlockName(){
     let result = "";
     if (this.props.isSmall) {
@@ -30,12 +35,21 @@ export default class button extends Component {
     return result;
   }
 
+  generateIcon() {
+    if(this.props.icon == "arrow"){
+      return <RightArrowIcon className={this.generateClassName("icon")} /> ;
+    }
+    else {
+      return <PlusIcon className={this.generateClassName("icon")} />
+    }
+  }
+
   render() {
     return (
       <div className={this.generateBlockName()}>
         <div className={this.generateClassName("fill")}>
           <a href={this.props.link} className={this.generateClassName("text")}>{this.props.content}</a>
-          <RightArrowIcon className={this.generateClassName("icon")} />
+          {this.generateIcon()}
         </div>
       </div>
     )

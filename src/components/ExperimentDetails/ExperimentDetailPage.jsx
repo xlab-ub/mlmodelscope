@@ -28,7 +28,7 @@ export default class ExperimentDetailPage extends Component {
           <div className="experiment-detail-page__trials-section">
             <div className="experiment-detail-page__trials-header-box">
               <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
-              <Button content={"Add model"} isPrimary={false} isSmall={false} />
+              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} />
             </div>
             {trialComponents}
           </div>
