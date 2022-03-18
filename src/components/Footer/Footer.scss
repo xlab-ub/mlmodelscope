@@ -3,6 +3,8 @@
 .footer {
   background: $richNavy;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 
   &__logos-container {
     align-items: center;

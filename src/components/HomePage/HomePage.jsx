@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./HomePage.scss";
 import Button from "../Buttons/Button";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export default class HomePage extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class HomePage extends Component {
           </h2>
           <Button content="Browse model library" link={"/models"} isPrimary={false} isSmall={false}/>
         </div>
+        <Footer />
       </div>
     )
   }
