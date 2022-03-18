@@ -2,7 +2,9 @@ import "./Stopgap.scss";
 import Helmet from "react-helmet";
 import React, { Component } from "react";
 import GlobalHeader from "./components/GlobalHeader";
+import Header from "./components/Header/Header";
 import GlobalFooter from "./components/GlobalFooter";
+import Footer from "./components/Footer/Footer";
 import Router from "./router/router";
 import { Layout, BackTop } from "antd";
 import { BrowserRouter as ReactRouter } from "react-router-dom";
@@ -32,13 +34,13 @@ class App extends Component {
               flexDirection: "column",
             }}
           >
-            <GlobalHeader breakpoint={850} />
-            <Layout.Content style={{ flex: 1, marginTop: "64px" }}>
+            <Header />
+            <Layout.Content style={{ flex: 1, marginTop: "108px", position: "relative" }}>
               <Error>
                 <Router />
               </Error>
             </Layout.Content>
-            <GlobalFooter breakpoint={850} />
+            <Footer />
           </Layout>
         </ReactRouter>
       </div>

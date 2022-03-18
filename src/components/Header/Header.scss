@@ -1,0 +1,111 @@
+@import "../../App";
+
+.header {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 128px 16px;
+  position: relative;
+  width: 100%;
+  z-index: 10;
+
+  &--splash {
+    background: transparent;
+  }
+
+  &__beta {
+    @include fitToContent;
+    @include label;
+    background: $secondaryGradient;
+    border-radius: 0 5px;
+    color: white;
+    margin-top: 24px;
+    margin-bottom: 0px;
+    padding: 0 4px;
+    text-transform: uppercase;
+  }
+
+  &__logotype {
+    background: $primaryGradient;
+    background-size: 200% 200%;
+    color: $azul;
+    font-size: 35px;
+    font-weight: 300;
+    text-decoration: none;
+    transition: .3s;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &:hover {
+      background-position: bottom center;
+      opacity: .8;
+    }
+
+    &__modelscope {
+      font-weight: 700;
+    }
+  }
+
+  &--splash &__logotype {
+    background: unset;
+    color: white;
+    transition: color 0.3s;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+
+    &:hover {
+      color: $electricGreen;
+    }
+  }
+
+  &__library-link-container {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    margin-top: 56px;
+
+    &:hover {
+      .header__library-link {
+        color: $purple;
+      }
+
+      .header__arrow-icon {
+        transform: translateX(6px);
+      }
+    }
+  }
+
+  &__library-link {
+    @include headline6;
+    color: $azulDarkest;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  &--splash &__library-link-container {
+
+    .header__library-link {
+      color: white;
+    }
+
+    .header__arrow-icon path {
+      fill: white;
+    }
+
+    &:hover {
+      .header__library-link {
+        color: $electricGreen;
+      }
+
+      .header__arrow-icon path {
+        fill: $electricGreen;
+      }
+    }
+  }
+
+  &__arrow-icon {
+    width: 13px;
+    height: 12px;
+    transition: transform 0.3s;
+  }
+}

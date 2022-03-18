@@ -1,11 +1,14 @@
 @import "src/App";
 
 .home-page {
-  background: url("../../resources/img/splash_bg.png") no-repeat;
-  background-size: cover;
-  height: 100%;
-  position: absolute;
-  top: 0; bottom: 0; right: 0; left: 0;
+  position: relative;
+
+  &__background-image {
+    background: url("../../resources/img/splash_bg.png") no-repeat;
+    background-size: cover;
+    inset: 0;
+    position: absolute;
+  }
 
   &__fun-gradient {
     animation: gradientAnimation 15s ease infinite;
@@ -15,6 +18,12 @@
     pointer-events: none;
     position: absolute;
     top: 0; bottom: 0; right: 0; left: 0;
+  }
+
+  &__tint {
+    background: linear-gradient(90deg, #021C60 0%, rgba(30, 56, 119, 0) 100%);
+    inset: 0;
+    position: absolute;;
   }
 
   @keyframes gradientAnimation {
@@ -36,6 +45,10 @@
     flex-direction: column;
     height: 100%;
     justify-content: center;
+    padding-top: 180px;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 1;
   }
 
   &__title {
