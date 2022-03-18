@@ -6,6 +6,10 @@
   padding: 24px;
   overflow-wrap: anywhere;
 
+  &--active {
+    border-color: $skyBlue;
+  }
+
   &__tags-box {
     display: flex;
     margin-bottom: 16px;

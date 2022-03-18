@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ReactComponent as RightArrowIcon } from "../../resources/icons/arrow-right.svg";
 import { ReactComponent as PlusIcon } from "../../resources/icons/plus-sign.svg";
+import { ReactComponent as MinusIcon } from "../../resources/icons/minus-sign.svg";
 
 export default class button extends Component {
   static defaultProps  = {
@@ -36,11 +37,12 @@ export default class button extends Component {
   }
 
   generateIcon() {
-    if(this.props.icon == "arrow"){
+    if(this.props.icon === "plus") {
+      return <PlusIcon className={this.generateClassName("icon")}/>
+    } else if (this.props.icon === 'minus') {
+      return <MinusIcon className={this.generateClassName("icon")}/>
+    } else {
       return <RightArrowIcon className={this.generateClassName("icon")} /> ;
-    }
-    else {
-      return <PlusIcon className={this.generateClassName("icon")} />
     }
   }
 
