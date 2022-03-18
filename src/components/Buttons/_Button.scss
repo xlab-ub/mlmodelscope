@@ -181,6 +181,7 @@ $duration: 0.5s;
 
 .secondary-button:hover {
   background-position: bottom center;
+  cursor: pointer; // This might be removed once we have worked out the button issues here
 
   .secondary-button__icon {
     .top-stop {
