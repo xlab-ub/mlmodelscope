@@ -3,9 +3,9 @@
 $sans-serif: "Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
 
 @mixin billboard {
-  font-size: 96px;
+  font-size: 80px;
   font-weight: 800;
-  line-height: 104px;
+  line-height: 88px;
 }
 
 @mixin headline1 {

@@ -3,9 +3,13 @@ import "./Header.scss"
 import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right.svg";
 
 export default class Header extends Component {
+  defaultProps = {
+    splash: false,
+  }
+
   render(){
     return (
-      <div className="header">
+      <div className={this.props.splash ? 'header header--splash' : 'header'}>
         <div className="header__logo-container">
           <p className="header__beta">Beta</p>
           <a className="header__logotype" href="/">

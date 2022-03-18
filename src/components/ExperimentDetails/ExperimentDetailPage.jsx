@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import ExperimentOverview from "./ExperimentOverview";
 import TrialOutputWrapper from "./TrialOutputWrapper";
+import Header from "../Header/Header";
 
 export default class ExperimentDetailPage extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class ExperimentDetailPage extends Component {
 
     return (
       <div className="experiment-detail-page">
+        <Header />
         <ExperimentDetailHeader />
         <div className="experiment-detail-page__content">
           <div className="experiment-detail-page__first-column">

@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import "./HomePage.scss";
 import Button from "../Buttons/Button";
+import Header from "../Header/Header";
 
 export default class HomePage extends Component {
   render() {
     return (
       <div className="home-page">
-        <div className="home-page__fun-gradient" />
+        <Header splash={true}/>
+        <div className="home-page__background-image">
+          <div className="home-page__fun-gradient" />
+          <div className="home-page__tint" />
+        </div>
         <div className="home-page__content-container">
           <h1 className="home-page__title">Discover and compare state-of-the-art machine learning models</h1>
           <hr className="home-page__divider" />
