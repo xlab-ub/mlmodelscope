@@ -1,0 +1,57 @@
+@import "src/App";
+
+.remove-model-modal {
+  padding-top: 53px;
+
+  &__content-container {
+    background: $primaryGradient;
+    padding: 4px;
+  }
+
+  &__content {
+    align-items: center;
+    background-color: white;
+    border: solid 4px transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 80px 40px 40px 40px;
+  }
+
+  &__top-icon {
+    background: $secondaryGradient;
+    border-radius: 50%;
+    display: flex;
+    height: 107px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: 107px;
+  }
+
+  &__trashcan {
+    margin: auto;
+  }
+
+  &__close-button {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  &__heading {
+    margin-bottom: 6px;
+  }
+
+  &__text {
+    @include body;
+    margin-bottom: 4px;
+  }
+
+  &__warning {
+    @include headline5;
+    color: $charcoalLightest;
+    margin-bottom: 40px;
+  }
+}
