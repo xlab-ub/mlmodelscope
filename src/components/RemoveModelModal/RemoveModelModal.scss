@@ -1,7 +1,12 @@
 @import "src/App";
 
 .remove-model-modal {
-  padding-top: 53px;
+  align-items: center;
+  background: rgba(73,76,234,.4);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
 
   &__content-container {
     background: $primaryGradient;
@@ -53,5 +58,35 @@
     @include headline5;
     color: $charcoalLightest;
     margin-bottom: 40px;
+  }
+
+  &__controls {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+  }
+
+  &__cancel {
+    @include linkSmall;
+    color: $azul;
+    transition: color .3s;
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  &__confirm {
+    @include headline6;
+    background: $pinkLight;
+    border: solid 2px $pinkLight;
+    border-radius: 26px;
+    padding: 12px 24px;
+    transition: border-color .3s;
+
+    &:hover {
+      border-color: $pink;
+    }
   }
 }
