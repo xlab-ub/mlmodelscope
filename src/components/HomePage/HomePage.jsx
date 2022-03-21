@@ -22,7 +22,9 @@ export default class HomePage extends Component {
           </h2>
           <Button content="Browse model library" link={"/models"} isPrimary={false} isSmall={false}/>
         </div>
-        <Footer />
+        <div className="home-page__footer">
+          <Footer />
+        </div>
       </div>
     )
   }
