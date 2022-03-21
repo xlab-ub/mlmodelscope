@@ -1,0 +1,81 @@
+@import "../../App";
+
+.selected-models-banner {
+  bottom: 0; left: 0; right: 0;
+  position: fixed;
+
+  &__controls {
+    @include paddingGutters;
+    align-items: center;
+    background: $almaMater;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    gap: 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__toggle {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+  }
+
+  &__toggle-icon {
+    transition: transform .3s;
+
+    &--open {
+      transform: rotateX(180deg);
+    }
+
+    & path {
+      transition: fill .3s;
+    }
+  }
+
+  &__toggle-text {
+    @include headline3;
+    color: white;
+    transition: color .3s;
+  }
+
+  &__toggle:hover &__toggle-icon path {
+    fill: $electricGreen;
+  }
+
+  &__toggle:hover &__toggle-text {
+    color: $electricGreen;
+  }
+
+  &__remove {
+    @include linkSmall;
+    color: white;
+    transition: color .3s;
+
+    &:hover {
+      color: $electricGreen;
+    }
+  }
+
+  &__run {
+    margin-left: auto;
+  }
+
+  &__list {
+    @include paddingGutters;
+    background: $almaMater;
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    max-height: 0;
+    transition: max-height .3s, padding-top .3s, padding-bottom .3s;
+
+    &--open {
+      max-height: 350px;
+      padding-top: 32px;
+      padding-bottom: 64px;
+    }
+  }
+}

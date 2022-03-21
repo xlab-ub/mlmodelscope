@@ -7,6 +7,7 @@ import SearchBar from "../Common/SearchBar";
 import withPagination from "../Paginator/Pagination";
 import SortButton from "../Buttons/SortButton";
 import ExperimentDetailHeader from "../ExperimentDetails/ExperimentDetailHeader";
+import SelectedModelsBanner from "./SelectedModelsBanner";
 
 export default class ModelList extends Component {
   static defaultProps = {
@@ -35,6 +36,7 @@ export default class ModelList extends Component {
           <div className="model-list-page__list">
             <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} add={this.props.add} />
           </div>
+          { this.makeSelectedModelsBanner() }
         </div>
       </div>
     );
@@ -45,6 +47,12 @@ export default class ModelList extends Component {
       return (<ExperimentDetailHeader title={'Select models to add to your experiment'} />);
     } else {
       return (<ModelHeader />);
+    }
+  }
+
+  makeSelectedModelsBanner() {
+    if (this.props.add) {
+      return (<SelectedModelsBanner />);
     }
   }
 }

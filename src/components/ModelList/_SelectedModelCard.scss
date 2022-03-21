@@ -1,0 +1,62 @@
+@import "../../App";
+
+.selected-model-card {
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  padding: 32px 24px 48px;
+  position: relative;
+  width: 380px;
+
+  &__link {
+    @include linkHeadline3;
+    color: $almaMater;
+    display: inline-block;
+    margin-bottom: 12px;
+    transition: color .3s;
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  &__tag-group {
+    align-items: center;
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  &__tag-label {
+    @include labelSmall;
+    color: $charcoalLightest;
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  &__close {
+    background: $secondaryGradient;
+    background-size: 200% 200%;
+    border-radius: 5px;
+    display: block;
+    padding: 7px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: background-position .3s;
+
+    &:hover {
+      background-position: bottom center;
+    }
+
+    & svg {
+      display: block;
+      height: 10px;
+      width: 10px;
+
+      & path {
+        fill: white;
+      }
+    }
+  }
+}
