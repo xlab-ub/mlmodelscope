@@ -74,3 +74,19 @@ FullList.args = {
   ],
   models: require('./assets/model_data.json').models,
 }
+
+export const FullListAddMode = Template.bind({});
+FullListAddMode.args = {
+  key: 'FullListAddMode',
+  add: true,
+  frameworkOptions: [
+    {name: "MXNet", label: "MXNet", isActive: false},
+    {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
+    {name: "PyTorch", label: "PyTorch", isActive: false},
+    {name: "TensorFlow", label: "TensorFlow", isActive: false},
+  ],
+  machineOptions: [
+    {name: "amd64", label: "amd64", isActive: false},
+  ],
+  models: require('./assets/model_data.json').models,
+}

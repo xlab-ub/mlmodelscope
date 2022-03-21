@@ -6,15 +6,20 @@ import ModelCardsList from "./ModelCardsList";
 import SearchBar from "../Common/SearchBar";
 import withPagination from "../Paginator/Pagination";
 import SortButton from "../Buttons/SortButton";
+import ExperimentDetailHeader from "../ExperimentDetails/ExperimentDetailHeader";
 
 export default class ModelList extends Component {
+  static defaultProps = {
+    add: false,
+  }
+
   render() {
     let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models', this.props.searchText);
 
     return (
       <div className="model-list-page">
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
-        <ModelHeader />
+        { this.makeHeader() }
         <div className="model-list-page__content">
           <div className="model-list-page__sort-container">
             <SortButton isSortAscending={this.props.isSortAscending} updateSortByNameIsAscending={this.props.updateSortByNameIsAscending} />
@@ -28,10 +33,18 @@ export default class ModelList extends Component {
             </div>
           </div>
           <div className="model-list-page__list">
-            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} />
+            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} add={this.props.add} />
           </div>
         </div>
       </div>
     );
+  }
+
+  makeHeader() {
+    if (this.props.add) {
+      return (<ExperimentDetailHeader title={'Select models to add to your experiment'} />);
+    } else {
+      return (<ModelHeader />);
+    }
   }
 }

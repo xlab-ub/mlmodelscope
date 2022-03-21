@@ -3,6 +3,9 @@ import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
 
 export default class ModelListWithFilters extends Component {
+  static defaultProps: {
+    add: false,
+  }
 
   constructor(props) {
     super(props);
@@ -150,6 +153,7 @@ export default class ModelListWithFilters extends Component {
                       searchText={this.state.searchText}
                       toggleFilter={this.toggleFilter}
                       updateSearchText={this.updateSearchText}
-                      updateSortByNameIsAscending={this.updateSortByNameIsAscending} />;
+                      updateSortByNameIsAscending={this.updateSortByNameIsAscending}
+                      add={this.props.add}/>;
   }
 }
