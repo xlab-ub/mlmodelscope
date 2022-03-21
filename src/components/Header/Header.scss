@@ -1,6 +1,7 @@
 @import "../../App";
 
 .header {
+  align-items: flex-end;
   background: white;
   display: flex;
   justify-content: space-between;
@@ -19,8 +20,6 @@
     background: $secondaryGradient;
     border-radius: 0 5px;
     color: white;
-    margin-top: 24px;
-    margin-bottom: 0px;
     padding: 0 4px;
     text-transform: uppercase;
   }
@@ -62,7 +61,6 @@
     align-items: center;
     display: flex;
     gap: 6px;
-    margin-top: 56px;
 
     &:hover {
       .header__library-link {
