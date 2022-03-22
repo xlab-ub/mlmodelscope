@@ -6,6 +6,7 @@ import BEMComponent from "../../Common/BEMComponent";
 import "@uppy/core/dist/style.css";
 import "@uppy/dashboard/dist/style.css";
 import "./UploadInputsTab.scss";
+import GetApiHelper from "../../../helpers/api";
 
 export default class UploadInputsTab extends BEMComponent {
   static defaultProps = {
@@ -15,6 +16,7 @@ export default class UploadInputsTab extends BEMComponent {
   constructor(props) {
     super(props);
 
+    this.api = GetApiHelper();
     this.uppy = Uppy({
       onBeforeUpload: this.onBeforeUpload,
       restrictions: { maxNumberOfFiles: 1 }
@@ -25,11 +27,10 @@ export default class UploadInputsTab extends BEMComponent {
       companionUrl: process.env.REACT_APP_COMPANION_URL
     });
 
-    this.uppy.on('upload-success', this.onUploadSuccess);
+    this.uppy.on('complete', this.onComplete.bind(this));
   }
 
   onBeforeUpload = (files) => {
-    console.log(files);
     Object.keys(files)
       .forEach(key => {
         let file = files[key];
@@ -42,9 +43,17 @@ export default class UploadInputsTab extends BEMComponent {
     return files;
   }
 
-  onUploadSuccess = (file, response) => {
+  onComplete = (result) => {
     if (typeof(this.props.inputSelected) === 'function')
-      this.props.inputSelected(file.uploadURL);
+      this.props.inputSelected(result.successful.map(x => x.uploadURL));
+  }
+
+  componentDidMount() {
+    this.api.ActiveUser.subscribe({
+      next: (user) => {
+        this.setState({activeUserId: user.id});
+      }
+    });
   }
 
   render() {
