@@ -99,9 +99,10 @@ class Api {
   }
 
   async runTrial(model, input, experimentId = null) {
+    let inputs = typeof(input) === 'string' ? [input] : input;
     const requestBody = {
       architecture: "amd64",
-      inputs: [input],
+      inputs: inputs,
       model: model.id,
       batchSize: 1,
       traceLevel: "NO_TRACE",
