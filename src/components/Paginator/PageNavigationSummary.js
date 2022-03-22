@@ -12,7 +12,7 @@ export default class PageNavigationSummary extends Component {
     let searchSuffix = !this.props.searchText ? "" : ` for "${this.props.searchText}"`;
 
     return <div className="page-nav-summary">
-      page <strong>{this.props.selectedPage} of {this.props.pageCount}</strong>, showing <strong>{this.props.data.length} of {this.props.totalCount} results</strong>{searchSuffix}
+      page <strong>{this.props.selectedPage} of {this.props.pageCount}</strong>, showing <strong>{this.props.data.length} of {this.props.totalCount} models</strong>{searchSuffix}
     </div>
   }
 }

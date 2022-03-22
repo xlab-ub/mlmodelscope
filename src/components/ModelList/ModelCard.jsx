@@ -48,7 +48,6 @@ export default class ModelCard extends Component{
           <div className="model-card__try-model-button">
             <Button content="Try this model" link={this.makeModelLink()} isPrimary={false} isSmall={true} />
           </div>
-          <a className="model-card__learn-more-button" href={this.makeModelLink()}>Learn more</a>
         </div>
       )
     } else if (this.props.actions === 'add' && !this.props.isAdded) {

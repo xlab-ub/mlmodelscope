@@ -9,6 +9,11 @@
     border-radius: 5px;
     color: $charcoalLightest;
     padding: 16px;
+    transition: background-color .3s;
+
+    &:hover {
+      background: $smokeDarker;
+    }
   }
 
   &__icon {

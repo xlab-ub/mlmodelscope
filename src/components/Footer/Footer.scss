@@ -17,9 +17,19 @@
 
   &__logo {
     height: 100%;
+    transition: opacity .3s;
+
+    &:hover {
+      opacity: .8;
+    }
   }
 
   &__buffalo-logo {
     height: 30px;
+    transition: opacity .3s;
+
+    &:hover {
+      opacity: .8;
+    }
   }
 }

@@ -46,16 +46,4 @@
   &__try-model-button {
     margin-right: 24px;
   }
-
-  &__learn-more-button {
-    @include headline6;
-    color: $azul;
-    margin-right: 12px;
-    text-decoration: underline;
-    transition: 0.3s;
-  }
-
-  &__learn-more-button:hover {
-    color: $purple;
-  }
 }

@@ -26,7 +26,7 @@ export default class TrialOutputWrapper extends Component {
               <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
             </dd>
           </dl>
-          <CloseIcon className="trial-output-wrapper__delete-trial-button"/>
+          {/*<CloseIcon className="trial-output-wrapper__delete-trial-button"/> Hidden for now */}
         </div>
         <div className="trial-output-wrapper__content-box">
           <div className="trial-output-wrapper__info-row">
@@ -37,8 +37,8 @@ export default class TrialOutputWrapper extends Component {
               {machineTags}
             </dl>
             <div className="trial-output-wrapper__link-box">
-              <a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>
-              <ExternalLink />
+              {/*<a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>*/}
+              {/*<ExternalLink /> Hidden for now */}
             </div>
           </div>
           <ClassificationSummary results={this.props.trial.results} />

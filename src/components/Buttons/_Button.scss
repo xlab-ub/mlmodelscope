@@ -24,6 +24,7 @@ $duration: 0.5s;
 @mixin buttonWithIconAfter($icon) {
   &:after {
     background-image: url("../../resources/icons/" + $icon);
+    background-repeat: no-repeat;
     content: " ";
     display: inline-block;
     height: 15px;
@@ -43,6 +44,7 @@ $duration: 0.5s;
 @mixin buttonWithIconBefore($icon) {
   &:before {
     background-image: url("../../resources/icons/" + $icon);
+    background-repeat: no-repeat;
     content: " ";
     display: inline-block;
     height: 15px;
