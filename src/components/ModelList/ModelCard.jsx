@@ -7,6 +7,8 @@ export default class ModelCard extends Component{
   static defaultProps = {
     actions: 'try',
     isAdded: false,
+    selectModel: () => { alert('SELECTED') },
+    deselectModel: () => { alert('DESELECTED') },
   }
 
   constructor() {
@@ -54,7 +56,7 @@ export default class ModelCard extends Component{
       return (
         <div className="model-card__actions-box">
           <div className="model-card__add-model-button">
-            <Button content="Add Model" link={this.makeModelLink()} isPrimary={false} isSmall={true} icon={'plus'} />
+            <Button content="Add Model" onClick={this.props.selectModel} isPrimary={false} isSmall={true} icon={'plus'} />
           </div>
         </div>
       );
@@ -62,7 +64,7 @@ export default class ModelCard extends Component{
       return (
         <div className="model-card__actions-box">
           <div className="model-card__add-model-button">
-            <Button content="Remove Model" link={this.makeModelLink()} isPrimary={true} isSmall={true} icon={'minus'} />
+            <Button content="Remove Model" onClick={this.props.deselectModel} isPrimary={true} isSmall={true} icon={'minus'} />
           </div>
         </div>
       );

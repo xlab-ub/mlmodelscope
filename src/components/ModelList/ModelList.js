@@ -13,6 +13,10 @@ import Header from "../Header/Header";
 export default class ModelList extends Component {
   static defaultProps = {
     add: false,
+    selectedModels: [],
+    selectModel: () => {},
+    deselectModel: () => {},
+    runModels: () => {},
   }
 
   render() {
@@ -36,7 +40,7 @@ export default class ModelList extends Component {
             </div>
           </div>
           <div className="model-list-page__list">
-            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} add={this.props.add} />
+            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} add={this.props.add} selectedModels={this.props.selectedModels} selectModel={this.props.selectModel} deselectModel={this.props.deselectModel} />
           </div>
           { this.makeSelectedModelsBanner() }
         </div>
@@ -54,7 +58,7 @@ export default class ModelList extends Component {
 
   makeSelectedModelsBanner() {
     if (this.props.add) {
-      return (<SelectedModelsBanner />);
+      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel} runModels={this.props.runModels} />);
     }
   }
 }

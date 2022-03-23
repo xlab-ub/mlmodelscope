@@ -6,6 +6,10 @@ import {ReactComponent as CloseIcon} from "../../resources/icons/x.svg";
 import './_SelectedModelCard.scss';
 
 export default class SelectedModelCard extends BEMComponent {
+  static defaultProps ={
+    remove: () => {},
+  }
+
   render() {
     const model = this.props.model;
     let task = Task[model.output.type];
@@ -34,7 +38,7 @@ export default class SelectedModelCard extends BEMComponent {
             </span>
           </div>
         </div>
-        <button className={this.element('close')}>
+        <button className={this.element('close')} onClick={this.props.remove}>
           <CloseIcon />
         </button>
       </div>

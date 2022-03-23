@@ -5,6 +5,7 @@ import clone from "../../helpers/cloner";
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
     add: false,
+    runModels: () => {},
   }
 
   constructor(props) {
@@ -13,6 +14,7 @@ export default class ModelListWithFilters extends Component {
       filterGroups: this.makeFilterGroups(),
       searchText: "",
       isSortAscending: true,
+      selectedModels: [],
     }
   }
 
@@ -146,6 +148,26 @@ export default class ModelListWithFilters extends Component {
     return result;
   }
 
+  selectModel = (model) => {
+    const currentSelectedModels = this.state.selectedModels;
+
+    currentSelectedModels.push(model);
+
+    this.setState({selectedModels: currentSelectedModels});
+  }
+
+  deselectModel = (model) => {
+    const currentSelectedModels = this.state.selectedModels;
+
+    const modelToRemove = currentSelectedModels.find(m => m.id === model.id)
+
+    const modelIndex = currentSelectedModels.indexOf(modelToRemove);
+
+    const selectedModels = [...currentSelectedModels.slice(0, modelIndex), ...currentSelectedModels.slice(modelIndex + 1)];
+
+    this.setState({selectedModels: selectedModels});
+  }
+
   render() {
     return <ModelList filterGroups={this.state.filterGroups}
                       isSortAscending={this.state.isSortAscending}
@@ -154,6 +176,10 @@ export default class ModelListWithFilters extends Component {
                       toggleFilter={this.toggleFilter}
                       updateSearchText={this.updateSearchText}
                       updateSortByNameIsAscending={this.updateSortByNameIsAscending}
+                      selectedModels={this.state.selectedModels}
+                      selectModel={this.selectModel}
+                      deselectModel={this.deselectModel}
+                      runModels={this.props.runModels}
                       add={this.props.add}/>;
   }
 }

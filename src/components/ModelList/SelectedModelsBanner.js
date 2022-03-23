@@ -7,7 +7,9 @@ import './_SelectedModelsBanner.scss';
 
 export default class SelectedModelsBanner extends BEMComponent {
   static defaultProps = {
-    selectedModels: []
+    selectedModels: [],
+    deselectModel: () => { alert('Deselected!') },
+    runModels: () => { alert('Running now!')},
   }
 
   constructor(props) {
@@ -39,7 +41,7 @@ export default class SelectedModelsBanner extends BEMComponent {
           </button>
           { this.getRemoveButton() }
           <div className={this.element('run')}>
-            <Button content="Run models" isPrimary={false} isSmall={true} />
+            <Button content="Run models" isPrimary={false} isSmall={true} onClick={this.props.runModels} />
           </div>
         </div>
         <div className={this.element('list')}>
@@ -69,6 +71,6 @@ export default class SelectedModelsBanner extends BEMComponent {
   getModelCards() {
     let modelKey = 0;
 
-    return this.props.selectedModels.map(model => <SelectedModelCard key={modelKey++} model={model} />)
+    return this.props.selectedModels.map(model => <SelectedModelCard key={modelKey++} model={model} remove={() => { this.props.deselectModel(model); }} />)
   }
 }

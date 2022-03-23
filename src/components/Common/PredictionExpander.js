@@ -35,13 +35,19 @@ export default class PredictionExpander extends BEMComponent {
             {this.props.predictions.slice(3).map(this.makePrediction)}
           </div>
         </div>
-        <button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>
+        { this.makeExpanderButton() }
       </div>
     )
   }
 
   makePrediction = (feature, index) => {
     return <Prediction key={index} feature={feature} />
+  }
+
+  makeExpanderButton() {
+    if (this.props.predictions.length > 3) {
+      return (<button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>)
+    }
   }
 
   makeExpanderLabel = () => {
