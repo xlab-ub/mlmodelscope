@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import News from "../components/News";
 import news from "../docs/news.json";
 import yeast from "yeast";
+import Header from "../components/Header/Header";
 const { Content } = Layout;
 
 export default class NewsPage extends Component {
@@ -12,6 +13,7 @@ export default class NewsPage extends Component {
     return (
       <Content style={{ marginLeft: "40px", padding: "30px" }}>
         <Helmet title="News" meta={[{ property: "og:title", content: "News" }]} />
+        <Header />
         {
           news.map((data, index) => {
             return(

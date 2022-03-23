@@ -5,11 +5,13 @@ import birdy from '../../stories/assets/birdy.png'
 import crabby from '../../stories/assets/crabby.png';
 import kitty from '../../stories/assets/kitty.png';
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
+import Header from "../Header/Header";
 
 export default class ModelDetailPage extends Component {
   render() {
     return(
       <div className="model-detail-page">
+        <Header />
         <ModelDetailHeader model={this.props.model}/>
         <div className="model-detail-page__content">
           {this.renderContent()}

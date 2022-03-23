@@ -34,8 +34,7 @@ class App extends Component {
               flexDirection: "column",
             }}
           >
-            <Header />
-            <Layout.Content style={{ flex: 1, marginTop: "108px", position: "relative" }}>
+            <Layout.Content style={{ flex: 1, position: "relative" }}>
               <Error>
                 <Router />
               </Error>

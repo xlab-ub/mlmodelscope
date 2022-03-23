@@ -3,7 +3,7 @@ import "./Header.scss"
 import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right.svg";
 
 export default class Header extends Component {
-  defaultProps = {
+  static defaultProps = {
     splash: false,
   }
 

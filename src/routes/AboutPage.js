@@ -5,12 +5,14 @@ import Helmet from "react-helmet";
 
 // eslint-disable-next-line
 import AboutContent from "!raw-loader!./../docs/about.md";
+import Header from "../components/Header/Header";
 
 export default class AboutPage extends Component {
   render() {
     return (
       <Layout.Content style={{ marginLeft: "40px", padding: "30px" }}>
         <Helmet title="About" meta={[{ property: "og:title", content: "Use cases" }]} />
+        <Header />
         <Row type="flex" justify="center">
           <Col xlg={8} lg={16} sm={20}>
             <Markdown source={AboutContent} />

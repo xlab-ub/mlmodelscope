@@ -8,6 +8,7 @@ import Section2Fig1 from "@resources/landingpage/assets/section2-figure-1.svg";
 import Section2Fig2 from "@resources/landingpage/assets/section2-figure-2.svg";
 import Section2Fig3 from "@resources/landingpage/assets/section2-figure-3.svg";
 import Section2Fig4 from "@resources/landingpage/assets/section2-figure-4.svg";
+import Header from "../components/Header/Header";
 const { Content } = Layout;
 const Step = Steps.Step;
 
@@ -16,6 +17,7 @@ export default class InitialSetupPage extends Component {
     return (
       <Content>
         <Helmet title="Setup" meta={[{ property: "og:title", content: "Setup" }]} />
+        <Header />
         <div style={{ marginTop: "40px", marginLeft: "30%", marginRight: "30%" }}>
           <Steps size="small" current={0}>
             <Step key="1" />

@@ -8,6 +8,7 @@ import withPagination from "../Paginator/Pagination";
 import SortButton from "../Buttons/SortButton";
 import ExperimentDetailHeader from "../ExperimentDetails/ExperimentDetailHeader";
 import SelectedModelsBanner from "./SelectedModelsBanner";
+import Header from "../Header/Header";
 
 export default class ModelList extends Component {
   static defaultProps = {
@@ -20,7 +21,8 @@ export default class ModelList extends Component {
     return (
       <div className="model-list-page">
         <Helmet title="Models" meta={[{ property: "og:title", content: "Models" }]} />
-        { this.makeHeader() }
+        <Header />
+        { this.makePageHeader() }
         <div className="model-list-page__content">
           <div className="model-list-page__sort-container">
             <SortButton isSortAscending={this.props.isSortAscending} updateSortByNameIsAscending={this.props.updateSortByNameIsAscending} />
@@ -42,7 +44,7 @@ export default class ModelList extends Component {
     );
   }
 
-  makeHeader() {
+  makePageHeader() {
     if (this.props.add) {
       return (<ExperimentDetailHeader title={'Select models to add to your experiment'} />);
     } else {

@@ -4,7 +4,6 @@ import ExperimentOverview from "./ExperimentOverview";
 import TrialOutputWrapper from "./TrialOutputWrapper";
 import Button from "../Buttons/Button";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 
 export default class ExperimentDetailPage extends Component {
   render() {
@@ -36,7 +35,6 @@ export default class ExperimentDetailPage extends Component {
             {trialComponents}
           </div>
         </div>
-        <Footer />
       </div>
     );
   }
