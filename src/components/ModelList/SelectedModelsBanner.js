@@ -41,7 +41,7 @@ export default class SelectedModelsBanner extends BEMComponent {
           </button>
           { this.getRemoveButton() }
           <div className={this.element('run')}>
-            <Button content="Run models" isPrimary={false} isSmall={true} onClick={this.props.runModels} />
+            <Button content="Run models" isPrimary={false} isSmall={true} onClick={() => this.props.runModels(this.props.selectedModels)} />
           </div>
         </div>
         <div className={this.element('list')}>

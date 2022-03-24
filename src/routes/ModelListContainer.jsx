@@ -4,6 +4,12 @@ import GetApiHelper from "../helpers/api";
 import ModelListWithFilters from "../components/ModelList/ModelListWithFilters";
 
 export default class ModelListContainer extends Component {
+  static defaultProps: {
+    add: false,
+    runModels: () => {},
+    selectedModels: [],
+  }
+
   constructor(props){
     super(props);
     this.api = GetApiHelper();
@@ -69,6 +75,6 @@ export default class ModelListContainer extends Component {
     let machineOptions = [
       {name: "amd64", label: "amd64", isActive: false},
     ];
-    return <ModelListWithFilters frameworkOptions={this.state.frameworkOptions} machineOptions={machineOptions} models={this.state.models} />;
+    return <ModelListWithFilters frameworkOptions={this.state.frameworkOptions} machineOptions={machineOptions} models={this.state.models} add={this.props.add} selectedModels={this.props.selectedModels} runModels={this.props.runModels} />;
   }
 }

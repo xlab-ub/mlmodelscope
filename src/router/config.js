@@ -7,6 +7,8 @@ import ConferencePage from "../routes/ConferencePage";
 import NewsPage from "../routes/NewsPage";
 import ModelDetailContainer from "../routes/ModelDetailContainer";
 import ModelListContainer from "../routes/ModelListContainer";
+import ExperimentDetailContainer from "../routes/ExperimentDetailContainer";
+import AddModelListContainer from "../routes/AddModelListContainer";
 
 const routes = [
   {
@@ -44,7 +46,7 @@ const routes = [
     component: ModelListContainer,
   },
   {
-    path: "/model/:modelId/trial/:trialId",
+    path: "/model/:modelId/experiment/:experimentId",
     component: ModelDetailContainer,
     exact: false,
   },
@@ -53,6 +55,16 @@ const routes = [
     component: ModelDetailContainer,
     exact: false,
   },
+  {
+    path: "/experiment/:experimentId/add-models",
+    component: AddModelListContainer,
+    exact: false,
+  },
+  {
+    path: "/experiment/:experimentId",
+    component: ExperimentDetailContainer,
+    exact: false,
+  }
 ];
 
 export default routes;

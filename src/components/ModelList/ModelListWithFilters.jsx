@@ -6,6 +6,7 @@ export default class ModelListWithFilters extends Component {
   static defaultProps: {
     add: false,
     runModels: () => {},
+    selectedModels: []
   }
 
   constructor(props) {
@@ -14,13 +15,16 @@ export default class ModelListWithFilters extends Component {
       filterGroups: this.makeFilterGroups(),
       searchText: "",
       isSortAscending: true,
-      selectedModels: [],
+      selectedModels: props.selectedModels,
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.frameworkOptions !== prevProps.frameworkOptions){
       this.setState({filterGroups: this.makeFilterGroups()});
+    }
+    if(this.props.selectedModels !== prevProps.selectedModels) {
+      this.setState({selectedModels: this.props.selectedModels});
     }
   }
 

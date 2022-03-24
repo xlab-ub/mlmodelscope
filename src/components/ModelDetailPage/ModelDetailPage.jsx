@@ -8,6 +8,10 @@ import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
 import Header from "../Header/Header";
 
 export default class ModelDetailPage extends Component {
+  static defaultProps = {
+    compare: () => {},
+  }
+
   render() {
     return(
       <div className="model-detail-page">
@@ -24,7 +28,7 @@ export default class ModelDetailPage extends Component {
     if (this.props.trialOutput === undefined) {
       return (<QuickInput sampleInputs={[kitty, crabby, birdy]} onRunModelClicked={this.props.onRunModelClicked}/>);
     } else {
-      return (<QuickOutput input={this.props.trialOutput.inputs[0]} features={this.props.trialOutput.results.responses[0].features} onBackClicked={this.props.onBackToModelClicked} />);
+      return (<QuickOutput input={this.props.trialOutput.inputs[0]} features={this.props.trialOutput.results.responses[0].features} onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare} />);
     }
   }
 }
