@@ -16,6 +16,7 @@ export default class ModelList extends Component {
     selectedModels: [],
     selectModel: () => {},
     deselectModel: () => {},
+    clearModels: () => {},
     runModels: () => {},
   }
 
@@ -58,7 +59,7 @@ export default class ModelList extends Component {
 
   makeSelectedModelsBanner() {
     if (this.props.add) {
-      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel} runModels={this.props.runModels} />);
+      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel} clearModels={this.props.clearModels} runModels={this.props.runModels} />);
     }
   }
 }

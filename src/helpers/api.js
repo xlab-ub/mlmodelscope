@@ -41,6 +41,33 @@ class Api {
   }
 
   /*
+   * Look up an experiment by ID. Returns an Observable of Experiment details. Polls the experiment data delivering
+   * results to Observer(s) until either the experiment is completed or a timeout has been reached at which time it will
+   * result in an error.
+   *
+   * @param {string} experimentId - The UUID of the experiment to look up
+   */
+  getExperiment(experimentId) {
+    const experimentSubject = new Subject();
+
+    this.poll({
+      fn: this._getExperiment,
+      params: experimentId,
+      validate: experiment => experiment.trials !== undefined, // how do we really validate?
+      maxAttempts: 10,
+      subject: experimentSubject
+    });
+
+    return experimentSubject;
+  }
+
+
+  _getExperiment = async (experimentId) => {
+    let result = await fetch(`${this.apiUrl}/experiments/${experimentId}`);
+    return await result.json();
+  }
+
+  /*
    * Look up a trial by ID. Returns an Observable of Trial details. Polls the trial data delivering results to
    * Observer(s) until either the trial is completed or a timeout has been reached at which time it will result
    * in an error.
@@ -71,7 +98,7 @@ class Api {
     return trial;
   }
 
-  async runTrial(model, input) {
+  async runTrial(model, input, experimentId = null) {
     const requestBody = {
       architecture: "amd64",
       inputs: [input],
@@ -82,6 +109,10 @@ class Api {
       desiredResultModality: "image_classification"
     }
 
+    if (experimentId) {
+      requestBody['experiment'] = experimentId;
+    }
+
     const response = await fetch(`${this.apiUrl}/predict`, {
       method: 'POST',
       headers: {
@@ -89,9 +120,8 @@ class Api {
       },
       body: JSON.stringify(requestBody)
     });
-    const result = await response.json();
 
-    return result.trialId;
+    return await response.json();
   }
 
   async poll({ fn, params, validate, maxAttempts, subject }) {

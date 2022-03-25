@@ -17,7 +17,8 @@ export default class SelectedModelCard extends BEMComponent {
       task = new Task(model.output.type, "This task has no definition");
     }
     let machineTagKey = 0;
-    let machineTags = model.framework.architectures.map(machine => <ModelTag key={machineTagKey++} type="machine" content={machine.name}/> );
+    let architectures = model.framework ? model.framework.architectures : null;
+    let machineTags = architectures ? architectures.map(machine => <ModelTag key={machineTagKey++} type="machine" content={machine.name}/> ) : '';
 
     return (
       <div className={this.block()}>

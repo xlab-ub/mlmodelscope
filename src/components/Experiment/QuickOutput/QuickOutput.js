@@ -7,7 +7,8 @@ import "./QuickOutput.scss";
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
     features: [],
-    input: ""
+    input: "",
+    compare: () => {},
   }
 
   render() {
@@ -22,7 +23,7 @@ export default class QuickOutput extends BEMComponent {
           <ClassificationOutput features={this.props.features} />
         </div>
         <div className={this.element('footer')}>
-          <button className={this.element('compare-button')}>Compare with other models</button>
+          <button className={this.element('compare-button')} onClick={this.props.compare}>Compare with other models</button>
         </div>
       </div>
     );

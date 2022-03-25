@@ -7,12 +7,12 @@ class ModelDetailContainer extends Component{
   constructor(props) {
     super(props);
 
-    let { modelId, trialId } = this.props.match.params;
+    let { modelId, experimentId } = this.props.match.params;
     this.api = GetApiHelper();
     this.modelId = modelId;
 
-    if (!!trialId)
-      this.getTrial(trialId);
+    if (!!experimentId)
+      this.getExperiment(experimentId);
 
     this.state = {
       model: null,
@@ -24,12 +24,18 @@ class ModelDetailContainer extends Component{
   }
 
   componentWillUnmount() {
+    if (this.experimentSubscription)
+      this.experimentSubscription.unsubscribe();
+
     if (this.trialSubscription)
       this.trialSubscription.unsubscribe();
+
+    if (this.modelSubscription)
+      this.modelSubscription.unsubscribe();
   }
 
   getModel(){
-    this.api.ActiveModel.subscribe({
+    this.modelSubsciption = this.api.ActiveModel.subscribe({
       next: (model) => {
         this.setState({model: model[0]});
       }
@@ -39,7 +45,7 @@ class ModelDetailContainer extends Component{
 
   render() {
     return (
-      <ModelDetailPage model={this.state.model} onBackToModelClicked={this.backToModel} onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput}/>
+      <ModelDetailPage model={this.state.model} onBackToModelClicked={this.backToModel} onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput} compare={this.compareModels}/>
     )
   }
 
@@ -48,13 +54,26 @@ class ModelDetailContainer extends Component{
   }
 
   runModel = async (inputUrl) => {
-    const trialId = await this.api.runTrial(this.state.model, inputUrl);
-    this.props.history.push(`/model/${this.modelId}/trial/${trialId}`);
+    const response = await this.api.runTrial(this.state.model, inputUrl);
+    this.props.history.push(`/model/${this.modelId}/experiment/${response.experimentId}`);
+  }
+
+  compareModels = () => {
+    this.props.history.push(`/experiment/${this.state.experiment.id}`);
   }
 
   getTrial = async (trialId) => {
     this.trialSubscription = this.api.getTrial(trialId).subscribe({
       next: trialOutput => this.setState({ trialOutput })
+    });
+  }
+
+  getExperiment = async (experimentId) => {
+    this.experimentSubscription = this.api.getExperiment(experimentId).subscribe({
+      next: experiment => {
+        this.getTrial(experiment.trials[0].id);
+        this.setState({experiment});
+      }
     });
   }
 }
