@@ -172,6 +172,10 @@ export default class ModelListWithFilters extends Component {
     this.setState({selectedModels: selectedModels});
   }
 
+  clearModels = () => {
+    this.setState({selectedModels: []});
+  }
+
   render() {
     return <ModelList filterGroups={this.state.filterGroups}
                       isSortAscending={this.state.isSortAscending}
@@ -183,6 +187,7 @@ export default class ModelListWithFilters extends Component {
                       selectedModels={this.state.selectedModels}
                       selectModel={this.selectModel}
                       deselectModel={this.deselectModel}
+                      clearModels={this.clearModels}
                       runModels={this.props.runModels}
                       add={this.props.add}/>;
   }

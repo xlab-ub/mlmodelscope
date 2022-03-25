@@ -8,8 +8,9 @@ import './_SelectedModelsBanner.scss';
 export default class SelectedModelsBanner extends BEMComponent {
   static defaultProps = {
     selectedModels: [],
-    deselectModel: () => { alert('Deselected!') },
-    runModels: () => { alert('Running now!')},
+    deselectModel: () => {},
+    clearModels: () => {},
+    runModels: () => {},
   }
 
   constructor(props) {
@@ -61,7 +62,7 @@ export default class SelectedModelsBanner extends BEMComponent {
   getRemoveButton() {
     if (this.props.selectedModels.length > 0) {
       return (
-        <button className={this.element('remove')}>
+        <button className={this.element('remove')} onClick={this.props.clearModels}>
           Remove all
         </button>
       );
