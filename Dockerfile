@@ -1,9 +1,9 @@
-FROM node:8-alpine as build
+FROM node:14-alpine as build
 
 WORKDIR /app
 
 COPY package* ./
-RUN npm install
+RUN npm ci
 
 ARG REACT_APP_SITE_TITLE
 ENV REACT_APP_SITE_TITLE=${REACT_APP_SITE_TITLE}
