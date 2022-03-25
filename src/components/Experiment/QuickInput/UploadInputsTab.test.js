@@ -20,10 +20,10 @@ describe('Upload Inputs Tab', () => {
     it('on upload success', () => {
       const inputSelected = jest.fn();
       const wrapper = shallow(<UploadInputsTab inputSelected={inputSelected} />);
-      wrapper.instance().onUploadSuccess({uploadURL: 'upload-url'}, {});
+      wrapper.instance().onComplete({ successful: [{uploadURL: 'upload-url'}]}, {});
 
       expect(inputSelected.mock.calls.length).toBe(1);
-      expect(inputSelected.mock.calls[0][0]).toBe('upload-url');
+      expect(inputSelected.mock.calls[0][0]).toStrictEqual(['upload-url']);
     });
   });
 });
