@@ -8,7 +8,7 @@ export default class ModelTag extends Component {
     }
 
     return(
-      <p className={className}>{this.props.content}</p>
+      <span className={className}>{this.props.content}</span>
     );
   }
 }

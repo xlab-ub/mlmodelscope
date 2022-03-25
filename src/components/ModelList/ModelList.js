@@ -43,8 +43,8 @@ export default class ModelList extends Component {
           <div className="model-list-page__list">
             <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models} add={this.props.add} selectedModels={this.props.selectedModels} selectModel={this.props.selectModel} deselectModel={this.props.deselectModel} />
           </div>
-          { this.makeSelectedModelsBanner() }
         </div>
+        { this.makeSelectedModelsBanner() }
       </div>
     );
   }

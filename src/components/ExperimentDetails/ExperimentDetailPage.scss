@@ -32,4 +32,12 @@
   &__trial {
     margin-bottom: 24px;
   }
+
+  &__ghost-card {
+    border: dashed 2px $smokeDarkest;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+  }
 }

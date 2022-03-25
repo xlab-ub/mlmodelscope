@@ -11,6 +11,10 @@
     padding: 24px;
   }
 
+  &__title-definition-list {
+    margin-bottom: 0;
+  }
+
   &__model-label,
   &__detail-label {
     @include labelSmall;
@@ -54,6 +58,7 @@
   &__model-details {
     align-items: baseline;
     display: flex;
+    margin-bottom: 0;
   }
 
   &__detail-label {

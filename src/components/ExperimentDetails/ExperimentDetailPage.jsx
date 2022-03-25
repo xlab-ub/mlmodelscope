@@ -30,6 +30,9 @@ export default class ExperimentDetailPage extends Component {
               <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={this.getAddModelsLink()} />
             </div>
             {trialComponents}
+            <div className="experiment-detail-page__ghost-card">
+              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={this.getAddModelsLink()} />
+            </div>
           </div>
         </div>
       </div>

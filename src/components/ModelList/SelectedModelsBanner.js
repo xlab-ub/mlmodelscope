@@ -22,6 +22,9 @@ export default class SelectedModelsBanner extends BEMComponent {
       },
       list: {
         open: (state) => state.open,
+      },
+      controls: {
+        open: (state) => state.open,
       }
     };
 

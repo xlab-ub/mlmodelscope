@@ -1,9 +1,6 @@
 import "./Stopgap.scss";
 import Helmet from "react-helmet";
 import React, { Component } from "react";
-import GlobalHeader from "./components/GlobalHeader";
-import Header from "./components/Header/Header";
-import GlobalFooter from "./components/GlobalFooter";
 import Footer from "./components/Footer/Footer";
 import Router from "./router/router";
 import { Layout, BackTop } from "antd";

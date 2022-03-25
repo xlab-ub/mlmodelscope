@@ -1,5 +1,4 @@
 .model-list-page {
-  margin-bottom: 64px;
 
   &__content {
     @include gutters;
@@ -10,6 +9,7 @@
     grid-template-columns: 300px 1fr;
     grid-column-gap: 64px;
     margin-top: 64px;
+    padding-bottom: 64px;
   }
 
   &__sort-container {

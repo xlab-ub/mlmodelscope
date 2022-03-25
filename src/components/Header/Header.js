@@ -11,7 +11,7 @@ export default class Header extends Component {
     return (
       <div className={this.props.splash ? 'header header--splash' : 'header'}>
         <div className="header__logo-container">
-          <p className="header__beta">Beta</p>
+          <span className="header__beta">Beta</span>
           <a className="header__logotype" href="/">
             <span className="header__logotype__ml">ML</span>
             <span className="header__logotype__modelscope">Modelscope</span>

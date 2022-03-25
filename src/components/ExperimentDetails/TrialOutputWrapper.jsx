@@ -20,7 +20,7 @@ export default class TrialOutputWrapper extends Component {
     return (
       <div className="trial-output-wrapper">
         <div className="trial-output-wrapper__title-box">
-          <dl>
+          <dl className="trial-output-wrapper__title-definition-list">
             <dt className="trial-output-wrapper__model-label">Model:</dt>
             <dd>
               <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
