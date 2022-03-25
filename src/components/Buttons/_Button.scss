@@ -131,6 +131,7 @@ $duration: 0.5s;
   @include fitToContent;
   @include headline5;
   border-radius: 26px;
+  display: block;
 }
 
 .primary-button {
@@ -160,6 +161,7 @@ $duration: 0.5s;
   &__fill {
     background: $white;
     border-radius: inherit;
+    display: block;
     padding: 8px 22px;
   }
 

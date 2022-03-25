@@ -48,12 +48,12 @@ export default class button extends Component {
 
   render() {
     return (
-      <div className={this.generateBlockName()} onClick={() => { this.handleClick(); }}>
-        <div className={this.generateClassName("fill")}>
-          <a href={this.props.link} className={this.generateClassName("text")}>{this.props.content}</a>
+      <a href={this.props.link} className={this.generateBlockName()} onClick={() => { this.handleClick(); }}>
+        <span className={this.generateClassName("fill")}>
+          <span className={this.generateClassName("text")}>{this.props.content}</span>
           {this.generateIcon()}
-        </div>
-      </div>
+        </span>
+      </a>
     )
   }
 
