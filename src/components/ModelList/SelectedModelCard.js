@@ -6,7 +6,8 @@ import {ReactComponent as CloseIcon} from "../../resources/icons/x.svg";
 import './_SelectedModelCard.scss';
 
 export default class SelectedModelCard extends BEMComponent {
-  static defaultProps ={
+  static defaultProps = {
+    className: "selected-model-card",
     remove: () => {},
   }
 

@@ -6,6 +6,7 @@ import trim from "../../../../../helpers/labelTrimmer";
 
 export default class Prediction extends BEMComponent {
   static defaultProps = {
+    className: "prediction",
     feature: {
       classification: {
         label: 'Unknown'

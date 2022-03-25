@@ -5,6 +5,7 @@ import "./PredictionExpander.scss";
 
 export default class PredictionExpander extends BEMComponent {
   static defaultProps = {
+    className: "prediction-expander",
     predictions: []
   }
 

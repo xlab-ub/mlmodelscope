@@ -7,6 +7,7 @@ import "./QuickInput.scss";
 
 export default class QuickInput extends BEMComponent {
   static defaultProps = {
+    className: "quick-input",
     sampleInputs: []
   }
 

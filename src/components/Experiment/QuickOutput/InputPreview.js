@@ -4,6 +4,7 @@ import "./InputPreview.scss";
 
 export default class InputPreview extends BEMComponent {
   static defaultProps = {
+    className: "input-preview",
     input: "",
     onBackClicked: () => {}
   }

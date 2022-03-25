@@ -7,6 +7,7 @@ import PredictionExpander from "../../../../Common/PredictionExpander";
 
 export default class ClassificationOutput extends BEMComponent {
   static defaultProps = {
+    className: "classification-output",
     features: []
   }
 

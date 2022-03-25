@@ -7,6 +7,7 @@ import './_SelectedModelsBanner.scss';
 
 export default class SelectedModelsBanner extends BEMComponent {
   static defaultProps = {
+    className: "selected-models-banner",
     selectedModels: [],
     deselectModel: () => {},
     clearModels: () => {},

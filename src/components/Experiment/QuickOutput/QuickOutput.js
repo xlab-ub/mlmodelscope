@@ -6,6 +6,7 @@ import "./QuickOutput.scss";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
+    className: "quick-output",
     features: [],
     input: "",
     compare: () => {},

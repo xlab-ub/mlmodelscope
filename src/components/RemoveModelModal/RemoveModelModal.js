@@ -5,6 +5,10 @@ import {ReactComponent as TrashIcon} from "../../resources/icons/trash.svg";
 import {ReactComponent as CloseIcon} from "../../resources/icons/x.svg";
 
 export default class RemoveModelModal extends BEMComponent {
+  static defaultProps = {
+    className: "remove-model-modal"
+  }
+
   render() {
     return (
       <div className={this.block()}>

@@ -4,6 +4,10 @@ import Icon from "../../../../Icon/Icon";
 import "./Rating.scss";
 
 export default class Rating extends BEMComponent {
+  static defaultProps = {
+    className: "rating"
+  }
+
   constructor(props) {
     super(props);
 
