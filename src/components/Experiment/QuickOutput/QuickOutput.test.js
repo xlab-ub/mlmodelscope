@@ -39,11 +39,12 @@ describe('Experiment Quick Output component', () => {
         expect(header.childAt(0).text()).toBe('Try This Model');
       });
 
-      it('and a share button', () => {
-        const header = wrapper.find('.quick-output__header');
-        expect(header.childAt(1).type()).toBe('button');
-        expect(header.childAt(1).prop('className')).toBe('quick-output__share-button');
-      });
+      // share button is hidden for now
+      // it('and a share button', () => {
+      //   const header = wrapper.find('.quick-output__header');
+      //   expect(header.childAt(1).type()).toBe('button');
+      //   expect(header.childAt(1).prop('className')).toBe('quick-output__share-button');
+      // });
     });
 
     describe('with content', () => {

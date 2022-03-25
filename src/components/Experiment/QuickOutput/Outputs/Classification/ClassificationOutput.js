@@ -34,7 +34,7 @@ export default class ClassificationOutput extends BEMComponent {
         <div className={this.element('subtitle')}>What this model thinks the image is.</div>
         <div className={this.element('predictions')}>
           <TopPrediction feature={this.props.features[0]} />
-          <PredictionExpander predictions={this.props.features}></PredictionExpander>
+          <PredictionExpander predictions={this.props.features}/>
         </div>
       </div>
     );

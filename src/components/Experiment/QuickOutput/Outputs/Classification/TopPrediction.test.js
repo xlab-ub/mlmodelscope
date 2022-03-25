@@ -30,7 +30,7 @@ describe('Top Prediction Component', () => {
     it('with a prediction', () => {
       expect(wrapper.childAt(0).type()).toBe('div');
       expect(wrapper.childAt(0).prop('className')).toBe('top-prediction__prediction');
-      expect(wrapper.childAt(0).text()).toBe('n07697313 cheeseburger');
+      expect(wrapper.childAt(0).text()).toBe('cheeseburger');
     });
 
     it('with a probability', () => {

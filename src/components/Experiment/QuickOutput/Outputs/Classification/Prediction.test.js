@@ -6,7 +6,7 @@ import TestFeatures from "./Features";
 import formatProbability from "./ProbabilityFormatter";
 
 describe('Prediction component', () => {
-  describe('Reners', () => {
+  describe('Renders', () => {
     let wrapper;
 
     beforeEach(() => {
@@ -21,7 +21,7 @@ describe('Prediction component', () => {
       const label = wrapper.childAt(0);
 
       expect(label.prop('className')).toBe('prediction__label');
-      expect(label.text()).toBe(TestFeatures[0].classification.label);
+      expect(label.text()).toBe('cheeseburger');
     });
 
     it('with a prediction probability', () => {

@@ -4,6 +4,7 @@ import {shallow} from 'enzyme';
 import ClassificationOutput from './ClassificationOutput';
 import TopPrediction from "./TopPrediction";
 import Prediction from "./Prediction";
+import PredictionExpander from "../../../../Common/PredictionExpander";
 import TestFeatures from "./Features";
 
 describe('Classification Output Component', () => {
@@ -41,42 +42,14 @@ describe('Classification Output Component', () => {
         });
       });
 
-      it('that shows the second two predictions by default', () => {
+      it('that shows a prediction expander', () => {
         const predictions = wrapper.childAt(2);
 
         expect(predictions.prop('className')).toBe('classification-output__predictions');
-        expect(predictions.childAt(1).type()).toBe(Prediction);
-        expect(predictions.childAt(1).prop('feature')).toBe(TestFeatures[1]);
-        expect(predictions.childAt(2).type()).toBe(Prediction);
-        expect(predictions.childAt(2).prop('feature')).toBe(TestFeatures[2]);
+        expect(predictions.childAt(1).type()).toBe(PredictionExpander);
+        expect(predictions.childAt(1).prop('predictions')).toBe(TestFeatures);
       });
 
-      it('that hides the fourth prediction and beyond in an expandable container', () => {
-        const additional = wrapper.childAt(2).childAt(3);
-
-        expect(additional.prop('className')).toBe('classification-output__prediction-overflow classification-output__prediction-overflow--collapsed');
-        expect(additional.children.length).toBe(1);
-        expect(additional.childAt(0).type()).toBe(Prediction);
-        expect(additional.childAt(0).prop('feature')).toBe(TestFeatures[3]);
-      });
-
-      it('that has a button to expand the expandable container', () => {
-        const expander = wrapper.childAt(3);
-
-        expect(expander.type()).toBe('button');
-        expect(expander.text()).toBe('Show all predictions');
-        expect(expander.prop('className')).toBe('classification-output__expand classification-output__expand--collapsed');
-      });
-
-      it('where clicking the expand button expands the container', () => {
-        wrapper.childAt(3).simulate('click');
-        const expander = wrapper.find('.classification-output__expand');
-        const overflow = wrapper.find('.classification-output__prediction-overflow');
-
-        expect(expander.prop('className')).toBe('classification-output__expand');
-        expect(expander.text()).toBe('Hide all predictions');
-        expect(overflow.prop('className')).toBe('classification-output__prediction-overflow');
-      });
     });
   });
 });
