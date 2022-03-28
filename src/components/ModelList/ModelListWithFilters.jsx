@@ -15,7 +15,7 @@ export default class ModelListWithFilters extends Component {
       filterGroups: this.makeFilterGroups(),
       searchText: "",
       isSortAscending: true,
-      selectedModels: props.selectedModels,
+      selectedModels: props.selectedModels || [],
     }
   }
 
