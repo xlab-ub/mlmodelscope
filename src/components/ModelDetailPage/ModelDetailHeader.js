@@ -45,7 +45,7 @@ export default class ModelDetailHeader extends Component{
               <dd>
                 <ModelTag type="task" content={task.name} />
               </dd>
-              <dd className="model-detail-header__task-description">{task.description}</dd>
+              <dd className="model-detail-header__task-description">{task.modelDescription}</dd>
             </div>
             <div className="model-detail-header__framework-box">
               <dt className="model-detail-header__label">Framework:</dt>
