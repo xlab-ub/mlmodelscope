@@ -31,7 +31,7 @@ export default class ModelDetailPage extends Component {
     if (this.props.trialOutput === undefined) {
       return (<QuickInput sampleInputs={SampleInputs} onRunModelClicked={this.props.onRunModelClicked}/>);
     } else {
-      return (<QuickOutput input={this.props.trialOutput.inputs[0]} features={this.props.trialOutput.results.responses[0].features} onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare} />);
+      return (<QuickOutput input={this.props.trialOutput.inputs[0]} features={this.props.trialOutput.results ? this.props.trialOutput.results.responses[0].features : null} onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare} />);
     }
   }
 }

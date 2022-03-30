@@ -3,6 +3,7 @@ import BEMComponent from "../../Common/BEMComponent";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 import "./QuickOutput.scss";
+import PendingOutput from "./Outputs/Classification/PendingOutput";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
@@ -21,12 +22,20 @@ export default class QuickOutput extends BEMComponent {
         </div>
         <div className={this.element('content')}>
           <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked} />
-          <ClassificationOutput features={this.props.features} />
+          { this.makeOutput() }
         </div>
         <div className={this.element('footer')}>
           <button className={this.element('compare-button')} onClick={this.props.compare}>Compare with other models</button>
         </div>
       </div>
     );
+  }
+
+  makeOutput() {
+    if (this.props.features) {
+      return (<ClassificationOutput features={this.props.features} />);
+    } else {
+      return (<PendingOutput />);
+    }
   }
 }
