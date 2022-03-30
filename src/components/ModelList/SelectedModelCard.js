@@ -23,9 +23,9 @@ export default class SelectedModelCard extends BEMComponent {
 
     return (
       <div className={this.block()}>
-        <a className={this.element('link')} href={this.makeModelLink()}>
+        <span className={this.element('name')}>
           {model.name}
-        </a>
+        </span>
         <div className={this.element('tags')}>
           <div className={this.element('tag-group')}>
             <span className={this.element('tag-label')}>Framework:</span>
@@ -45,9 +45,5 @@ export default class SelectedModelCard extends BEMComponent {
         </button>
       </div>
     )
-  }
-
-  makeModelLink() {
-    return "/model/" + this.props.model.id;
   }
 }

@@ -9,16 +9,11 @@
   position: relative;
   width: 380px;
 
-  &__link {
-    @include linkHeadline3;
+  &__name {
+    @include headline3;
     color: $almaMater;
     display: inline-block;
     margin-bottom: 12px;
-    transition: color .3s;
-
-    &:hover {
-      color: $purple;
-    }
   }
 
   &__tag-group {

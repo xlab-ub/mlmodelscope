@@ -32,11 +32,24 @@ export default class ModelCard extends Component{
           {machineTags}
         </div>
         <hr className="model-card__divider"/>
-        <a className="model-card__model-name" href={this.makeModelLink()}>{model.name} Version {model.version}</a>
+        { this.makeName() }
         <p className="model-card__model-description">{model.description}</p>
         { this.makeActions() }
       </div>
     )
+  }
+
+  makeName() {
+    const model = this.props.model;
+    const text = `${model.name} Version ${model.version}`
+
+    if (this.props.actions === 'try') {
+      return (
+        <a className="model-card__model-name" href={this.makeModelLink()}>{text}</a>
+      )
+    } else {
+      return <button className="model-card__model-name" onClick={() => this.props.isAdded ? this.props.deselectModel() : this.props.selectModel() }>{text}</button>
+    }
   }
 
   makeModelLink() {
