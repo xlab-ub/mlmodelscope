@@ -45,8 +45,14 @@ export default class ExperimentDetailContainer extends Component {
       this.trialSubscriptions.push(this.api.getTrial(trial.id).subscribe({
         next: trialOutput => {
           const trials = this.state.trials;
-          trials.push(trialOutput);
-          this.setState({ trials })
+          const currentIndex = trials.findIndex(t => t.id === trialOutput.id);
+
+          if (currentIndex === -1) {
+            trials.push(trialOutput);
+          } else {
+            trials[currentIndex] = trialOutput;
+          }
+          this.setState({ trials });
         }
       }));
     })
