@@ -41,9 +41,27 @@ export default class TrialOutputWrapper extends Component {
               {/*<ExternalLink /> Hidden for now */}
             </div>
           </div>
-          <ClassificationSummary results={this.props.trial.results} />
+          { this.getContent() }
         </div>
       </div>
     )
+  }
+
+  getContent() {
+    if (this.props.trial.completed_at) {
+      return (<ClassificationSummary results={this.props.trial.results}/>)
+    } else {
+      return (
+        <div className="trial-output-wrapper__loading">
+          <p className="trial-output-wrapper__loading-header">Output:</p>
+          <div className="trial-output-wrapper__spinner-container">
+            <div className="trial-output-wrapper__spinner">
+
+            </div>
+            <p className="trial-output-wrapper__spinner-text">Fetching results...</p>
+          </div>
+        </div>
+      )
+    }
   }
 }

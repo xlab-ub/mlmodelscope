@@ -38,30 +38,6 @@
     border-right: solid 3px $purple;
     border-top: solid 3px $purple;
     height: 50px;
-    position: absolute;
     width: 50px;
-  }
-}
-
-@keyframes spin {
-  0% {
-    border-bottom-color: $azul;
-    border-right-color: $azul;
-    border-top-color: $azul;
-    transform: rotate(0);
-  }
-
-  50% {
-    border-bottom-color: $purple;
-    border-right-color: $purple;
-    border-top-color: $purple;
-    transform: rotate(180deg);
-  }
-
-  100% {
-    border-bottom-color: $azul;
-    border-right-color: $azul;
-    border-top-color: $azul;
-    transform: rotate(359deg);
   }
 }
