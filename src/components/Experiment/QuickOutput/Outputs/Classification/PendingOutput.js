@@ -3,6 +3,10 @@ import BEMComponent from "../../../../Common/BEMComponent";
 import './PendingOutput.scss';
 
 export default class PendingOutput extends BEMComponent {
+  static defaultProps = {
+    className: 'pending-output'
+  }
+
   render() {
     return (
       <div className={this.block()}>
