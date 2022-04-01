@@ -69,8 +69,8 @@ class Api {
 
   /*
    * Look up a trial by ID. Returns an Observable of Trial details. Polls the trial data delivering results to
-   * Observer(s) until either the trial is completed or a timeout has been reached at which time it will result
-   * in an error.
+   * Observer(s) until either the trial is completed, a timeout has been reached at which time it will result
+   * in an error, or all observers have unsubscribed from the Observable.
    *
    * @param {string} trialId - The UUID of the trial to look up
    */
@@ -81,7 +81,7 @@ class Api {
       fn: this._getTrial,
       params: trialId,
       validate: trial => trial.completed_at !== undefined,
-      maxAttempts: 10,
+      // maxAttempts: 10,
       subject: trialSubject
     });
 
@@ -127,7 +127,8 @@ class Api {
 
   async poll({ fn, params, validate, maxAttempts, subject }) {
     let attempts = 0;
-    let timeout = 250;
+    // let timeout = 250;
+    let timeout = 1000;
 
     const executePoll = async(resolve, reject) => {
       const result = await fn(params);
@@ -141,9 +142,9 @@ class Api {
         return resolve(result);
       } else if (maxAttempts && attempts === maxAttempts) {
         return reject(new Error('max polling attempts exceeded'));
-      } else {
+      } else if (subject && subject.observers.length > 0) {
         setTimeout(executePoll, timeout, resolve, reject);
-        timeout += timeout;
+        // timeout += timeout;
       }
     };
 
