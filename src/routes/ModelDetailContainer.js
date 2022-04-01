@@ -35,7 +35,7 @@ class ModelDetailContainer extends Component{
   }
 
   getModel(){
-    this.modelSubsciption = this.api.ActiveModel.subscribe({
+    this.modelSubscription = this.api.ActiveModel.subscribe({
       next: (model) => {
         this.setState({model: model[0]});
       }
