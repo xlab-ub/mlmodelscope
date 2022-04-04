@@ -34,7 +34,7 @@ export default class ModelList extends Component {
           </div>
           <div className="model-list-page__filters-search-container">
             <div className="model-list-page__search-bar">
-              <SearchBar updateSearchText={this.props.updateSearchText}/>
+              <SearchBar updateSearchText={this.props.updateSearchText} searchText={this.props.searchText}/>
             </div>
             <div className="model-list-page__filters">
               <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups} toggleFilter={this.props.toggleFilter} />
