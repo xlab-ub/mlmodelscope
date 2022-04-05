@@ -12,23 +12,24 @@ export default class ModelListWithFilters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterGroups: this.makeFilterGroups(),
+      filterGroups: this.getDefaultGroups(),
       searchText: "",
       isSortAscending: true,
       selectedModels: props.selectedModels || [],
     }
+    this.makeFilterGroups = this.makeFilterGroups.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.frameworkOptions !== prevProps.frameworkOptions){
+    if(this.props.frameworkOptions !== prevProps.frameworkOptions || this.state.selectedModels.length !== prevState.selectedModels.length){
       this.setState({filterGroups: this.makeFilterGroups()});
     }
     if(this.props.selectedModels !== prevProps.selectedModels) {
       this.setState({selectedModels: this.props.selectedModels});
     }
-  }
 
-  makeFilterGroups() {
+  }
+  getDefaultGroups() {
     return [
       {
         header: "Tasks",
@@ -40,7 +41,8 @@ export default class ModelListWithFilters extends Component {
           {name: "boundingbox", label: "Object Detection", isActive: false},
           {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
           {name: "instancesegment", label: "Instance Segmentation", isActive: false},
-          {name: "image", label: "Image Enhancement", isActive: false}
+          {name: "image", label: "Image Enhancement", isActive: false},
+          {name: "clickthroughrate", label: "Click-Through Rate", isActive: false}
         ]
       },
       {
@@ -60,6 +62,22 @@ export default class ModelListWithFilters extends Component {
     ];
   }
 
+  makeFilterGroups() {
+    const defaultGroups = this.getDefaultGroups();
+    const selected = this.state.selectedModels;
+    if(selected.length > 0)
+      defaultGroups[0].options = this.getTaskListOptions(defaultGroups, selected);
+
+    return defaultGroups;
+  }
+
+  getTaskListOptions(groups, selected) {
+    return groups[0].options
+      .filter(
+      opt => selected.some(sel => sel.output.type === opt.name)
+    ).map(opt => ({...opt, isActive: true}));
+  }
+
   filterModels = () => {
     let result = clone(this.props.models);
     for(let i = 0; i < this.state.filterGroups.length; i++){
@@ -70,15 +88,22 @@ export default class ModelListWithFilters extends Component {
     return result;
   }
 
+
   filterByOneField = (unfilteredModels, filterGroup) => {
     let activeOptions = filterGroup.options.filter(o => o.isActive);
-    if(activeOptions.length === 0 || activeOptions.length === filterGroup.options.length){
+    if(activeOptions.length === 0){
       return unfilteredModels;
     }
     let filteredModels=[];
     let fields = filterGroup.dataPath;
+
     for(let i = 0; i < activeOptions.length; i++){
-      filteredModels = filteredModels.concat(unfilteredModels.filter(model => this.getDataFromFieldPath(model, fields) === activeOptions[i].name));
+      filteredModels = filteredModels.concat(unfilteredModels.filter(model => {
+        let dataFromFieldPath = this.getDataFromFieldPath(model, fields);
+        let name = activeOptions[i].name;
+        return dataFromFieldPath === name;
+
+      }));
     }
     return filteredModels;
   }
@@ -153,7 +178,7 @@ export default class ModelListWithFilters extends Component {
   }
 
   selectModel = (model) => {
-    const currentSelectedModels = this.state.selectedModels;
+    const currentSelectedModels = clone(this.state.selectedModels);
 
     currentSelectedModels.push(model);
 

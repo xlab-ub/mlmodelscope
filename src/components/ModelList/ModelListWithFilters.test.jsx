@@ -34,7 +34,7 @@ describe('The Model List Filters', () => {
   });
 
   it('creates framework options for filter group', () => {
-    let frameworkFilterGroup = modelList.state("filterGroups").find(group => group.header == "Frameworks");
+    let frameworkFilterGroup = modelList.state("filterGroups").find(group => group.header === "Frameworks");
     expect(frameworkFilterGroup.options).toEqual(defaultFrameworks);
   });
 
@@ -86,6 +86,36 @@ describe('The Model List Filters', () => {
     expect(filteredModels.length).toEqual(1);
     expect(filteredModels[0]).toEqual(defaultModels[3]);
   });
+
+  it("removes task filter options from list when a model is selected", () => {
+
+    const instance = modelList.instance();
+    const model = instance.props.models[0];
+    instance.selectModel(model);
+    const options = instance.state.filterGroups[0].options;
+
+    expect(options.length).toEqual(1);
+    expect(options[0].name.toLowerCase()).toEqual(model.output.type.toLowerCase());
+  })
+
+  it("automatically starts filtering tasks when a model is selected", () => {
+      const instance = modelList.instance();
+      const model = instance.props.models[0];
+      instance.selectModel(model);
+      const options = instance.state.filterGroups[0].options[0];
+
+      expect(options.isActive).toEqual(true);
+  })
+
+  it("replaces removed task filters when deselecting a model", () => {
+    const instance = modelList.instance();
+    const model = instance.props.models[0];
+    instance.selectModel(model);
+    const taskListLengthSelected = instance.state.filterGroups[0].options.length;
+    instance.deselectModel(model);
+    const taskListLengthNotSelected = instance.state.filterGroups[0].options.length;
+    expect(taskListLengthNotSelected).toBeGreaterThan(taskListLengthSelected);
+  })
 
   //Since all current models have only one machine, we are shifting priorities to focus on more important features
   //Uncomment this test when it is time to add support for multiple machines
