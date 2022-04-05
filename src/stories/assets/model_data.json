@@ -9914,7 +9914,7 @@
       "name": "AI_Matrix_DIEN",
       "output": {
         "description": "the output",
-        "type": "raw"
+        "type": "clickthroughrate"
       },
       "version": "1.0"
     },
