@@ -8,7 +8,7 @@
   &__background-image {
     background: url("../../resources/img/splash_bg.png") no-repeat;
     background-size: cover;
-    inset: 0;
+    top: 0; bottom: 0; right: 0; left: 0;
     position: absolute;
   }
 
@@ -24,7 +24,7 @@
 
   &__tint {
     background: linear-gradient(90deg, #021C60 0%, rgba(30, 56, 119, 0) 100%);
-    inset: 0;
+    top: 0; bottom: 0; right: 0; left: 0;
     position: absolute;;
   }
 
