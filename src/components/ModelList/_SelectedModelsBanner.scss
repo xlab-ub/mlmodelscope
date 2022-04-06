@@ -10,7 +10,6 @@
     align-items: center;
     background: $almaMater;
     display: flex;
-    gap: 24px;
     padding-top: 16px;
     padding-bottom: 16px;
     position: relative;
@@ -25,10 +24,11 @@
   &__toggle {
     align-items: center;
     display: flex;
-    gap: 16px;
+    margin-right: 24px;
   }
 
   &__toggle-icon {
+    margin-right: 16px;
     transition: transform .3s;
 
     &--open {
@@ -72,7 +72,6 @@
     @include paddingGutters;
     background: $almaMater;
     display: flex;
-    gap: 16px;
     overflow-x: hidden;
     max-height: 0;
     transition: max-height .3s, padding-top .3s, padding-bottom .3s;
@@ -82,6 +81,10 @@
       overflow-x: auto;
       padding-top: 32px;
       padding-bottom: 64px;
+    }
+
+    & > * {
+      margin-right: 16px;
     }
   }
 }
