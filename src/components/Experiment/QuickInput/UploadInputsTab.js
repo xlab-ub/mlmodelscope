@@ -19,7 +19,8 @@ export default class UploadInputsTab extends BEMComponent {
     this.api = GetApiHelper();
     this.uppy = Uppy({
       onBeforeUpload: this.onBeforeUpload,
-      restrictions: { maxNumberOfFiles: 1 }
+      restrictions: { maxNumberOfFiles: 1 },
+      autoProceed: true
     });
 
     this.uppy.use(AwsS3Multipart, {
@@ -59,7 +60,7 @@ export default class UploadInputsTab extends BEMComponent {
   render() {
     return (
       <div className={this.block()}>
-        <Dashboard uppy={this.uppy} />
+        <Dashboard uppy={this.uppy}  />
       </div>
     );
   }
