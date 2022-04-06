@@ -1,12 +1,65 @@
 @import "../../App";
 
 .page-nav-summary {
-  @include label;
-
-  color: $charcoalLightest;
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 16px;
 
-  & > strong {
-    font-weight: 800;
+  &__text {
+    @include label;
+
+    color: $charcoalLightest;
+
+    & > strong {
+      font-weight: 800;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__prev-button, &__next-button {
+    align-items: center;
+    background: $white;
+    border: 2px solid $grayDarkest;
+    border-radius: 50%;
+    color: $grayDarkest;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    line-height: 1;
+    margin: 0 4px;
+    transition: border-color .3s, color .3s;
+    width: 30px;
+
+    &:not(:disabled):hover {
+      border-color: $gray;
+      color: $grayDarker;
+
+      & > svg > path {
+        fill: $gray;
+      }
+    }
+
+    &:disabled {
+      cursor: unset;
+      opacity: 0.6;
+    }
+
+    & > svg {
+      height: 12px;
+      width: 13px;
+
+      & > path {
+        fill: $grayDarkest;
+        transition: fill .3s;
+      }
+    }
+  }
+
+  &__next-button > svg {
+    transform: rotate(180deg);
   }
 }

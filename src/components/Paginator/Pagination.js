@@ -49,7 +49,7 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
 
       return (
         <div className="paginated-content">
-          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} totalCount={this.props.data.length} searchText={searchText}/>
+          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} totalCount={this.props.data.length} searchText={searchText} selectPage={this.selectPage} />
           <WrappedComponent pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} {...this.props} {...wrappedProps} />
           <PageNavigation pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} selectPage={this.selectPage} />
         </div>
