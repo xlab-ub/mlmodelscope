@@ -1,6 +1,6 @@
 import React from "react";
 import BEMComponent from "./BEMComponent";
-import { ReactComponent as Cancel }  from '../../resources/icons/cancel.svg';
+import { ReactComponent as Cancel }  from '../../resources/icons/x.svg';
 export default class SearchBar extends BEMComponent {
   static defaultProps = {
     className: 'search-bar'

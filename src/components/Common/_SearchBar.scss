@@ -24,8 +24,22 @@
      &--visible {
        position: absolute;
        right: 20px;
-       width: 25px;
-       height: 25px;
+       padding: 5px;
+       background-color: $grayDarkest;
+       border-radius: 100%;
+       text-align: center;
+       color: white;
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
+       svg {
+         width: 50%;
+         path {
+           fill: white;
+         }
+       }
+
      }
     &--hidden {
       display: none;
