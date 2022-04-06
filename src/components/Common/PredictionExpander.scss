@@ -30,8 +30,10 @@
 
   &__expand {
     @include linkSmall;
+    align-items: center;
     align-self: flex-end;
     color: $azul;
+    display: flex;
     margin-top: 16px;
     transition: color 0.3s;
 

@@ -22,6 +22,9 @@ $duration: 0.5s;
 }
 
 @mixin buttonWithIconAfter($icon) {
+  align-items: center;
+  display: flex;
+
   &:after {
     background-image: url("../../resources/icons/" + $icon);
     background-repeat: no-repeat;
@@ -42,6 +45,9 @@ $duration: 0.5s;
 }
 
 @mixin buttonWithIconBefore($icon) {
+  align-items: center;
+  display: flex;
+  
   &:before {
     background-image: url("../../resources/icons/" + $icon);
     background-repeat: no-repeat;
