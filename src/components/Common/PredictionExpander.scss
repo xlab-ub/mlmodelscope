@@ -7,17 +7,19 @@
   &__predictions {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     margin-top: 16px;
     max-height: 567px;
     overflow-y: auto;
     padding: 0 16px;
+
+    & > * {
+      margin-bottom: 16px;
+    }
   }
 
   &__prediction-overflow {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     max-height: 180px;
     transition: all 500ms;
 
@@ -25,6 +27,10 @@
       max-height: 0;
       margin-top: -16px;
       overflow: hidden;
+    }
+
+    & > * {
+      margin-bottom: 16px;
     }
   }
 

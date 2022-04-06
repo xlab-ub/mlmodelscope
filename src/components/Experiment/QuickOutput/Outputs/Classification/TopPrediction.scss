@@ -6,12 +6,12 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   padding: 32px 64px;
 
   &__prediction {
     @include bodyLarge;
     font-weight: bold;
+    margin-bottom: 8px;
     text-transform: capitalize;
   }
 

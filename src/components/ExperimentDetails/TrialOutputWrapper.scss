@@ -96,7 +96,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     justify-content: center;
   }
 
@@ -108,6 +107,7 @@
     border-right: solid 3px $purple;
     border-top: solid 3px $purple;
     height: 50px;
+    margin-bottom: 16px;
     width: 50px;
   }
 

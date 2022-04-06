@@ -74,13 +74,13 @@
   &__controls {
     align-items: center;
     display: flex;
-    gap: 24px;
     justify-content: center;
   }
 
   &__cancel {
     @include linkSmall;
     color: $azul;
+    margin-right: 24px;
     transition: color .3s;
 
     &:hover {

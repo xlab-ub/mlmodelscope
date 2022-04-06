@@ -34,23 +34,21 @@
 }
 
 .rating {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 
   &__title {
     @include body;
     font-weight: bold;
+    margin-bottom: 24px;
   }
 
   &__buttons {
     display: flex;
-    gap: 16px;
     justify-content: center;
   }
 
   &__correct {
     @include ratingButton($mint, $mintLight, 19px, 13px);
+    margin-right: 16px;
   }
 
   &__incorrect {
