@@ -1,8 +1,9 @@
 @import "../../../../../App";
 
-@mixin ratingButton($color, $background, $iconWidth) {
+@mixin ratingButton($color, $background, $iconWidth, $iconHeight) {
   @include headline6;
 
+  align-items: center;
   border: 2px solid $color;
   border-radius: 26px;
   color: $charcoalLightest;
@@ -15,6 +16,7 @@
 
   & > svg {
     margin-right: 8px;
+    height: $iconHeight;
     width: $iconWidth;
 
     & > path {
@@ -48,10 +50,10 @@
   }
 
   &__correct {
-    @include ratingButton($mint, $mintLight, 19px);
+    @include ratingButton($mint, $mintLight, 19px, 13px);
   }
 
   &__incorrect {
-    @include ratingButton($pink, $pinkLight, 14px);
+    @include ratingButton($pink, $pinkLight, 14px, 14px);
   }
 }
