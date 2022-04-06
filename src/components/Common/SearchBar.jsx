@@ -19,7 +19,7 @@ export default class SearchBar extends BEMComponent {
     return (
       <span className={this.block()}>
         <input className={this.element("input")}
-               type="search"
+               type="text"
                placeholder="Search"
                name="search"
                id="search"
