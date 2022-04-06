@@ -73,12 +73,13 @@
     background: $almaMater;
     display: flex;
     gap: 16px;
-    overflow-x: auto;
+    overflow-x: hidden;
     max-height: 0;
     transition: max-height .3s, padding-top .3s, padding-bottom .3s;
 
     &--open {
       max-height: 500px;
+      overflow-x: auto;
       padding-top: 32px;
       padding-bottom: 64px;
     }
