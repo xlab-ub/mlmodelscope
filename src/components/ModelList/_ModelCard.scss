@@ -24,10 +24,12 @@
   &__model-name {
     @include linkHeadline3;
     color: $almaMater;
+    transition: color .3s;
   }
 
   &__model-name:hover {
     color: $azulDark;
+    text-decoration: underline;
   }
 
   &__model-description {
