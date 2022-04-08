@@ -43,11 +43,10 @@ $duration: 0.5s;
     }
   }
 }
-
 @mixin buttonWithIconBefore($icon) {
   align-items: center;
   display: flex;
-  
+
   &:before {
     background-image: url("../../resources/icons/" + $icon);
     background-repeat: no-repeat;
@@ -57,6 +56,18 @@ $duration: 0.5s;
     margin-right: 8px;
     width: 16px;
     transition: $duration;
+  }
+
+  &:not(:disabled) {
+    &:hover:before {
+      transform: translateX(-6px);
+    }
+  }
+}
+@mixin rotatedButtonWithIconBefore($icon) {
+  @include buttonWithIconBefore($icon);
+
+  &:before {
     transform: rotate(180deg);
   }
 
@@ -91,9 +102,9 @@ $duration: 0.5s;
   }
 }
 
-@mixin primaryButtonWithIconBefore {
+@mixin primaryButtonWithIconBefore($icon) {
   @include primaryButton;
-  @include buttonWithIconBefore;
+  @include buttonWithIconBefore($icon);
 
   &:before {
     @content
@@ -136,7 +147,7 @@ $duration: 0.5s;
 
 @mixin secondaryButtonWithIconBefore($icon) {
   @include secondaryButton('after');
-  @include buttonWithIconBefore($icon);
+  @include rotatedButtonWithIconBefore($icon);
 }
 
 .primary-button,

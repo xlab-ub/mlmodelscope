@@ -18,6 +18,7 @@ export default class ModelListWithFilters extends Component {
       selectedModels: props.selectedModels || [],
     }
     this.makeFilterGroups = this.makeFilterGroups.bind(this);
+    this.clearFilters = this.clearFilters.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -153,6 +154,13 @@ export default class ModelListWithFilters extends Component {
     }
   }
 
+  clearFilters() {
+    let filterGroups = clone(this.state.filterGroups);
+    filterGroups = filterGroups.map(filterGroup => ({...filterGroup, options: filterGroup.options.map(opt => ({...opt, isActive: false}))}));
+
+    this.setState({filterGroups: filterGroups});
+  }
+
   updateSearchText = (inputText) => {
     this.setState({searchText: inputText});
   }
@@ -214,6 +222,7 @@ export default class ModelListWithFilters extends Component {
                       deselectModel={this.deselectModel}
                       clearModels={this.clearModels}
                       runModels={this.props.runModels}
-                      add={this.props.add}/>;
+                      add={this.props.add}
+                      clearFilters={this.clearFilters}/>;
   }
 }

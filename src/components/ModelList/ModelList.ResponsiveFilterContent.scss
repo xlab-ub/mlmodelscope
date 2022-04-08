@@ -18,73 +18,32 @@
       font-size: 16px;
       padding-bottom: 30px;
       margin-bottom: 16px;
+
       &-title {
         display: flex;
         align-items: center;
         margin-bottom: 0;
         color: $charcoalLightest;
+
         svg {
           margin-right: 8px;
+
           path {
             fill: $charcoalLightest;
           }
         }
       }
+
       &-close {
         svg {
           width: 20px;
           height: 20px;
+
           path {
             fill: $charcoalLightest;
           }
         }
       }
     }
-  }
-
-  &__content {
-    @include gutters;
-    display: grid;
-    grid-template-areas:
-      "blank header"
-      "control-panel list";
-    grid-template-columns: 300px 1fr;
-    grid-column-gap: 64px;
-    margin-top: 64px;
-    padding-bottom: 64px;
-    @include desktopWidth {
-      display: block;
-    }
-  }
-
-  &__sort-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 16px;
-
-    @include mobileWidth-lg {
-      .sort-button {
-        width: 100%;
-        margin-top: 12px;
-        button {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  &__filters-search-container {
-    grid-area: control-panel;
-    @include desktopWidth {
-      display:  none;
-    }
-  }
-
-  &__search-bar {
-    margin-bottom: 36px;
-  }
-
-  &__list {
-    grid-area: list;
   }
 }

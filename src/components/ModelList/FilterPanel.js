@@ -14,7 +14,9 @@ export default class FilterPanel extends Component{
   render() {
     return(
       <div className="filter-panel">
-        <p className="filter-panel__header">Filter Models By</p>
+        {!this.props.hidePanelHeader &&
+          <p className="filter-panel__header">Filter Models By</p>
+        }
         {this.makeFilterGroupsFromState()}
       </div>
     );
