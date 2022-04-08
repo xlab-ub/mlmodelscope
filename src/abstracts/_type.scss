@@ -6,6 +6,11 @@ $sans-serif: "Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-se
   font-size: 80px;
   font-weight: 800;
   line-height: 88px;
+
+  @include mobileWidth-lg {
+    font-size: 48px;
+    line-height: 59px;
+  }
 }
 
 @mixin headline1 {

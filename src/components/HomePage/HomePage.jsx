@@ -7,7 +7,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <div className="home-page">
-        <Header splash={true}/>
+        <Header splash/>
         <div className="home-page__background-image">
           <div className="home-page__fun-gradient" />
           <div className="home-page__tint" />
