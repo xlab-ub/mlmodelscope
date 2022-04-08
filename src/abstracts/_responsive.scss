@@ -1,7 +1,7 @@
 $width-desktop: 1350px;
 $width-tablet: 800px;
-$width-phone-large: 500px;
-$width-phone-small: 375px;
+$width-mobile-large: 500px;
+$width-mobile-small: 375px;
 
 @mixin maxWidth($width) {
   @media screen and (max-width: $width) {
@@ -24,13 +24,13 @@ $width-phone-small: 375px;
     @content;
   }
 }
-@mixin phoneWidth-lg {
-  @include maxWidth($width-phone-large){
+@mixin mobileWidth-lg {
+  @include maxWidth($width-mobile-large){
     @content;
   }
 }
-@mixin phoneWidth-sm {
-  @include maxWidth($width-phone-small) {
+@mixin mobileWidth-sm {
+  @include maxWidth($width-mobile-small) {
     @content;
   }
 }

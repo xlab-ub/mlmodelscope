@@ -1,11 +1,31 @@
-$gutterSize: 150px;
+$gutterSize-desktop: 150px;
+$gutterSize-tablet: 80px;
+$gutterSize-mobile: 20px;
 
 @mixin gutters {
-  margin-left: $gutterSize;
-  margin-right: $gutterSize;
+  margin-left: $gutterSize-desktop;
+  margin-right: $gutterSize-desktop;
+
+  @include tabletWidth {
+    margin-left: $gutterSize-tablet;
+    margin-right: $gutterSize-tablet;
+  }
+  @include mobileWidth-lg {
+    margin-left: $gutterSize-mobile;
+    margin-right: $gutterSize-mobile;
+  }
 }
 
 @mixin paddingGutters {
-  padding-left: $gutterSize;
-  padding-right: $gutterSize;
+  padding-left: $gutterSize-desktop;
+  padding-right: $gutterSize-desktop;
+
+  @include tabletWidth {
+    padding-left: $gutterSize-tablet;
+    padding-right: $gutterSize-tablet;
+  }
+  @include mobileWidth-lg {
+    padding-left: $gutterSize-mobile;
+    padding-right: $gutterSize-mobile;
+  }
 }
