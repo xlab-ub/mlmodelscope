@@ -27,6 +27,12 @@
   &__tab-titles {
     border-bottom: 1px solid $smokeDarkest;
     display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   &__tab-title {
@@ -62,5 +68,8 @@
 
     align-self: flex-end;
     margin-top: 24px;
+    @include mobileWidth-lg {
+      font-size: 16px;
+    }
   }
 }
