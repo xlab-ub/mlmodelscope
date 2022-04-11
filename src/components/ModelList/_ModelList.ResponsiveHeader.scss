@@ -9,22 +9,11 @@
       grid-template-columns: 1fr;
       margin-bottom: 22px;
 
-      @mixin activeFilterWidth($size) {
-        margin-left: -$size;
-        margin-right: -$size;
-        padding-left: $size;
-        padding-right: $size;
-      }
+
 
       @include desktopWidth {
         display: grid;
-        @include activeFilterWidth(150px);
-      }
-      @include tabletWidth {
-        @include activeFilterWidth(80px);
-      }
-      @include mobileWidth-lg {
-        @include activeFilterWidth(20px);
+        @include marginAndPaddingGutters();
       }
 
       &-row {
