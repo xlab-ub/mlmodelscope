@@ -5,15 +5,26 @@
     &-active-filters {
       background: rgba(30,99,242,0.05);
       padding: 15px 80px;
-      display: grid;
+      display: none;
       grid-template-columns: 1fr;
-      margin-left: -80px;
-      margin-right: -80px;
       margin-bottom: 22px;
+
+      @mixin activeFilterWidth($size) {
+        margin-left: -$size;
+        margin-right: -$size;
+        padding-left: $size;
+        padding-right: $size;
+      }
+
+      @include desktopWidth {
+        display: grid;
+        @include activeFilterWidth(150px);
+      }
+      @include tabletWidth {
+        @include activeFilterWidth(80px);
+      }
       @include mobileWidth-lg {
-        margin-left: -20px;
-        margin-right: -20px;
-        padding: 15px 20px;
+        @include activeFilterWidth(20px);
       }
 
       &-row {
