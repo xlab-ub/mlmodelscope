@@ -10,7 +10,7 @@ export default function useBEMNaming(baseName, state = {}) {
 
   const getElement = (el, extra) => {
     const modifiers = baseModifiers[el];
-    let classes = [`${blockName}__${el}`];
+    let classes = el.split(" ").map(e => `${blockName}__${e}`);
 
     if (typeof(modifiers) === 'object') {
       Object.keys(modifiers).map(key => {
