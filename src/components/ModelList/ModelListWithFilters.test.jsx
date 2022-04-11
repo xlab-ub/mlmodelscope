@@ -33,6 +33,20 @@ describe('The Model List Filters', () => {
     modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} machineOptions={defaultMachines} />);
   });
 
+  it("clearFilters clears all filters", () => {
+    const instance = modelList.instance();
+    let filterGroup = instance.state.filterGroups[0];
+    let target = "classification";
+    instance.toggleFilterSingle(filterGroup, target);
+
+    instance.clearFilters();
+
+    let filters = instance.state.filterGroups.filter(group => group.options.filter(opt => opt.isActive).length > 0);
+
+    expect(filters.length).toEqual(0);
+
+  });
+
   it('creates framework options for filter group', () => {
     let frameworkFilterGroup = modelList.state("filterGroups").find(group => group.header === "Frameworks");
     expect(frameworkFilterGroup.options).toEqual(defaultFrameworks);
