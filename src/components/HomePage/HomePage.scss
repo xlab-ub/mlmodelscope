@@ -66,6 +66,10 @@
     margin-bottom: 40px;
     margin-top: 32px;
     width: 355px;
+
+    @include mobileWidth-lg {
+      width: 230px;
+    }
   }
 
   &__subtitle {

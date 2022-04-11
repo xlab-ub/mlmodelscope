@@ -1,4 +1,4 @@
-import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right.svg";
+import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right-white.svg";
 import React, {useState} from "react";
 import {ReactComponent as ChevronDown} from "./../../resources/icons/chevron-down-azul.svg";
 
@@ -43,6 +43,5 @@ export function HeaderMenu({getElement}) {
         link={"/models"}
         display={"Browse model library"}
       />
-
     </>);
 }
