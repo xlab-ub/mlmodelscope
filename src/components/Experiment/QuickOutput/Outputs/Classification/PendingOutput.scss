@@ -11,6 +11,11 @@
   padding: 32px;
   width: 0;
 
+  @include desktopWidth {
+    width: 90%;
+    margin-left: 5%;
+  }
+
   &__title {
     margin-bottom: 32px;
   }

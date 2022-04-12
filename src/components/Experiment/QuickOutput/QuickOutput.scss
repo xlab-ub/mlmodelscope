@@ -23,6 +23,14 @@
 
   &__content {
     display: flex;
+    @include desktopWidth {
+      flex-direction: column;
+      > * {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+      }
+    }
   }
 
   &__footer {
