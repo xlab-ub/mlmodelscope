@@ -103,6 +103,9 @@
 
       .header__arrow-icon {
         transform: translateX(6px);
+        path {
+          fill: $purple;
+        }
       }
     }
 
@@ -150,6 +153,9 @@
     margin-right: 6px;
     text-decoration: none;
     transition: color 0.3s;
+  }
+  svg path {
+    fill: $azul;
   }
 
   &__splash &__library-link-container {
@@ -247,6 +253,9 @@
 
         .header__arrow-icon {
           transform: translateX(6px);
+           path {
+            fill: $purple;
+          }
         }
       }
       &:last-child {
