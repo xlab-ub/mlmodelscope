@@ -3,6 +3,7 @@ import ModelDetailHeader from "./ModelDetailHeader";
 import QuickInput from "../Experiment/QuickInput/QuickInput";
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
 import Header from "../Header/Header";
+import ModelDescription from "./ModelDescription";
 
 const SampleInputs = [
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png',
@@ -23,6 +24,7 @@ export default class ModelDetailPage extends Component {
         <div className="model-detail-page__content">
           {this.renderContent()}
         </div>
+        <ModelDescription model={this.props.model} />
       </div>
     )
   }

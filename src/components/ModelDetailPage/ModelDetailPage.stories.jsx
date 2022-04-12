@@ -54,7 +54,13 @@ Standard.args = {
       "description": "the output label",
       "type": "classification"
     },
-    "version": "2.22"
+    "version": "2.22",
+    "url": {
+      "citation": "https://github.com",
+      "github": "https://github.com",
+      "link1": "https://pytorch.org/vision/stable/models.html",
+      "link2": "https://pytorch.org/vision/stable/models.html"
+    }
   }
 }
 
@@ -102,7 +108,13 @@ WithTrialOutput.args = {
       "description": "the output label",
       "type": "classification"
     },
-    "version": "2.22"
+    "version": "2.22",
+    "url": {
+      "citation": "https://github.com",
+      "github": "https://github.com",
+      "link1": "https://pytorch.org/vision/stable/models.html",
+      "link2": "https://pytorch.org/vision/stable/models.html"
+    }
   },
   trialOutput: {
     "id": "7618d464-b5ed-432f-8f88-b33504c6bb0a",
@@ -217,7 +229,13 @@ WithPendingTrialOutput.args = {
       "description": "the output label",
       "type": "classification"
     },
-    "version": "2.22"
+    "version": "2.22",
+    "url": {
+      "citation": "https://github.com",
+      "github": "https://github.com",
+      "link1": "https://pytorch.org/vision/stable/models.html",
+      "link2": "https://pytorch.org/vision/stable/models.html"
+    }
   },
   trialOutput: {
     "id": "7618d464-b5ed-432f-8f88-b33504c6bb0a",
