@@ -24,14 +24,15 @@ export default function Header(props) {
         </a>
       </div>
       <div hidden={showMenu} aria-hidden={showMenu} className={getElement("menu")}>
-        <HeaderMenu getElement={getElement} />
+        <HeaderMenu getElement={getElement} testMenus={props.testMenus} />
       </div>
       <button onClick={toggleMenu} className={getElement("responsive-menu-icon")}>
-        {showMenu ? <X fill={"white"} /> :  <MenuIcon/> }
+        {showMenu ? <X fill={"white"} /> :  <MenuIcon /> }
       </button>
       </div>
+
       <div hidden={!showMenu} aria-hidden={!showMenu} className={getElement("responsive-menu")}>
-        <HeaderMenu getElement={getElement} />
+        <HeaderMenu getElement={getElement} isResponsiveMenu testMenus={props.testMenus} />
       </div>
     </div>
     </>
