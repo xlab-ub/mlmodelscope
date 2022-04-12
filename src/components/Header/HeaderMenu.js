@@ -48,21 +48,7 @@ export function HeaderMenu({getElement, isResponsiveMenu, testMenus}) {
       </>
 
 
-    return <>
-      <div className={getElement("library-link-container")}>
-        <div className={getElement("library-link-container-expandable")}>
-
-          <div className={getElement("library-link-container-link")}>
-            <a className={getElement("library-link")} href={link}>{display}</a>
-            <RightArrowIcon className={getElement("arrow-icon")}/>
-          </div>
-          <button onClick={() => setIsOpen(!isOpen)} className={getButtonClassName()}>
-            <ChevronDown fill={"white"} />
-          </button>
-        </div>
-
-      </div>
-    </>
+    return <LinkItem link={link} display={display} />
   }
 
   if(testMenus){
