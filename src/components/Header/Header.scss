@@ -156,6 +156,11 @@
   }
   svg path {
     fill: $azul;
+
+    @include mobileWidth-lg {
+      fill: $white;
+    }
+
   }
 
   &__splash &__library-link-container {
