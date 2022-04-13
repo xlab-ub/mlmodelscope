@@ -9,6 +9,11 @@
   flex-direction: column;
   padding: 64px 40px 40px 40px;
 
+  @include  mobileWidth-lg {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   &__title {
     margin-bottom: 8px;
   }
@@ -23,12 +28,30 @@
     flex-direction: column;
     margin-top: 32px;
     padding: 40px;
+    @include mobileWidth-lg {
+      padding-left: 16px;
+      padding-right: 16px;
+
+    }
   }
 
   &__tab-titles {
     border-bottom: 1px solid $smokeDarkest;
     display: flex;
     overflow-x: scroll;
+    margin-right: -40px;
+    margin-left: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    @include mobileWidth-lg {
+      margin-right: -16px;
+      margin-left: -16px;
+      padding-left: 16px;
+      padding-right: 16px;
+
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -69,6 +92,7 @@
 
     align-self: flex-end;
     margin-top: 24px;
+    line-height: 16px;
     @include mobileWidth-lg {
       font-size: 16px;
     }

@@ -36,12 +36,19 @@
     @include mobileWidth-lg {
       display: block;
     }
+    @include mobileWidth-lg {
+
+      > svg > path {
+        fill: $azulDarkest !important;
+      }
+    }
+
   }
 
   &__splash {
     background: transparent;
     svg path {
-      fill: white;
+      fill: $white;
     }
   }
 
