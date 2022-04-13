@@ -23,11 +23,10 @@
 
   &__content {
     display: flex;
-    @include desktopWidth {
+    @include maxWidth(1000px) {
       flex-direction: column;
       > * {
-        width: 90%;
-        margin-left: 5%;
+        width: 100%;
         margin-top: 20px;
       }
     }

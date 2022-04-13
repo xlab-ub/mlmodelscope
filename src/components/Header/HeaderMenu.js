@@ -1,6 +1,6 @@
 import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right-white.svg";
 import React, {useState} from "react";
-import {ReactComponent as ChevronDown} from "./../../resources/icons/chevron-down-azul.svg";
+import {ReactComponent as ChevronDown} from "./../../resources/icons/chevron-down-white.svg";
 
 export function HeaderMenu({getElement, isResponsiveMenu, testMenus}) {
   const LinkItem = ({link, display, isSubMenu}) => {

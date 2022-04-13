@@ -10,3 +10,13 @@
     text-transform: uppercase;
   }
 }
+.model-list-page__filter-content-header-close {
+  path {
+    transition: 0.5s;
+  }
+  &:hover {
+    path {
+      fill: $grayDarkest;
+    }
+  }
+}

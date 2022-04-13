@@ -13,7 +13,7 @@
 
       @include desktopWidth {
         display: grid;
-        @include marginAndPaddingGutters();
+        @include negativeMarginAndPaddingGutters();
       }
 
       &-row {
@@ -28,7 +28,12 @@
       }
       &-clear {
         color: $charcoalLightest;
-        text-decoration-line: underline;
+        border-bottom: 1px solid $charcoalLightest;
+        transition: 0.5s;
+
+        &:hover {
+          border-bottom-color: transparent;
+        }
       }
 
     }

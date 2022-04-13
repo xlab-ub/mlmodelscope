@@ -1,4 +1,5 @@
 $gutterSize-desktop: 150px;
+$gutterSize-tablet-lg: 100px;
 $gutterSize-tablet: 80px;
 $gutterSize-mobile: 20px;
 
@@ -19,6 +20,11 @@ $gutterSize-mobile: 20px;
 @mixin paddingGutters {
   padding-left: $gutterSize-desktop;
   padding-right: $gutterSize-desktop;
+
+  @include desktopWidth {
+    padding-left: $gutterSize-tablet-lg;
+    padding-right: $gutterSize-tablet-lg;
+  }
 
   @include tabletWidth {
     padding-left: $gutterSize-tablet;
@@ -42,6 +48,11 @@ $gutterSize-mobile: 20px;
     margin-right: -$gutterSize-mobile;
   }
 }
+@mixin negativeMarginAndPaddingGutters() {
+  @include paddingGutters;
+  @include negativeMarginGutters;
+}
+
 @mixin marginAndPaddingGutters() {
   @include paddingGutters;
   @include negativeMarginGutters;

@@ -10,10 +10,9 @@
   margin-left: 16px;
   padding: 32px;
   width: 0;
-
-  @include desktopWidth {
-    width: 90%;
-    margin-left: 5%;
+  @include maxWidth(1000px) {
+    margin-left: 0;
+    width: 100%;
   }
 
   &__title {
