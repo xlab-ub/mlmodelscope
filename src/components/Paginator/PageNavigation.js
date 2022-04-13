@@ -27,24 +27,26 @@ export default class PageNavigation extends Component {
       if (pages.length < 6) {
         return pages.map(makePageButton);
       }
-      let core = pages.slice(Math.max(0, selectedPage - 3), Math.min(pages.length + 1, selectedPage + 2));
+      let core = pages.slice(Math.max(0, selectedPage - 2), Math.min(pages.length + 1, selectedPage + 1));
       let buttons = [];
 
       if (!core.includes(1)) {
         buttons.push(makePageButton(1));
 
-        if (selectedPage > 4)
+        if (selectedPage > 2)
           buttons.push(makeEllipsisButton(2));
       }
 
       buttons.push(...core.map(makePageButton));
 
       if (!core.includes(pages.length)) {
-        if (selectedPage < pages.length - 3)
+        if (selectedPage < pages.length - 1)
           buttons.push(makeEllipsisButton(pages.length - 1));
 
         buttons.push(makePageButton(pages.length));
       }
+
+      console.log(buttons);
 
       return buttons;
     }
@@ -59,7 +61,9 @@ export default class PageNavigation extends Component {
     }
 
     function makeEllipsisButton(key) {
-      return (<div className="page-nav__placeholder" key={key}><Icon icon="ellipsis" /></div>);
+      const rng = () => Math.random().toString(21);
+
+      return (<div className="page-nav__placeholder" key={key + rng()}><Icon icon="ellipsis" /></div>);
     }
   }
 

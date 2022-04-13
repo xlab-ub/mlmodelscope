@@ -41,6 +41,9 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
       this.setState({
         selectedPage
       });
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      },250)
     }
 
     render() {

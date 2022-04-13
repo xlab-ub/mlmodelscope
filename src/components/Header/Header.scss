@@ -1,5 +1,52 @@
 @import "../../App";
-
+@keyframes slideUp {
+  0% {
+    max-height:unset;
+  }
+  1% {
+    max-height:100vh;
+    display: block;
+  }
+  to {
+    max-height:0;
+    display: none;
+  }
+}
+@keyframes slideDown {
+  0% {
+    max-height:0;
+    display: none;
+  }
+  99% {
+    max-height:100vh;
+    display: block;
+  }
+  to {
+    max-height:unset
+  }
+}
+@keyframes expandOut {
+  0% {
+    max-height: unset;
+  }
+  1% {
+    max-height: 0% ;
+  }
+  100% {
+    max-height: 100%;
+  }
+}
+@keyframes collapseIn {
+  0% {
+    max-height: unset;
+  }
+  1% {
+    max-height: 100%;
+  }
+  100% {
+    max-height: 0%;
+  }
+}
 .header {
   @include paddingGutters();
   background: white;
@@ -24,8 +71,9 @@
   }
 
   &__menu {
+    align-self: flex-end;
     display: flex;
-    @include  mobileWidth-lg {
+    @include  tabletWidth {
       display: none;
     }
   }
@@ -33,22 +81,88 @@
   &__responsive-menu-icon {
     display: none;
     align-self: flex-end;
-    @include mobileWidth-lg {
+    @include tabletWidth {
       display: block;
     }
-    @include mobileWidth-lg {
+    @include tabletWidth {
+      width: 25px;
+      height: 10px;
+      padding: 12px;
+      position: relative;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: .5s ease-in-out;
+      -moz-transition: .5s ease-in-out;
+      -o-transition: .5s ease-in-out;
+      transition: .5s ease-in-out;
+      cursor: pointer;
+      span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: $azul;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: .25s ease-in-out;
+        -moz-transition: .25s ease-in-out;
+        -o-transition: .25s ease-in-out;
+        transition: .25s ease-in-out;
+      }
 
-      > svg > path {
-        fill: $azulDarkest !important;
+
+      span:nth-child(1) {
+        top: 0;
+      }
+      span:nth-child(2), span:nth-child(3) {
+        top: 7px;
+      }
+      span:nth-child(4) {
+        top: 15px;
+      }
+      &-open {
+        span:nth-child(1) {
+          top: 18px;
+          width: 0%;
+          left: 50%;
+        }
+        span:nth-child(2) {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        span:nth-child(3) {
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        span:nth-child(4) {
+          top: 18px;
+          width: 0%;
+          left: 50%;
+        }
       }
     }
+
 
   }
 
   &__splash {
     background: transparent;
-    svg path {
-      fill: $white;
+
+    .header__responsive-menu-icon {
+      span {
+        background-color: $white;
+      }
     }
   }
 
@@ -129,6 +243,13 @@
       padding-left: 26px;
       padding-right: 26px;
 
+      &:hover {
+        background-color: $azulDark;
+        svg path {
+          fill: $electricGreen;
+        }
+      }
+
       svg {
         width: 12px;
         transition: transform 0.5s;
@@ -164,7 +285,7 @@
   svg path {
     fill: $azul;
 
-    @include mobileWidth-lg {
+    @include tabletWidth {
       fill: $white;
     }
 
@@ -204,8 +325,12 @@
     bottom: 0;
     left: 0;
 
-    @include negativeMarginAndPaddingGutters();
+    @include negativeMarginGutters();
+
+
     box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+
+
 
     .header {
       &__library-link-container {
@@ -220,13 +345,22 @@
 
       }
     }
+
+    &-children {
+      animation: slideUp 0.5s forwards;
+      display: none;
+      &-open {
+        animation: slideDown 0.5s forwards;
+        display: block;
+      }
+    }
   }
   &__shown-menu {
     @include negativeMarginAndPaddingGutters();
-    @include mobileWidth-lg {
+    @include tabletWidth {
       margin-left: 0;
     }
-    background: $richNavy;
+    background: $white;
     flex-direction: column;
     align-items: flex-start;
     padding-bottom: 0;
@@ -235,12 +369,10 @@
     .header__row {
       padding-bottom: 11px;
     }
-    .header__logotype {
-      color: $white;
-      -webkit-text-fill-color: $white;
-    }
+
 
   }
+
 
   &__responsive-menu {
     &-section {
@@ -260,13 +392,13 @@
     &-item {
       &:hover {
         .header__library-link {
-          color: $purple;
+          color: $electricGreen;
         }
 
         .header__arrow-icon {
           transform: translateX(6px);
            path {
-            fill: $purple;
+            fill: $electricGreen;
           }
         }
       }
@@ -291,4 +423,12 @@
     border-bottom: none;
   }
 
+}
+.header__splash.header__shown-menu {
+  background: $richNavy;
+
+  .header__logotype {
+    color: $white;
+    -webkit-text-fill-color: $white;
+  }
 }

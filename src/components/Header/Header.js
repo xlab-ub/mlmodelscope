@@ -1,7 +1,5 @@
 import React from 'react';
 import "./Header.scss"
-import {ReactComponent as MenuIcon} from "../../resources/icons/menu.svg";
-import {ReactComponent as X} from "../../resources/icons/x.svg";
 import {HeaderMenu} from "./HeaderMenu";
 import {useHeaderControl} from "./useHeaderControl";
 
@@ -26,8 +24,11 @@ export default function Header(props) {
       <div hidden={showMenu} aria-hidden={showMenu} className={getElement("menu")}>
         <HeaderMenu getElement={getElement} testMenus={props.testMenus} />
       </div>
-      <button onClick={toggleMenu} className={getElement("responsive-menu-icon")}>
-        {showMenu ? <X fill={"white"} /> :  <MenuIcon /> }
+      <button onClick={toggleMenu} className={getElement(`responsive-menu-icon ${showMenu && "responsive-menu-icon-open"}`)}>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       </div>
 

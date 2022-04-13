@@ -30,7 +30,9 @@ export function HeaderMenu({getElement, isResponsiveMenu, testMenus}) {
         getElement("library-link-container-expand library-link-container-expand-rotated") :
         getElement("library-link-container-expand");
 
-
+      const getChildContainerClassName = () => isOpen ?
+          getElement("responsive-menu-children responsive-menu-children-open") :
+        getElement("responsive-menu-children");
 
     if(isResponsiveMenu)
       return <>
@@ -43,8 +45,9 @@ export function HeaderMenu({getElement, isResponsiveMenu, testMenus}) {
               <ChevronDown fill={"white"} />
             </button>
           </div>
-
-        {isOpen && children}
+          <div className={getChildContainerClassName()}>
+            {children}
+          </div>
       </>
 
 
