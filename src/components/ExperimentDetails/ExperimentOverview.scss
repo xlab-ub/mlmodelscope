@@ -4,11 +4,17 @@
   box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
   padding: 24px;
   &__content-wrapper {
-    @include tabletWidth {
+    @include desktopWidth {
       display: flex;
+      &-item {
+        margin-left: 46px;
+      }
     }
-    @include mobileWidth-lg {
+    @include tabletWidth {
       flex-direction: column;
+      &-item {
+        margin-left: 0;
+      }
     }
   }
   &__title {

@@ -27,7 +27,7 @@ export default class ExperimentOverview extends BEMComponent {
             <p className="experiment-overview__header">Input:</p>
             <img className="experiment-overview__input-image" src={this.props.inputs[0]} alt="Input image" />
           </div>
-          <div>
+          <div className={this.element("content-wrapper-item")}>
             <p className="experiment-overview__header">Task:</p>
             <div className="experiment-overview__task-tag">
               <ModelTag type="task" content={task.name} />
