@@ -31,10 +31,16 @@ export default class TrialOutputWrapper extends Component {
         <div className="trial-output-wrapper__content-box">
           <div className="trial-output-wrapper__info-row">
             <dl className="trial-output-wrapper__model-details">
+              <div className={"trial-output-wrapper__model-details-section"}>
+
               <dt className="trial-output-wrapper__detail-label">Framework:</dt>
               <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework" content={model.framework.name} /></dd>
+              </div>
+              <div className={"trial-output-wrapper__model-details-section"}>
               <dt className="trial-output-wrapper__detail-label">Machines:</dt>
               {machineTags}
+              </div>
+
             </dl>
             <div className="trial-output-wrapper__link-box">
               {/*<a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>*/}

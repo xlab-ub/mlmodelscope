@@ -9,5 +9,10 @@
     @include headline1;
     color: white;
     margin-bottom: 0;
+
+    @include mobileWidth-lg {
+      font-size: 48px;
+      line-height: 42px;
+    }
   }
 }

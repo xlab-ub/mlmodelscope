@@ -31,6 +31,11 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    @include maxWidth(710px) {
+      flex-direction: column;
+      margin-bottom: 58px;
+    }
   }
 
   &__trial {

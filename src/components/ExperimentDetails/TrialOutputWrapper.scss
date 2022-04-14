@@ -25,6 +25,7 @@
     color: white;
     text-decoration: underline;
     transition: color 0.3s;
+    word-wrap: anywhere;
   }
 
   &__model-name:hover {
@@ -53,12 +54,28 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+
   }
 
   &__model-details {
     align-items: baseline;
     display: flex;
     margin-bottom: 0;
+
+    @include tabletWidth {
+      flex-direction: column;
+    }
+    &-section {
+      display: flex;
+
+      @include  tabletWidth {
+        margin-top: 24px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
   }
 
   &__detail-label {
