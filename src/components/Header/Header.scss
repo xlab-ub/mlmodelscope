@@ -4,11 +4,12 @@
     max-height:unset;
   }
   1% {
-    max-height:100vh;
+    transform: scaleY(1);
     display: block;
   }
   to {
-    max-height:0;
+    transform: scaleY(0);
+    height: 0;
     display: none;
   }
 }
@@ -241,7 +242,7 @@
     &-expand {
       border-left: 1px solid $electricGreen;
       padding-left: 26px;
-      padding-right: 26px;
+      padding-right: 46px;
 
       &:hover {
         background-color: $azulDark;
@@ -319,41 +320,7 @@
   }
 
   &__responsive-menu {
-    background-color: $azulDarkest;
-    width: 100vw;
-    position: static;
-    bottom: 0;
-    left: 0;
 
-    @include negativeMarginGutters();
-
-
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
-
-
-
-    .header {
-      &__library-link-container {
-        padding-top: 16px;
-        padding-bottom: 16px;
-        svg path {
-          fill: $white;
-        }
-      }
-      &__library-link {
-        color: $white;
-
-      }
-    }
-
-    &-children {
-      animation: slideUp 0.5s forwards;
-      display: none;
-      &-open {
-        animation: slideDown 0.5s forwards;
-        display: block;
-      }
-    }
   }
   &__shown-menu {
     @include negativeMarginAndPaddingGutters();
@@ -375,13 +342,51 @@
 
 
   &__responsive-menu {
+    display: none;
+    background-color: $azulDarkest;
+    width: 100vw;
+    position: static;
+    bottom: 0;
+    left: 0;
+    @include negativeMarginGutters();
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+
+    .header {
+      &__library-link-container {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        svg path {
+          fill: $white;
+        }
+      }
+      &__library-link {
+        color: $white;
+      }
+    }
+    &-children {
+      width: 100%;
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height 0.5s linear;
+
+      &-open {
+        max-height: 1000px;
+
+      }
+      &-closing {
+        max-height: 0;
+
+      }
+    }
+    &-open {
+      display: block;
+    }
     &-section {
       display: flex;
       justify-content: space-between;
       border-bottom: 1px solid $electricGreen;
-      margin-left: -20px;
       margin-right: -20px;
-      padding-left: 20px;
+
       &:last-child {
         border-bottom: none;
       }
@@ -390,6 +395,16 @@
       }
     }
     &-item {
+      border-bottom: 1px solid $electricGreen;
+      margin-right: -20px;
+      padding: 16px 20px 16px 80px;
+
+      @include mobileWidth-lg {
+        padding-left: 20px;
+      }
+      display: flex;
+      align-items: center;
+
       &:hover {
         .header__library-link {
           color: $electricGreen;
@@ -406,12 +421,6 @@
         border-bottom: none;
       }
 
-      border-bottom: 1px solid $electricGreen;
-      margin-left: -20px;
-      margin-right: -20px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
 
       &-expandable {
         justify-content: space-between;

@@ -32,7 +32,7 @@ export default function Header(props) {
       </button>
       </div>
 
-      <div hidden={!showMenu} aria-hidden={!showMenu} className={getElement("responsive-menu")}>
+      <div aria-hidden={!showMenu} className={getElement(`responsive-menu ${showMenu && "responsive-menu-open"}`)}>
         <HeaderMenu getElement={getElement} isResponsiveMenu testMenus={props.testMenus} />
       </div>
     </div>
