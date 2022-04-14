@@ -67,17 +67,26 @@
 
   &__heading {
     margin-bottom: 6px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
   }
 
   &__text {
     @include body;
     margin-bottom: 4px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
   }
 
   &__warning {
     @include headline5;
     color: $charcoalLightest;
     margin-bottom: 40px;
+    text-align: center;
   }
 
   &__controls {
