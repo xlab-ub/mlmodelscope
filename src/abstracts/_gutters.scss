@@ -7,6 +7,11 @@ $gutterSize-mobile: 20px;
   margin-left: $gutterSize-desktop;
   margin-right: $gutterSize-desktop;
 
+  @include desktopWidth {
+    margin-left: $gutterSize-tablet-lg;
+    margin-right: $gutterSize-tablet-lg;
+  }
+
   @include tabletWidth {
     margin-left: $gutterSize-tablet;
     margin-right: $gutterSize-tablet;
