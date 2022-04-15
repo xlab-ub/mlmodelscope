@@ -93,8 +93,6 @@
     align-self: flex-end;
     margin-top: 24px;
     line-height: 16px;
-    @include mobileWidth-lg {
-      font-size: 16px;
-    }
+
   }
 }

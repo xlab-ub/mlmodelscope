@@ -38,15 +38,19 @@ export default class SelectedModelsBanner extends BEMComponent {
     return (
       <div className={this.block()}>
         <div className={this.element('controls')}>
-          <button className={this.element('toggle')} onClick={() => this.toggle()}>
-            <MenuToggle className={this.element('toggle-icon')} />
-            <span className={this.element('toggle-text')}>
+          <div>
+            <button className={this.element('toggle')} onClick={() => this.toggle()}>
+              <MenuToggle className={this.element('toggle-icon')} />
+            </button>
+          </div>
+          <div className={this.element("controls-col")}>
+ <span className={this.element('toggle-text')}>
               Models selected to add to experiment: {this.props.selectedModels.length}
             </span>
-          </button>
-          { this.getRemoveButton() }
-          <div className={this.element('run')}>
-            <Button content="Run models" isPrimary={false} isSmall={true} onClick={() => this.props.runModels(this.props.selectedModels)} />
+            { this.getRemoveButton() }
+            <div className={this.element('run')}>
+              <Button content="Run models" isPrimary={false} isSmall={true} onClick={() => this.props.runModels(this.props.selectedModels)} />
+            </div>
           </div>
         </div>
         <div className={this.element('list')}>
