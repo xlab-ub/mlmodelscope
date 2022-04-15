@@ -45,13 +45,19 @@ describe('withPagination()', () => {
 
   it('passes page navigation props to PageNavigationSummary', () => {
     wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} selectedPage={2}/>);
-
-    expect(wrapper.find(PageNavigationSummary).props()).toEqual({
-      data: [13],
-      pageCount: 2,
-      selectedPage: 2,
-      totalCount: 13
-    });
+    const props = wrapper.find(PageNavigationSummary).props();
+    expect(props.data).toEqual([13]);
+    expect(props.pageCount).toEqual(2);
+    expect(props.searchText).toBeUndefined();
+    expect(props.selectedPage).toEqual(2);
+    expect(props.totalCount).toEqual(13);
+    // expect(wrapper.find(PageNavigationSummary).props()).toEqual({
+    //   data: [13],
+    //   pageCount: 2,
+    //   searchText: undefined,
+    //   selectedPage: 2,
+    //   totalCount: 13
+    // });
   });
 
   it('splits input data into pages of 12 items', () => {

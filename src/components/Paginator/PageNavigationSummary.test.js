@@ -11,7 +11,7 @@ describe('PageNavigationSummary', () => {
   });
 
   it('renders text from pagination props', () => {
-    expect(wrapper.text()).toEqual('page 2 of 3, showing 4 of 25 models');
+    expect(wrapper.find('.page-nav-summary__text').text()).toEqual('page 2 of 3, showing 4 of 25 models');
   });
 
   it('bolds the correct text', () => {
@@ -24,12 +24,12 @@ describe('PageNavigationSummary', () => {
   it('does not add for "" if search term is empty string', () => {
     wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchText="" />);
 
-    expect(wrapper.text()).toEqual('page 3 of 4, showing 4 of 30 models');
+    expect(wrapper.find('.page-nav-summary__text').text()).toEqual('page 3 of 4, showing 4 of 30 models');
   });
 
   it('adds search term if one is active', () => {
     wrapper = shallow(<PageNavigationSummary data={[1, 2, 3, 4]} pageCount={4} selectedPage={3} totalCount={30} searchText="illiac" />);
 
-    expect(wrapper.text()).toEqual('page 3 of 4, showing 4 of 30 models for "illiac"');
+    expect(wrapper.find('.page-nav-summary__text').text()).toEqual('page 3 of 4, showing 4 of 30 models for "illiac"');
   });
 });

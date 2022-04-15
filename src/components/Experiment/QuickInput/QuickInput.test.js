@@ -18,7 +18,7 @@ describe('Experiment Quick Input Component', () => {
     });
 
     it('the correct container class', () => {
-      expect(wrapper.find('.quick-input').length).toBe(1);
+      expect(wrapper.find('.quick-input').hostNodes().length).toBe(1);
     });
 
     it('the correct title', () => {

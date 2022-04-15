@@ -29,21 +29,21 @@ describe('PageNavigation', () => {
     const nav = shallow(<PageNavigation pageCount={6} selectedPage={1} />);
     const pageButtons = nav.find('.page-nav__page-buttons');
 
-    expect(pageButtons.children().length).toEqual(5);
+    expect(pageButtons.children().length).toEqual(4);
     expect(pageButtons.childAt(0).text()).toEqual('1');
-    expect(pageButtons.childAt(3).text()).toEqual('<Icon />');
-    expect(pageButtons.childAt(4).text()).toEqual('6');
+    expect(pageButtons.childAt(2).text()).toEqual('<Icon />');
+    expect(pageButtons.childAt(3).text()).toEqual('6');
   });
 
   it('adds correct ellipses when page 5 of 10 is selected', () => {
     const nav = shallow(<PageNavigation pageCount={10} selectedPage={5} />);
     const pageButtons = nav.find('.page-nav__page-buttons');
 
-    expect(pageButtons.children().length).toEqual(9);
+    expect(pageButtons.children().length).toEqual(7);
     expect(pageButtons.childAt(0).text()).toEqual('1');
     expect(pageButtons.childAt(1).text()).toEqual('<Icon />');
-    expect(pageButtons.childAt(7).text()).toEqual('<Icon />');
-    expect(pageButtons.childAt(8).text()).toEqual('10');
+    expect(pageButtons.childAt(5).text()).toEqual('<Icon />');
+    expect(pageButtons.childAt(6).text()).toEqual('10');
   });
 
   describe('user interaction', () => {
