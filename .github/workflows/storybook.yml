@@ -5,6 +5,8 @@ on:
       - develop
     paths:
       - 'src/**'
+  workflow_dispatch:
+      
 
 jobs:
   build:
