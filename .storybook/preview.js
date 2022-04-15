@@ -1,6 +1,4 @@
-import 'antd/dist/antd.css';
 import "../src/Stopgap.scss";
-
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
