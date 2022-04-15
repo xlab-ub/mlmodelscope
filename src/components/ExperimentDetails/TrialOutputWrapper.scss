@@ -64,12 +64,13 @@
 
     @include tabletWidth {
       flex-direction: column;
+      justify-content: flex-start;
     }
     &-section {
       display: flex;
 
       @include  tabletWidth {
-        margin-top: 24px;
+        margin-top: 8px;
 
         &:first-child {
           margin-top: 0;

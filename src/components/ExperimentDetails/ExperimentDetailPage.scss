@@ -16,6 +16,9 @@
     @include headline2;
     color: $almaMater;
     margin-bottom: 42px;
+    @include  maxWidth(710px) {
+      margin-bottom: 24px;
+    }
   }
 
   &__overview-section {
@@ -29,12 +32,12 @@
 
   &__trials-header-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
 
     @include maxWidth(710px) {
       flex-direction: column;
-      margin-bottom: 58px;
+      margin-bottom: 26px;
     }
   }
 
