@@ -24,6 +24,7 @@
     z-index: 25;
     top: 0;
     padding: 20px;
+    padding-top:0;
     animation: 0.5s slideInDown forwards;
 
     &-closing {
@@ -39,7 +40,10 @@
       font-size: 16px;
       padding-bottom: 30px;
       margin-bottom: 16px;
-
+      position: sticky;
+      top: 0;
+      background-color: #fff;
+      padding-top: 20px;
       &-title {
         display: flex;
         align-items: center;

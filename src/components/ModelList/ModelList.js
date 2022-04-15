@@ -55,7 +55,7 @@ export default class ModelList extends Component {
         <div
           aria-hidden={this.state.showFilterMenu}
           hidden={this.state.showFilterMenu}
-          className="model-list-page__content"
+          className={`model-list-page__content ${this.state.showFilterMenu && "model-list-page__content-hidden"}`}
         >
           <ModelListResponsiveHeader
             updateSearchText={this.props.updateSearchText}

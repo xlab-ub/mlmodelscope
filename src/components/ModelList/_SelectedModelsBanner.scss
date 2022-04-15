@@ -15,6 +15,8 @@
     position: relative;
     transition: box-shadow .3s;
     z-index: 1;
+    align-items: flex-start;
+
     &-col {
       display: flex;
       align-items: center;
@@ -44,11 +46,9 @@
   &__toggle {
     align-items: center;
     display: flex;
+    margin-top: 24px;
 
-    @include  maxWidth(925px) {
-      margin-top: 0;
 
-    }
   }
 
   &__toggle-icon {

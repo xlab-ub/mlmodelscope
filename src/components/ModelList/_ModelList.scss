@@ -1,7 +1,7 @@
 .model-list-page {
   &__filter-content {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     z-index: 25;
     background-color: $white;
@@ -55,6 +55,10 @@
     @include desktopWidth {
       display: block;
     }
+    &-hidden {
+      display: none;
+    }
+
   }
 
   &__sort-container {

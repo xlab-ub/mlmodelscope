@@ -17,6 +17,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 16px;
+    gap: 8px;
   }
 
   &__divider {
@@ -28,6 +29,8 @@
     @include linkHeadline3;
     color: $almaMater;
     transition: color .3s;
+    text-align: left;
+
   }
 
   &__model-name:hover {
