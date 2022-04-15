@@ -72,6 +72,11 @@
     &-link {
       color: $white;
       @include linkSmall;
+
+      &:hover {
+        color: $electricGreen;
+      }
+
       &-padded {
         padding-left: 25px;
         margin-top: -20px;
