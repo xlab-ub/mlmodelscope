@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Helmet from "react-helmet";
 import ModelHeader from "./ModelHeader"
 import FilterPanel from "./FilterPanel";
 import ModelCardsList from "./ModelCardsList";
@@ -44,7 +43,6 @@ export default class ModelList extends Component {
 
     return (
       <div className="model-list-page">
-        <Helmet title="Models" meta={[{property: "og:title", content: "Models"}]}/>
         <Header/>
         {this.makePageHeader()}
 
