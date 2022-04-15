@@ -1,4 +1,7 @@
 @import "../../App";
+
+
+
 @keyframes slideUp {
   0% {
     max-height:unset;
@@ -370,10 +373,11 @@
       width: 100%;
       max-height: 0;
       overflow:hidden;
-      transition: max-height 0.5s linear;
+      transition: all 0.5s;
+      transition-delay: 0s;
 
       &-open {
-        max-height: 1000px;
+        //max-height: 350px;
 
       }
       &-closing {

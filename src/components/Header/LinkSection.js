@@ -1,14 +1,22 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right-white.svg";
 import {ReactComponent as ChevronDown} from "../../resources/icons/chevron-down-white.svg";
 import {LinkItem} from "./LinkItem";
 
 export function LinkSection({getElement, isResponsiveMenu, link, display, children}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [height, setHeight] = useState(0);
+
+  const ref = useRef();
 
   const toggleSection = () => {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    if(ref.current)
+      setHeight(isOpen ? ref.current.scrollHeight : 0);
+  }, [isOpen])
 
   const getButtonClassName = () =>
     isOpen ?
@@ -25,6 +33,8 @@ export function LinkSection({getElement, isResponsiveMenu, link, display, childr
     return getElement(classList.join(" "));
   }
 
+
+
   if (isResponsiveMenu)
     return <>
       <div className={getElement("responsive-menu-section")}>
@@ -36,7 +46,7 @@ export function LinkSection({getElement, isResponsiveMenu, link, display, childr
           <ChevronDown fill={"white"}/>
         </button>
       </div>
-      <div className={getChildContainerClassName()}>
+      <div style={{maxHeight: height}} ref={ref} className={getChildContainerClassName()}>
         {children}
       </div>
     </>

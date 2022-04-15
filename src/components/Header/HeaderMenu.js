@@ -12,6 +12,7 @@ export function HeaderMenu(props) {
         <LinkItem link={"/test"} display={"Submenu Item 2"} isSubMenu {...props} />
         <LinkItem link={"/test"} display={"Submenu Item 3"} isSubMenu {...props} />
         <LinkItem link={"/test"} display={"Submenu Item 4"} isSubMenu {...props} />
+        <LinkItem link={"/test"} display={"Submenu Item 5"} isSubMenu {...props} />
       </LinkSection>
       <LinkItem link={"/test"} display={"Menu Item 2"} {...props}/>
       <LinkSection link={"/test"} display={"Menu Item 3"} {...props}>
