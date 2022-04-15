@@ -1,12 +1,8 @@
 import "./Stopgap.scss";
-import Helmet from "react-helmet";
 import React, { Component } from "react";
 import Footer from "./components/Footer/Footer";
 import Router from "./router/router";
-import { Layout, BackTop } from "antd";
 import { BrowserRouter as ReactRouter } from "react-router-dom";
-//import { UserProvider } from "./context/UserContext";
-import Error from "./components/Error";
 
 class App extends Component {
 
@@ -18,26 +14,9 @@ class App extends Component {
 
     return (
       <div>
-        <Helmet title={this.getSiteTitle()}>
-          <meta charSet="utf-8" />
-          <link rel="canonical" href="https://mlmodelscope.org" />
-        </Helmet>
-        <BackTop />
         <ReactRouter>
-          <Layout
-            style={{
-              display: "flex",
-              minHeight: "100vh",
-              flexDirection: "column",
-            }}
-          >
-            <Layout.Content style={{ flex: 1, position: "relative" }}>
-              <Error>
-                <Router />
-              </Error>
-            </Layout.Content>
-            <Footer />
-          </Layout>
+          <Router />
+          <Footer />
         </ReactRouter>
       </div>
     );

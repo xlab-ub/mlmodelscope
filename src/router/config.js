@@ -1,10 +1,4 @@
 import HomePage from "../components/HomePage/HomePage";
-import ExperimentPage from "../routes/ExperimentPage";
-import AboutPage from "../routes/AboutPage";
-import UseCasesPage from "../routes/UseCasesPage";
-import EvaluationsPage from "../routes/EvaluationsPage";
-import ConferencePage from "../routes/ConferencePage";
-import NewsPage from "../routes/NewsPage";
 import ModelDetailContainer from "../routes/ModelDetailContainer";
 import ModelListContainer from "../routes/ModelListContainer";
 import ExperimentDetailContainer from "../routes/ExperimentDetailContainer";
@@ -14,32 +8,6 @@ const routes = [
   {
     path: "/",
     component: HomePage,
-  },
-  {
-    path: "/usecases",
-    component: UseCasesPage,
-  },
-  {
-    path: "/evaluations",
-    component: EvaluationsPage,
-  },
-  {
-    path: "/playground",
-    component: ExperimentPage,
-  },
-  {
-    path: "/about",
-    component: AboutPage,
-  },
-  {
-    path: "/conference",
-    component: ConferencePage,
-    exact: false,
-  },
-  {
-    path: "/news",
-    component: NewsPage,
-    exact: false,
   },
   {
     path: "/models",

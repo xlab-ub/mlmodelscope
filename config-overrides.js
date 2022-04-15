@@ -11,7 +11,6 @@ const {
   addTslintLoader,
 } = require("customize-cra");
 const path = require("path");
-const Color = require("color");
 
 function resolve(...dir) {
   return path.join(__dirname, ...dir);
@@ -67,28 +66,6 @@ module.exports = override(
     ["@icons"]: resolveSrc("resources", "icons"),
     ["@helpers"]: resolveSrc("helpers"),
     ["@common"]: resolveSrc("common"),
-  }),
-  addLessLoader({
-    javascriptEnabled: true,
-    modifyVars: {
-      // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-      "@primary-color": primaryColor,
-      "@layout-body-background": "white",
-      "@menu-dark-color": "white",
-      "@menu-dark-bg": primaryColor,
-      "@menu-highlight-color": Color(primaryColor)
-        .lighten(0.2)
-        .hex(),
-      "@item-active-bg": Color(primaryColor)
-        .lighten(0.2)
-        .hex(),
-      "@item-hover-bg": Color(primaryColor)
-        .lighten(0.2)
-        .hex(),
-      "@menu-dark-item-active-bg": "#E94A37",
-      "@font-family": `"Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif`,
-      "@code-family": `"Source Code Pro", "IBM Plex Mono", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace`,
-    },
   }),
   addTslintLoader()
 );
