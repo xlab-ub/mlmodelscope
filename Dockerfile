@@ -3,7 +3,7 @@ FROM node:14-alpine as build
 WORKDIR /app
 
 COPY package* ./
-RUN npm ci --no-package-lock
+RUN npm ci
 
 ARG REACT_APP_SITE_TITLE
 ENV REACT_APP_SITE_TITLE=${REACT_APP_SITE_TITLE}
