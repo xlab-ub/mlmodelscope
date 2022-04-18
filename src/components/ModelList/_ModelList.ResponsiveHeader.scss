@@ -9,11 +9,13 @@
       grid-template-columns: 1fr;
       margin-bottom: 22px;
 
-
-
       @include desktopWidth {
         display: grid;
         @include negativeMarginAndPaddingGutters();
+      }
+      @include mobileWidth-lg {
+        margin-bottom: 8px;
+        margin-top: 16px;
       }
 
       &-row {
@@ -64,6 +66,7 @@
 
           @include mobileWidth-lg {
             width: 100%;
+            margin-top: 8px;
           }
         }
 
@@ -84,6 +87,7 @@
         @include mobileWidth-lg {
           width: 100%;
           justify-content: center;
+          margin-bottom: 8px;
         }
       }
     }
