@@ -3,7 +3,7 @@ import { ReactComponent as RightArrowIcon } from "../../resources/icons/arrow-ri
 import { ReactComponent as PlusIcon } from "../../resources/icons/plus-sign.svg";
 import { ReactComponent as MinusIcon } from "../../resources/icons/minus-sign.svg";
 
-export default class button extends Component {
+export default class Button extends Component {
   static defaultProps  = {
     icon: "arrow"
   };
