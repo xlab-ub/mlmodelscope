@@ -23,7 +23,7 @@ describe("useBEMNaming", () => {
   it("Can set the element name based on the given base name with no state", () => {
     const component = shallow(<TestComponent />);
 
-    const result = component.find("test-component-element");
+    const result = component.find("test-component__element");
 
     expect(result).not.toBeNull();
   })
