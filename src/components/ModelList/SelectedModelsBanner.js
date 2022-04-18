@@ -38,7 +38,7 @@ export default class SelectedModelsBanner extends BEMComponent {
     return (
       <div className={this.block()}>
         <div className={this.element('controls')}>
-          <div>
+          <div className={this.element("toggle-col")}>
             <button className={this.element('toggle')} onClick={() => this.toggle()}>
               <MenuToggle className={this.element('toggle-icon')} />
             </button>

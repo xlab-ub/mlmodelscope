@@ -1,13 +1,28 @@
 @import "../../App";
 
 .selected-models-banner {
+  $breakpoint: 925px;
+
   bottom: 0; left: 0; right: 0;
   position: sticky;
   z-index: 2;
 
+  &__toggle-col {
+    align-self: center;
+
+    @include maxWidth($breakpoint) {
+      align-self: flex-start;
+    }
+
+    button {
+      @include minWidth($breakpoint) {
+        margin-top: 0;
+      }
+    }
+  }
+
   &__controls {
     @include paddingGutters;
-    align-items: center;
     background: $almaMater;
     display: flex;
     padding-top: 16px;
@@ -25,7 +40,7 @@
       > * {
         margin-left: 16px;
       }
-      @include  maxWidth(925px) {
+      @include  maxWidth($breakpoint) {
         flex-direction: column;
         align-items: flex-start;
         > * {
@@ -93,7 +108,7 @@
   &__run {
     margin-left: auto;
 
-    @include maxWidth(925px) {
+    @include maxWidth($breakpoint) {
       margin-left: 0;
       align-self: flex-end;
     }
