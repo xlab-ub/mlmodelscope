@@ -52,6 +52,7 @@ $duration: 0.5s;
     }
   }
 }
+
 @mixin buttonWithIconBefore($icon) {
   align-items: center;
   display: flex;
@@ -73,6 +74,7 @@ $duration: 0.5s;
     }
   }
 }
+
 @mixin rotatedButtonWithIconBefore($icon) {
   @include buttonWithIconBefore($icon);
 
@@ -163,6 +165,7 @@ $duration: 0.5s;
 .secondary-button {
   @include fitToContent;
   @include headline5;
+  text-decoration-line: none;
   border-radius: 26px;
   display: block;
 }
@@ -172,6 +175,7 @@ $duration: 0.5s;
   background-size: 200% 200%;
   padding: 10px 24px;
   transition: $duration;
+
   &__text {
     color: $white;
     text-decoration: none;
@@ -206,6 +210,7 @@ $duration: 0.5s;
 
   &__icon {
     @extend %baseIcon;
+
     stop {
       transition: stop-color $duration;
     }
@@ -224,6 +229,7 @@ $duration: 0.5s;
     .top-stop {
       stop-color: $skyBlue;
     }
+
     .bottom-stop {
       stop-color: $purple;
     }
@@ -247,3 +253,5 @@ $duration: 0.5s;
     height: 12px;
   }
 }
+
+

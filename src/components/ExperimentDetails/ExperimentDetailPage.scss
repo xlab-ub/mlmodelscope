@@ -16,7 +16,7 @@
     @include headline2;
     color: $almaMater;
     margin-bottom: 42px;
-    @include  maxWidth(710px) {
+    @include maxWidth(710px) {
       margin-bottom: 24px;
     }
   }
@@ -32,12 +32,13 @@
 
   &__trials-header-box {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
 
     @include maxWidth(710px) {
       flex-direction: column;
       margin-bottom: 26px;
+      justify-content: flex-start;
     }
   }
 
