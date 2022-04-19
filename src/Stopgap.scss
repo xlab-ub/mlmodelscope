@@ -1,14 +1,11 @@
 @import "App";
 
-@import
-'base/resets',
+@import 'base/resets',
 'base/base';
 
-@import
-'share/style';
+@import 'share/style';
 
-@import
-'components/Buttons/SortButton',
+@import 'components/Buttons/SortButton',
 'components/Common/SearchBar',
 'components/Common/ModelTag',
 'components/ExperimentDetails/ClassificationSummary',
@@ -25,4 +22,6 @@
 'components/ModelDetailPage/ModelDescription',
 'components/ExperimentDetails/ExperimentDetailPage',
 'components/ModelList/ModelList.ResponsiveFilterContent',
+'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetection',
+'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetectionImage',
 'components/ModelDetailPage/ModelDetailPage';

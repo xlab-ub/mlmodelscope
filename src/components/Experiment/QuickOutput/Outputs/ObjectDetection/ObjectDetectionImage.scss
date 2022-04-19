@@ -1,0 +1,14 @@
+.object-detection-image {
+  position: relative;
+
+  &__image {
+    height: auto;
+    max-width: 100%;
+  }
+
+  &__overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

@@ -1,15 +1,20 @@
 import {useHoverControl} from "./useHoverControl";
 import {useSectionFilters} from "./useSectionFilters";
+import React from 'react';
+import ObjectDetectionTrialParser from "../utils/ObjectDetectionTrialParser";
 
-export default function useObjectDetectionControl(sections) {
-  const blockOpacity = useSectionFilters();
+export default function useObjectDetectionControl(trial) {
   const hover = useHoverControl();
-  const sectionFilters = useSectionFilters(sections)
+
+  const splitter = new ObjectDetectionTrialParser(trial);
+  const coloredSections = splitter.Parse();
+
+  const {filteredSections, confidenceFilter, categoryFilter} = useSectionFilters(coloredSections)
 
   return {
     hover,
-    blockOpacity,
-    sectionFilters
+    filter: {confidence: confidenceFilter, category: categoryFilter},
+    filteredSections,
+    sections: coloredSections
   }
-
 }

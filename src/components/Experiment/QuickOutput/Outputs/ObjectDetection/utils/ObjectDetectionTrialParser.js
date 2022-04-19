@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
-import ShadeColor from "../utils/ShadeColor";
+import GroupBy from "./GroupBy";
+import ShadeColor from "./ShadeColor";
 
-export default function useColorSelection(sections) {
-  const colors = [
+export default class ObjectDetectionTrialParser {
+  colors = [
     {
       name: "electric-green",
       background: "#59EAD8",
@@ -53,9 +53,44 @@ export default function useColorSelection(sections) {
       background: "#98B2DA",
       font: "#000000"
     }
-  ]
+  ];
 
-  const getColor = (index) => {
+  constructor(trialResults) {
+    this.results = trialResults;
+  }
+
+  Parse() {
+    return this._join(this._colorSections(this._split()));
+  }
+
+
+  _split() {
+    const grouped = this._groupResults();
+    return Object.keys(grouped).map(key => grouped[key]);
+  }
+
+  _join(grouped) {
+    let result = [];
+    grouped.forEach(group => {
+      result.push(...group);
+    });
+    return result;
+  }
+
+
+  _groupResults() {
+    return GroupBy(this.results.results.responses[0].features, "bounding_box", "label");
+  }
+
+  _colorSections(sections) {
+    if (Array.isArray(sections))
+      return sections.map((section, i) => this._populateSection(section, i));
+
+    return [];
+  }
+
+  _getColor(index) {
+    const colors = this.colors;
     let groupNumber = Math.floor((index / colors.length));
     if (groupNumber === Infinity) groupNumber = 0;
 
@@ -69,19 +104,12 @@ export default function useColorSelection(sections) {
     }
   }
 
+  _populateSection(section, sectionIndex) {
+    if (Array.isArray(section)) {
+      const colorObject = this._getColor(sectionIndex);
 
-  const colorSections = (sections) => {
-    if (Array.isArray(sections))
-      return sections.map((sect, i) => ({...sect, color: getColor(i)}));
-
+      return section.map(sec => ({...sec, color: colorObject}));
+    }
     return [];
   }
-
-  const [coloredSections, setColoredSections] = useState(colorSections(sections));
-
-  useEffect(() => {
-    setColoredSections(colorSections());
-  }, [sections.length]);
-
-  return coloredSections;
 }

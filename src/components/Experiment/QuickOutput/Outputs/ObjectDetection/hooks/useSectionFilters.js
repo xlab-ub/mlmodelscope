@@ -1,14 +1,28 @@
-import {useMemo, useState} from "react";
+import React, {useMemo} from "react";
+import {useCategoryFilters} from "./useCategoryFilters";
+import {useConfidenceFilters} from "./useConfidenceFilters";
 
 export function useSectionFilters(sections) {
-  const [filterCutoff, setFilterCutoff] = useState(60);
+  const {categories, toggleCategory, labelIsInCategories} = useCategoryFilters(sections);
+  const {filterCutoff, setFilterCutoff, maxProbability, exceedsProbability} = useConfidenceFilters(sections);
 
-  const filterFn = (section, index, array) => {
-    //to-do: set filter algo once object structure is more finalized
-    return true;
+  const filterFn = (section) => {
+    return exceedsProbability(section) && labelIsInCategories(section);
   }
 
-  const filteredSections = useMemo(() => sections.filter(filterFn), [filterCutoff, sections.length])
+  const filteredSections = useMemo(() => sections.filter(filterFn), [filterCutoff, sections.length]);
 
-  return {state: filterCutoff, setState: setFilterCutoff, filteredSections};
+  return {
+    confidenceFilter:
+      {
+        state: filterCutoff,
+        setState: setFilterCutoff,
+        maxProbability
+      },
+    categoryFilter: {
+      state: categories,
+      toggle: toggleCategory
+    },
+    filteredSections
+  };
 }
