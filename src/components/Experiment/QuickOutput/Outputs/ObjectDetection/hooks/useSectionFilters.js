@@ -10,7 +10,7 @@ export function useSectionFilters(sections) {
     return exceedsProbability(section) && labelIsInCategories(section);
   }
 
-  const filteredSections = useMemo(() => sections.filter(filterFn), [filterCutoff, sections.length]);
+  const filteredSections = useMemo(() => sections.filter(filterFn), [filterCutoff, sections.length, categories.length]);
 
   return {
     confidenceFilter:

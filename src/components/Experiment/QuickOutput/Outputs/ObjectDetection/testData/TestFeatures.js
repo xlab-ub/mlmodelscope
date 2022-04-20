@@ -1,3 +1,5 @@
+import catDog from '../../../../../../stories/assets/catdog.jpg';
+
 export const TestBoundingBox = {
   "bounding_box": {
     "index": 15,
@@ -39,7 +41,7 @@ export const TestBoundingBox2 = {
 export const TestObjectDetectionResult = {
   completed_at: '2022-04-19T16:19:38.616395Z',
   inputs: [
-    "https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/kitty.png"
+    catDog
   ],
   model: {
     framework: {
@@ -62,10 +64,10 @@ export const TestObjectDetectionResult = {
             "bounding_box": {
               "index": 15,
               "label": "dog",
-              "xmax": 32.969,
-              "xmin": 2.00500012,
-              "ymax": 45.986,
-              "ymin": 20.984,
+              "xmax": 280.969,
+              "xmin": 70.00500012,
+              "ymax": 395.986,
+              "ymin": 28.984,
 
             },
             "id": "61a67f3e065391000171cf2a",
@@ -76,10 +78,10 @@ export const TestObjectDetectionResult = {
             "bounding_box": {
               "index": 15,
               "label": "cat",
-              "xmax": 180.969,
-              "xmin": 45.00500012,
-              "ymax": 128.986,
-              "ymin": 10.984,
+              "xmax": 210.969,
+              "xmin": 355.00500012,
+              "ymax": 395.986,
+              "ymin": 30.984,
             },
             "id": "61a67f3e065391000171cf2a",
             "probability": 0.75077477,

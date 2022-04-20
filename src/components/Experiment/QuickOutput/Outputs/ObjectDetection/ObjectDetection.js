@@ -18,8 +18,9 @@ export default function ObjectDetection(props) {
       <ObjectDetectionImage img={props.trial.inputs[0]}
                             filteredSections={filteredSections}
                             hover={hover}
+                            confidence={filter.confidence}
       />
-      <ObjectDetectionTable filteredSections={filteredSections}/>
+      <ObjectDetectionTable sections={sections} category={filter.category}/>
     </div>
     <div className={getElement("bottom-row")}>
       <a href={"/test"} className={getElement("bottom-row-btn")}>
