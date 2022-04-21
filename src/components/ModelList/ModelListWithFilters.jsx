@@ -40,9 +40,9 @@ export default class ModelListWithFilters extends Component {
         options: [
           {name: "image_classification", label: "Classification", isActive: false},
           {name: "image_object_detection", label: "Object Detection", isActive: false},
-          {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
-          {name: "instancesegment", label: "Instance Segmentation", isActive: false},
-          {name: "image", label: "Image Enhancement", isActive: false},
+          {name: "image_semantic_segmentation", label: "Semantic Segmentation", isActive: false},
+          {name: "image_instance_segmentation", label: "Instance Segmentation", isActive: false},
+          {name: "image_enhancement", label: "Image Enhancement", isActive: false},
           {name: "clickthroughrate", label: "Click-Through Rate", isActive: false}
         ]
       },
