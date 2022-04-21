@@ -109,7 +109,7 @@ describe('The API helper', () => {
 
     it('returns the trial id', async () => {
       fetchMock.post(`begin:${ApiRoot}/predict`, {trialId: 'test-trial'});
-      const response = await api.runTrial({id: 12}, 'test input');
+      const response = await api.runTrial({id: 12, output: { type: 'image_classification'}}, 'test input');
 
       expect(response.trialId).toBe('test-trial');
     });

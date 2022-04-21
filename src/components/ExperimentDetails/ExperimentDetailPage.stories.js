@@ -25,7 +25,7 @@ Standard.args = {
             ]
           },
           output: {
-            type: "classification"
+            type: "image_classification"
           }
         },
         inputs: [
