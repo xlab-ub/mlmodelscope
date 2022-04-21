@@ -21,11 +21,15 @@ export function ObjectDetectionTable(props) {
         <label className={getElement("row-input-label")}
                for={`row-input-${section.bounding_box.label}`}>{section.bounding_box.label}</label>
       </div>
-      <p className={"row-percentage"}>{displayedProbability}%</p>
+      {props.showPercentages &&
+        <p className={"row-percentage"}>{displayedProbability}%</p>
+      }
     </div>
   }
 
+  const uniqueSections = props.sections.filter((section, index, array) => array.findIndex((val) => val.bounding_box.label === section.bounding_box.label) === index);
+
   return <div className={getBlock()}>
-    {props.sections.map(section => <Row {...section} />)}
+    {uniqueSections.map(section => <Row {...section} />)}
   </div>;
 }

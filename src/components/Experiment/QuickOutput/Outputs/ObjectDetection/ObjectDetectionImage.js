@@ -19,10 +19,14 @@ export function ObjectDetectionImage(props) {
 
 
   return <div className={getBlock()}>
-    <img alt={"placeholder"} className={getElement("image")} src={props.img}/>
-    <div className={getElement("overlay-container")}>
-      {props.filteredSections.map(section => <BoundingBox {...section.bounding_box} color={section.color}
-                                                          hover={props.hover}/>)}
+    <div className={getElement("image-wrapper")}>
+
+      <img alt={"placeholder"} className={getElement("image")} src={props.img}/>
+      <div className={getElement("overlay-container")}>
+        {props.filteredSections.map(section => <BoundingBox {...section.bounding_box} color={section.color}
+                                                            hover={props.hover}/>)}
+      </div>
+
     </div>
     <div className={getElement("input-container")}>
       <RangeSlider {...sliderConfig} onChange={confidence.setState}/>

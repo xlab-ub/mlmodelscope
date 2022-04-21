@@ -2,22 +2,23 @@ import React from 'react';
 import {ConvertHexToRGB} from "./utils/HexConverter";
 
 export default function BoundingBox(props) {
-  let top = props.ymin;
-  let left = props.xmin;
-  let width = props.xmax
-  let height = props.ymax;
+  let top = props.ymin * 100;
+  let left = props.xmin * 100;
+  let width = (props.xmax - props.xmin) * 100
+  let height = (props.ymax - props.ymin) * 100;
   let color = props.color;
   let rgb = ConvertHexToRGB(color.backgroundColor);
   let label = props.label;
   const style = {
     position: "absolute",
-    top: top,
-    left: left,
-    width: width,
-    height: height,
+    top: `${top}%`,
+    left: `${left}%`,
+    width: `${width}%`,
+    height: `${height}%`,
     backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, 0.3)`,
     border: `1px solid ${color.backgroundColor}`
   }
+  console.log(style.height);
 
   const pStyle = {
     marginTop: -18,

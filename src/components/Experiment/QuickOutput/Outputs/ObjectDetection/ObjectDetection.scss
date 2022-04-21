@@ -33,6 +33,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 36px;
+    margin-bottom: 48px;
 
     @include tabletWidth {
       grid-template-columns: 1fr;

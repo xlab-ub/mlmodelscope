@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import useBEMNaming from "../../../../../common/useBEMNaming";
-import useObjectDetectionControl from "./hooks/useObjectDetectionControl";
-import {ObjectDetectionImage} from "./ObjectDetectionImage";
-import {ObjectDetectionTable} from "./ObjectDetectionTable";
+import useObjectDetectionControl from "../ObjectDetection/hooks/useObjectDetectionControl";
+import {ObjectDetectionImage} from "../ObjectDetection/ObjectDetectionImage";
+import {ObjectDetectionTable} from "../ObjectDetection/ObjectDetectionTable";
 
-export default function ObjectDetection(props) {
+export default function ImageSegmentation(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection");
   const {hover, filteredSections, sections, filter} = useObjectDetectionControl(props.trial);
 
@@ -20,7 +20,7 @@ export default function ObjectDetection(props) {
                             hover={hover}
                             confidence={filter.confidence}
       />
-      <ObjectDetectionTable sections={sections} category={filter.category} showPercentages/>
+      <ObjectDetectionTable sections={sections} category={filter.category}/>
     </div>
     <div className={getElement("bottom-row")}>
       <a href={"/test"} className={getElement("bottom-row-btn")}>
