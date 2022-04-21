@@ -2,9 +2,9 @@ import GroupBy from "../utils/GroupBy";
 import {useState} from "react";
 import clone from "../../../../../../helpers/cloner";
 
-export function useCategoryFilters(sections) {
+export function useCategoryFilters(sections, ...groupingLabels) {
   const getDefaultLabels = () => {
-    const groups = GroupBy(sections, "bounding_box", "label");
+    const groups = GroupBy(sections, ...groupingLabels);
     return Object.keys(groups);
   }
 
@@ -19,8 +19,17 @@ export function useCategoryFilters(sections) {
 
     setCategories(_temp);
   }
+
+  const drillDownIntoObject = (object, ...properties) => {
+    let obj = object;
+    properties.forEach(property => {
+      obj = obj[property];
+    })
+    return obj;
+  }
+
   const labelIsInCategories = (section) => {
-    const label = section.bounding_box.label;
+    const label = drillDownIntoObject(section, ...groupingLabels);
 
     return categories.indexOf(label) > -1;
   }

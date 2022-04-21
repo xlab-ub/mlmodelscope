@@ -1,4 +1,8 @@
 .object-detection-table {
+  @include tabletWidth {
+    margin-top: 48px;
+  }
+
   &__row {
     display: flex;
     width: 100%;

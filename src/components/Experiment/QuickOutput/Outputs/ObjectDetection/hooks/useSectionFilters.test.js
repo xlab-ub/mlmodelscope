@@ -41,10 +41,10 @@ describe("useSectionFilters", () => {
   it("Can toggle categories back on", () => {
     const result = shallow(<TestComponent/>);
     result.find("#toggleCat").simulate("click");
-    result.find("#toggleCat").simulate("click");
 
     const parent = result.find("#parent");
-    const hasDog = parent.text().includes("dog");
+    const text = parent.text();
+    const hasDog = parent.text().includes("car");
 
     expect(hasDog).toBeTruthy();
   })

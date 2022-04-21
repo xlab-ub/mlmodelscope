@@ -18,7 +18,6 @@ export default function BoundingBox(props) {
     backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, 0.3)`,
     border: `1px solid ${color.backgroundColor}`
   }
-  console.log(style.height);
 
   const pStyle = {
     marginTop: -18,
