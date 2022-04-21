@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PageNavigation from "./PageNavigation";
 import PageNavigationSummary from "./PageNavigationSummary";
 
@@ -42,8 +42,8 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
         selectedPage
       });
       setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight);
-      },250)
+        window.scrollTo(0, document.querySelector(".model-list-page__content").offsetTop);
+      }, 250)
     }
 
     render() {
@@ -52,9 +52,13 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
 
       return (
         <div className="paginated-content">
-          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} totalCount={this.props.data.length} searchText={searchText} selectPage={this.selectPage} />
-          <WrappedComponent pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} {...this.props} {...wrappedProps} />
-          <PageNavigation pageCount={this.state.pageCount} selectedPage={this.state.selectedPage} selectPage={this.selectPage} />
+          <PageNavigationSummary data={this.state.pageData} pageCount={this.state.pageCount}
+                                 selectedPage={this.state.selectedPage} totalCount={this.props.data.length}
+                                 searchText={searchText} selectPage={this.selectPage}/>
+          <WrappedComponent pageCount={this.state.pageCount}
+                            selectedPage={this.state.selectedPage} {...this.props} {...wrappedProps} />
+          <PageNavigation pageCount={this.state.pageCount} selectedPage={this.state.selectedPage}
+                          selectPage={this.selectPage}/>
         </div>
       );
     }
