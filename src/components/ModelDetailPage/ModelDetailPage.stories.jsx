@@ -52,7 +52,7 @@ Standard.args = {
     "name": "Fakenet22",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "2.22",
     "url": {
@@ -106,7 +106,7 @@ WithTrialOutput.args = {
     "name": "Fakenet22",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "2.22",
     "url": {
@@ -227,7 +227,7 @@ WithPendingTrialOutput.args = {
     "name": "Fakenet22",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "2.22",
     "url": {

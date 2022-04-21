@@ -47,7 +47,7 @@ Standard.args = {
     "name": "Xception",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "1.0"
   }
@@ -86,7 +86,7 @@ LongName.args = {
     "name": "SSD_MobileNet_v1_PPN_Shared_Box_Predictor_300x300_COCO14_Sync",
     "output": {
       "description": "the output bounding box",
-      "type": "boundingbox"
+      "type": "image_classification"
     },
     "version": "1.0"
   }
@@ -130,7 +130,7 @@ Modified.args = {
     "name": "Xception",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "2.0"
   }
