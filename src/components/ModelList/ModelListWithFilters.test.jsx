@@ -12,11 +12,11 @@ describe('The Model List Filters', () => {
     ];
 
   const defaultModels = [
-    createModel("ChickenModel", "chicken", "MXNet", "classification", ["amd64"]),
-    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "classification", ["amd64"]),
-    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "boundingbox", ["amd64"]),
-    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "classification", ["ILLIAC", "ENIAC"]),
-    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "classification", ["amd64"]),
+    createModel("ChickenModel", "chicken", "MXNet", "image_classification", ["amd64"]),
+    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "image_classification", ["amd64"]),
+    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "image_object_detection", ["amd64"]),
+    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "image_classification", ["ILLIAC", "ENIAC"]),
+    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "image_classification", ["amd64"]),
     createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment", ["amd64"]),
     createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment", ["amd64"]),
   ];
@@ -60,7 +60,7 @@ describe('The Model List Filters', () => {
   });
 
   it('can filter by task', () => {
-    modelList.instance().toggleFilter("Tasks", "single", "boundingbox");
+    modelList.instance().toggleFilter("Tasks", "single", "image_object_detection");
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels.length).toEqual(1);
     expect(filteredModels[0]).toEqual(defaultModels[2]);
@@ -75,7 +75,7 @@ describe('The Model List Filters', () => {
 
   it('can combine filters', () => {
     modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
-    modelList.instance().toggleFilter("Tasks", "single", "classification");
+    modelList.instance().toggleFilter("Tasks", "single", "image_classification");
     modelList.instance().updateSearchText("tigershark");
     let filteredModels = modelList.instance().filterModels();
     expect(modelList.state("searchText")).toEqual("tigershark");

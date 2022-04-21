@@ -38,8 +38,8 @@ export default class ModelListWithFilters extends Component {
         select: "single",
         dataPath: ["output", "type"],
         options: [
-          {name: "classification", label: "Classification", isActive: false},
-          {name: "boundingbox", label: "Object Detection", isActive: false},
+          {name: "image_classification", label: "Classification", isActive: false},
+          {name: "image_object_detection", label: "Object Detection", isActive: false},
           {name: "semanticsegment", label: "Semantic Segmentation", isActive: false},
           {name: "instancesegment", label: "Instance Segmentation", isActive: false},
           {name: "image", label: "Image Enhancement", isActive: false},

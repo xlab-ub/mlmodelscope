@@ -107,7 +107,7 @@ class Api {
       batchSize: 1,
       traceLevel: "NO_TRACE",
       gpu: false,
-      desiredResultModality: "image_classification"
+      desiredResultModality: model.output.type
     }
 
     if (experimentId) {

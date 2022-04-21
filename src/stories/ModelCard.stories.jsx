@@ -46,7 +46,7 @@ Standard.args = {
     "name": "Xception",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "1.0"
   }
@@ -89,7 +89,7 @@ LongName.args = {
     "name": "SSD_MobileNet_v1_PPN_Shared_Box_Predictor_300x300_COCO14_Sync",
     "output": {
       "description": "the output bounding box",
-      "type": "boundingbox"
+      "type": "image_object_detection"
     },
     "version": "1.0"
   }
@@ -135,7 +135,7 @@ MultipleMachines.args = {
     "name": "Fakenet22",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "2.22"
   }
@@ -180,7 +180,7 @@ Add.args = {
     "name": "Xception",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "1.0"
   }
@@ -225,7 +225,7 @@ Remove.args = {
     "name": "Xception",
     "output": {
       "description": "the output label",
-      "type": "classification"
+      "type": "image_classification"
     },
     "version": "1.0"
   }
