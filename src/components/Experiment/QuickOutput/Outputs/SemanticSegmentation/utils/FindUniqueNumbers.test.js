@@ -8,6 +8,17 @@ describe("FindUniqueNumbers", () => {
     expect(result.indexOf(2) > -1).toBeTruthy();
     expect(result.indexOf(3) > -1).toBeTruthy();
   })
+  it("Each number in the result set is unique", () => {
+    const arr = [1, 2, 3, 1, 1, 1];
+    const result = FindUniqueNumbers(arr);
+
+    let prev = [];
+
+    result.forEach(number => {
+      expect(prev.indexOf(number)).toEqual(-1);
+      prev.push(number);
+    })
+  })
 
   it("Runs at a reasonable time on a large array of numbers", () => {
     const _4KImageArray = new Array(8294400).fill(0);
