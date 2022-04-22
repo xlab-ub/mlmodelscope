@@ -1,5 +1,5 @@
 import React from 'react';
-import {ConvertHexToRGB} from "./utils/HexConverter";
+import {ConvertHexToRGB} from "../_Common/utils/HexConverter";
 
 export default function BoundingBox(props) {
   let top = props.ymin * 100;
