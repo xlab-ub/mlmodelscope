@@ -115,6 +115,29 @@ describe('The API helper', () => {
     });
   });
 
+  describe('deleteTrial', () => {
+    beforeEach(fetchMock.reset);
+
+    it('calls the deletion endpoint', async () => {
+      fetchMock.delete(`begin:${ApiRoot}/trial`, {});
+      await api.deleteTrial('test-trial');
+
+      expect(fetchMock.lastUrl()).toBe(`${ApiRoot}/trial/test-trial`);
+      expect(fetchMock.lastOptions().method).toBe('DELETE');
+    });
+
+    it('throws an error on a 400 response', async () => {
+      fetchMock.delete(`begin:${ApiRoot}/trial`, (url, opts) => {
+        return {
+          status: 400,
+          body: '{ "error": "nope" }'
+        }
+      });
+
+      await expect(api.deleteTrial('test-trial')).rejects.toEqual(TypeError('nope'));
+    });
+  });
+
   describe('getTrial', () => {
     beforeEach(fetchMock.reset);
 
