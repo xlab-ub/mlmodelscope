@@ -399,6 +399,9 @@ export const TestObjectDetectionResult = {
       name: 'PyTorch'
     },
     id: 27,
-    name: 'TorchVision+ResNet18'
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: "image_object_detection"
+    }
   },
 }

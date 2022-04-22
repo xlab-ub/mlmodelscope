@@ -19,7 +19,7 @@ export function ObjectDetectionTable(props) {
         <div style={{backgroundColor: color.backgroundColor, borderColor: color.backgroundColor}}
              className={getElement(`row-input ${!isOpen && "row-input-closed"}`)}/>
         <label className={getElement("row-input-label")}
-               for={`row-input-${section.bounding_box.label}`}>{section.bounding_box.label}</label>
+               htmlFor={`row-input-${section.bounding_box.label}`}>{section.bounding_box.label}</label>
       </div>
       {props.showPercentages &&
         <p className={"row-percentage"}>{displayedProbability}%</p>
@@ -30,6 +30,6 @@ export function ObjectDetectionTable(props) {
   const uniqueSections = props.sections.filter((section, index, array) => array.findIndex((val) => val.bounding_box.label === section.bounding_box.label) === index);
 
   return <div className={getBlock()}>
-    {uniqueSections.map(section => <Row {...section} />)}
+    {uniqueSections.map(section => <Row {...section} key={section.bounding_box.label}/>)}
   </div>;
 }

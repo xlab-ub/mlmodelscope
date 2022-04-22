@@ -3,7 +3,7 @@ import ObjectDetection from "./ObjectDetection";
 import {TestObjectDetectionResult} from "./testData/TestFeatures";
 
 export default {
-  title: "Experiments/Quick Output/Object Detection",
+  title: "Experiments/Trial Output/Object Detection",
   component: ObjectDetection
 }
 

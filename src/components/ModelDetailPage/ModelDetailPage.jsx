@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ModelDetailHeader from "./ModelDetailHeader";
 import QuickInput from "../Experiment/QuickInput/QuickInput";
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
@@ -13,18 +13,19 @@ const SampleInputs = [
 
 export default class ModelDetailPage extends Component {
   static defaultProps = {
-    compare: () => {},
+    compare: () => {
+    },
   }
 
   render() {
-    return(
+    return (
       <div className="model-detail-page">
-        <Header />
+        <Header/>
         <ModelDetailHeader model={this.props.model}/>
         <div className="model-detail-page__content">
           {this.renderContent()}
         </div>
-        <ModelDescription model={this.props.model} />
+        <ModelDescription model={this.props.model}/>
       </div>
     )
   }
@@ -33,7 +34,10 @@ export default class ModelDetailPage extends Component {
     if (this.props.trialOutput === undefined) {
       return (<QuickInput sampleInputs={SampleInputs} onRunModelClicked={this.props.onRunModelClicked}/>);
     } else {
-      return (<QuickOutput input={this.props.trialOutput.inputs[0]} features={this.props.trialOutput.completed_at ? this.props.trialOutput.results.responses[0].features : null} onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare} />);
+      return (<QuickOutput input={this.props.trialOutput.inputs[0]}
+                           features={this.props.trialOutput.completed_at ? this.props.trialOutput.results.responses[0].features : null}
+                           onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare}
+                           trialOutput={this.props.trialOutput}/>);
     }
   }
 }
