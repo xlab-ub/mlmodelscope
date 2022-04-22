@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PredictionExpander from "../Common/PredictionExpander";
+import PredictionExpander from "../../Common/PredictionExpander";
 
 export default class ClassificationSummary extends Component {
   makeReadableLabel = (originalLabel) => {
@@ -35,7 +35,7 @@ export default class ClassificationSummary extends Component {
             <span>{this.makeProbabilityStringFromDecimal(this.getFirstPrediction().probability)}</span>
           </div>
           <div className="classification-summary__extra-predictions">
-            <PredictionExpander predictions={predictions} />
+            <PredictionExpander predictions={predictions}/>
           </div>
         </div>
       </div>

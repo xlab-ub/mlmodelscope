@@ -4,13 +4,15 @@ import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
 import "./QuickOutput.scss";
 import PendingOutput from "./Outputs/Classification/PendingOutput";
+import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
     className: "quick-output",
     features: [],
     input: "",
-    compare: () => {},
+    compare: () => {
+    },
   }
 
   render() {
@@ -21,21 +23,39 @@ export default class QuickOutput extends BEMComponent {
           {/*<button className={this.element('share-button')}>Share with community</button> Hidden for now*/}
         </div>
         <div className={this.element('content')}>
-          <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked} />
-          { this.makeOutput() }
+          {this.makeOutput()}
         </div>
         <div className={this.element('footer')}>
-          <button className={this.element('compare-button')} onClick={this.props.compare}>Compare with other models</button>
+          <button className={this.element('compare-button')} onClick={this.props.compare}>Compare with other models
+          </button>
         </div>
       </div>
     );
   }
 
   makeOutput() {
-    if (this.props.features) {
-      return (<ClassificationOutput features={this.props.features} />);
+    if (this.props.features || this.props.trialOutput.completed_at) {
+      switch (this.props.trialOutput.model.output.type) {
+        case "image_object_detection":
+          return <ObjectDetection trial={this.props.trialOutput}/>
+        case "image_classification":
+          return (<>
+            <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
+            <ClassificationOutput features={this.props.features}/>
+          </>);
+        default:
+          return <>
+            <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
+            <PendingOutput unsupportedModel/>
+          </>
+
+      }
+
     } else {
-      return (<PendingOutput />);
+      return (<>
+        <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
+        <PendingOutput/>
+      </>);
     }
   }
 }

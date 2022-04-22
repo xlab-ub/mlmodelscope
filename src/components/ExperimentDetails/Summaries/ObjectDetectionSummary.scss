@@ -1,0 +1,18 @@
+.object-detection-summary {
+
+  &__header {
+    @include labelSmall;
+    margin-bottom: 16px;
+  }
+
+  &__results {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @include tabletWidth {
+      grid-template-columns: 1fr;
+    }
+  }
+}

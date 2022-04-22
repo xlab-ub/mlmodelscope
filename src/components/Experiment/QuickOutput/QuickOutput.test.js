@@ -1,18 +1,40 @@
 import React from 'react';
 import expect from 'expect';
-import {shallow} from 'enzyme';
+import {mount, shallow} from 'enzyme';
 import QuickOutput from "./QuickOutput";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
+import {TestImageClassificationResult} from "./Outputs/Classification/Features";
+import {TestObjectDetectionResult} from "./Outputs/ObjectDetection/testData/TestFeatures";
 
 const TestInput = "http://example.com/image1.jpeg";
 
 describe('Experiment Quick Output component', () => {
+  describe("with output", () => {
+    it("image classification", () => {
+      let wrapper = mount(<QuickOutput input={TestInput} trialOutput={TestImageClassificationResult}
+                                       model={TestImageClassificationResult.model}/>);
+      const prediction_text = wrapper.find(".top-prediction__prediction").text();
+
+      expect(prediction_text.includes("Unknown")).toBe(true);
+
+    })
+    it("object detection", () => {
+      let wrapper = mount(<QuickOutput input={TestInput} trialOutput={TestObjectDetectionResult}
+                                       model={TestObjectDetectionResult.model}/>);
+
+      const carText = wrapper.find(".object-detection-table__row-input-label").first().text().toLowerCase();
+
+      expect(carText.includes("car")).toBe(true);
+
+    })
+  })
   describe('Renders', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<QuickOutput input={TestInput} />);
+      wrapper = shallow(<QuickOutput input={TestInput} trialOutput={TestImageClassificationResult}
+                                     model={TestImageClassificationResult.model}/>);
     });
 
     it('a container div', () => {
