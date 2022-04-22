@@ -68,6 +68,24 @@ class Api {
   }
 
   /*
+   * Delete a trial by ID.
+   *
+   * @param {string} trialId - The UUID of the trial to delete
+   *
+   * @throws If the trial cannot be deleted. This occurs if the trial to be deleted is the last that exists in
+   * it's experiment.
+   */
+  async deleteTrial(trialId) {
+      const result = await fetch(`${this.apiUrl}/trial/${trialId}`, { method: 'DELETE'});
+
+      if (result.status === 200 || result.status === 404)
+          return;
+
+      const response = await result.json();
+      throw new Error(response.error);
+  }
+
+  /*
    * Look up a trial by ID. Returns an Observable of Trial details. Polls the trial data delivering results to
    * Observer(s) until either the trial is completed, a timeout has been reached at which time it will result
    * in an error, or all observers have unsubscribed from the Observable.
