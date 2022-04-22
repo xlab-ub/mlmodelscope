@@ -109,6 +109,9 @@ class Api {
 
   _getTrial = async (trialId) => {
     let result = await fetch(`${this.apiUrl}/trial/${trialId}`);
+    if (result.status !== 200)
+      return null;
+
     let trial = await result.json();
     if (trial.results.responses === undefined)
       trial.results.responses = [{features: []}];
@@ -156,7 +159,7 @@ class Api {
         subject.next(result);
       }
 
-      if (validate(result)) {
+      if (result && validate(result)) {
         return resolve(result);
       } else if (maxAttempts && attempts === maxAttempts) {
         return reject(new Error('max polling attempts exceeded'));
