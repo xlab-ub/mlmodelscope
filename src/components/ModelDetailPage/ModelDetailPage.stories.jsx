@@ -181,6 +181,11 @@ WithTrialOutput.args = {
               "classification": {"index": 926, "label": "n07590611 hot pot, hotpot"}
             }]
         }], "trace_id": {"id": "bb4e4303f41083c"}
+    },
+    model: {
+      output: {
+        type: "image_classification"
+      }
     }
   }
 }

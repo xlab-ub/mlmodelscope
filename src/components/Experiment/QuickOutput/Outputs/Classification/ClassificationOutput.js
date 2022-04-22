@@ -41,9 +41,7 @@ export default class ClassificationOutput extends BEMComponent {
     );
   }
 
-  makePrediction = (feature, index) => {
-    return <Prediction key={index} feature={feature} />
-  }
+
 
   makeExpanderLabel = () => {
     return `${this.state.predictionsExpanded ? 'Hide' : 'Show'} all predictions`;
