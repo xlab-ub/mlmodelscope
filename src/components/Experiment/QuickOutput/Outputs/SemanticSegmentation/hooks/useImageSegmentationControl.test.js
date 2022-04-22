@@ -1,21 +1,21 @@
 import useImageSegmentationControl from "./useImageSegmentationControl";
 import React from "react";
-import {TestImageSegmentationResult} from "../testData/TestFeatures";
+import {JestImageSegmentationResult} from "../testData/TestFeatures";
 import {shallow} from "enzyme";
 
 describe("useImageSegmentationControl", () => {
   const TestComponent = () => {
-    const {colorMap, rows} = useImageSegmentationControl(TestImageSegmentationResult);
+    const {colorMap, rows} = useImageSegmentationControl(JestImageSegmentationResult);
 
 
     return <>
       {rows.map(row => <>
-        {row.map(col => {
-          colorMap.find((item) => {
+        {row.map(col => (<>{
+          (colorMap.find((item) => {
             const itemNumber = item.number;
-            return item.number == col
-          }).backgroundColor
-        })}
+            return itemNumber === col[0]
+          }).backgroundColor)
+        }</>))}
       </>)}
     </>
   }
@@ -25,4 +25,6 @@ describe("useImageSegmentationControl", () => {
 
     expect(result).not.toBeNull();
   })
+
+
 })

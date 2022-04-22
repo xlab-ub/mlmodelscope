@@ -1,0 +1,39 @@
+.instance-segmentation-table {
+
+  &__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px dashed $smokeDarkest;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    align-items: center;
+    cursor: pointer;
+
+    &-left {
+      display: flex;
+      align-items: center;
+    }
+
+    &-input {
+      width: 14px;
+      height: 14px;
+      margin-right: 16px;
+      border: 2px solid;
+      transition: 0.25s;
+
+      &-hidden {
+        display: none;
+      }
+
+      &-closed {
+        background-color: transparent !important;
+      }
+
+      &-label {
+        @include body;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
