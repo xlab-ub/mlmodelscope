@@ -20,6 +20,9 @@ Classification.args = {
         architectures: [
           {name: "amd64"}
         ]
+      },
+      output: {
+        type: "image_classification"
       }
     },
     completed_at: '2022-03-30',
@@ -119,7 +122,7 @@ Classification.args = {
 };
 
 export const Pending = Template.bind({});
-Pending.args= {
+Pending.args = {
   trial: {
     model: {
       id: 27,

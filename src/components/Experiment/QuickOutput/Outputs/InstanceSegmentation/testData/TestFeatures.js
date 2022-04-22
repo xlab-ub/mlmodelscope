@@ -42,7 +42,10 @@ export const TestInstanceSegmentationOutput = {
       name: 'PyTorch'
     },
     id: 27,
-    name: 'TorchVision+ResNet18'
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: "image_instance_segmentation"
+    }
   },
 
 }
