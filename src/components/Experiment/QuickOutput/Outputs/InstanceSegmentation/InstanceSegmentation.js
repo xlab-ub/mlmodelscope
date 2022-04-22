@@ -16,6 +16,7 @@ export default function InstanceSegmentation(props) {
     <div className={getElement("top-row")}>
       <InstanceSegmentationImage
         img={props.trial.inputs[0]}
+        hover={hover}
       />
       <InstanceSegmentationTable
         category={category}

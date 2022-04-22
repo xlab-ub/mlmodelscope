@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
+import InstanceSegmentationSummary from "./Summaries/InstanceSegmentationSummary";
 
 export default class TrialOutputWrapper extends Component {
   render() {
@@ -60,6 +61,8 @@ export default class TrialOutputWrapper extends Component {
           return (<ClassificationSummary results={this.props.trial.results}/>)
         case "image_object_detection":
           return <ObjectDetectionSummary trial={this.props.trial}/>
+        case "image_instance_segmentation":
+          return <InstanceSegmentationSummary trial={this.props.trial}/>
       }
 
       return <></>
