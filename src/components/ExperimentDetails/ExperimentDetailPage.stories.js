@@ -2,6 +2,7 @@ import React from 'react';
 import crabby from "../../stories/assets/crabby.png";
 
 import ExperimentDetailPage from "./ExperimentDetailPage";
+import {TestObjectDetectionResult} from "../Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
 
 export default {
   title: 'Experiments/Experiment Detail Page',
@@ -230,3 +231,14 @@ Standard.args = {
     ]
   }
 };
+
+export const ObjectDetection = Template.bind({});
+ObjectDetection.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestObjectDetectionResult,
+      TestObjectDetectionResult
+    ]
+  }
+}

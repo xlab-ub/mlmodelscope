@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import ClassificationSummary from "./ClassificationSummary";
+import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
-import {ReactComponent as ExternalLink} from "../../resources/icons/ExternalLink.svg";
-import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
+import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
 
 export default class TrialOutputWrapper extends Component {
   render() {
@@ -33,12 +32,13 @@ export default class TrialOutputWrapper extends Component {
             <dl className="trial-output-wrapper__model-details">
               <div className={"trial-output-wrapper__model-details-section"}>
 
-              <dt className="trial-output-wrapper__detail-label">Framework:</dt>
-              <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework" content={model.framework.name} /></dd>
+                <dt className="trial-output-wrapper__detail-label">Framework:</dt>
+                <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
+                                                                          content={model.framework.name}/></dd>
               </div>
               <div className={"trial-output-wrapper__model-details-section"}>
-              <dt className="trial-output-wrapper__detail-label">Machines:</dt>
-              {machineTags}
+                <dt className="trial-output-wrapper__detail-label">Machines:</dt>
+                {machineTags}
               </div>
 
             </dl>
@@ -47,7 +47,7 @@ export default class TrialOutputWrapper extends Component {
               {/*<ExternalLink /> Hidden for now */}
             </div>
           </div>
-          { this.getContent() }
+          {this.getContent()}
         </div>
       </div>
     )
@@ -55,7 +55,14 @@ export default class TrialOutputWrapper extends Component {
 
   getContent() {
     if (this.props.trial.completed_at) {
-      return (<ClassificationSummary results={this.props.trial.results}/>)
+      switch (this.props.trial.model.output.type) {
+        case "image_classification":
+          return (<ClassificationSummary results={this.props.trial.results}/>)
+        case "image_object_detection":
+          return <ObjectDetectionSummary trial={this.props.trial}/>
+      }
+
+      return <></>
     } else {
       return (
         <div className="trial-output-wrapper__loading">

@@ -17,16 +17,18 @@ export function ObjectDetectionImage(props) {
       </div>
 
     </div>
-    <div className={getElement("input-container")}>
-      <input type={"range"} className={getElement("input-range")} value={confidence.state}
-             onChange={(e) => confidence.setState(e.target.value)}/>
-      <label className={getElement("input-number-container")} htmlFor={"input-number"}>
+    {props.showInputs &&
+      <div className={getElement("input-container")}>
+        <input type={"range"} className={getElement("input-range")} value={confidence.state}
+               onChange={(e) => confidence.setState(e.target.value)}/>
+        <label className={getElement("input-number-container")} htmlFor={"input-number"}>
 
-        <input type={"number"} min={0} max={confidence.maxProbability - 1} className={getElement("input-number")}
-               value={confidence.state} onChange={(e) => confidence.setState(e.target.value)}/>
-        %
-      </label>
+          <input type={"number"} min={0} max={confidence.maxProbability - 1} className={getElement("input-number")}
+                 value={confidence.state} onChange={(e) => confidence.setState(e.target.value)}/>
+          %
+        </label>
 
-    </div>
+      </div>
+    }
   </div>;
 }
