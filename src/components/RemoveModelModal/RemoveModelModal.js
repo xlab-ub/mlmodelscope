@@ -11,7 +11,7 @@ export default class RemoveModelModal extends BEMComponent {
 
   render() {
 
-    return <Modal icon={<TrashIcon className={this.element('trashcan')}/>}>
+    return <Modal icon={<TrashIcon className={this.element('trashcan')}/>} onCancel={this.props.onCancel}>
       <h2 className={this.element('heading')}>
         You are about to remove this model
       </h2>
@@ -22,10 +22,10 @@ export default class RemoveModelModal extends BEMComponent {
         Are you sure you want to proceed?
       </p>
       <div className={this.element('controls')}>
-        <button className={this.element('cancel')}>
+        <button className={this.element('cancel')} onClick={this.props.onCancel}>
           No, don't delete
         </button>
-        <button className={this.element('confirm')}>
+        <button className={this.element('confirm')} onClick={this.props.onConfirm}>
           Yes, remove
         </button>
       </div>

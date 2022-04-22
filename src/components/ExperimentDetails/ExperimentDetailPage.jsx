@@ -1,60 +1,77 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import ExperimentOverview from "./ExperimentOverview";
 import TrialOutputWrapper from "./TrialOutputWrapper";
 import Button from "../Buttons/Button";
 import Header from "../Header/Header";
+import useBEMNaming from "../../common/useBEMNaming";
+import RemoveModelModal from "../RemoveModelModal/RemoveModelModal";
+import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotBeRemovedModal";
 
-export default class ExperimentDetailPage extends Component {
-  render() {
-    let trialKey = 0;
-    let trialComponents = this.props.experiment.trials.map(trial => (
-      <div key={trialKey++} className="experiment-detail-page__trial">
-        <TrialOutputWrapper trial={trial} />
-      </div>
-    ));
+export default function ExperimentDetailPage(props) {
+  const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
 
-    return (
-      <div className="experiment-detail-page">
-        <Header />
-        <ExperimentDetailHeader />
-        <div className="experiment-detail-page__content">
-          <div className="experiment-detail-page__first-column">
-            <div className="experiment-detail-page__overview-section">
-              {this.getExperimentOverview()}
-            </div>
+  let trialKey = 0;
+  let trialComponents = props.experiment.trials.map(trial => (
+    <div key={trialKey++} className={getElement("trial")}>
+      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial} />
+    </div>
+  ));
+
+  return (
+    <div className={getBlock()}>
+      <Header />
+      <ExperimentDetailHeader />
+      <div className={getElement("content")}>
+        <div className={getElement("first-column")}>
+          <div className={getElement("overview-section")}>
+            {getExperimentOverview(props)}
           </div>
-          <div className="experiment-detail-page__trials-section">
-            <div className="experiment-detail-page__trials-header-box">
-              <p className="experiment-detail-page__trials-header">Trials for your experiment</p>
-              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={this.getAddModelsLink()} />
-            </div>
-            {trialComponents}
-            <div className="experiment-detail-page__ghost-card">
-              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={this.getAddModelsLink()} />
-            </div>
+        </div>
+        <div className={getElement("trials-section")}>
+          <div className={getElement("trials-header-box")}>
+            <p className={getElement("trials-header")}>Trials for your experiment</p>
+            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)} />
+          </div>
+          {trialComponents}
+          <div className={getElement("ghost-card")}>
+            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)} />
           </div>
         </div>
       </div>
-    );
-  }
+      {renderDeleteModal(props)}
+      {renderModelCannotBeRemovedModal(props)}
+    </div>
+  );
 
-  getExperimentOverview() {
-    if (!this.props.experiment || this.props.experiment.trials.length === 0)
+  function getExperimentOverview(props) {
+    if (!props.experiment || props.experiment.trials.length === 0)
       return;
 
-    let firstModel = this.props.experiment.trials[0].model;
+    let firstModel = props.experiment.trials[0].model;
     let task = firstModel ? firstModel.output.type : 'classification';
-    let inputs = this.props.experiment.trials[0].inputs;
+    let inputs = props.experiment.trials[0].inputs;
 
     return (<ExperimentOverview task={task} inputs={inputs} />);
   }
 
-  getAddModelsLink() {
-    if (!this.props.experiment) {
+  function getAddModelsLink(props) {
+    if (!props.experiment) {
       return null;
     }
 
-    return `/experiment/${this.props.experiment.id}/add-models`;
+    return `/experiment/${props.experiment.id}/add-models`;
+  }
+
+  function renderDeleteModal(props) {
+    if (props.trialToDelete) {
+      return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial} />
+    }
+  }
+
+  function renderModelCannotBeRemovedModal(props) {
+    if (props.showModelCannotBeRemoved) {
+      return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved} />
+    }
   }
 }

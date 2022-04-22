@@ -14,7 +14,9 @@ export default class ExperimentDetailContainer extends Component {
 
     this.state = {
       experiment: null,
-      trials: []
+      showModelCannotBeRemoved: false,
+      trials: [],
+      trialToDelete: null
     }
 
     this.trialSubscriptions = [];
@@ -29,7 +31,13 @@ export default class ExperimentDetailContainer extends Component {
 
   render() {
     return (
-      <ExperimentDetailPage experiment={this.makeExperiment()} />
+      <ExperimentDetailPage experiment={this.makeExperiment()}
+                            onDeleteTrial={this.deleteTrial}
+                            onCancelDeleteTrial={this.cancelDeleteTrial}
+                            onConfirmDeleteTrial={this.confirmDeleteTrial}
+                            onConfirmModelCannotBeRemoved={this.confirmModelCannotBeRemoved}
+                            showModelCannotBeRemoved={this.state.showModelCannotBeRemoved}
+                            trialToDelete={this.state.trialToDelete} />
     )
   }
 
@@ -42,7 +50,7 @@ export default class ExperimentDetailContainer extends Component {
 
   getTrials(experiment) {
     experiment.trials.forEach(trial => {
-      this.trialSubscriptions.push(this.api.getTrial(trial.id).subscribe({
+      this.trialSubscriptions[trial.id] = this.api.getTrial(trial.id).subscribe({
         next: trialOutput => {
           const trials = this.state.trials;
           const currentIndex = trials.findIndex(t => t.id === trialOutput.id);
@@ -54,8 +62,48 @@ export default class ExperimentDetailContainer extends Component {
           }
           this.setState({ trials });
         }
-      }));
+      });
     })
+  }
+
+  deleteTrial = (trial) => {
+    this.setState({
+      trialToDelete: trial
+    });
+  }
+
+  cancelDeleteTrial = () => {
+    this.setState({
+      trialToDelete: null
+    });
+  }
+
+  confirmDeleteTrial = async () => {
+    const trialId = this.state.trialToDelete.id;
+    try {
+      await this.api.deleteTrial(trialId);
+      this.trialSubscriptions[trialId].unsubscribe();
+      this.trialSubscriptions[trialId] = undefined;
+
+      let trials = this.state.trials.filter(t => t.id !== trialId);
+
+      this.setState({
+        trials,
+        trialToDelete: null
+      });
+    }
+    catch (e) {
+      this.setState({
+        showModelCannotBeRemoved: true,
+        trialToDelete: null
+      });
+    }
+  }
+
+  confirmModelCannotBeRemoved = () => {
+    this.setState({
+      showModelCannotBeRemoved: false
+    });
   }
 
   getExperiment = async (experimentId) => {

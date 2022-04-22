@@ -18,7 +18,7 @@ export default function Modal(props) {
           {icon}
         </div>
         <button className={getElement('close-button')}>
-          <CloseIcon/>
+          <CloseIcon onClick={props.onCancel}/>
         </button>
         {content}
       </div>
