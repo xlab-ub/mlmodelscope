@@ -1,13 +1,9 @@
 const {
   override,
-  getBabelLoader,
   addDecoratorsLegacy,
   fixBabelImports,
   disableEsLint,
-  addLessLoader,
   addWebpackAlias,
-  addBabelPlugin,
-  useBabelRc,
   addTslintLoader,
 } = require("customize-cra");
 const path = require("path");
@@ -21,7 +17,7 @@ function resolveSrc(...dir) {
 }
 
 function rewireSVGR(svgrLoaderOptions) {
-  return function(config) {
+  return function (config) {
     const svgReactLoader = {
       test: /\.svg$/,
       use: [
@@ -46,12 +42,6 @@ module.exports = override(
   disableEsLint(),
   // useBabelRc(),
   // rewireSVGR({ icon: true }),
-  fixBabelImports("antd", {
-    libraryName: "antd",
-    libraryDirectory: "es",
-    style: true,
-  }),
-  fixBabelImports("antd-mobile", { libraryName: "antd-mobile", libraryDirectory: "lib" }),
   fixBabelImports("lodash", {
     libraryName: "lodash",
     libraryDirectory: "",

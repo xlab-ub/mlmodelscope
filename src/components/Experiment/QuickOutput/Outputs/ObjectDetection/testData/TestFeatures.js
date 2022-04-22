@@ -17,24 +17,7 @@ export const TestBoundingBox = {
   "type": "BOUNDINGBOX"
 };
 
-export const TestBoundingBox2 = {
-  "bounding_box": {
-    "index": 15,
-    "label": "dog",
-    "xmax": 52.969,
-    "xmin": 5.00500012,
-    "ymax": 45.986,
-    "ymin": 20.984,
-    color: {
-      className: "test-class-1",
-      background: "#654321",
-      font: "#ffffff"
-    }
-  },
-  "id": "61a67f3e065391000171cf2a",
-  "probability": 0.35077477,
-  "type": "BOUNDINGBOX"
-}
+
 
 export const TestObjectDetectionResult = {
   id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
