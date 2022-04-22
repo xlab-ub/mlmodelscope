@@ -1,6 +1,6 @@
-import {useHoverControl} from "../../ObjectDetection/hooks/useHoverControl";
+import {useHoverControl} from "../../_Common/hooks/useHoverControl";
 import InstanceSegmentationTrialParser from "../utils/InstanceSegmentationTrialParser";
-import {useCategoryFilters} from "../../ObjectDetection/hooks/useCategoryFilters";
+import {useCategoryFilters} from "../../_Common/hooks/useCategoryFilters";
 
 export default function useInstanceSegmentationControl(trial) {
   const hover = useHoverControl();

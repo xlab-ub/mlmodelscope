@@ -1,9 +1,9 @@
 import splitIntoRows, {groupRow} from "../utils/splitIntoRows";
 import FindUniqueNumbers from "../utils/FindUniqueNumbers";
 import {useMemo} from "react";
-import {useHoverControl} from "../../ObjectDetection/hooks/useHoverControl";
+import {useHoverControl} from "../../_Common/hooks/useHoverControl";
 import NormalizeIntMask from "../utils/NormalizeIntMask";
-import {ColorGenerator} from "../../ObjectDetection/utils/ColorGenerator";
+import {ColorGenerator} from "../../_Common/utils/ColorGenerator";
 
 export default function useImageSegmentationControl(trial) {
   const semanticSegment = trial.results.responses[0].features[0].semantic_segment;

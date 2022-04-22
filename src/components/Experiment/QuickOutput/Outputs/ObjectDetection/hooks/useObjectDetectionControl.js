@@ -1,4 +1,4 @@
-import {useHoverControl} from "./useHoverControl";
+import {useHoverControl} from "../../_Common/hooks/useHoverControl";
 import {useSectionFilters} from "./useSectionFilters";
 import React from 'react';
 import ObjectDetectionTrialParser from "../utils/ObjectDetectionTrialParser";
