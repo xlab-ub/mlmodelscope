@@ -42,3 +42,6 @@ mlmodelscope
 
 # Storybook output
 storybook-static
+
+#local shell scripts
+staging.sh
