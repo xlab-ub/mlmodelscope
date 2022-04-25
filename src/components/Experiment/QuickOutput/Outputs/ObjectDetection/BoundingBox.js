@@ -30,7 +30,7 @@ export default function BoundingBox(props) {
   }
 
   const onEnter = () => {
-    if (props.hover) props.hover.enter(label);
+    if (props.hover) props.hover.enter(props.id);
   }
   const onLeave = () => {
     if (props.hover) props.hover.leave();

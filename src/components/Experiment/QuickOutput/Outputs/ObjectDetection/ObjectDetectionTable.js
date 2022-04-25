@@ -8,8 +8,8 @@ export function ObjectDetectionTable(props) {
     const displayedProbability = Math.round(section.probability * 100);
     const color = section.color;
 
-    const isOpen = props.category.state.includes(section.bounding_box.label);
-    const toggle = () => props.category.toggle(section.bounding_box.label);
+    const isOpen = props.category.state.includes(section.id);
+    const toggle = () => props.category.toggle(section.id);
 
     return <div className={getElement("row")} onClick={toggle}>
       <div className={getElement("row-left")}>
@@ -27,9 +27,9 @@ export function ObjectDetectionTable(props) {
     </div>
   }
 
-  const uniqueSections = props.sections.filter((section, index, array) => array.findIndex((val) => val.bounding_box.label === section.bounding_box.label) === index);
+  const sortedSections = props.sections.sort((a, b) => b.probability - a.probability);
 
   return <div className={getBlock()}>
-    {uniqueSections.map(section => <Row {...section} key={section.bounding_box.label}/>)}
+    {sortedSections.map(section => <Row {...section} key={section.id}/>)}
   </div>;
 }

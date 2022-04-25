@@ -34,9 +34,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 36px;
     margin-bottom: 48px;
+    max-height: 80vh;
 
     @include tabletWidth {
       grid-template-columns: 1fr;
+      max-height: 100%;
     }
   }
 
