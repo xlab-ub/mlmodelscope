@@ -8,13 +8,27 @@ import UploadInputsTab from "./UploadInputsTab";
 import URLInputsTab from "./URLInputsTab";
 
 describe('Experiment Quick Input Component', () => {
+  const LOAD_SRC = SampleInputs[0];
+  beforeAll(() => {
+    Object.defineProperty(global.Image.prototype, 'src', {
+      // Define the property setter
+      set(src) {
+        if (src === LOAD_SRC) {
+          setTimeout(() => this.onload());
+        } else {
+          setTimeout(() => this.onerror(new Error('mocked error')));
+        }
+      },
+    });
+  });
+
   describe('Renders', () => {
     let wrapper;
     let runModelClicked;
 
     beforeEach(() => {
       runModelClicked = jest.fn();
-      wrapper = mount(<QuickInput onRunModelClicked={runModelClicked} sampleInputs={SampleInputs} />);
+      wrapper = mount(<QuickInput onRunModelClicked={runModelClicked} sampleInputs={SampleInputs}/>);
     });
 
     it('the correct container class', () => {
@@ -57,9 +71,9 @@ describe('Experiment Quick Input Component', () => {
       it('that contain the correct components', () => {
         const tabs = wrapper.find('.quick-input__tab');
 
-        expect(tabs.at(0).containsMatchingElement(<SampleInputsTab sampleInputs={SampleInputs} />)).toBeTruthy();
-        expect(tabs.at(1).containsMatchingElement(<UploadInputsTab />)).toBeTruthy();
-        expect(tabs.at(2).containsMatchingElement(<URLInputsTab />)).toBeTruthy();
+        expect(tabs.at(0).containsMatchingElement(<SampleInputsTab sampleInputs={SampleInputs}/>)).toBeTruthy();
+        expect(tabs.at(1).containsMatchingElement(<UploadInputsTab/>)).toBeTruthy();
+        expect(tabs.at(2).containsMatchingElement(<URLInputsTab/>)).toBeTruthy();
       });
 
       it('that have accessibility features', () => {
@@ -159,11 +173,16 @@ describe('Experiment Quick Input Component', () => {
     });
 
     describe('a URL Inputs Tab', () => {
-      it('that calls back to selectInput()', () => {
-        wrapper.find('.url-inputs__url').simulate('change', { target: { value: SampleInputs[0] }});
+      it('that calls back to selectInput()', async () => {
+        wrapper.find('.url-inputs__url').simulate('change', {target: {value: SampleInputs[0]}});
+
+        await new Promise(resolve => setTimeout(resolve, 10));
+
         wrapper.update();
 
-        expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[0]);
+        const state = wrapper.state('selectedInputUrl');
+        expect(state).toBe(SampleInputs[0]);
+
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
