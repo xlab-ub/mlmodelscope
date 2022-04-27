@@ -7,7 +7,7 @@ export default class ExperimentDetailContainer extends Component {
   constructor(props) {
     super(props);
 
-    let { experimentId } = this.props.match.params;
+    let {experimentId} = this.props.match.params;
     this.api = GetApiHelper();
 
     this.getExperiment(experimentId);
@@ -32,12 +32,12 @@ export default class ExperimentDetailContainer extends Component {
   render() {
     return (
       <ExperimentDetailPage experiment={this.makeExperiment()}
-                            onDeleteTrial={this.deleteTrial}
+                            onDeleteTrial={this.showDeleteModal}
                             onCancelDeleteTrial={this.cancelDeleteTrial}
                             onConfirmDeleteTrial={this.confirmDeleteTrial}
                             onConfirmModelCannotBeRemoved={this.confirmModelCannotBeRemoved}
                             showModelCannotBeRemoved={this.state.showModelCannotBeRemoved}
-                            trialToDelete={this.state.trialToDelete} />
+                            trialToDelete={this.state.trialToDelete}/>
     )
   }
 
@@ -60,16 +60,24 @@ export default class ExperimentDetailContainer extends Component {
           } else {
             trials[currentIndex] = trialOutput;
           }
-          this.setState({ trials });
+          this.setState({trials});
         }
       });
     })
   }
 
-  deleteTrial = (trial) => {
-    this.setState({
-      trialToDelete: trial
-    });
+  showDeleteModal = (trial) => {
+    if (this.state.trials.length > 1) {
+      this.setState({
+        trialToDelete: trial
+      });
+    } else {
+      this.setState({
+        showModelCannotBeRemoved: true
+      })
+    }
+
+
   }
 
   cancelDeleteTrial = () => {
@@ -91,8 +99,7 @@ export default class ExperimentDetailContainer extends Component {
         trials,
         trialToDelete: null
       });
-    }
-    catch (e) {
+    } catch (e) {
       this.setState({
         showModelCannotBeRemoved: true,
         trialToDelete: null

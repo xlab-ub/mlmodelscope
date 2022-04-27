@@ -11,17 +11,16 @@ import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotB
 export default function ExperimentDetailPage(props) {
   const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
 
-  let trialKey = 0;
-  let trialComponents = props.experiment.trials.map(trial => (
-    <div key={trialKey++} className={getElement("trial")}>
-      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial} />
+  let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
+    <div key={trialIndex} className={getElement("trial")}>
+      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial}/>
     </div>
   ));
 
   return (
     <div className={getBlock()}>
-      <Header />
-      <ExperimentDetailHeader />
+      <Header/>
+      <ExperimentDetailHeader/>
       <div className={getElement("content")}>
         <div className={getElement("first-column")}>
           <div className={getElement("overview-section")}>
@@ -31,11 +30,11 @@ export default function ExperimentDetailPage(props) {
         <div className={getElement("trials-section")}>
           <div className={getElement("trials-header-box")}>
             <p className={getElement("trials-header")}>Trials for your experiment</p>
-            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)} />
+            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)}/>
           </div>
           {trialComponents}
           <div className={getElement("ghost-card")}>
-            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)} />
+            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)}/>
           </div>
         </div>
       </div>
@@ -52,7 +51,7 @@ export default function ExperimentDetailPage(props) {
     let task = firstModel ? firstModel.output.type : 'classification';
     let inputs = props.experiment.trials[0].inputs;
 
-    return (<ExperimentOverview task={task} inputs={inputs} />);
+    return (<ExperimentOverview task={task} inputs={inputs}/>);
   }
 
   function getAddModelsLink(props) {
@@ -65,13 +64,13 @@ export default function ExperimentDetailPage(props) {
 
   function renderDeleteModal(props) {
     if (props.trialToDelete) {
-      return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial} />
+      return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
     }
   }
 
   function renderModelCannotBeRemovedModal(props) {
     if (props.showModelCannotBeRemoved) {
-      return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved} />
+      return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
     }
   }
 }
