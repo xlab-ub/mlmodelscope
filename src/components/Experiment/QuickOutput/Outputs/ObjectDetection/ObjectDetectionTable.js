@@ -10,8 +10,17 @@ export function ObjectDetectionTable(props) {
 
     const isOpen = props.category.state.includes(section.id);
     const toggle = () => props.category.toggle(section.id);
+    const hover = () => props.hover.enter(section.id);
+    const leave = () => props.hover.leave();
 
-    return <div className={getElement("row")} onClick={toggle}>
+    const isHovered = hover.property && hover.property === section.id;
+
+    const style = {
+      backgroundColor: isHovered ? "red" : "inherit",
+    }
+
+
+    return <div style={style} className={getElement("row")} onClick={toggle} onMouseEnter={hover} onMouseLeave={leave}>
       <div className={getElement("row-left")}>
         <input name={`row-input-${section.bounding_box.label}`} type={"checkbox"}
                className={getElement("row-input-hidden")}
@@ -27,9 +36,18 @@ export function ObjectDetectionTable(props) {
     </div>
   }
 
+
   const sortedSections = props.sections.sort((a, b) => b.probability - a.probability);
 
   return <div className={getBlock()}>
+    <div className={getElement("header-row")}>
+      <p>
+        Objects Detected ({sortedSections.length} total)
+      </p>
+      <p>
+        Confidence
+      </p>
+    </div>
     {sortedSections.map(section => <Row {...section} key={section.id}/>)}
   </div>;
 }

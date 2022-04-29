@@ -16,6 +16,7 @@ export default function ObjectDetectionSummary(props) {
                             filteredSections={filteredSections}
                             hover={hover}
                             confidence={filter.confidence}
+                            showInputs
 
       />
       <ObjectDetectionTable sections={sections} category={filter.category} showPercentages/>

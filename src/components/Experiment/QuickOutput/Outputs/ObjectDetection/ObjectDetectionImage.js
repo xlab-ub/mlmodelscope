@@ -14,23 +14,28 @@ export function ObjectDetectionImage(props) {
       <div className={getElement("overlay-container")}>
         {props.filteredSections.map((section) => <BoundingBox key={section.id} {...section.bounding_box}
                                                               color={section.color}
-                                                              hover={props.hover} id={section.id}/>)}
+                                                              hover={props.hover} id={section.id}
+                                                              probability={section.probability}
+        />)}
       </div>
 
     </div>
     {props.showInputs &&
-      <div className={getElement("input-container")}>
-        <input type={"range"} min={0} max={confidence.maxProbability} className={getElement("input-range")}
-               value={confidence.state}
-               onChange={(e) => confidence.setState(e.target.value)}/>
-        <label className={getElement("input-number-container")} htmlFor={"input-number"}>
+      <>
+        <p className={getElement("input-label")}> Confidence Threshold</p>
+        <div className={getElement("input-container")}>
+          <input type={"range"} min={0} max={confidence.maxProbability} className={getElement("input-range")}
+                 value={confidence.state}
+                 onChange={(e) => confidence.setState(e.target.value)}/>
+          <label className={getElement("input-number-container")} htmlFor={"input-number"}>
 
-          <input type={"number"} min={0} max={confidence.maxProbability} className={getElement("input-number")}
-                 value={confidence.state} onChange={(e) => confidence.setState(e.target.value)}/>
-          %
-        </label>
+            <input type={"number"} min={0} max={confidence.maxProbability} className={getElement("input-number")}
+                   value={confidence.state} onChange={(e) => confidence.setState(e.target.value)}/>
+            %
+          </label>
 
-      </div>
+        </div>
+      </>
     }
   </div>;
 }

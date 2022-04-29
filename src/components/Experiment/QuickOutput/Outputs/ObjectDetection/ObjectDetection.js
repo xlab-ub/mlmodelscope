@@ -12,7 +12,7 @@ export default function ObjectDetection(props) {
   return <div className={getBlock()}>
     <div className={getElement("header")}>
       <h3 className={getElement("header-headline")}>Output</h3>
-      <p className={getElement("header-subheading")}>What each object detected is</p>
+      <p className={getElement("header-subheading")}>Objects this model can identify in this image</p>
     </div>
     <div className={getElement("top-row")}>
       <ObjectDetectionImage img={props.trial.inputs[0]}
@@ -21,7 +21,7 @@ export default function ObjectDetection(props) {
                             confidence={filter.confidence}
                             showInputs
       />
-      <ObjectDetectionTable sections={sections} category={filter.category} showPercentages/>
+      <ObjectDetectionTable sections={sections} category={filter.category} showPercentages hover={hover}/>
     </div>
     <div className={getElement("bottom-row")}>
       <a href={"#"} onClick={props.onBackClicked} className={getElement("bottom-row-btn")}>

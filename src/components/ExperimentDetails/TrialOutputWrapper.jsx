@@ -27,7 +27,8 @@ export default class TrialOutputWrapper extends Component {
               <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
             </dd>
           </dl>
-          <CloseIcon className="trial-output-wrapper__delete-trial-button" onClick={() => this.props.onDeleteTrial(this.props.trial)}/>
+          <CloseIcon className="trial-output-wrapper__delete-trial-button"
+                     onClick={() => this.props.onDeleteTrial(this.props.trial)}/>
         </div>
         <div className="trial-output-wrapper__content-box">
           <div className="trial-output-wrapper__info-row">
