@@ -24,7 +24,7 @@ export default class TrialOutputWrapper extends Component {
           <dl className="trial-output-wrapper__title-definition-list">
             <dt className="trial-output-wrapper__model-label">Model:</dt>
             <dd>
-              <a className="trial-output-wrapper__model-name" href={"models/" + model.id}>{model.name}</a>
+              <a className="trial-output-wrapper__model-name" href={"/model/" + model.id}>{model.name}</a>
             </dd>
           </dl>
           <CloseIcon className="trial-output-wrapper__delete-trial-button"
