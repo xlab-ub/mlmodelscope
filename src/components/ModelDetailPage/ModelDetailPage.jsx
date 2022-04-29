@@ -4,7 +4,9 @@ import QuickInput from "../Experiment/QuickInput/QuickInput";
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
 import Header from "../Header/Header";
 import ModelDescription from "./ModelDescription";
-import objectdetection from '../../resources/img/objdect1.jpg';
+import objdect1 from '../../resources/img/obj-1.jpg';
+import objdect2 from '../../resources/img/obj-2.jpg';
+import objdect3 from '../../resources/img/obj-3.jpg';
 
 const SampleInputs = [
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png',
@@ -13,9 +15,9 @@ const SampleInputs = [
 ]
 
 const SampleObjectDetectionInputs = [
-  objectdetection,
-  objectdetection,
-  objectdetection
+  objdect1,
+  objdect2,
+  objdect3
 ]
 
 export default class ModelDetailPage extends Component {
