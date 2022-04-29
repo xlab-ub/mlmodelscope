@@ -24,7 +24,7 @@ export default function ObjectDetection(props) {
       <ObjectDetectionTable sections={sections} category={filter.category} showPercentages/>
     </div>
     <div className={getElement("bottom-row")}>
-      <a href={"/test"} className={getElement("bottom-row-btn")}>
+      <a href={"#"} onClick={props.onBackClicked} className={getElement("bottom-row-btn")}>
         Try a different image
       </a>
     </div>
