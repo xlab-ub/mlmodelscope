@@ -13,7 +13,8 @@ export default function ExperimentDetailPage(props) {
 
   let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
     <div key={trialIndex} className={getElement("trial")}>
-      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial}/>
+      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial} deletedTrial={props.trialToDelete}
+                          trialIsDeleting={props.trialIsDeleting}/>
     </div>
   ));
 
@@ -63,7 +64,7 @@ export default function ExperimentDetailPage(props) {
   }
 
   function renderDeleteModal(props) {
-    if (props.trialToDelete) {
+    if (props.trialToDelete && !props.trialIsDeleting) {
       return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
     }
   }

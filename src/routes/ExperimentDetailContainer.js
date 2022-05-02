@@ -16,7 +16,8 @@ export default class ExperimentDetailContainer extends Component {
       experiment: null,
       showModelCannotBeRemoved: false,
       trials: [],
-      trialToDelete: null
+      trialToDelete: null,
+      trialIsDeleting: false
     }
 
     this.trialSubscriptions = [];
@@ -35,6 +36,7 @@ export default class ExperimentDetailContainer extends Component {
                             onDeleteTrial={this.showDeleteModal}
                             onCancelDeleteTrial={this.cancelDeleteTrial}
                             onConfirmDeleteTrial={this.confirmDeleteTrial}
+                            trialIsDeleting={this.state.trialIsDeleting}
                             onConfirmModelCannotBeRemoved={this.confirmModelCannotBeRemoved}
                             showModelCannotBeRemoved={this.state.showModelCannotBeRemoved}
                             trialToDelete={this.state.trialToDelete}/>
@@ -87,24 +89,28 @@ export default class ExperimentDetailContainer extends Component {
   }
 
   confirmDeleteTrial = async () => {
-    const trialId = this.state.trialToDelete.id;
-    try {
-      await this.api.deleteTrial(trialId);
-      this.trialSubscriptions[trialId].unsubscribe();
-      this.trialSubscriptions[trialId] = undefined;
+    this.setState({trialIsDeleting: true});
+    https://staging.mlmodelscope.org/
+      setTimeout(async () => {
+        const trialId = this.state.trialToDelete.id;
+        try {
+          await this.api.deleteTrial(trialId);
+          this.trialSubscriptions[trialId].unsubscribe();
+          this.trialSubscriptions[trialId] = undefined;
 
-      let trials = this.state.trials.filter(t => t.id !== trialId);
+          let trials = this.state.trials.filter(t => t.id !== trialId);
 
-      this.setState({
-        trials,
-        trialToDelete: null
-      });
-    } catch (e) {
-      this.setState({
-        showModelCannotBeRemoved: true,
-        trialToDelete: null
-      });
-    }
+          this.setState({
+            trials,
+            trialToDelete: null
+          });
+        } catch (e) {
+          this.setState({
+            showModelCannotBeRemoved: true,
+            trialToDelete: null
+          });
+        }
+      }, 500);
   }
 
   confirmModelCannotBeRemoved = () => {
