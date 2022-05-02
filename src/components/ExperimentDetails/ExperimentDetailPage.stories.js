@@ -3,6 +3,10 @@ import crabby from "../../stories/assets/crabby.png";
 
 import ExperimentDetailPage from "./ExperimentDetailPage";
 import {TestObjectDetectionResult} from "../Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
+import {
+  TestInstanceSegmentationOutput
+} from "../Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
+import {TestImageClassificationResult} from "../Experiment/QuickOutput/Outputs/Classification/Features";
 
 export default {
   title: 'Experiments/Experiment Detail Page',
@@ -232,6 +236,17 @@ Standard.args = {
   }
 };
 
+export const ImageClassification = Template.bind({});
+ImageClassification.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestImageClassificationResult,
+      TestImageClassificationResult
+    ]
+  }
+}
+
 export const ObjectDetection = Template.bind({});
 ObjectDetection.args = {
   experiment: {
@@ -239,6 +254,17 @@ ObjectDetection.args = {
     trials: [
       TestObjectDetectionResult,
       TestObjectDetectionResult
+    ]
+  }
+}
+
+export const InstanceSegmentation = Template.bind({});
+InstanceSegmentation.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestInstanceSegmentationOutput,
+      TestInstanceSegmentationOutput
     ]
   }
 }

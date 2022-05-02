@@ -10,6 +10,7 @@
 'components/Common/ModelTag',
 'src/components/ExperimentDetails/Summaries/ClassificationSummary',
 'src/components/ExperimentDetails/Summaries/ObjectDetectionSummary',
+'src/components/ExperimentDetails/Summaries/InstanceSegmentationSummary',
 'components/ExperimentDetails/ExperimentDetailHeader',
 'components/ExperimentDetails/ExperimentOverview',
 'components/ExperimentDetails/TrialOutputWrapper',
@@ -26,4 +27,7 @@
 'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetection',
 'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetectionImage',
 'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetectionTable',
+'src/components/Experiment/QuickOutput/Outputs/SemanticSegmentation/SemanticSegmentationImage',
+'src/components/Experiment/QuickOutput/Outputs/InstanceSegmentation/InstanceSegmentation',
+'src/components/Experiment/QuickOutput/Outputs/InstanceSegmentation/InstanceSegmentationTable',
 'components/ModelDetailPage/ModelDetailPage';

@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import {useCategoryFilters} from "./useCategoryFilters";
+import {useCategoryFilters} from "../../_Common/hooks/useCategoryFilters";
 import {useConfidenceFilters} from "./useConfidenceFilters";
 
 export function useSectionFilters(sections) {
