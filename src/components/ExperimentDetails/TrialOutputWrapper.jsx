@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
@@ -28,8 +28,6 @@ export default function TrialOutputWrapper(props) {
           return (<ClassificationSummary results={props.trial.results}/>)
         case "image_object_detection":
           return <ObjectDetectionSummary trial={props.trial}/>
-        case "image_instance_segmentation":
-          return <InstanceSegmentationSummary trial={props.trial}/>
       }
 
       return <></>
