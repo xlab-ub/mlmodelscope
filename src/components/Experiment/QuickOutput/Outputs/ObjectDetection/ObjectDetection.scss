@@ -31,12 +31,14 @@
   &__top-row {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
     margin-bottom: 48px;
+    max-height: 100vh;
 
     @include tabletWidth {
       grid-template-columns: 1fr;
+      max-height: 100%;
     }
   }
 

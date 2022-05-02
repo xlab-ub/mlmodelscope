@@ -5,6 +5,7 @@ import ClassificationOutput from "./Outputs/Classification/ClassificationOutput"
 import "./QuickOutput.scss";
 import PendingOutput from "./Outputs/Classification/PendingOutput";
 import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
+import {image_classification, object_detection} from "../../../helpers/TaskIDs";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
@@ -36,9 +37,9 @@ export default class QuickOutput extends BEMComponent {
   makeOutput() {
     if (this.props.features || this.props.trialOutput.completed_at) {
       switch (this.props.trialOutput.model.output.type) {
-        case "image_object_detection":
-          return <ObjectDetection trial={this.props.trialOutput}/>
-        case "image_classification":
+        case object_detection:
+          return <ObjectDetection trial={this.props.trialOutput} onBackClicked={this.props.onBackClicked}/>
+        case image_classification:
           return (<>
             <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
             <ClassificationOutput features={this.props.features}/>

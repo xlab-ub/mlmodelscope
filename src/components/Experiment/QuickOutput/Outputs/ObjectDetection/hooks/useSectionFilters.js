@@ -3,7 +3,7 @@ import {useCategoryFilters} from "../../_Common/hooks/useCategoryFilters";
 import {useConfidenceFilters} from "./useConfidenceFilters";
 
 export function useSectionFilters(sections) {
-  const {categories, toggleCategory, labelIsInCategories} = useCategoryFilters(sections, "bounding_box", "label");
+  const {categories, toggleCategory, labelIsInCategories} = useCategoryFilters(sections, "id");
   const {filterCutoff, setFilterCutoff, maxProbability, exceedsProbability} = useConfidenceFilters(sections);
 
   const filterFn = (section) => {

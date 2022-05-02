@@ -25,21 +25,21 @@ export default function BoundingBox(props) {
     marginLeft: -1,
     paddingLeft: 4,
     color: color.fontColor,
-    display: "none"
+    display: props.hover.property === props.id ? "block" : "none"
 
   }
 
   const onEnter = () => {
-    if (props.hover) props.hover.enter(label);
+    if (props.hover) props.hover.enter(props.id);
   }
   const onLeave = () => {
     if (props.hover) props.hover.leave();
   }
-
+  const percentage = Math.round(props.probability * 100);
 
   return <div className={color.className} style={style} onMouseEnter={onEnter} onMouseLeave={onLeave}>
     <p style={pStyle}>
-      {label}
+      {label} ({percentage}%)
     </p>
   </div>
 }
