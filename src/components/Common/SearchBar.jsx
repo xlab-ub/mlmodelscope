@@ -1,6 +1,7 @@
 import React from "react";
 import BEMComponent from "./BEMComponent";
-import { ReactComponent as Cancel }  from '../../resources/icons/x.svg';
+import {ReactComponent as Cancel} from '../../resources/icons/x.svg';
+
 export default class SearchBar extends BEMComponent {
   static defaultProps = {
     className: 'search-bar'
@@ -11,8 +12,9 @@ export default class SearchBar extends BEMComponent {
   clearSearch = () => {
     this.props.updateSearchText("");
   }
+
   getDismissClassName() {
-    return  this.element(this.props.searchText === "" ? "tag--hidden" : "tag--visible");
+    return this.element(this.props.searchText === "" ? "tag--hidden" : "tag--visible");
   }
 
   render() {
@@ -27,8 +29,7 @@ export default class SearchBar extends BEMComponent {
                aria-label="Search models by name or description"
                value={this.props.searchText}/>
           <button className={this.getDismissClassName()} onClick={this.clearSearch}>
-           <Cancel />
-
+           <Cancel/>
           </button>
       </span>
 
