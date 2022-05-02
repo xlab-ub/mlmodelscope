@@ -2,14 +2,17 @@ import ModelListWithFilters from "./ModelListWithFilters";
 import expect from "expect";
 import React from 'react';
 import {shallow} from 'enzyme';
+import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
 
 describe('The Model List Filters', () => {
+
+
   const defaultFrameworks = [
-      {name: "MXNet", label: "MXNet", isActive: false},
-      {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
-      {name: "PyTorch", label: "PyTorch", isActive: false},
-      {name: "TensorFlow", label: "TensorFlow", isActive: false},
-    ];
+    {name: "MXNet", label: "MXNet", isActive: false},
+    {name: "Onnxruntime", label: "Onnxruntime", isActive: false},
+    {name: "PyTorch", label: "PyTorch", isActive: false},
+    {name: "TensorFlow", label: "TensorFlow", isActive: false},
+  ];
 
   const defaultModels = [
     createModel("ChickenModel", "chicken", "MXNet", "image_classification", ["amd64"]),
@@ -26,12 +29,18 @@ describe('The Model List Filters', () => {
     {name: "ILLIAC", label: "ILLIAC", isActive: false},
     {name: "ENIAC", label: "ENIAC", isActive: false},
   ]
-
+  let storageHelper = new SearchFiltersLocalStorage();
   let modelList;
 
   beforeEach(() => {
-    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels} machineOptions={defaultMachines} />);
+    storageHelper.clearFilters();
+  })
+
+  beforeEach(() => {
+    modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels}
+                                              machineOptions={defaultMachines}/>);
   });
+
 
   it("clearFilters clears all filters", () => {
     const instance = modelList.instance();
@@ -113,12 +122,12 @@ describe('The Model List Filters', () => {
   })
 
   it("automatically starts filtering tasks when a model is selected", () => {
-      const instance = modelList.instance();
-      const model = instance.props.models[0];
-      instance.selectModel(model);
-      const options = instance.state.filterGroups[0].options[0];
+    const instance = modelList.instance();
+    const model = instance.props.models[0];
+    instance.selectModel(model);
+    const options = instance.state.filterGroups[0].options[0];
 
-      expect(options.isActive).toEqual(true);
+    expect(options.isActive).toEqual(true);
   })
 
   it("replaces removed task filters when deselecting a model", () => {
@@ -131,18 +140,97 @@ describe('The Model List Filters', () => {
     expect(taskListLengthNotSelected).toBeGreaterThan(taskListLengthSelected);
   })
 
+  describe("localStorage filters", () => {
+    beforeEach(() => {
+      storageHelper.setFilters({
+        searchText: "",
+        filterGroups: [{
+          "header": "Tasks",
+          "description": "What the model is trying to do with the machine and input data",
+          "select": "single",
+          "dataPath": ["output", "type"],
+          "options": [{
+            "name": "image_classification",
+            "label": "Classification",
+            "isActive": true
+          }, {
+            "name": "image_object_detection",
+            "label": "Object Detection",
+            "isActive": false
+          }, {
+            "name": "image_semantic_segmentation",
+            "label": "Semantic Segmentation",
+            "isActive": false
+          }, {
+            "name": "image_instance_segmentation",
+            "label": "Instance Segmentation",
+            "isActive": false
+          }, {"name": "image_enhancement", "label": "Image Enhancement", "isActive": false}, {
+            "name": "clickthroughrate",
+            "label": "Click-Through Rate",
+            "isActive": false
+          }]
+        }, {
+          "header": "Frameworks",
+          "description": "What the model is running on",
+          "select": "single",
+          "dataPath": ["framework", "name"],
+          "options": [{"id": 1, "name": "MXNet", "label": "MXNet", "isActive": true}, {
+            "id": 2,
+            "name": "Onnxruntime",
+            "label": "Onnxruntime",
+            "isActive": false
+          }, {"id": 3, "name": "PyTorch", "label": "PyTorch", "isActive": false}, {
+            "id": 4,
+            "name": "TensorFlow",
+            "label": "TensorFlow",
+            "isActive": false
+          }]
+        }, {
+          "header": "Machines",
+          "description": "Hardware that processes the model's functions",
+          "select": "single",
+          "dataPath": ["framework", "architectures", "0", "name"],
+          "options": [{"name": "amd64", "label": "amd64", "isActive": true}]
+        }]
+      })
+
+      modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels}
+                                                machineOptions={defaultMachines}/>);
+    })
+    it("filters classification by default when that is what is stored in filters", () => {
+      let filterGroups = modelList.instance().state.filterGroups;
+
+      expect(filterGroups[0].options[0].isActive).toBeTruthy();
+    })
+
+    it("filters the first framework by default when that is what is stored in filters", () => {
+      let filterGroups = modelList.instance().state.filterGroups;
+
+      expect(filterGroups[1].options[0].isActive).toBeTruthy();
+    })
+
+    it("filters the first machine by default when that is what is stored in filters", () => {
+      let filterGroups = modelList.instance().state.filterGroups;
+
+      expect(filterGroups[2].options[0].isActive).toBeTruthy();
+    })
+
+  })
+
+
   //Since all current models have only one machine, we are shifting priorities to focus on more important features
   //Uncomment this test when it is time to add support for multiple machines
-/*  it('can filter by machine when model has more than one machine', () => {
-    modelList.instance().toggleFilter("Machines", "single", "ENIAC");
-    let filteredModels = modelList.instance().filterModels();
-    expect(filteredModels.length).toEqual(1);
-    expect(filteredModels[0]).toEqual(defaultModels[3]);
-  });*/
+  /*  it('can filter by machine when model has more than one machine', () => {
+      modelList.instance().toggleFilter("Machines", "single", "ENIAC");
+      let filteredModels = modelList.instance().filterModels();
+      expect(filteredModels.length).toEqual(1);
+      expect(filteredModels[0]).toEqual(defaultModels[3]);
+    });*/
 });
 
 function createModel(name, description, framework, task, machines) {
-  let architectures = machines.map(machine => ({ name: machine }));
+  let architectures = machines.map(machine => ({name: machine}));
   return {
     name: name,
     description: description,

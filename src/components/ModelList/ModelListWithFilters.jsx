@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
+import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
 
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
@@ -11,9 +12,13 @@ export default class ModelListWithFilters extends Component {
 
   constructor(props) {
     super(props);
+
+    let stored = this.getStoredFilters();
+    let filterGroups = stored?.filterGroups || this.getDefaultGroups();
+    let searchText = stored?.searchText || "";
     this.state = {
-      filterGroups: this.getDefaultGroups(),
-      searchText: "",
+      filterGroups: filterGroups,
+      searchText: searchText,
       isSortAscending: true,
       selectedModels: props.selectedModels || [],
     }
@@ -21,15 +26,56 @@ export default class ModelListWithFilters extends Component {
     this.clearFilters = this.clearFilters.bind(this);
   }
 
+
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.frameworkOptions !== prevProps.frameworkOptions || this.state.selectedModels.length !== prevState.selectedModels.length){
-      this.setState({filterGroups: this.makeFilterGroups()});
+    if (this.props.frameworkOptions !== prevProps.frameworkOptions || this.state.selectedModels.length !== prevState.selectedModels.length) {
+      let filterGroups = this.makeFilterGroups();
+      this.reAssignActiveLabels(filterGroups, prevState.filterGroups);
+      if (this.state.selectedModels.length > 0)
+        this.ensureSelectedTaskIsChecked(filterGroups, this.state.selectedModels[0]);
+      this.storeCurrentFilters(filterGroups);
+      this.setState({filterGroups: filterGroups});
+    } else {
+      this.storeCurrentFilters();
     }
-    if(this.props.selectedModels !== prevProps.selectedModels) {
+    if (this.props.selectedModels !== prevProps.selectedModels) {
       this.setState({selectedModels: this.props.selectedModels});
     }
 
   }
+
+  reAssignActiveLabels(cur, prev) {
+    cur.forEach((group, i) => {
+      let prevGroup = prev[i];
+      group.options.forEach(option => {
+        let prevOption = prevGroup.options.find(opt => opt.name === option.name);
+        if (prevOption)
+          option.isActive = prevOption.isActive;
+      })
+    })
+  }
+
+  ensureSelectedTaskIsChecked(filterGroups, selectedModel) {
+    const task = selectedModel.output.type;
+    const taskList = filterGroups.find(group => group.dataPath[1] === "type");
+    const option = taskList.options.find(opt => opt.name === task);
+    option.isActive = true;
+  }
+
+  storeCurrentFilters = (filterGroupOverride = null) => {
+    let storageObject = {
+      searchText: this.state.searchText,
+      filterGroups: filterGroupOverride || this.state.filterGroups
+    };
+    let storageHelper = new SearchFiltersLocalStorage();
+    storageHelper.setFilters(storageObject);
+  }
+
+  getStoredFilters = () => {
+    let storageHelper = new SearchFiltersLocalStorage();
+    return storageHelper.getFilters();
+  }
+
   getDefaultGroups() {
     return [
       {
@@ -66,7 +112,7 @@ export default class ModelListWithFilters extends Component {
   makeFilterGroups() {
     const defaultGroups = this.getDefaultGroups();
     const selected = this.state.selectedModels;
-    if(selected.length > 0)
+    if (selected.length > 0)
       defaultGroups[0].options = this.getTaskListOptions(defaultGroups, selected);
 
     return defaultGroups;
@@ -75,13 +121,13 @@ export default class ModelListWithFilters extends Component {
   getTaskListOptions(groups, selected) {
     return groups[0].options
       .filter(
-      opt => selected.some(sel => sel.output.type === opt.name)
-    ).map(opt => ({...opt, isActive: true}));
+        opt => selected.some(sel => sel.output.type === opt.name)
+      ).map(opt => ({...opt, isActive: true}));
   }
 
   filterModels = () => {
     let result = clone(this.props.models);
-    for(let i = 0; i < this.state.filterGroups.length; i++){
+    for (let i = 0; i < this.state.filterGroups.length; i++) {
       result = this.filterByOneField(result, this.state.filterGroups[i]);
     }
     result = this.search(result);
@@ -92,13 +138,13 @@ export default class ModelListWithFilters extends Component {
 
   filterByOneField = (unfilteredModels, filterGroup) => {
     let activeOptions = filterGroup.options.filter(o => o.isActive);
-    if(activeOptions.length === 0){
+    if (activeOptions.length === 0) {
       return unfilteredModels;
     }
-    let filteredModels=[];
+    let filteredModels = [];
     let fields = filterGroup.dataPath;
 
-    for(let i = 0; i < activeOptions.length; i++){
+    for (let i = 0; i < activeOptions.length; i++) {
       filteredModels = filteredModels.concat(unfilteredModels.filter(model => {
         let dataFromFieldPath = this.getDataFromFieldPath(model, fields);
         let name = activeOptions[i].name;
@@ -111,7 +157,7 @@ export default class ModelListWithFilters extends Component {
 
   getDataFromFieldPath(object, fields) {
     let result = object;
-    for(let i = 0; i < fields.length; i++) {
+    for (let i = 0; i < fields.length; i++) {
       result = result[fields[i]];
     }
     return result;
@@ -122,10 +168,9 @@ export default class ModelListWithFilters extends Component {
     let i = filterGroupsCopy.findIndex(group => group.header === filterName);
     let filterGroup = {...filterGroupsCopy[i]};
 
-    if(selectMode === "multi"){
+    if (selectMode === "multi") {
       this.toggleFilterMulti(filterGroup, target);
-    }
-    else{
+    } else {
       this.toggleFilterSingle(filterGroup, target)
     }
 
@@ -135,20 +180,19 @@ export default class ModelListWithFilters extends Component {
 
   toggleFilterMulti = (filterGroup, target) => {
     let targetOption = filterGroup.options.find(option => option.name === target);
-    if(!!targetOption)
+    if (!!targetOption)
       targetOption.isActive = !targetOption.isActive;
   }
 
   toggleFilterSingle = (filterGroup, target) => {
     let options = filterGroup.options;
-    if (!options){
+    if (!options) {
       return;
     }
-    for(let i = 0 ; i < options.length; i++){
-      if(options[i].name === target){
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].name === target) {
         options[i].isActive = !options[i].isActive;
-      }
-      else{
+      } else {
         options[i].isActive = false;
       }
     }
@@ -156,7 +200,10 @@ export default class ModelListWithFilters extends Component {
 
   clearFilters() {
     let filterGroups = clone(this.state.filterGroups);
-    filterGroups = filterGroups.map(filterGroup => ({...filterGroup, options: filterGroup.options.map(opt => ({...opt, isActive: false}))}));
+    filterGroups = filterGroups.map(filterGroup => ({
+      ...filterGroup,
+      options: filterGroup.options.map(opt => ({...opt, isActive: false}))
+    }));
 
     this.setState({filterGroups: filterGroups});
   }
@@ -176,10 +223,9 @@ export default class ModelListWithFilters extends Component {
 
   sortModels = (unfilteredModels) => {
     let result = unfilteredModels;
-    if(this.state.isSortAscending){
+    if (this.state.isSortAscending) {
       result = result.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
-    }
-    else {
+    } else {
       result = result.sort((a, b) => (a.name.toLowerCase() < b.name.toLowerCase()) ? 1 : -1);
     }
     return result;
