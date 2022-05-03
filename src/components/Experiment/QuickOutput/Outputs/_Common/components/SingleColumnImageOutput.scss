@@ -1,22 +1,22 @@
-.instance-segmentation {
+.single-column-image-output {
   background-color: $white;
   border-radius: 5px;
   box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
   display: flex;
-  flex: 1 1;
   flex-direction: column;
   margin-left: 16px;
   margin-right: 16px;
   padding: 32px;
-  @include maxWidth(1000px) {
+
+  @include desktopWidth {
     margin-left: 0;
+    margin-right: 0;
   }
 
   &__header {
-    width: 100%;
     border-bottom: 1px solid $smokeDarkest;
-    padding-bottom: 16px;
     margin-bottom: 24px;
+    padding-bottom: 16px;
 
     &-heading {
       @include headline3;
@@ -28,24 +28,13 @@
     }
   }
 
-  &__top-row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    margin-bottom: 48px;
-
-    @include tabletWidth {
-      grid-template-columns: 1fr;
-    }
+  &__back-link {
+    @include secondaryButtonWithIconBefore("arrow-right.svg");
+    max-width: 270px;
   }
 
-  &__bottom-row {
-    margin-top: 54px;
-
-    &-btn {
-      @include secondaryButtonWithIconBefore("arrow-right.svg");
-      max-width: 270px;
-    }
+  &__content {
+    display: flex;
+    flex-direction: column;
   }
 }

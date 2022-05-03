@@ -1,12 +1,21 @@
 import React from "react";
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import "./ImageEnhancement.scss";
+import SingleColumnImageOutput from "../_Common/components/SingleColumnImageOutput";
+import ImageEnhancementImage from "./ImageEnhancementImage";
+import InputPreview from "../../InputPreview";
+import {useHistory} from "react-router-dom";
 
 export default function ImageEnhancement(props) {
   const {getElement, getBlock} = useBEMNaming('image-enhancement');
+  const History = useHistory();
+
+  const goBack = () => History?.back() || null;
 
   return <div className={getBlock()}>
-    <h3 className={getElement('title')}>Output</h3>
-    <img className={getElement('output')} src={`data:image/jpeg;base64,${props.feature.raw_image.jpeg_data}`} />
+    <InputPreview input={props.trial.inputs[0]} onBackClicked={goBack}/>
+    <SingleColumnImageOutput
+      modelId={props.trial.model.id}
+      image={<ImageEnhancementImage feature={props.trial.results.responses[0].features[0]}/>}/>
   </div>
 }
