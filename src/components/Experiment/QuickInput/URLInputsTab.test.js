@@ -15,7 +15,7 @@ describe('URL Inputs Tab', () => {
       const title = wrapper.find('.url-inputs').childAt(0);
 
       expect(title.prop('className')).toBe('url-inputs__title');
-      expect(title.text()).toBe('Paste URL of image');
+      expect(title.text()).toBe('Copy and paste an image address');
     });
 
     describe('a URL input box', () => {
@@ -64,7 +64,7 @@ describe('URL Inputs Tab', () => {
       expect(inputSelected.mock.calls[0][0]).toBe(LOAD_SRC);
 
       wrapper.find('.url-inputs__url').simulate('change', {target: {value: LOAD_SRC}});
-      
+
       await new Promise(resolve => setTimeout(resolve, 10));
 
       expect(inputSelected.mock.calls.length).toBe(2);

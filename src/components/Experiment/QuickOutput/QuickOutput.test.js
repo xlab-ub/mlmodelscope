@@ -13,10 +13,11 @@ describe('Experiment Quick Output component', () => {
   describe("with output", () => {
     it("image classification", () => {
       let wrapper = mount(<QuickOutput input={TestInput} trialOutput={TestImageClassificationResult}
-                                       model={TestImageClassificationResult.model}/>);
+                                       model={TestImageClassificationResult.model}
+                                       features={TestImageClassificationResult.results.responses[0].features}/>);
       const prediction_text = wrapper.find(".top-prediction__prediction").text();
 
-      expect(prediction_text.includes("Unknown")).toBe(true);
+      expect(prediction_text.includes("bee eater")).toBe(true);
 
     })
     it("object detection", () => {

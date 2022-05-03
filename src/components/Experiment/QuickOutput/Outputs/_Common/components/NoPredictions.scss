@@ -1,0 +1,27 @@
+@import "../../../../../../App";
+
+.no-predictions {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(30, 99, 242, 0.03);
+  border-radius: 5px;
+  min-height: 400px;
+
+  &__header {
+    color: $charcoalLightest;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__link {
+    color: $azul;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}

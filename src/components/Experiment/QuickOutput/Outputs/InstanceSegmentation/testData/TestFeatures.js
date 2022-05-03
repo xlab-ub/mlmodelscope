@@ -49,3 +49,38 @@ export const TestInstanceSegmentationOutput = {
   },
 
 }
+
+export const TestInstanceSegmentationOutputNoFeatures = {
+  id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
+  inputs: [
+    "http://www.experian.com/blogs/news/wp-content/uploads/2012/06/cars.png"
+  ],
+  completed_at: "2022-04-20T20:39:06.359287Z",
+  results: {
+    "responses": [
+      {
+        "features": [],
+        "id": "4b4847c5-5472-4208-9909-e03898ac692b",
+        "input_id": "dd136544-d70e-49a5-9306-b480230ca2ea",
+        "request_id": "698fc908-df66-4230-9e3b-b8248bc5481b"
+      }
+    ],
+    "trace_id": {"id": "45fb5faa2c4321d0"}
+  },
+  model: {
+    framework: {
+      architectures: [
+        {
+          name: 'amd64'
+        }
+      ],
+      name: 'PyTorch'
+    },
+    id: 27,
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: "image_instance_segmentation"
+    }
+  },
+
+}

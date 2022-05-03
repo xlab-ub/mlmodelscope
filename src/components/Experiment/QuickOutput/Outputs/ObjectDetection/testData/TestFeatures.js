@@ -18,7 +18,6 @@ export const TestBoundingBox = {
 };
 
 
-
 export const TestObjectDetectionResult = {
   id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
   inputs: [
@@ -368,6 +367,38 @@ export const TestObjectDetectionResult = {
             }
           }
         ]
+      }
+    ],
+    "trace_id": {}
+  },
+  model: {
+    framework: {
+      architectures: [
+        {
+          name: 'amd64'
+        }
+      ],
+      name: 'PyTorch'
+    },
+    id: 27,
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: "image_object_detection"
+    }
+  },
+}
+
+
+export const TestObjectDetectionResultNoBoundingBoxes = {
+  id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
+  inputs: [
+    "http://www.experian.com/blogs/news/wp-content/uploads/2012/06/cars.png"
+  ],
+  completed_at: "2022-04-20T20:39:06.359287Z",
+  results: {
+    responses: [
+      {
+        features: []
       }
     ],
     "trace_id": {}
