@@ -7,6 +7,7 @@ import PendingOutput from "./Outputs/Classification/PendingOutput";
 import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
 import {image_classification, image_enhancement, object_detection} from "../../../helpers/TaskIDs";
 import ImageEnhancement from "./Outputs/ImageEnhancement/ImageEnhancement";
+import ProcessFailed from "./ProcessFailed";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
@@ -15,6 +16,7 @@ export default class QuickOutput extends BEMComponent {
     input: "",
     compare: () => {
     },
+    processFailed: false
   }
 
   render() {
@@ -36,7 +38,12 @@ export default class QuickOutput extends BEMComponent {
   }
 
   makeOutput() {
-    if (this.props.features || this.props.trialOutput.completed_at) {
+    if (this.props.processFailed) {
+      return <>
+        <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
+        <ProcessFailed/>
+      </>
+    } else if (this.props.features || this.props.trialOutput.completed_at) {
       switch (this.props.trialOutput.model.output.type) {
         case image_classification:
           return <>

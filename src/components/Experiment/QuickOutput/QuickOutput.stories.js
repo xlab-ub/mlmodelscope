@@ -27,3 +27,12 @@ NoPredictions.args = {
   input: kitty,
   trialOutput: TestImageClassificationResultNoFeatures
 }
+
+
+export const ProcessFailed = Template.bind({});
+
+ProcessFailed.args = {
+  features: [],
+  input: kitty,
+  processFailed: true
+}
