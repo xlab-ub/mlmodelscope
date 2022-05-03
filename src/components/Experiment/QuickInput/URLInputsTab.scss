@@ -13,5 +13,15 @@
     background: $white;
     margin-top: 20px;
     padding: 20px;
+
+    &-error {
+      border-color: $darkRed;
+    }
+  }
+
+  &__error-text {
+    @include bodySmall;
+    color: $darkRed;
+    margin-top: 16px;
   }
 }

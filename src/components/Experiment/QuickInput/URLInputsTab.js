@@ -1,31 +1,16 @@
-import React from 'react';
-import BEMComponent from "../../Common/BEMComponent";
+import React, {useState} from 'react';
 import "./URLInputsTab.scss";
 import ImageVerifier from "../../../helpers/imageVerifier";
+import useBEMNaming from "../../../common/useBEMNaming";
 
 const UrlMatcher = /https?:\/\/.+/;
 
-export default class URLInputsTab extends BEMComponent {
-  static defaultProps = {
-    className: "url-inputs"
-  }
+export default function URLInputsTab(props) {
+  const [isInvalidUrl, setIsInvalidUrl] = useState(false);
+  const {getBlock, getElement} = useBEMNaming("url-inputs");
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={this.block()}>
-        <div className={this.element('title')}>Paste URL of image</div>
-        <input className={this.element('url')} placeholder="Paste any image URL" type="url" onChange={this.urlChanged}/>
-      </div>
-    );
-  }
-
-  urlChanged = async (event) => {
+  const urlChanged = async (event) => {
     let url = event.target.value;
-
 
     if (url.match(UrlMatcher) === null)
       url = "";
@@ -34,9 +19,23 @@ export default class URLInputsTab extends BEMComponent {
       if (!(await verifier.Verify()))
         url = "";
     }
+    setIsInvalidUrl(url === "" && event.target.value !== "");
 
+    if (typeof (props.inputSelected) === 'function') {
+      props.inputSelected(url);
 
-    if (typeof (this.props.inputSelected) === 'function')
-      this.props.inputSelected(url);
+    }
   }
+
+  const getInputClassName = () => getElement(isInvalidUrl ? "url url-error" : "url")
+
+  return (
+    <div className={getBlock()}>
+      <div className={getElement('title')}>Paste URL of image</div>
+      <input className={getInputClassName()} placeholder="Paste any image URL" type="url" onChange={urlChanged}/>
+      {isInvalidUrl &&
+        <p className={getElement("error-text")}>The url entered does not point to an image. Please try another url.</p>}
+    </div>
+  );
 }
+
