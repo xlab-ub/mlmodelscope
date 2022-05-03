@@ -31,10 +31,10 @@ export default function URLInputsTab(props) {
 
   return (
     <div className={getBlock()}>
-      <div className={getElement('title')}>Paste URL of image</div>
+      <div className={getElement('title')}>Copy and paste an image address</div>
       <input className={getInputClassName()} placeholder="Paste any image URL" type="url" onChange={urlChanged}/>
       {isInvalidUrl &&
-        <p className={getElement("error-text")}>The url entered does not point to an image. Please try another url.</p>}
+        <p className={getElement("error-text")}>This is not a valid url. Copy and past an image address.</p>}
     </div>
   );
 }
