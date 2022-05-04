@@ -3,33 +3,74 @@
 
   max-height: 800px;
   overflow-y: auto;
+  padding: 0 16px;
 
   @include tabletWidth {
-    margin-top: 48px;
     max-height: 100%;
   }
 
   &__header-row {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    gap: 12px;
     position: sticky;
     top: 0;
     background-color: white;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $smokeDarkest;
+    margin-bottom: 24px;
+    width: 100%;
+
+    &-item {
+      @include labelSmall;
+      color: $charcoalLightest;
+
+      @include mobileWidth-lg {
+        font-size: 12px;
+      }
+
+      &-total {
+        @include maxWidth(725px) {
+          display: none;
+        }
+      }
+    }
   }
 
   &__row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    gap: 12px;
+
     width: 100%;
     justify-content: space-between;
     border-bottom: 1px dashed $smokeDarkest;
     padding-bottom: 6px;
     margin-bottom: 10px;
-    align-items: center;
+    align-items: baseline;
     cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $charcoalLightest;
+    }
 
     &-left {
       display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-middle {
+      display: flex;
+      align-items: baseline;
+      overflow-wrap: anywhere;
+    }
+
+    &-right {
+      display: flex;
+      justify-content: flex-end;
       align-items: center;
     }
 
@@ -51,6 +92,18 @@
       &-label {
         @include body;
         text-transform: capitalize;
+        max-width: 80%;
+
+        @include mobileWidth-lg {
+          @include bodySmall;
+        }
+      }
+    }
+
+    &-percentage {
+      @include body;
+      @include mobileWidth-lg {
+        @include bodySmall;
       }
     }
   }

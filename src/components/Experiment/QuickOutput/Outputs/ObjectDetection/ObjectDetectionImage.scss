@@ -1,18 +1,18 @@
 .object-detection-image {
-  position: relative;
 
   &__input-label {
-    margin-top: 12px;
+    @include labelSmall;
+    color: $charcoalLightest;
   }
 
   &__image {
+    height: auto;
     width: 100%;
-    height: 100%;
 
-    &-wrapper {
-      width: 100%;
-      height: 100%;
-    }
+  }
+
+  &__overlay {
+    position: relative;
   }
 
   &__overlay-container {
@@ -20,7 +20,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    @include tabletWidth {
+    }
+  }
+
+  &__input-wrapper {
+    background-color: $smoke;
+    padding: 12px;
   }
 
   &__input-container {
@@ -29,7 +35,6 @@
     grid-template-columns: 6fr 1fr;
     align-items: center;
     margin-top: 0px;
-    margin-bottom: 45px;
 
     @include desktopWidth {
       grid-template-columns: 3fr 1fr;
@@ -44,6 +49,11 @@
 
   &__input-range {
     height: 3px;
+    border-color: $gray;
+
+    &:focus {
+      border-color: $gray;
+    }
 
     accent-color: $charcoalLightest;
 

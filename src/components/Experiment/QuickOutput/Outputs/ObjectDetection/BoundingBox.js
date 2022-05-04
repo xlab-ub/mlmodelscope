@@ -1,11 +1,25 @@
 import React from 'react';
 import {ConvertHexToRGB} from "../_Common/utils/HexConverter";
+import ParseProbability from "../_Common/utils/ParseProbability";
+import "./BoundingBox.scss";
 
 export default function BoundingBox(props) {
-  let top = props.ymin * 100;
-  let left = props.xmin * 100;
-  let width = (props.xmax - props.xmin) * 100
-  let height = (props.ymax - props.ymin) * 100;
+  const normalize = (val) => {
+    if (val < 0) val = 0;
+    if (val > 1) val = 1;
+
+    return val;
+  }
+
+  const ymin = normalize(props.ymin);
+  const ymax = normalize(props.ymax);
+  const xmin = normalize(props.xmin);
+  const xmax = normalize(props.xmax);
+
+  let top = ymin * 100;
+  let left = xmin * 100;
+  let width = (xmax - xmin) * 100
+  let height = (ymax - ymin) * 100;
   let color = props.color;
   let rgb = ConvertHexToRGB(color.backgroundColor);
   let label = props.label;
@@ -16,17 +30,14 @@ export default function BoundingBox(props) {
     width: `${width}%`,
     height: `${height}%`,
     backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, 0.3)`,
-    border: `1px solid ${color.backgroundColor}`
+    border: `3px solid ${color.backgroundColor}`,
+    display: props.hover.property === null || props.hover.property === props.id ? "block" : "none"
   }
 
   const pStyle = {
-    marginTop: -18,
     backgroundColor: color.backgroundColor,
-    marginLeft: -1,
-    paddingLeft: 4,
     color: color.fontColor,
-    display: props.hover.property === props.id ? "block" : "none"
-
+    display: props.hover.property === props.id ? "block" : "none",
   }
 
   const onEnter = () => {
@@ -35,11 +46,17 @@ export default function BoundingBox(props) {
   const onLeave = () => {
     if (props.hover) props.hover.leave();
   }
-  const percentage = Math.round(props.probability * 100);
+  const percentage = ParseProbability(props.probability);
 
-  return <div className={color.className} style={style} onMouseEnter={onEnter} onMouseLeave={onLeave}>
-    <p style={pStyle}>
-      {label} ({percentage}%)
-    </p>
-  </div>
+  return (
+    <div className={color.className} style={style}
+         onMouseEnter={onEnter} onMouseLeave={onLeave}>
+      <div style={pStyle} className={"color-block__label-wrapper"}>
+
+        <p style={pStyle}>
+          {label} ({percentage})
+        </p>
+      </div>
+    </div>
+  )
 }
