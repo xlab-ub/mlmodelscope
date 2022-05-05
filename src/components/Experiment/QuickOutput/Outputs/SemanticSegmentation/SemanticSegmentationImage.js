@@ -1,6 +1,7 @@
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import React from "react";
 import FindStartX from "./utils/FindStartX";
+import "./SemanticSegmentationImage.scss";
 
 
 export function SemanticSegmentationImage(props) {

@@ -4,6 +4,7 @@ import useInstanceSegmentationControl from "./hooks/useInstanceSegmentationContr
 import InstanceSegmentationTable from "./InstanceSegmentationTable";
 import InstanceSegmentationImage from "./InstanceSegmentationImage";
 import NoPredictions from "../_Common/components/NoPredictions";
+import "./InstanceSegmentation.scss";
 
 
 export default function InstanceSegmentation(props) {

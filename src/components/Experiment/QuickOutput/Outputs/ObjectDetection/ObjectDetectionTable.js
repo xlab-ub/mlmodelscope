@@ -3,6 +3,7 @@ import React from "react";
 import ParseProbability from "../_Common/utils/ParseProbability";
 import {ReactComponent as EyeOpen} from "../../../../../resources/icons/eye-open.svg";
 import {ReactComponent as EyeClosed} from "../../../../../resources/icons/eye-closed.svg";
+import "./ObjectDetectionTable.scss";
 
 export function ObjectDetectionTable(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection-table");
