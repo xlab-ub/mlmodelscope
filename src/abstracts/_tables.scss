@@ -1,0 +1,52 @@
+@mixin table {
+  @include tabletWidth {
+    margin-top: 48px;
+    max-height: 100%;
+  }
+
+  &__header-row {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-bottom: 12px;
+  }
+
+  &__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px dashed $smokeDarkest;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    align-items: center;
+    cursor: pointer;
+
+    &-left {
+      display: flex;
+      align-items: center;
+    }
+
+    &-input {
+      width: 14px;
+      height: 14px;
+      margin-right: 16px;
+      border: 2px solid;
+      transition: 0.25s;
+
+      &-hidden {
+        display: none;
+      }
+
+      &-closed {
+        background-color: transparent !important;
+      }
+
+      &-label {
+        @include body;
+        text-transform: capitalize;
+      }
+    }
+  }
+}
