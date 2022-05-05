@@ -15,7 +15,7 @@ describe('URL Inputs Tab', () => {
       const title = wrapper.find('.url-inputs').childAt(0);
 
       expect(title.prop('className')).toBe('url-inputs__title');
-      expect(title.text()).toBe('Copy and paste an image address');
+      expect(title.text()).toBe('Copy an image URL (image address) and paste.');
     });
 
     describe('a URL input box', () => {
