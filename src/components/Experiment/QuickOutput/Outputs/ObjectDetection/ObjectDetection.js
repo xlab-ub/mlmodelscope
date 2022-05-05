@@ -10,7 +10,7 @@ export default function ObjectDetection(props) {
   const {hover, filteredSections, sections, filter} = useObjectDetectionControl(props.trial);
 
   const getBody = () => {
-    if (sections.length === 0) return <NoPredictions/>
+    if (sections.length === 0) return <NoPredictions modelId={props.trial.model.id}/>
 
     return <div className={getElement("top-row")}>
       <ObjectDetectionImage img={props.trial.inputs[0]}

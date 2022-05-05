@@ -35,7 +35,7 @@ export default class ClassificationOutput extends BEMComponent {
         <PredictionExpander predictions={this.props.features}/>
       </div>
 
-    return <NoPredictions/>
+    return <NoPredictions modelId={this.props.modelId}/>
   }
 
   render() {

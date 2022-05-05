@@ -7,6 +7,6 @@ export default function NoPredictions(props) {
 
   return <div className={getBlock()}>
     <p className={getElement("header")}>No predictions were found</p>
-    <a href={"/models"} className={getElement("link")}>Try another model or image</a>
+    <a href={`/model/${props.modelId}`} className={getElement("link")}>Try another image</a>
   </div>
 }

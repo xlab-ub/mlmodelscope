@@ -11,7 +11,7 @@ export default function InstanceSegmentation(props) {
   const {coloredSections, hover, category} = useInstanceSegmentationControl(props.trial);
 
   const getBody = () => {
-    if (props.trial.results.responses[0].features.length === 0) return <NoPredictions/>
+    if (props.trial.results.responses[0].features.length === 0) return <NoPredictions modelId={props.trial.model.id}/>
 
     return <div className={getElement("top-row")}>
       <InstanceSegmentationImage
