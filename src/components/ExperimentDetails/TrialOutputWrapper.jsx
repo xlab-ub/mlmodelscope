@@ -3,6 +3,7 @@ import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
 import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
+import {image_classification, object_detection} from "../../helpers/TaskIDs";
 
 export default function TrialOutputWrapper(props) {
 
@@ -24,9 +25,9 @@ export default function TrialOutputWrapper(props) {
   const getContent = () => {
     if (props.trial.completed_at) {
       switch (props.trial.model.output.type) {
-        case "image_classification":
+        case image_classification:
           return (<ClassificationSummary results={props.trial.results}/>)
-        case "image_object_detection":
+        case object_detection:
           return <ObjectDetectionSummary trial={props.trial}/>
       }
 
@@ -53,7 +54,8 @@ export default function TrialOutputWrapper(props) {
         <dl className="trial-output-wrapper__title-definition-list">
           <dt className="trial-output-wrapper__model-label">Model:</dt>
           <dd>
-            <a className="trial-output-wrapper__model-name" href={"/model/" + model.id}>{model.name}</a>
+            <a className="trial-output-wrapper__model-name" target={"_blank"}
+               href={"/model/" + model.id}>{model.name}</a>
           </dd>
         </dl>
         <CloseIcon className="trial-output-wrapper__delete-trial-button"
