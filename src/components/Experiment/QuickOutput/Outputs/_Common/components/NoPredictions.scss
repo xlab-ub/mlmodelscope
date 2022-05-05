@@ -26,5 +26,11 @@
     font-size: 20px;
     line-height: 28px;
     text-align: center;
+    @include linkLarge;
+    transition: 0.5s;
+
+    &:focus, &:hover {
+      color: $purple;
+    }
   }
 }
