@@ -1,0 +1,19 @@
+@import "../../../../../App";
+
+.color-block {
+  padding: 12px;
+
+  p {
+    @include bodySmall;
+    font-size: 14px;
+    position: absolute;
+    top: -24px;
+    left: -3px;
+    white-space: nowrap;
+    padding: 0 4px;
+  }
+
+  &__label-wrapper {
+
+  }
+}

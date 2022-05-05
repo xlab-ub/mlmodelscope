@@ -9,7 +9,14 @@
   margin-right: 16px;
   padding: 32px;
   @include maxWidth(1000px) {
-    margin-left: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+
+
+  }
+  @include mobileWidth-lg {
+    margin-left: -32px;
+    margin-right: -32px;
   }
 
   &__header {
@@ -36,7 +43,7 @@
     margin-bottom: 48px;
     max-height: 100vh;
 
-    @include tabletWidth {
+    @include maxWidth(1500px) {
       grid-template-columns: 1fr;
       max-height: 100%;
     }
