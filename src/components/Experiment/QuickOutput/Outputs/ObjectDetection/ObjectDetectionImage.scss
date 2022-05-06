@@ -31,23 +31,24 @@
 
   &__input-container {
     width: 100%;
-    display: grid;
+    display: flex;
     grid-template-columns: 6fr 1fr;
     align-items: center;
     margin-top: 0px;
 
     @include desktopWidth {
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 2fr;
     }
     @include tabletWidth {
-      grid-template-columns: 4fr 1fr;
+      grid-template-columns: 4fr 3fr;
     }
     @include mobileWidth-lg {
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 2fr 3fr;
     }
   }
 
   &__input-range {
+    width: 175%;
     height: 3px;
     border-color: $gray;
 

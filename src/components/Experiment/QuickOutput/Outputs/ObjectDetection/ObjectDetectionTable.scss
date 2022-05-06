@@ -7,6 +7,11 @@
   position: relative;
   z-index: 1;
 
+  @include mobileWidth-lg {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   @include tabletWidth {
     max-height: 100%;
   }
@@ -34,7 +39,7 @@
 
       &-total {
         margin-left: 8px;
-        @include maxWidth(725px) {
+        @include maxWidth(1185px) {
           display: none;
         }
       }
