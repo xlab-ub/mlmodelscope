@@ -9,7 +9,7 @@ describe('Classification Rating component', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<Rating />);
+      wrapper = shallow(<Rating/>);
     });
 
     it('with a container div', () => {
@@ -69,16 +69,11 @@ describe('Classification Rating component', () => {
           expect(incorrect.prop('aria-checked')).toBeFalsy();
         });
 
-        it('clicking Incorrect updates the selection state', () => {
+        it('clicking Incorrect updates the selection state and shows the clicked UI', () => {
           buttons.childAt(1).simulate('click');
-          const correct = wrapper.childAt(1).childAt(0);
-          const incorrect = wrapper.childAt(1).childAt(1);
 
-          expect(correct.prop('tabIndex')).toBe(-1);
-          expect(correct.prop('aria-checked')).toBeFalsy();
-          expect(incorrect.prop('className')).toBe('rating__incorrect rating__incorrect--checked');
-          expect(incorrect.prop('tabIndex')).toBe(0);
-          expect(incorrect.prop('aria-checked')).toBeTruthy();
+          const containerDiv = wrapper.childAt(0)
+          expect(containerDiv.text()).toEqual("I be done got checked yall!!!!")
         });
       });
     });
