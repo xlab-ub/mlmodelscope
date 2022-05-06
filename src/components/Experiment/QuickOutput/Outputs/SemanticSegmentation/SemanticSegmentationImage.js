@@ -5,7 +5,7 @@ import "./SemanticSegmentationImage.scss";
 
 
 export function SemanticSegmentationImage(props) {
-  const {getElement, getBlock} = useBEMNaming("image-segmentation-image");
+  const {getElement, getBlock} = useBEMNaming("semantic-segmentation-image");
   const overlayRef = React.createRef();
   let dataUri = null;
 

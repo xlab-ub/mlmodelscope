@@ -1,0 +1,5 @@
+@import "../../../../../App.scss";
+
+.semantic-segmentation-table {
+  @include table;
+}
