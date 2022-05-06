@@ -1,14 +1,13 @@
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import BoundingBox from "./BoundingBox";
 import React, {useEffect, useState} from "react";
+import "./ObjectDetectionImage.scss";
 
 export function ObjectDetectionImage(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection-image");
 
-
   return <>
     <div className={getBlock()}>
-
       <div className={getElement("overlay")}>
         <div className={getElement("overlay-container")}>
           <img id={"object-detection-image"} alt={"placeholder"} className={getElement("image")} src={props.img}/>
@@ -21,15 +20,10 @@ export function ObjectDetectionImage(props) {
         </div>
       </div>
 
-      {props.showInputs && <ObjectDetectionImageInputs {...props} getElement={getElement}/>
-
-      }
-
+      {props.showInputs && <ObjectDetectionImageInputs {...props} getElement={getElement}/>}
     </div>
-
   </>;
 }
-
 
 function ObjectDetectionImageInputs(props) {
   const [height, setHeight] = useState(0);

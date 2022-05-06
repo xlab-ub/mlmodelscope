@@ -4,6 +4,7 @@ import useObjectDetectionControl from "./hooks/useObjectDetectionControl";
 import {ObjectDetectionImage} from "./ObjectDetectionImage";
 import {ObjectDetectionTable} from "./ObjectDetectionTable";
 import NoPredictions from "../_Common/components/NoPredictions";
+import "./ObjectDetection.scss";
 
 export default function ObjectDetection(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection");
