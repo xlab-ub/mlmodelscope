@@ -11,6 +11,10 @@
     left: -3px;
     white-space: nowrap;
     padding: 0 4px;
+    max-width: 150px;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &__label-wrapper {

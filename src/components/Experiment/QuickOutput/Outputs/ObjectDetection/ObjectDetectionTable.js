@@ -58,7 +58,8 @@ export function ObjectDetectionTable(props) {
         Toggle
       </p>
       <p className={getElement("header-row-item row-middle")}>
-        Objects Detected <span className={getElement("header-row-item-total")}>({sortedSections.length} total)</span>
+        Objects Detected<span
+        className={getElement("header-row-item-total")}>({sortedSections.length} total)</span>
       </p>
       <p className={getElement("header-row-item row-right")}>
         Confidence

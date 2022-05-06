@@ -36,13 +36,15 @@ function ObjectDetectionImageInputs(props) {
 
   const findNewHeight = () => {
     const img = document.getElementById("object-detection-image");
-    if (img)
+    if (img && img.complete)
       setHeight(img.clientHeight);
-    console.log(img);
+    else if (img)
+      img.addEventListener('load', findNewHeight);
   }
 
   useEffect(() => {
     findNewHeight();
+
   })
 
   useEffect(() => {
@@ -54,6 +56,7 @@ function ObjectDetectionImageInputs(props) {
       window.removeEventListener("resize", listener);
     }
   }, [])
+
 
   const margin = height + 12;
   return <div style={{marginTop: `${margin}px`}} className={props.getElement("input-wrapper")}>
