@@ -1,11 +1,15 @@
 @mixin table {
+  @include mobileWidth-lg {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   @include tabletWidth {
     max-height: 100%;
   }
 
   &__header-row {
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    display: flex;
     gap: 12px;
     position: sticky;
     top: 0;
@@ -14,6 +18,7 @@
     border-bottom: 2px solid $smokeDarkest;
     margin-bottom: 24px;
     width: 100%;
+    z-index: 10;
 
     &-item {
       @include labelSmall;
@@ -24,7 +29,8 @@
       }
 
       &-total {
-        @include maxWidth(725px) {
+        margin-left: 8px;
+        @include maxWidth(1185px) {
           display: none;
         }
       }
@@ -32,15 +38,19 @@
   }
 
   &__row {
-    display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
-    gap:12px;
+    display: flex;
+    gap: 12px;
     width: 100%;
+    justify-content: space-between;
     border-bottom: 1px dashed $smokeDarkest;
     padding-bottom: 6px;
-    margin-bottom: 10px;
+    padding-top: 6px;
     align-items: baseline;
     cursor: pointer;
+
+    &:hover {
+      background-color: $smoke;
+    }
 
     svg {
       width: 20px;
@@ -52,18 +62,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 20%;
     }
 
     &-middle {
       display: flex;
       align-items: baseline;
       overflow-wrap: anywhere;
+      width: 60%;
     }
 
     &-right {
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      width: 20%;
+      padding-right: 4px;
     }
 
     &-input {
@@ -77,9 +91,6 @@
         display: none;
       }
 
-      &-closed {
-        background-color: transparent !important;
-      }
 
       &-label {
         @include body;
