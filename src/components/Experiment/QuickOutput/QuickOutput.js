@@ -53,7 +53,7 @@ export default class QuickOutput extends BEMComponent {
           </>;
         case image_enhancement:
           return <>
-            <ImageEnhancement feature={this.props.trialOutput}/>
+            <ImageEnhancement feature={this.props.trialOutput.results.responses[0].features[0]}/>
           </>
         case object_detection:
           return <ObjectDetection trial={this.props.trialOutput}/>
