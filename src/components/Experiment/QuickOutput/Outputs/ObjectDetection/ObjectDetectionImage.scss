@@ -32,7 +32,6 @@
   }
 
   &__input-container {
-    width: 100%;
     display: flex;
     grid-template-columns: 6fr 1fr;
     align-items: center;
@@ -50,8 +49,8 @@
   }
 
   &__input-range {
-    width: 175%;
     height: 3px;
+    width: 100%;
     border-color: $gray;
 
     &:focus {
@@ -71,7 +70,7 @@
 
   &__input-number {
     @include body;
-    width: 100%;
+    width: 52px;
     border: 2px solid $smokeDark;
     padding-left: 12px;
     margin-left: 10px;
