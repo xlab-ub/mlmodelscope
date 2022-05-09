@@ -22,7 +22,7 @@ export function ObjectDetectionTable(props) {
 
     const isNotAffectedByHoverState = props.hover.property === null || props.hover.property === section.id
 
-    const isOpaque = isOverFiltered && isNotAffectedByHoverState;
+    const isOpaque = isOpen || (!isOpen && isNotAffectedByHoverState);
 
 
     const hover = () => props.hover.enter(section.id);
@@ -37,7 +37,7 @@ export function ObjectDetectionTable(props) {
     }
 
 
-    return <div id={`object-detection-item-${section.id}`} style={style} onMouseLeave={leave}
+    return <div id={`object-detection-item-${section.id}`} style={style}
                 className={getElement("row")}
     >
       <div onClick={toggle} className={getElement("row-left")}>
@@ -74,9 +74,10 @@ export function ObjectDetectionTable(props) {
 
   const sortedSections = props.sections.sort((a, b) => b.probability - a.probability);
 
-  return <div ref={scrollRef} id={"object-detection-table"} style={{maxHeight: `${props.imageHeight + 80}px`}}
+  return <div onMouseLeave={props.hover.leave} ref={scrollRef} id={"object-detection-table"}
+              style={{maxHeight: `${props.imageHeight + 80}px`}}
               className={getBlock()}>
-    <div className={getElement("header-row")}>
+    <div onMouseEnter={props.hover.leave} className={getElement("header-row")}>
       <p className={getElement("header-row-item row-left")}>
         Hide
       </p>
