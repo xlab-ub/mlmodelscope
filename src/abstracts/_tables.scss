@@ -1,0 +1,112 @@
+@mixin table {
+  @include mobileWidth-lg {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @include tabletWidth {
+    max-height: 100%;
+  }
+
+  &__header-row {
+    display: flex;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-bottom: 8px;
+    border-bottom: 2px solid $smokeDarkest;
+    margin-bottom: 24px;
+    width: 100%;
+    z-index: 10;
+
+    &-item {
+      @include labelSmall;
+      color: $charcoalLightest;
+
+      @include mobileWidth-lg {
+        font-size: 12px;
+      }
+
+      &-total {
+        margin-left: 8px;
+        @include maxWidth(1185px) {
+        }
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px dashed $smokeDarkest;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    align-items: baseline;
+
+    &:hover {
+      background-color: $smoke;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: $charcoalLightest;
+    }
+
+    &-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20%;
+      cursor: pointer;
+    }
+
+    &-middle {
+      display: flex;
+      align-items: baseline;
+      overflow-wrap: anywhere;
+      width: 50%;
+    }
+
+    &-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 30%;
+      padding-right: 4px;
+    }
+
+    &-input {
+      width: 14px;
+      height: 14px;
+      margin-right: 16px;
+      border: 2px solid;
+      transition: 0.25s;
+
+      &-hidden {
+        display: none;
+      }
+
+
+      &-label {
+        @include body;
+        text-transform: capitalize;
+        max-width: 80%;
+
+        @include mobileWidth-lg {
+          @include bodySmall;
+        }
+      }
+    }
+
+    &-percentage {
+      @include body;
+      @include mobileWidth-lg {
+        @include bodySmall;
+      }
+    }
+  }
+}

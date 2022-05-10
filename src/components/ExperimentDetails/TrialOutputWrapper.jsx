@@ -13,14 +13,6 @@ export default function TrialOutputWrapper(props) {
 
   let model = props.trial.model;
 
-  let machineTagKey = 0;
-  let machineTags = <dd>N/A</dd>
-  if (!!model.framework && !!model.framework.architectures) {
-    machineTags = model.framework.architectures.map(machine => (
-      <dd key={machineTagKey++} className="trial-output-wrapper__model-tag">
-        <ModelTag type="machine" content={machine.name}/>
-      </dd>));
-  }
 
   const getContent = () => {
     if (props.trial.completed_at) {
@@ -70,10 +62,7 @@ export default function TrialOutputWrapper(props) {
               <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
                                                                         content={model.framework.name}/></dd>
             </div>
-            <div className={"trial-output-wrapper__model-details-section"}>
-              <dt className="trial-output-wrapper__detail-label">Machines:</dt>
-              {machineTags}
-            </div>
+
 
           </dl>
           <div className="trial-output-wrapper__link-box">

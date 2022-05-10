@@ -2,12 +2,13 @@ import React from 'react';
 import BEMComponent from "../../Common/BEMComponent";
 import InputPreview from "./InputPreview";
 import ClassificationOutput from "./Outputs/Classification/ClassificationOutput";
-import "./QuickOutput.scss";
 import PendingOutput from "./Outputs/Classification/PendingOutput";
+import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../../helpers/TaskIDs";
 import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
-import {image_classification, image_enhancement, object_detection} from "../../../helpers/TaskIDs";
 import ImageEnhancement from "./Outputs/ImageEnhancement/ImageEnhancement";
+import SemanticSegmentation from "./Outputs/SemanticSegmentation/SemanticSegmentation";
 import ProcessFailed from "./ProcessFailed";
+import "./QuickOutput.scss";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
@@ -52,10 +53,12 @@ export default class QuickOutput extends BEMComponent {
           </>;
         case image_enhancement:
           return <>
-            <ImageEnhancement feature={this.props.trialOutput}/>
+            <ImageEnhancement feature={this.props.trialOutput.results.responses[0].features[0]}/>
           </>
         case object_detection:
           return <ObjectDetection trial={this.props.trialOutput}/>
+        case semantic_segmentation:
+          return <SemanticSegmentation trial={this.props.trialOutput} />
         default:
           return <>
             <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>

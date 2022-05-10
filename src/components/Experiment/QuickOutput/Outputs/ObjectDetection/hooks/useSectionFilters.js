@@ -23,6 +23,7 @@ export function useSectionFilters(sections) {
       state: categories,
       toggle: toggleCategory
     },
-    filteredSections
+    filteredSections,
+    labelIsInCategories
   };
 }

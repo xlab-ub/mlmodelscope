@@ -1,0 +1,71 @@
+@import "../../../App";
+
+.one-column-overview {
+  @include gutters;
+  padding-bottom: 96px;
+
+  &__experiment-header {
+    width: 100vw;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    background-color: $white;
+    overflow: hidden;
+    @include leftGutters;
+
+
+    &-overview {
+      @include headline3;
+      color: $almaMater;
+      margin-bottom: 16px;
+
+    }
+
+    &-tags {
+      display: flex;
+    }
+
+    &-tag {
+      color: $charcoalLightest;
+      margin-right: 16px;
+
+      @include mobileWidth-lg {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-label {
+        @include labelSmall;
+        margin-right: 8px;
+      }
+    }
+  }
+
+
+  &__trials-header {
+    @include headline2;
+    color: $almaMater;
+    margin-bottom: 42px;
+    @include maxWidth(710px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__trials-section {
+    grid-column: 2;
+  }
+
+  &__trials-header-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-top: 36px;
+    margin-bottom: 24px;
+
+    @include maxWidth(710px) {
+      flex-direction: column;
+      margin-bottom: 26px;
+      justify-content: flex-start;
+    }
+  }
+
+}

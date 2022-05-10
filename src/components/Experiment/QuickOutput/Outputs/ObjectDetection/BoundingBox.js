@@ -23,25 +23,36 @@ export default function BoundingBox(props) {
   let color = props.color;
   let rgb = ConvertHexToRGB(color.backgroundColor);
   let label = props.label;
+
+  const isHoveredOn = props.hover.property === props.id;
+  const hasHigherConfidence = props.probability * 100 > props.confidence;
+  const hasNoHovers = props.hover.property === null;
+  const isInCategories = props.labelIsInCategories(props);
+
+  const IsShown = (hasNoHovers && hasHigherConfidence && isInCategories) ||
+    (isHoveredOn)
+  const LabelIsShown = props.hover.property === props.id || props.hover.labelProp === props.id;
+
   const style = {
     position: "absolute",
     top: `${top}%`,
     left: `${left}%`,
     width: `${width}%`,
     height: `${height}%`,
-    backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, 0.3)`,
+    backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, ${LabelIsShown ? 0.6 : 0.3})`,
     border: `3px solid ${color.backgroundColor}`,
-    display: props.hover.property === null || props.hover.property === props.id ? "block" : "none"
+    display: IsShown ? "block" : "none",
+    zIndex: LabelIsShown ? 20 : 0
   }
 
   const pStyle = {
     backgroundColor: color.backgroundColor,
     color: color.fontColor,
-    display: props.hover.property === props.id ? "block" : "none",
+    display: LabelIsShown ? "block" : "none",
   }
 
   const onEnter = () => {
-    if (props.hover) props.hover.enter(props.id);
+    if (props.hover) props.hover.enter(props.id, {scrollTo: true});
   }
   const onLeave = () => {
     if (props.hover) props.hover.leave();
