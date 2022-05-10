@@ -1,0 +1,56 @@
+@import "../../../App";
+
+.semantic-segmentation-summary {
+  background-color: $white;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  padding-top: 32px;
+  border-top: 1px solid $smokeDarkest;
+  width: 100%;
+  @include maxWidth(1000px) {
+    margin-left: 0;
+  }
+
+  &__header {
+    width: 100%;
+    border-bottom: 1px solid $smokeDarkest;
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+
+    &-heading {
+      @include headline3;
+    }
+
+    &-subheading {
+      color: $charcoalLightest;
+      @include body;
+    }
+  }
+
+  &__top-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    max-height: 100vh;
+
+    @include tabletWidth {
+      grid-template-columns: 1fr;
+      max-height: 100%;
+    }
+  }
+
+  &__bottom-row {
+    margin-top: 16px;
+
+    &-btn {
+      @include secondaryButtonWithIconBefore("arrow-right.svg");
+      max-width: 270px;
+    }
+
+    @include tabletWidth {
+      margin-top: 32px;
+    }
+  }
+}

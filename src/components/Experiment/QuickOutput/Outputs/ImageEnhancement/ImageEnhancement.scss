@@ -1,13 +1,44 @@
 @import "../../../../../App";
 
 .image-enhancement {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   padding: 32px;
   @include desktopWidth {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    flex-direction: column;
+  }
 
+  &__input {
+    box-shadow: 0px 0px 15px -2px #00000040;
+    border-radius: 5px;
+    width: 33%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+
+    @include desktopWidth {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__back-button {
+    @include secondaryButtonWithIconBefore("arrow-right.svg");
+
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @include desktopWidth {
+      max-width: 300px;
+    }
   }
 
   .input-preview {

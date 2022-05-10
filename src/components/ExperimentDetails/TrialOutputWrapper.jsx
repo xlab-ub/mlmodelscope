@@ -3,7 +3,9 @@ import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
 import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
-import {image_classification, object_detection} from "../../helpers/TaskIDs";
+import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
+import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
+import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
 
 export default function TrialOutputWrapper(props) {
 
@@ -21,6 +23,10 @@ export default function TrialOutputWrapper(props) {
           return (<ClassificationSummary results={props.trial.results}/>)
         case object_detection:
           return <ObjectDetectionSummary trial={props.trial}/>
+        case image_enhancement:
+          return <ImageEnhancementSummary trial={props.trial}/>
+        case semantic_segmentation:
+          return <SemanticSegmentationSummary trial={props.trial}/>
       }
 
       return <></>
