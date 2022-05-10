@@ -9,7 +9,8 @@ export default class ExperimentOverview extends BEMComponent {
     inputs: [
       kitty
     ],
-    task: "Null"
+    task: "Null",
+    machines: "amd64"
   }
 
   render() {
@@ -25,14 +26,20 @@ export default class ExperimentOverview extends BEMComponent {
         <div className={this.element("content-wrapper")}>
           <div>
             <p className="experiment-overview__header">Input:</p>
-            <img className="experiment-overview__input-image" src={this.props.inputs[0]} alt="Input image" />
+            <img className="experiment-overview__input-image" src={this.props.inputs[0]} alt="Input image"/>
           </div>
           <div className={this.element("content-wrapper-item")}>
             <p className="experiment-overview__header">Task:</p>
             <div className="experiment-overview__task-tag">
-              <ModelTag type="task" content={task.name} />
+              <ModelTag type="task" content={task.name}/>
             </div>
             <p className="experiment-overview__task-description">{task.description}</p>
+          </div>
+          <div className={this.element("content-wrapper-item")}>
+            <p className="experiment-overview__header">Machines:</p>
+            <div className="experiment-overview__task-tag">
+              <ModelTag type="machine" content={this.props.machines}/>
+            </div>
           </div>
         </div>
 

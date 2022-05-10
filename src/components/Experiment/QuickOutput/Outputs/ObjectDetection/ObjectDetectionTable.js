@@ -24,7 +24,7 @@ export function ObjectDetectionTable(props) {
 
     const isOpaque = (isOpen && isNotAffectedByHoverState) || (props.hover.property === section.id);
 
-    const hover = () => props.hover.enter(section.id);
+    const hover = () => isOpen ? props.hover.enter(section.id) : props.hover.leave();
     const leave = () => props.hover.leave();
     const toggle = () => {
       props.category.toggle(section.id);

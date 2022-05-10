@@ -39,7 +39,7 @@ export default function BoundingBox(props) {
     left: `${left}%`,
     width: `${width}%`,
     height: `${height}%`,
-    backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, 0.3)`,
+    backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, ${LabelIsShown ? 0.6 : 0.3})`,
     border: `3px solid ${color.backgroundColor}`,
     display: IsShown ? "block" : "none",
     zIndex: LabelIsShown ? 20 : 0

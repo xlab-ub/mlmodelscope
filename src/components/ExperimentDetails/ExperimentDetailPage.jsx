@@ -1,12 +1,14 @@
 import React from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
-import ExperimentOverview from "./ExperimentOverview";
 import TrialOutputWrapper from "./TrialOutputWrapper";
-import Button from "../Buttons/Button";
 import Header from "../Header/Header";
 import useBEMNaming from "../../common/useBEMNaming";
 import RemoveModelModal from "../RemoveModelModal/RemoveModelModal";
 import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotBeRemovedModal";
+import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
+import TwoColumnOverview from "./Layouts/TwoColumnOverview";
+import OneColumnOverview from "./Layouts/OneColumnOverview";
+import Button from "../Buttons/Button";
 
 export default function ExperimentDetailPage(props) {
   const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
@@ -18,41 +20,47 @@ export default function ExperimentDetailPage(props) {
     </div>
   ));
 
+  const Layout = getLayout();
+
   return (
     <div className={getBlock()}>
       <Header/>
       <ExperimentDetailHeader/>
-      <div className={getElement("content")}>
-        <div className={getElement("first-column")}>
-          <div className={getElement("overview-section")}>
-            {getExperimentOverview(props)}
-          </div>
+      <Layout>
+        {trialComponents}
+        <div className={getElement("ghost-card")}>
+          <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
+                  link={getAddModelsLink(props)}/>
         </div>
-        <div className={getElement("trials-section")}>
-          <div className={getElement("trials-header-box")}>
-            <p className={getElement("trials-header")}>Trials for your experiment</p>
-            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)}/>
-          </div>
-          {trialComponents}
-          <div className={getElement("ghost-card")}>
-            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false} link={getAddModelsLink(props)}/>
-          </div>
-        </div>
-      </div>
+      </Layout>
       {renderDeleteModal(props)}
       {renderModelCannotBeRemovedModal(props)}
     </div>
   );
 
-  function getExperimentOverview(props) {
-    if (!props.experiment || props.experiment.trials.length === 0)
-      return;
+  function getLayout() {
+    const outputType = props.experiment.trials[0].model.output.type;
 
-    let firstModel = props.experiment.trials[0].model;
-    let task = firstModel ? firstModel.output.type : 'classification';
-    let inputs = props.experiment.trials[0].inputs;
+    switch (outputType) {
+      case object_detection:
+      case semantic_segmentation:
+      case image_enhancement:
+        const machine = props.experiment.trials[0].model.framework.architectures[0].name;
 
-    return (<ExperimentOverview task={task} inputs={inputs}/>);
+        return ({children}) => <OneColumnOverview
+          {...props}
+          getAddModelsLink={getAddModelsLink}
+          task={outputType}
+          machine={machine}
+        >{children}</OneColumnOverview>
+
+      case image_classification:
+      default:
+        return ({children}) => <TwoColumnOverview
+          {...props}
+          getAddModelsLink={getAddModelsLink}
+        >{children}</TwoColumnOverview>
+    }
   }
 
   function getAddModelsLink(props) {
