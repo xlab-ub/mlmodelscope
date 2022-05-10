@@ -3,7 +3,6 @@ import expect from 'expect';
 import {shallow} from 'enzyme';
 import ClassificationOutput from './ClassificationOutput';
 import TopPrediction from "./TopPrediction";
-import Prediction from "./Prediction";
 import PredictionExpander from "../../../../Common/PredictionExpander";
 import TestFeatures from "./Features";
 
@@ -12,7 +11,7 @@ describe('Classification Output Component', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<ClassificationOutput features={TestFeatures} />);
+      wrapper = shallow(<ClassificationOutput features={TestFeatures} modelId={1}/>);
     });
 
     it('with a container div', () => {

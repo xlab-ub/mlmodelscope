@@ -1,3 +1,5 @@
+@import "../../../../../App.scss";
+
 .object-detection {
   background-color: $white;
   border-radius: 5px;
@@ -9,7 +11,16 @@
   margin-right: 16px;
   padding: 32px;
   @include maxWidth(1000px) {
-    margin-left: 0;
+    margin-left: 0px;
+    margin-right: 0px;
+
+
+  }
+  @include mobileWidth-lg {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   &__header {
@@ -17,6 +28,10 @@
     border-bottom: 1px solid $smokeDarkest;
     padding-bottom: 16px;
     margin-bottom: 24px;
+
+    @include mobileWidth-lg {
+      padding-left: 16px;
+    }
 
     &-heading {
       @include headline3;
@@ -33,10 +48,9 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 24px;
-    margin-bottom: 48px;
     max-height: 100vh;
 
-    @include tabletWidth {
+    @include maxWidth(1500px) {
       grid-template-columns: 1fr;
       max-height: 100%;
     }
@@ -48,6 +62,11 @@
     &-btn {
       @include secondaryButtonWithIconBefore("arrow-right.svg");
       max-width: 270px;
+    }
+
+    @include mobileWidth-lg {
+      display: flex;
+      justify-content: center;
     }
   }
 }

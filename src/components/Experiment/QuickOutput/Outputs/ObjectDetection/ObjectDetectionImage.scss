@@ -1,18 +1,20 @@
+@import "../../../../../App.scss";
+
 .object-detection-image {
-  position: relative;
 
   &__input-label {
-    margin-top: 12px;
+    @include labelSmall;
+    color: $charcoalLightest;
   }
 
   &__image {
+    height: auto;
     width: 100%;
-    height: 100%;
 
-    &-wrapper {
-      width: 100%;
-      height: 100%;
-    }
+  }
+
+  &__overlay {
+    position: relative;
   }
 
   &__overlay-container {
@@ -20,30 +22,40 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    @include tabletWidth {
+    }
+  }
+
+  &__input-wrapper {
+    background-color: $smoke;
+    padding: 12px;
   }
 
   &__input-container {
-    width: 100%;
-    display: grid;
+    display: flex;
     grid-template-columns: 6fr 1fr;
     align-items: center;
     margin-top: 0px;
-    margin-bottom: 45px;
 
     @include desktopWidth {
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 2fr;
     }
     @include tabletWidth {
-      grid-template-columns: 4fr 1fr;
+      grid-template-columns: 4fr 3fr;
     }
     @include mobileWidth-lg {
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 2fr 3fr;
     }
   }
 
   &__input-range {
     height: 3px;
+    width: 100%;
+    border-color: $gray;
+
+    &:focus {
+      border-color: $gray;
+    }
 
     accent-color: $charcoalLightest;
 
@@ -58,7 +70,7 @@
 
   &__input-number {
     @include body;
-    width: 100%;
+    width: 52px;
     border: 2px solid $smokeDark;
     padding-left: 12px;
     margin-left: 10px;

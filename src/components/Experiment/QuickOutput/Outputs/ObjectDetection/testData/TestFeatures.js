@@ -18,7 +18,6 @@ export const TestBoundingBox = {
 };
 
 
-
 export const TestObjectDetectionResult = {
   id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
   inputs: [
@@ -35,7 +34,7 @@ export const TestObjectDetectionResult = {
             type: "BOUNDINGBOX",
             bounding_box: {
               "index": 3,
-              "label": "car",
+              "label": "carthatisareallyreallyreallyreallyreallylongname",
               "xmax": 0.7149137,
               "xmin": 0.6304271,
               "ymax": 0.5578812,
@@ -48,7 +47,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car2",
               "xmax": 0.48686394,
               "xmin": 0.4047421,
               "ymax": 0.56226575,
@@ -61,7 +60,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car3",
               "xmax": 0.47190666,
               "xmin": 0.35543925,
               "ymax": 0.7887854,
@@ -74,7 +73,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car4",
               "xmax": 0.36904687,
               "xmin": 0.29868793,
               "ymax": 0.46466157,
@@ -87,7 +86,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car5",
               "xmax": 0.0919764,
               "xmin": 0.003532268,
               "ymax": 0.9076059,
@@ -100,7 +99,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car6",
               "xmax": 0.3420029,
               "xmin": 0.28587827,
               "ymax": 0.2850022,
@@ -113,7 +112,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car7",
               "xmax": 0.41170514,
               "xmin": 0.3687626,
               "ymax": 0.26212952,
@@ -126,7 +125,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car8",
               "xmax": 0.20447105,
               "xmin": 0.101608396,
               "ymax": 0.5969248,
@@ -139,7 +138,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car9",
               "xmax": 0.5411325,
               "xmin": 0.4854608,
               "ymax": 0.31020522,
@@ -152,7 +151,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car00",
               "xmax": 0.6657317,
               "xmin": 0.60273165,
               "ymax": 0.4745894,
@@ -165,7 +164,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car11",
               "xmax": 0.5465958,
               "xmin": 0.49133825,
               "ymax": 0.38870305,
@@ -178,7 +177,7 @@ export const TestObjectDetectionResult = {
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
-              "label": "car",
+              "label": "car22",
               "xmax": 0.6516052,
               "xmin": 0.5144976,
               "ymax": 0.8866693,
@@ -270,7 +269,7 @@ export const TestObjectDetectionResult = {
             "bounding_box": {
               "index": 6,
               "label": "bus",
-              "xmax": 0.96539617,
+              "xmax": 1.05539617,
               "xmin": 0.7681469,
               "ymax": 0.6746725,
               "ymin": 0.37251905
@@ -356,7 +355,7 @@ export const TestObjectDetectionResult = {
           },
           {
             "id": "62606f6aec8a0b0001cbef98",
-            "probability": 0.50269955,
+            "probability": 0.0050269955,
             "type": "BOUNDINGBOX",
             "bounding_box": {
               "index": 3,
@@ -368,6 +367,38 @@ export const TestObjectDetectionResult = {
             }
           }
         ]
+      }
+    ],
+    "trace_id": {}
+  },
+  model: {
+    framework: {
+      architectures: [
+        {
+          name: 'amd64'
+        }
+      ],
+      name: 'PyTorch'
+    },
+    id: 27,
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: "image_object_detection"
+    }
+  },
+}
+
+
+export const TestObjectDetectionResultNoBoundingBoxes = {
+  id: "f5bbc476-1b25-497e-9e64-b2375b5f57c5",
+  inputs: [
+    "http://www.experian.com/blogs/news/wp-content/uploads/2012/06/cars.png"
+  ],
+  completed_at: "2022-04-20T20:39:06.359287Z",
+  results: {
+    responses: [
+      {
+        features: []
       }
     ],
     "trace_id": {}

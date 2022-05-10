@@ -2,7 +2,10 @@
 
   &__header {
     @include labelSmall;
+    color: $charcoalLightest;
     margin-bottom: 16px;
+    border-top: 1px solid $smokeDarker;
+    padding-top: 16px;
   }
 
   &__results {

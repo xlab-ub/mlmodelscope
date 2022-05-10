@@ -40,4 +40,5 @@ describe("useHoverControl", () => {
     const text = result.find("#state").text();
     expect(text).toEqual("No State");
   })
+
 })

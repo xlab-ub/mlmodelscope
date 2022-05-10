@@ -3,6 +3,7 @@ import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
 import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
+import {image_classification, object_detection} from "../../helpers/TaskIDs";
 
 export default function TrialOutputWrapper(props) {
 
@@ -12,21 +13,13 @@ export default function TrialOutputWrapper(props) {
 
   let model = props.trial.model;
 
-  let machineTagKey = 0;
-  let machineTags = <dd>N/A</dd>
-  if (!!model.framework && !!model.framework.architectures) {
-    machineTags = model.framework.architectures.map(machine => (
-      <dd key={machineTagKey++} className="trial-output-wrapper__model-tag">
-        <ModelTag type="machine" content={machine.name}/>
-      </dd>));
-  }
 
   const getContent = () => {
     if (props.trial.completed_at) {
       switch (props.trial.model.output.type) {
-        case "image_classification":
+        case image_classification:
           return (<ClassificationSummary results={props.trial.results}/>)
-        case "image_object_detection":
+        case object_detection:
           return <ObjectDetectionSummary trial={props.trial}/>
       }
 
@@ -53,7 +46,8 @@ export default function TrialOutputWrapper(props) {
         <dl className="trial-output-wrapper__title-definition-list">
           <dt className="trial-output-wrapper__model-label">Model:</dt>
           <dd>
-            <a className="trial-output-wrapper__model-name" href={"/model/" + model.id}>{model.name}</a>
+            <a className="trial-output-wrapper__model-name" target={"_blank"}
+               href={"/model/" + model.id}>{model.name}</a>
           </dd>
         </dl>
         <CloseIcon className="trial-output-wrapper__delete-trial-button"
@@ -68,10 +62,7 @@ export default function TrialOutputWrapper(props) {
               <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
                                                                         content={model.framework.name}/></dd>
             </div>
-            <div className={"trial-output-wrapper__model-details-section"}>
-              <dt className="trial-output-wrapper__detail-label">Machines:</dt>
-              {machineTags}
-            </div>
+
 
           </dl>
           <div className="trial-output-wrapper__link-box">

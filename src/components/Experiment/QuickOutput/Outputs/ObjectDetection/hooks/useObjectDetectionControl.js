@@ -9,11 +9,11 @@ export default function useObjectDetectionControl(trial) {
   const splitter = new ObjectDetectionTrialParser(trial);
   const coloredSections = splitter.Parse();
 
-  const {filteredSections, confidenceFilter, categoryFilter} = useSectionFilters(coloredSections)
+  const {filteredSections, confidenceFilter, categoryFilter, labelIsInCategories} = useSectionFilters(coloredSections)
 
   return {
     hover,
-    filter: {confidence: confidenceFilter, category: categoryFilter},
+    filter: {confidence: confidenceFilter, category: categoryFilter, labelIsInCategories},
     filteredSections,
     sections: coloredSections
   }

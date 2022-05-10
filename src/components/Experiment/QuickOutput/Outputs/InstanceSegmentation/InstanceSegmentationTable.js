@@ -1,5 +1,6 @@
 import React from "react";
 import useBEMNaming from "../../../../../common/useBEMNaming";
+import "./InstanceSegmentationTable.scss";
 
 export default function InstanceSegmentationTable(props) {
   const {getElement, getBlock} = useBEMNaming("instance-segmentation-table");
