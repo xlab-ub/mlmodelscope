@@ -54,7 +54,8 @@ export default class Rating extends BEMComponent {
     const isChecked = this.state.ratings.some(rating => rating.checked);
 
     if (isChecked)
-      return <div onClick={this.unCheckRating}>I be done got checked yall!!!!</div>
+      return <div className={this.element("submitted")} onClick={this.unCheckRating}>Your feedback has been
+        submitted.</div>
 
     return (
       <>

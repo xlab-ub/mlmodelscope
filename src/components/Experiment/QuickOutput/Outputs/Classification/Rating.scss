@@ -42,6 +42,11 @@
     text-align: center;
   }
 
+  &__submitted {
+    @include headline5;
+    color: $charcoalLightest;
+  }
+
   &__buttons {
     display: flex;
     justify-content: center;
