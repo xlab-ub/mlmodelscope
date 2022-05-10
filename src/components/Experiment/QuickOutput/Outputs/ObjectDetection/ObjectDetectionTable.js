@@ -30,6 +30,7 @@ export function ObjectDetectionTable(props) {
       props.category.toggle(section.id);
       if (isOpen) leave();
     }
+    const iconHover = () => props.hover.enter(section.id, {labelOnly: true});
 
     const style = {
       opacity: isOpaque ? 1 : 0.3,
@@ -39,7 +40,7 @@ export function ObjectDetectionTable(props) {
     return <div id={`object-detection-item-${section.id}`} style={style}
                 className={getElement("row")}
     >
-      <div onClick={toggle} className={getElement("row-left")}>
+      <div onMouseEnter={iconHover} onClick={toggle} className={getElement("row-left")}>
         <div className={getElement("eye-wrapper")}>
           {isOpen ? <EyeOpen/> : <EyeClosed/>}
         </div>

@@ -15,9 +15,9 @@
     overflow-wrap: anywhere;
     text-overflow: ellipsis;
     overflow: hidden;
+    z-index: 20;
   }
 
   &__label-wrapper {
-
   }
 }
