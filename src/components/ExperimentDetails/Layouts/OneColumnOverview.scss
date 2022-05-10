@@ -9,8 +9,8 @@
     padding-top: 20px;
     padding-bottom: 24px;
     background-color: $white;
-    @include negativeMarginAndPaddingGutters();
     overflow: hidden;
+    @include leftGutters;
 
 
     &-overview {
@@ -28,8 +28,14 @@
       color: $charcoalLightest;
       margin-right: 16px;
 
+      @include mobileWidth-lg {
+        display: flex;
+        flex-direction: column;
+      }
+
       &-label {
         @include labelSmall;
+        margin-right: 8px;
       }
     }
   }
