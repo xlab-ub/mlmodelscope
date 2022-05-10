@@ -1,0 +1,10 @@
+@import "../../../../../App";
+
+.image-enhancement-image {
+  &__output {
+    max-width: 100%;
+    height: auto;
+    align-self: center;
+    margin: 32px auto;
+  }
+}

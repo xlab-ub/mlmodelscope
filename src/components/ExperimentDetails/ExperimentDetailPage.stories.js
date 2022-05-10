@@ -7,6 +7,10 @@ import {
   TestInstanceSegmentationOutput
 } from "../Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 import {TestImageClassificationResult} from "../Experiment/QuickOutput/Outputs/Classification/Features";
+import {TestImageEnhancementData} from "../Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
+import {
+  TestImageSegmentationResult
+} from "../Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 
 export default {
   title: 'Experiments/Experiment Detail Page',
@@ -265,6 +269,32 @@ InstanceSegmentation.args = {
     trials: [
       TestInstanceSegmentationOutput,
       TestInstanceSegmentationOutput
+    ]
+  }
+}
+
+
+export const ImageEnhancement = Template.bind({});
+
+ImageEnhancement.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestImageEnhancementData,
+      TestImageEnhancementData
+    ]
+  }
+}
+
+
+export const SemanticSegmentation = Template.bind({});
+
+SemanticSegmentation.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestImageSegmentationResult,
+      TestImageSegmentationResult
     ]
   }
 }

@@ -1,5 +1,6 @@
 import catDog from "../../../../../../stories/assets/catdog.jpg";
 import {TestMask} from "./TestMask";
+import {semantic_segmentation} from "../../../../../../helpers/TaskIDs";
 
 export const TestImageSegmentationResult = {
   completed_at: '2022-04-19T16:19:38.616395Z',
@@ -16,7 +17,10 @@ export const TestImageSegmentationResult = {
       name: 'PyTorch'
     },
     id: 27,
-    name: 'TorchVision+ResNet18'
+    name: 'TorchVision+ResNet18',
+    output: {
+      type: semantic_segmentation
+    }
   },
   "id": "091ee87a-3e30-44a4-91f5-d113bccecd4e",
   results: {

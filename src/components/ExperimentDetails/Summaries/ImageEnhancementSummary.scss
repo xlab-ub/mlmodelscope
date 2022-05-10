@@ -1,0 +1,58 @@
+@import "../../../App";
+
+.image-enhancement-summary {
+  display: flex;
+  border-top: 1px solid $smokeDarker;
+  padding-top: 24px;
+
+  @include desktopWidth {
+    flex-direction: column;
+  }
+
+  &__input {
+    margin-right: 36px;
+  }
+
+  &__title {
+    @include labelSmall;
+    color: $charcoalLightest;
+
+    margin-bottom: 10px;
+  }
+
+
+  &__summary {
+
+    @include desktopWidth {
+      margin-top: 24px;
+    }
+
+    .image-enhancement-image__output {
+      margin-top: 10px;
+    }
+
+    &__header {
+
+
+      &-heading {
+        color: $charcoalLightest;
+        @include labelSmall;
+      }
+
+      &-subheading {
+        @include body;
+        color: $charcoalLightest;
+      }
+    }
+
+    &__back-link {
+      @include secondaryButtonWithIconBefore("arrow-right.svg");
+      max-width: 270px;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

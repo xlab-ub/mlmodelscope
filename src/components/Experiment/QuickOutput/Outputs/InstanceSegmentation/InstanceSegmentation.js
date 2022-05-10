@@ -33,7 +33,7 @@ export default function InstanceSegmentation(props) {
     </div>
     {getBody()}
     <div className={getElement("bottom-row")}>
-      <a href={"/test"} className={getElement("bottom-row-btn")}>
+      <a href={`/model/${props.trial.model.id}`} className={getElement("bottom-row-btn")}>
         Try a different image
       </a>
     </div>

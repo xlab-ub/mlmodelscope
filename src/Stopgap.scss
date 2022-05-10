@@ -6,6 +6,8 @@
 @import 'share/style';
 
 @import 'components/Buttons/SortButton',
+'components/Common/SearchBar',
+'components/Common/ModelTag',
 'src/components/ExperimentDetails/Summaries/ClassificationSummary',
 'src/components/ExperimentDetails/Summaries/ObjectDetectionSummary',
 'src/components/ExperimentDetails/Summaries/InstanceSegmentationSummary',
@@ -22,4 +24,12 @@
 'components/ModelDetailPage/ModelDescription',
 'components/ExperimentDetails/ExperimentDetailPage',
 'components/ModelList/ModelList.ResponsiveFilterContent',
+'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetection',
+'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetectionImage',
+'components/Experiment/QuickOutput/Outputs/ObjectDetection/ObjectDetectionTable',
+'components/Experiment/QuickOutput/Outputs/ImageEnhancement/ImageEnhancement',
+'components/Experiment/QuickOutput/Outputs/_Common/components/SingleColumnImageOutput',
+'src/components/Experiment/QuickOutput/Outputs/SemanticSegmentation/SemanticSegmentationImage',
+'src/components/Experiment/QuickOutput/Outputs/InstanceSegmentation/InstanceSegmentation',
+'src/components/Experiment/QuickOutput/Outputs/InstanceSegmentation/InstanceSegmentationTable',
 'components/ModelDetailPage/ModelDetailPage';
