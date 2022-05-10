@@ -35,7 +35,6 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 24px;
-    margin-bottom: 48px;
     max-height: 100vh;
 
     @include tabletWidth {
@@ -45,11 +44,15 @@
   }
 
   &__bottom-row {
-    margin-top: 54px;
+    margin-top: 16px;
 
     &-btn {
       @include secondaryButtonWithIconBefore("arrow-right.svg");
       max-width: 270px;
+    }
+
+    @include tabletWidth {
+      margin-top: 32px;
     }
   }
 }
