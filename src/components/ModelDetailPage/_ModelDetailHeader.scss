@@ -58,16 +58,14 @@
     margin-right: $data-gutters;
     margin-top: 32px;
 
-    @include minWidth($width-tablet) {
+    @include minWidth(1001px) {
       :first-child {
         padding-left: 0;
       }
     }
 
 
-
-
-    @include tabletWidth {
+    @include maxWidth(1000px) {
       grid-template-columns: 1fr;
       $data-gutters: $gutterSize-tablet - $data-left-right-padding;
       margin-left: $data-gutters;
