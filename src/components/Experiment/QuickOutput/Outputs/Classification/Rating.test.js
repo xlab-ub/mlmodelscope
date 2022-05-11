@@ -73,7 +73,7 @@ describe('Classification Rating component', () => {
           buttons.childAt(1).simulate('click');
 
           const containerDiv = wrapper.childAt(0)
-          expect(containerDiv.text()).toEqual("I be done got checked yall!!!!")
+          expect(containerDiv.text()).toEqual("Your feedback has been submitted.")
         });
       });
     });

@@ -6,7 +6,7 @@ import "./SemanticSegmentationImage.scss";
 
 export function SemanticSegmentationImage(props) {
   const {getElement, getBlock} = useBEMNaming("semantic-segmentation-image");
-  const [labelX, setlabelX] = useState(0);
+  const [labelX, setLabelX] = useState(0);
   const [labelY, setLabelY] = useState(0);
   const overlayRef = React.createRef();
   let dataUri = null;
@@ -35,7 +35,7 @@ export function SemanticSegmentationImage(props) {
       if (showLabel && updatePositions && colorIndex + 1 === props.hoverNumber) {
         updatePositions = false;
         setLabelY(y);
-        setlabelX(x);
+        setLabelX(x);
       }
 
       let color = colorIndex >= 0 ? colorToRGBA(colors[colorIndex % colors.length].background) : [0, 0, 0, 0];
