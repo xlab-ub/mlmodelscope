@@ -28,7 +28,7 @@ describe('Classification Output Component', () => {
     it('with a subtitle', () => {
       expect(wrapper.childAt(1).type()).toBe('div');
       expect(wrapper.childAt(1).prop('className')).toBe('classification-output__subtitle');
-      expect(wrapper.childAt(1).text()).toBe('What this model thinks the image is.');
+      expect(wrapper.childAt(1).text()).toBe('How this model identified the object in this image:');
     });
 
     describe('with a list of predictions', () => {
