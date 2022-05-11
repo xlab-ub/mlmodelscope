@@ -13,7 +13,7 @@ export default function ImageEnhancement(props) {
 
   return <div className={getBlock()}>
     <div className={getElement("input")}>
-      <h3 className={getElement('title')}>Original Image Input</h3>
+      <h3 className={getElement('title')}>Input Image</h3>
       <img className={getElement('image')} src={props.trial.inputs[0]}/>
       <button className={getElement('back-button')} onClick={goBack}>Try a different image
       </button>

@@ -8,7 +8,7 @@ export default function SingleColumnImageOutput(props) {
 
   return <div className={getBlock()}>
     <div className={getElement("header")}>
-      <h3 className={getElement("header-heading")}>Enhanced Image Output</h3>
+      <h3 className={getElement("header-heading")}>Output</h3>
       <p className={getElement("header-subheading")}>{task.outputText}</p>
     </div>
     <div className={getElement("content")}>
