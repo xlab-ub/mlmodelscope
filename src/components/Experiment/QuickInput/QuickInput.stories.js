@@ -13,6 +13,16 @@ import {
   semantic_segmentation
 } from "../../../helpers/TaskIDs";
 
+const SampleImageEnhancementInputs = [
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/license-plate.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/forest-mountaings.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/yellow-bird.png'
+];
+const SampleSegmentationInputs = [
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/girl-hiking.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/food.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/cats-dogs.png'
+]
 export default {
   title: 'Experiments/Quick Input',
   component: QuickInput,
@@ -51,11 +61,7 @@ ObjectDetection.args = {
 
 export const SemanticSegmentation = Template.bind({});
 SemanticSegmentation.args = {
-  sampleInputs: [
-    kitty,
-    crabby,
-    birdy
-  ],
+  sampleInputs: SampleSegmentationInputs,
   model: {
     output: {
       type: semantic_segmentation
@@ -65,14 +71,11 @@ SemanticSegmentation.args = {
 
 export const ImageEnhancement = Template.bind({});
 ImageEnhancement.args = {
-  sampleInputs: [
-    kitty,
-    crabby,
-    birdy
-  ],
+  sampleInputs: SampleImageEnhancementInputs,
   model: {
     output: {
       type: image_enhancement
     }
   }
 }
+

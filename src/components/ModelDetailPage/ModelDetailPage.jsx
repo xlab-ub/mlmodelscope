@@ -4,6 +4,13 @@ import QuickInput from "../Experiment/QuickInput/QuickInput";
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
 import Header from "../Header/Header";
 import ModelDescription from "./ModelDescription";
+import {
+  image_classification,
+  image_enhancement,
+  instance_segmentation,
+  object_detection,
+  semantic_segmentation
+} from "../../helpers/TaskIDs";
 
 const SampleInputs = [
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png',
@@ -16,6 +23,16 @@ const SampleObjectDetectionInputs = [
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-2.jpg',
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-3.jpg',
 ]
+const SampleImageEnhancementInputs = [
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/license-plate.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/forest-mountaings.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/yellow-bird.png'
+];
+const SampleSegmentationInputs = [
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/girl-hiking.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/food.png',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/cats-dogs.png'
+]
 
 export default class ModelDetailPage extends Component {
   static defaultProps = {
@@ -25,9 +42,14 @@ export default class ModelDetailPage extends Component {
 
   getSampleInputs = () => {
     switch (this.props.model?.output?.type || "") {
-      case "image_object_detection":
+      case object_detection:
         return SampleObjectDetectionInputs;
-      case "image_classification":
+      case image_enhancement:
+        return SampleImageEnhancementInputs;
+      case semantic_segmentation:
+      case instance_segmentation:
+        return SampleSegmentationInputs;
+      case image_classification:
       default:
         return SampleInputs;
     }
