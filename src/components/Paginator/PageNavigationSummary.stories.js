@@ -2,7 +2,7 @@ import React from 'react';
 import PageNavigationSummary from "./PageNavigationSummary";
 
 export default {
-  title: 'Navigation/Page Navigation Summary',
+  title: 'Components/Navigation/Page Navigation Summary',
   component: PageNavigationSummary,
 };
 

@@ -7,7 +7,7 @@ import TestFeatures, {
 import kitty from "../../../stories/assets/kitty-large.jpg";
 
 export default {
-  title: 'Experiments/Quick Output',
+  title: 'Experiments/Quick Output/Image Classification',
   component: QuickOutput,
 };
 

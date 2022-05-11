@@ -13,14 +13,14 @@ import {
 } from "../Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 
 export default {
-  title: 'Experiments/Experiment Detail Page',
+  title: 'Experiments/Model Comparison Page',
   component: ExperimentDetailPage,
 };
 
 const Template = (args) => <ExperimentDetailPage {...args} />;
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const ImageClassificationPending = Template.bind({});
+ImageClassificationPending.args = {
   experiment: {
     id: 0,
     trials: [

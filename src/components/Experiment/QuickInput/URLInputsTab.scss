@@ -16,6 +16,10 @@
 
     &-error {
       border-color: $darkRed;
+
+      &:focus {
+        border-color: $pink;
+      }
     }
   }
 

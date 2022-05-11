@@ -1,4 +1,6 @@
 .model-list-page {
+  background-color: $white;
+
   &__filter-content {
     width: 100vw;
     height: 100%;
@@ -18,22 +20,27 @@
       font-size: 16px;
       padding-bottom: 30px;
       margin-bottom: 16px;
+
       &-title {
         display: flex;
         align-items: center;
         margin-bottom: 0;
         color: $charcoalLightest;
+
         svg {
           margin-right: 8px;
+
           path {
             fill: $charcoalLightest;
           }
         }
       }
+
       &-close {
         svg {
           width: 20px;
           height: 20px;
+
           path {
             fill: $charcoalLightest;
           }
@@ -55,6 +62,7 @@
     @include desktopWidth {
       display: block;
     }
+
     &-hidden {
       display: none;
     }
@@ -70,6 +78,7 @@
       .sort-button {
         width: 100%;
         margin-top: 8px;
+
         button {
           width: 100%;
         }
@@ -80,7 +89,7 @@
   &__filters-search-container {
     grid-area: control-panel;
     @include desktopWidth {
-      display:  none;
+      display: none;
     }
   }
 

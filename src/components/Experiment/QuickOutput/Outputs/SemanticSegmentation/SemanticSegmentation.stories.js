@@ -3,7 +3,7 @@ import SemanticSegmentation from "./SemanticSegmentation";
 import {TestImageSegmentationResult} from "./testData/TestFeatures";
 
 export default {
-  title: "Experiments/Trial Output/Semantic Segmentation",
+  title: "Experiments/Quick Output/Semantic Segmentation",
   component: SemanticSegmentation
 }
 

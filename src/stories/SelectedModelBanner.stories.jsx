@@ -2,7 +2,7 @@ import React from "react";
 import SelectedModelsBanner from "../components/ModelList/SelectedModelsBanner";
 
 export default {
-  title: 'Models/Selected Models Banner',
+  title: 'Components/Selected Models Banner',
   component: SelectedModelsBanner
 }
 

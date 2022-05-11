@@ -19,7 +19,7 @@ export default class UploadInputsTab extends BEMComponent {
     this.api = GetApiHelper();
     this.uppy = Uppy({
       onBeforeUpload: this.onBeforeUpload,
-      restrictions: { maxNumberOfFiles: 1 },
+      restrictions: {maxNumberOfFiles: 1},
       autoProceed: true
     });
 
@@ -45,7 +45,7 @@ export default class UploadInputsTab extends BEMComponent {
   }
 
   onComplete = (result) => {
-    if (typeof(this.props.inputSelected) === 'function')
+    if (typeof (this.props.inputSelected) === 'function')
       this.props.inputSelected(result.successful.map(x => x.uploadURL));
   }
 
@@ -60,7 +60,7 @@ export default class UploadInputsTab extends BEMComponent {
   render() {
     return (
       <div className={this.block()}>
-        <Dashboard uppy={this.uppy}  />
+        <Dashboard uppy={this.uppy} width={"100%"}/>
       </div>
     );
   }

@@ -8,6 +8,7 @@ import SemanticSegmentationTable
 import "./SemanticSegmentationSummary.scss";
 import useSemanticSegmentationControl
   from "../../Experiment/QuickOutput/Outputs/SemanticSegmentation/hooks/useSemanticSegmentationControl";
+import NoPredictions from "../../Experiment/QuickOutput/Outputs/_Common/components/NoPredictions";
 
 export default function SemanticSegmentationSummary(props) {
   const {
@@ -22,6 +23,10 @@ export default function SemanticSegmentationSummary(props) {
   } = useSemanticSegmentationControl(props.trial);
   const {getElement, getBlock} = useBEMNaming("semantic-segmentation-summary");
 
+  if (usedLabels === null || usedLabels === undefined || usedLabels.length === 0) {
+    return <div className={getBlock()}><NoPredictions/></div>
+  }
+  
   return <div className={getBlock()}>
 
     <div className={getElement("top-row")}>

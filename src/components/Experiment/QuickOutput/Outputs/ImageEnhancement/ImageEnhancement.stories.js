@@ -3,7 +3,7 @@ import ImageEnhancement from "./ImageEnhancement";
 import {TestImageEnhancementData} from "./testData/TestFeatures";
 
 export default {
-  title: "Experiments/Trial Output/Image Enhancement",
+  title: "Experiments/Quick Output/Image Enhancement",
   component: ImageEnhancement
 }
 

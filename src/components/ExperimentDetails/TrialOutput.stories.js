@@ -3,7 +3,7 @@ import React from 'react';
 import TrialOutputWrapper from "./TrialOutputWrapper";
 
 export default {
-  title: 'Experiments/Trial Output',
+  title: 'Components/Trial Output Card',
   component: TrialOutputWrapper,
 };
 

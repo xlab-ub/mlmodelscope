@@ -1,10 +1,9 @@
 import React from 'react';
 import ExperimentOverview from "./ExperimentOverview";
-import kitty from '../../stories/assets/kitty.png';
 import birdy from '../../stories/assets/birdy.png';
 
 export default {
-  title: 'Experiments/Experiment Overview',
+  title: 'Components/Experiment Overview Card',
   component: ExperimentOverview,
 };
 

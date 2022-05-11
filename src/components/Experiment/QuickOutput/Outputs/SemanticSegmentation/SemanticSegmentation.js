@@ -5,6 +5,7 @@ import "./SemanticSegmentation.scss";
 import SemanticSegmentationTable from "./SemanticSegmentationTable";
 import useSemanticSegmentationControl from "./hooks/useSemanticSegmentationControl";
 import Task from "../../../../../helpers/Task";
+import NoPredictions from "../_Common/components/NoPredictions";
 
 export default function SemanticSegmentation(props) {
   const {
@@ -19,6 +20,10 @@ export default function SemanticSegmentation(props) {
   } = useSemanticSegmentationControl(props.trial);
   const {getElement, getBlock} = useBEMNaming("semantic-segmentation");
   const task = Task.image_semantic_segmentation;
+
+  if (usedLabels === null || usedLabels === undefined || usedLabels.length === 0) {
+    return <div className={getBlock()}><NoPredictions/></div>
+  }
 
   return <div className={getBlock()}>
     <div className={getElement("header")}>

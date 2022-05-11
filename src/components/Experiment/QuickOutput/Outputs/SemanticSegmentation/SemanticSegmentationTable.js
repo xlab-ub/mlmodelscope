@@ -2,7 +2,6 @@ import React from "react";
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import {colors} from "../_Common/utils/Colors";
 import "./SemanticSegmentationTable.scss";
-import {ReactComponent as EyeOpen} from "../../../../../resources/icons/eye-open.svg";
 
 export default function SemanticSegmentationTable(props) {
   const {getBlock, getElement} = useBEMNaming("semantic-segmentation-table");
@@ -12,12 +11,7 @@ export default function SemanticSegmentationTable(props) {
 
     return <div onMouseLeave={() => props.hover.leave()} onMouseEnter={() => props.hover.enter(label.index + 1)}
                 className={getElement("row")}>
-      <div className={getElement("row-left")}>
-        <div className={getElement("eye-wrapper")}>
-          <EyeOpen/>
-        </div>
 
-      </div>
       <div className={getElement("row-middle")}>
         <input name={`row-input-${label.label}`} type={"checkbox"}
                className={getElement("row-input-hidden")}
@@ -33,9 +27,7 @@ export default function SemanticSegmentationTable(props) {
 
   return <div className={getBlock()}>
     <div className={getElement("header-row")}>
-      <p className={getElement("header-row-item row-left")}>
-        Hide
-      </p>
+
       <p className={getElement("header-row-item row-middle")}>
         Objects Detected
       </p>

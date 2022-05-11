@@ -3,7 +3,7 @@ import InstanceSegmentation from "./InstanceSegmentation";
 import {TestInstanceSegmentationOutput, TestInstanceSegmentationOutputNoFeatures} from "./testData/TestFeatures";
 
 export default {
-  title: "Experiments/Trial Output/Instance Segmentation",
+  title: "Experiments/Quick Output/Instance Segmentation",
   component: InstanceSegmentation
 }
 

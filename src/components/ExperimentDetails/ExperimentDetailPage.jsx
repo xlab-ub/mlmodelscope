@@ -8,6 +8,7 @@ import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotB
 import {
   image_classification,
   image_enhancement,
+  instance_segmentation,
   object_detection,
   pending,
   semantic_segmentation
@@ -56,6 +57,7 @@ export default function ExperimentDetailPage(props) {
       case object_detection:
       case semantic_segmentation:
       case image_enhancement:
+      case instance_segmentation:
         const machine = props.experiment.trials[0].model.framework.architectures[0].name;
 
         return ({children}) => <OneColumnOverview

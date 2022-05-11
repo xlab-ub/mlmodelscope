@@ -2,7 +2,7 @@ import React from "react";
 import SelectedModelCard from "../components/ModelList/SelectedModelCard";
 
 export default {
-  title: 'Models/Selected Model Card',
+  title: 'Components/Selected Model Card',
   component: SelectedModelCard,
 }
 

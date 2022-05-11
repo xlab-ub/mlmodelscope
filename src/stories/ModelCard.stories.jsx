@@ -3,7 +3,7 @@ import React from 'react';
 import ModelCard from '../components/ModelList/ModelCard';
 
 export default {
-  title: 'Models/Model Card',
+  title: 'Components/Model Card',
   component: ModelCard,
 };
 

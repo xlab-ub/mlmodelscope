@@ -2,7 +2,7 @@ import React from 'react';
 import SortButton from '../components/Buttons/SortButton'
 
 export default {
-  title: 'Buttons / Sort Button',
+  title: 'Components/Buttons/Sort Button',
   component: SortButton,
 };
 

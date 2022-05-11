@@ -2,7 +2,7 @@ import React from 'react';
 import RemoveModelModal from "./RemoveModelModal";
 
 export default {
-  title: 'Modals/Remove Model Modal',
+  title: 'Components/Modals/Remove Model Modal',
   component: RemoveModelModal,
 }
 

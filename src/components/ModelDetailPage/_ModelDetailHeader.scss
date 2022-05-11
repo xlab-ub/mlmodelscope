@@ -54,13 +54,12 @@
     grid-gap: 1px;
     grid-template-columns: repeat(4, 1fr);
     $data-gutters: $gutterSize-desktop - $data-left-right-padding * 2;
-    margin-left: 100px;
-    margin-right: $data-gutters;
+    margin-left: 150px;
+    margin-right: 150px;
     margin-top: 32px;
 
     @include minWidth(1001px) {
       :first-child {
-        padding-left: 0;
       }
     }
 
@@ -88,6 +87,10 @@
     background-color: white;
     padding: 16px $data-left-right-padding;
     @include tabletWidth {
+    }
+
+    &-first {
+      padding-left: 0;
     }
 
   }

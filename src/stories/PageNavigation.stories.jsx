@@ -3,7 +3,7 @@ import React from 'react';
 import PageNavigation from "../components/Paginator/PageNavigation";
 
 export default {
-  title: 'Navigation/Page Navigation',
+  title: 'Components/Navigation/Page Navigation',
   component: PageNavigation,
 };
 
@@ -27,7 +27,7 @@ export const Page5Of10 = Template.bind({});
 Page5Of10.args = {
   key: 'many-pages',
   pageCount: 10,
-  selectedPage:5
+  selectedPage: 5
 }
 
 export const Page8Of10 = Template.bind({});
