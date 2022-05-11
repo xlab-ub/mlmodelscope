@@ -27,7 +27,7 @@ export default class SampleInputsTab extends BEMComponent {
   render() {
     return (
       <div className={this.block()}>
-        <div className={this.element('title')}>Select one of our sample images to run through the model</div>
+        <div className={this.element('title')}>Select a sample image</div>
         <div className={this.element('list')}>
           {this.props.sampleInputs.map(this.makeSampleInput)}
         </div>
@@ -38,7 +38,7 @@ export default class SampleInputsTab extends BEMComponent {
   makeSampleInput = (url, index) => {
     return (
       <div key={index} className={this.element('input', index)}>
-        <img src={url} onClick={() => this.selectInput(index)} />
+        <img src={url} onClick={() => this.selectInput(index)}/>
       </div>
     )
   };
@@ -48,7 +48,7 @@ export default class SampleInputsTab extends BEMComponent {
       selectedIndex: index
     });
 
-    if (typeof(this.props.inputSelected) === 'function')
+    if (typeof (this.props.inputSelected) === 'function')
       this.props.inputSelected(this.props.sampleInputs[index]);
   }
 }

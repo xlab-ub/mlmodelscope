@@ -18,7 +18,7 @@ describe('Sample Inputs Tab', () => {
 
       expect(tab.length).toBe(1);
       expect(tab.childAt(0).prop('className')).toBe('sample-inputs__title');
-      expect(tab.childAt(0).text()).toBe('Select one of our sample images to run through the model');
+      expect(tab.childAt(0).text()).toBe('Select a sample image');
       expect(list.length).toBe(1);
       expect(list.children().length).toBe(0);
     });
@@ -28,7 +28,7 @@ describe('Sample Inputs Tab', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs} />);
+      wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs}/>);
     });
 
     it('from a provided array of sample inputs', () => {
@@ -74,7 +74,7 @@ describe('Sample Inputs Tab', () => {
 
     it('calling the inputSelected callback when an input is selected', () => {
       const inputSelected = jest.fn();
-      wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs} inputSelected={inputSelected} />);
+      wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs} inputSelected={inputSelected}/>);
       const image = wrapper.find('.sample-inputs__input').at(1).find('img');
       image.simulate('click');
 
