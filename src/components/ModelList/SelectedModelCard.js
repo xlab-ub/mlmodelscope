@@ -8,18 +8,20 @@ import './_SelectedModelCard.scss';
 export default class SelectedModelCard extends BEMComponent {
   static defaultProps = {
     className: "selected-model-card",
-    remove: () => {},
+    remove: () => {
+    },
   }
 
   render() {
     const model = this.props.model;
     let task = Task[model.output.type];
     if (!task) {
-      task = new Task(model.output.type, "This task has no definition");
+      task = new Task({name: model.output.type, description: "This task has no definition"});
     }
     let machineTagKey = 0;
     let architectures = model.framework ? model.framework.architectures : null;
-    let machineTags = architectures ? architectures.map(machine => <ModelTag key={machineTagKey++} type="machine" content={machine.name}/> ) : '';
+    let machineTags = architectures ? architectures.map(machine => <ModelTag key={machineTagKey++} type="machine"
+                                                                             content={machine.name}/>) : '';
 
     return (
       <div className={this.block()}>
@@ -30,7 +32,7 @@ export default class SelectedModelCard extends BEMComponent {
           <div className={this.element('tag-group')}>
             <span className={this.element('tag-label')}>Framework:</span>
             <span className={this.element('tag-content')}>
-              <ModelTag type="framework" content={model.framework.name} />
+              <ModelTag type="framework" content={model.framework.name}/>
             </span>
           </div>
           <div className={this.element('tag-group')}>
@@ -41,7 +43,7 @@ export default class SelectedModelCard extends BEMComponent {
           </div>
         </div>
         <button className={this.element('close')} onClick={this.props.remove}>
-          <CloseIcon />
+          <CloseIcon/>
         </button>
       </div>
     )

@@ -5,7 +5,13 @@ import Header from "../Header/Header";
 import useBEMNaming from "../../common/useBEMNaming";
 import RemoveModelModal from "../RemoveModelModal/RemoveModelModal";
 import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotBeRemovedModal";
-import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
+import {
+  image_classification,
+  image_enhancement,
+  object_detection,
+  pending,
+  semantic_segmentation
+} from "../../helpers/TaskIDs";
 import TwoColumnOverview from "./Layouts/TwoColumnOverview";
 import OneColumnOverview from "./Layouts/OneColumnOverview";
 import Button from "../Buttons/Button";
@@ -39,7 +45,12 @@ export default function ExperimentDetailPage(props) {
   );
 
   function getLayout() {
-    const outputType = props.experiment.trials[0].model.output.type;
+    let outputType = pending;
+
+    if (props.experiment.trials.length > 0) {
+      outputType = props.experiment.trials[0].model.output.type;
+    }
+
 
     switch (outputType) {
       case object_detection:

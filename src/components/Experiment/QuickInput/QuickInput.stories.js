@@ -6,6 +6,7 @@ import kitty from '../../../stories/assets/kitty.png';
 import sampleObjectDetection1 from '../../../resources/img/obj-1.jpg';
 import sampleObjectDetection2 from '../../../resources/img/obj-2.jpg';
 import sampleObjectDetection3 from '../../../resources/img/obj-3.jpg';
+import {image_classification, object_detection} from "../../../helpers/TaskIDs";
 
 export default {
   title: 'Experiments/Quick Input',
@@ -20,7 +21,12 @@ Default.args = {
     kitty,
     crabby,
     birdy
-  ]
+  ],
+  model: {
+    output: {
+      type: image_classification
+    }
+  }
 }
 
 export const ObjectDetection = Template.bind({});
@@ -29,5 +35,11 @@ ObjectDetection.args = {
     sampleObjectDetection1,
     sampleObjectDetection2,
     sampleObjectDetection3,
-  ]
+  ],
+  model: {
+    output: {
+      type: object_detection
+    }
+  }
+
 }

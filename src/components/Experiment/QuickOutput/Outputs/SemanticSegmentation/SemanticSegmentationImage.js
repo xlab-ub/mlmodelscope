@@ -32,17 +32,23 @@ export function SemanticSegmentationImage(props) {
       }
       let colorIndex = props.int_mask[index] - 1;
 
-      if (showLabel && updatePositions && colorIndex + 1 === props.hoverNumber) {
+      if (showLabel && updatePositions && colorIndex + 1 === props.hover.property) {
         updatePositions = false;
         setLabelY(y);
         setLabelX(x);
       }
 
+      const isShownByHover = !props.hover.property || props.hover.property === colorIndex + 1;
+      const isShownByCategories = true;
+      const colorIsNotZero = colorIndex !== -1;
+
+      const isShown = isShownByHover && isShownByCategories && colorIsNotZero;
+
       let color = colorIndex >= 0 ? colorToRGBA(colors[colorIndex % colors.length].background) : [0, 0, 0, 0];
       imageData.data[index * 4 + 0] = color[0]; // red
       imageData.data[index * 4 + 1] = color[1]; // green
       imageData.data[index * 4 + 2] = color[2]; // blue
-      imageData.data[index * 4 + 3] = props.hoverNumber === colorIndex + 1 ? 150 : 0 // alpha
+      imageData.data[index * 4 + 3] = isShown ? 150 : 0 // alpha
     }
 
     context.putImageData(imageData, 0, 0);
@@ -52,23 +58,24 @@ export function SemanticSegmentationImage(props) {
 
   useEffect(() => {
     generateOverlayImage();
-  }, [props.hoverNumber])
+  }, [props.hover.property])
 
+  let color = props.hover.property !== null ? colors[(props.hover.property - 1) % colors.length] : colors[0];
   const style = {
-    position: "absolute",
     top: `${(labelY / props.height) * 100}%`,
     left: `${(labelX / props.width) * 100}%`,
-    zIndex: 100,
-    backgroundColor: "red",
-    color: "white"
+    backgroundColor: color.background,
+    color: color.font,
   }
+
 
   return <div className={getBlock()}>
     <div className={getElement("image-wrapper")}>
       <img alt={"placeholder"} className={getElement("image")} src={props.img} onLoad={generateOverlayImage}/>
       <img ref={overlayRef} className={getElement("overlay")}/>
-      <div style={style}>I'm a label!</div>
-
+      {props.hover.property &&
+        <div className={getElement("label")} style={style}>{props.labelToShow}</div>
+      }
     </div>
   </div>
 

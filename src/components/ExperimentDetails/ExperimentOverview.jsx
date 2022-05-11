@@ -17,7 +17,7 @@ export default class ExperimentOverview extends BEMComponent {
     let taskName = this.props.task;
     let task = Task[taskName];
     if (!task) {
-      task = new Task(taskName, "");
+      task = new Task({name: taskName});
     }
 
     return (

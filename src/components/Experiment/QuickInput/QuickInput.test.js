@@ -6,6 +6,8 @@ import SampleInputsTab from "./SampleInputsTab";
 import {SampleInputs} from "./SampleInputsTab.test";
 import UploadInputsTab from "./UploadInputsTab";
 import URLInputsTab from "./URLInputsTab";
+import {image_classification} from "../../../helpers/TaskIDs";
+import Task from "../../../helpers/Task";
 
 describe('Experiment Quick Input Component', () => {
   const LOAD_SRC = SampleInputs[0];
@@ -25,10 +27,12 @@ describe('Experiment Quick Input Component', () => {
   describe('Renders', () => {
     let wrapper;
     let runModelClicked;
+    const sampleModel = {output: {type: image_classification}};
 
     beforeEach(() => {
       runModelClicked = jest.fn();
-      wrapper = mount(<QuickInput onRunModelClicked={runModelClicked} sampleInputs={SampleInputs}/>);
+      wrapper = mount(<QuickInput onRunModelClicked={runModelClicked} sampleInputs={SampleInputs}
+                                  model={sampleModel}/>);
     });
 
     it('the correct container class', () => {
@@ -46,7 +50,7 @@ describe('Experiment Quick Input Component', () => {
       const subtitle = wrapper.find('.quick-input').find('.quick-input__subtitle');
 
       expect(subtitle.length).toBe(1);
-      expect(subtitle.text()).toBe(`Choose an image to run through this model and see it's predictions.`);
+      expect(subtitle.text()).toBe(Task.image_classification.inputText);
     });
 
     describe('with tabs', () => {

@@ -50,7 +50,8 @@ export default class ModelDetailPage extends Component {
 
   renderContent = () => {
     if (this.props.trialOutput === undefined) {
-      return (<QuickInput sampleInputs={this.getSampleInputs()} onRunModelClicked={this.props.onRunModelClicked}/>);
+      return (<QuickInput model={this.props.model} sampleInputs={this.getSampleInputs()}
+                          onRunModelClicked={this.props.onRunModelClicked}/>);
     } else {
       return (<QuickOutput input={this.props.trialOutput.inputs[0]}
                            features={this.props.trialOutput.completed_at ? this.props.trialOutput.results.responses[0].features : null}

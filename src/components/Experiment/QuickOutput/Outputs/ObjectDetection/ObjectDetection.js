@@ -6,11 +6,13 @@ import {ObjectDetectionTable} from "./ObjectDetectionTable";
 import NoPredictions from "../_Common/components/NoPredictions";
 import "./ObjectDetection.scss";
 import useImageRef from "./hooks/useImageRef";
+import Task from "../../../../../helpers/Task";
 
 export default function ObjectDetection(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection");
   const {hover, filteredSections, sections, filter} = useObjectDetectionControl(props.trial);
   const {imageRef, imageHeight} = useImageRef();
+  const task = Task.image_object_detection;
 
   const getBody = () => {
     if (sections.length === 0) return <NoPredictions modelId={props.trial.model.id}/>
@@ -36,7 +38,7 @@ export default function ObjectDetection(props) {
   return <div className={getBlock()}>
     <div className={getElement("header")}>
       <h3 className={getElement("header-headline")}>Output</h3>
-      <p className={getElement("header-subheading")}>Objects this model can identify in this image</p>
+      <p className={getElement("header-subheading")}>{task.outputText}</p>
     </div>
     {getBody()}
     <div className={getElement("bottom-row")}>

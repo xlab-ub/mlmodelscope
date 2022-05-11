@@ -11,7 +11,7 @@ export default function OneColumnOverview(props) {
 
   let taskName = Task[props.task];
   if (!taskName) {
-    taskName = new Task(props.task, "");
+    taskName = new Task({name: props.task, description: ""});
   }
 
   return <div className={getBlock()}>

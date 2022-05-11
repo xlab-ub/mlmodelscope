@@ -1,41 +1,40 @@
-import React, {useState} from 'react';
+import React from 'react';
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import {SemanticSegmentationImage} from "./SemanticSegmentationImage";
 import "./SemanticSegmentation.scss";
 import SemanticSegmentationTable from "./SemanticSegmentationTable";
+import useSemanticSegmentationControl from "./hooks/useSemanticSegmentationControl";
+import Task from "../../../../../helpers/Task";
 
 export default function SemanticSegmentation(props) {
-  const [hoverNumber, setHoverNumber] = useState(0);
-
-  const hover = (number) => {
-    setHoverNumber(number);
-  }
-
+  const {
+    hover,
+    labelToShow,
+    usedLabels,
+    height,
+    image,
+    int_mask,
+    width,
+    categories
+  } = useSemanticSegmentationControl(props.trial);
   const {getElement, getBlock} = useBEMNaming("semantic-segmentation");
-
-
-  const image = props.trial.inputs[0];
-  const {height, int_mask, labels, width} = props.trial.results.responses[0].features[0].semantic_segment;
-  const usedLabels = labels.map((label, index) => {
-    return index > 0 && int_mask.indexOf(index) > -1
-      ? {index: index - 1, label}
-      : null;
-  }).filter(l => l !== null);
-
+  const task = Task.image_semantic_segmentation;
 
   return <div className={getBlock()}>
     <div className={getElement("header")}>
       <h3 className={getElement("header-headline")}>Output</h3>
-      <p className={getElement("header-subheading")}>What each object detected is</p>
+      <p className={getElement("header-subheading")}>{task.outputText}</p>
     </div>
     <div className={getElement("top-row")}>
       <SemanticSegmentationImage img={image}
                                  width={width}
                                  height={height}
                                  int_mask={int_mask}
-                                 hoverNumber={hoverNumber}
+                                 hover={hover}
+                                 categories={categories}
+                                 labelToShow={labelToShow}
       />
-      <SemanticSegmentationTable labels={usedLabels} hover={hover}/>
+      <SemanticSegmentationTable labels={usedLabels} hover={hover} labelToShow={labelToShow} categories={categories}/>
     </div>
     <div className={getElement("bottom-row")}>
       <a href={"/test"} className={getElement("bottom-row-btn")}>

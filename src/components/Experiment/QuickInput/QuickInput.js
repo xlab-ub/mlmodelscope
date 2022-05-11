@@ -4,6 +4,7 @@ import SampleInputsTab from "./SampleInputsTab";
 import UploadInputsTab from "./UploadInputsTab";
 import URLInputsTab from "./URLInputsTab";
 import "./QuickInput.scss";
+import Task from "../../../helpers/Task";
 
 export default class QuickInput extends BEMComponent {
   static defaultProps = {
@@ -24,9 +25,14 @@ export default class QuickInput extends BEMComponent {
     };
 
     this.tabs = [
-      { id: 'sample-input', title: 'Sample inputs', component: SampleInputsTab, props: { sampleInputs: props.sampleInputs } },
-      { id: 'upload-input', title: 'Upload', component: UploadInputsTab },
-      { id: 'url-input', title: 'URL', component: URLInputsTab }
+      {
+        id: 'sample-input',
+        title: 'Sample inputs',
+        component: SampleInputsTab,
+        props: {sampleInputs: props.sampleInputs}
+      },
+      {id: 'upload-input', title: 'Upload', component: UploadInputsTab},
+      {id: 'url-input', title: 'URL', component: URLInputsTab}
     ];
     this.state = {
       selectedInputUrl: "",
@@ -35,23 +41,27 @@ export default class QuickInput extends BEMComponent {
   }
 
   render() {
+    const task = Task.getStaticTask(this.props.model.output.type);
+
     return (
       <div className={this.block()}>
         <h2 className={this.element('title')}>Try this model</h2>
-        <div className={this.element('subtitle')}>Choose an image to run through this model and see it's predictions.</div>
+        <div className={this.element('subtitle')}>{task.inputText}</div>
         <div className={this.element('tabs')}>
           <div className={this.element('tab-titles')} role="tablist">
             {this.tabs.map((tab, index) => this.makeTabTitle(index, tab))}
           </div>
           {this.tabs.map((tab, index) => this.makeTab(index, tab))}
         </div>
-        <button className={this.element('run-model')} disabled={this.state.selectedInputUrl === ""} onClick={() => this.runModel()}>Run model and see results</button>
+        <button className={this.element('run-model')} disabled={this.state.selectedInputUrl === ""}
+                onClick={() => this.runModel()}>Run model and see results
+        </button>
       </div>
     );
   }
 
   runModel = () => {
-    if (typeof(this.props.onRunModelClicked) === 'function')
+    if (typeof (this.props.onRunModelClicked) === 'function')
       this.props.onRunModelClicked(this.state.selectedInputUrl);
   }
 
@@ -69,7 +79,9 @@ export default class QuickInput extends BEMComponent {
               aria-controls={`${tab.id}-panel`}
               aria-selected={`${index === this.state.selectedTab}`}
               id={tab.id}
-              onClick={() => { this.selectTab(index) }}
+              onClick={() => {
+                this.selectTab(index)
+              }}
       >
         {tab.title}
       </button>
@@ -83,10 +95,13 @@ export default class QuickInput extends BEMComponent {
   }
 
   makeTab = (index, tab) => {
-    let Component = tab.component || (() => {return <div />});
+    let Component = tab.component || (() => {
+      return <div/>
+    });
 
     return (
-      <div key={index} className={this.element('tab', index)} role="tabpanel" aria-labelledby={`${tab.id}`} id={`${tab.id}-panel`}>
+      <div key={index} className={this.element('tab', index)} role="tabpanel" aria-labelledby={`${tab.id}`}
+           id={`${tab.id}-panel`}>
         <Component inputSelected={this.selectInput} {...tab.props} />
       </div>
     )
