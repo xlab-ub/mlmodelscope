@@ -2,9 +2,13 @@
 
 .image-enhancement {
   display: flex;
-  padding: 32px;
   @include desktopWidth {
     flex-direction: column;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
   }
 
   &__input {
@@ -15,6 +19,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: $white;
 
 
     @include desktopWidth {
