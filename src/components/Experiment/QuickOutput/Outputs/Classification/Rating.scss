@@ -24,7 +24,8 @@
     }
   }
 
-  &--checked {
+  transition: 0.5s;
+  &:hover {
     background-color: $background;
 
     & > svg > path {

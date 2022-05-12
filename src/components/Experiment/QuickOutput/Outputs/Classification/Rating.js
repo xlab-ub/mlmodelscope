@@ -54,12 +54,11 @@ export default class Rating extends BEMComponent {
     const isChecked = this.state.ratings.some(rating => rating.checked);
 
     if (isChecked)
-      return <div className={this.element("submitted")} onClick={this.unCheckRating}>Your feedback has been
-        submitted.</div>
+      return <div className={this.element("submitted")}>Thank you for your feedback!</div>
 
     return (
       <>
-        <div className={this.element('title')}>Rate the prediction of this model and image</div>
+        <div className={this.element('title')}>Is this prediction correct?</div>
         <div className={this.element('buttons')} role="radiogroup">
           {
             this.state.ratings.map(this.makeRadioButton)
