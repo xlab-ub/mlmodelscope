@@ -4,8 +4,8 @@ import {image_classification, image_enhancement, object_detection, semantic_segm
 export default class Task {
   static image_classification = new Task({
     name: "Classification",
-    description: "Used to recognize a single object in an image and can help you answer what is in the image",
-    modelDescription: "Used to recognize a single object in an image and can help you answer what is in the image",
+    description: "Used to recognize a single object in an image and can help you answer what is in the image.",
+    modelDescription: "Used to recognize a single object in an image and can help you answer what is in the image.",
     id: image_classification,
     inputText: "See how well this model can identify what object is in an image.",
     outputText: "How this model identified the object in this image:"
@@ -16,14 +16,14 @@ export default class Task {
   })
   static image_object_detection = new Task({
     name: "Object Detection",
-    description: "Used to recognize and locate multiple objects in an image (for example, humans, animals, cars) and can help you answer what is in the image and where in the image is it located",
+    description: "Used to recognize and locate multiple objects in an image (for example, humans, animals, cars), and can help you answer what is in the image and where in the image is it located.",
     id: object_detection,
     inputText: "See how well this model can recognize and locate multiple objects in an image.",
     outputText: "Objects this model can recognize in this image:"
   })
   static image_semantic_segmentation = new Task({
     name: "Semantic Segmentation",
-    description: "Used to segment out different parts of an image that belong to the same class. Can help you answer what is in the image, where in the image is it located, and if similar object overlap",
+    description: "Used to segment out different parts of an image that belong to the same class. Can help you answer what is in the image, where in the image it is located, and if similar object overlap.",
     id: semantic_segmentation,
     inputText: "See how well this model can recognize and locate multiple objects in an image and where they overlap.",
     outputText: "Objects this model can recognize in this image:"
