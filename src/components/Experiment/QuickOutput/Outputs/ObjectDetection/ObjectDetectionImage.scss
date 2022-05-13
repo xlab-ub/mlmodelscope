@@ -1,29 +1,18 @@
 @import "../../../../../App.scss";
 
 .object-detection-image {
+  display: flex;
+  flex-direction: column;
+  flex: 2 1;
 
   &__input-label {
     @include labelSmall;
     color: $charcoalLightest;
   }
 
-  &__image {
-    height: auto;
-    width: 100%;
-
-  }
-
   &__overlay {
+    overflow: hidden;
     position: relative;
-  }
-
-  &__overlay-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    @include tabletWidth {
-    }
   }
 
   &__input-wrapper {
@@ -33,19 +22,8 @@
 
   &__input-container {
     display: flex;
-    grid-template-columns: 6fr 1fr;
     align-items: center;
-    margin-top: 0px;
-
-    @include desktopWidth {
-      grid-template-columns: 2fr 2fr;
-    }
-    @include tabletWidth {
-      grid-template-columns: 4fr 3fr;
-    }
-    @include mobileWidth-lg {
-      grid-template-columns: 2fr 3fr;
-    }
+    margin-top: 0;
   }
 
   &__input-range {
@@ -70,7 +48,6 @@
 
   &__input-number {
     @include body;
-    width: 52px;
     border: 2px solid $smokeDark;
     padding-left: 12px;
     margin-left: 10px;
