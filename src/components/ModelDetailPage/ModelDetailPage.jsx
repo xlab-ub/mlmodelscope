@@ -11,28 +11,13 @@ import {
   object_detection,
   semantic_segmentation
 } from "../../helpers/TaskIDs";
+import {
+  SampleImageClassificationInputs,
+  SampleImageEnhancementInputs,
+  SampleObjectDetectionInputs,
+  SampleSegmentationInputs
+} from "../../helpers/sampleImages";
 
-const SampleInputs = [
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/kitty.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/crabby.png'
-]
-
-const SampleObjectDetectionInputs = [
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-1.jpg',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-2.jpg',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-3.jpg',
-]
-const SampleImageEnhancementInputs = [
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/license-plate.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/forest-mountaings.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/yellow-bird.png'
-];
-const SampleSegmentationInputs = [
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/girl-hiking.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/food.png',
-  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/cats-dogs.png'
-]
 
 export default class ModelDetailPage extends Component {
   static defaultProps = {
@@ -51,7 +36,7 @@ export default class ModelDetailPage extends Component {
         return SampleSegmentationInputs;
       case image_classification:
       default:
-        return SampleInputs;
+        return SampleImageClassificationInputs;
     }
   }
 
