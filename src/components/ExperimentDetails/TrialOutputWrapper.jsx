@@ -38,7 +38,7 @@ export default function TrialOutputWrapper(props) {
             <div className="trial-output-wrapper__spinner">
 
             </div>
-            <p className="trial-output-wrapper__spinner-text">Fetching results...</p>
+            <p className="trial-output-wrapper__spinner-text">This could take a few minutes...</p>
           </div>
         </div>
       )

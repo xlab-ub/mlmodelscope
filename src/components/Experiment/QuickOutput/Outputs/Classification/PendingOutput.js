@@ -19,7 +19,10 @@ export default class PendingOutput extends BEMComponent {
           <div className={this.element('spinner')}>
 
           </div>
+          <p className={this.element("spinner-text")}>This could take a few minutes...</p>
+
         </div>
+
       </div>
     );
   }

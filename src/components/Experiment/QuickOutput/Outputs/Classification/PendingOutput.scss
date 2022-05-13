@@ -16,7 +16,6 @@
   }
 
   &__title {
-    margin-bottom: 32px;
   }
 
   &__subtitle {
@@ -32,6 +31,7 @@
     flex-grow: 1;
     justify-content: center;
     position: relative;
+    flex-direction: column;
   }
 
   &__spinner {
@@ -43,5 +43,13 @@
     border-top: solid 3px $purple;
     height: 50px;
     width: 50px;
+    margin-bottom: 16px;
+  }
+
+  &__spinner-text {
+    @include headline3;
+    color: $charcoalLightest;
+    text-align: center;
+
   }
 }

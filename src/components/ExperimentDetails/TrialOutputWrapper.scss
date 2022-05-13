@@ -155,5 +155,6 @@
   &__spinner-text {
     @include headline3;
     color: $charcoalLightest;
+    margin-bottom: 16px;
   }
 }
