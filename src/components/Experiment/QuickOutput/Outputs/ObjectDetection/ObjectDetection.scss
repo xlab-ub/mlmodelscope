@@ -44,7 +44,6 @@
   &__top-row {
     display: flex;
     gap: 24px;
-    max-height: 100vh;
 
     @include maxWidth(1500px) {
       flex-direction: column;

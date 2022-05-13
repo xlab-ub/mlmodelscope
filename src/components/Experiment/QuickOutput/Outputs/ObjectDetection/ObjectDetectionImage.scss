@@ -5,6 +5,10 @@
   flex-direction: column;
   flex: 2 1;
 
+  @include maxWidth(1500px) {
+    flex: 1 1;
+  }
+
   &__input-label {
     @include labelSmall;
     color: $charcoalLightest;
