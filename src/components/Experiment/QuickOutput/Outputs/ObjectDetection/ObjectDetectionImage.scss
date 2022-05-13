@@ -77,8 +77,10 @@
     margin-right: 4px;
 
     -moz-appearance: textfield;
+    appearance: textfield;
+    -webkit-appearance: textfield;
 
-    &::-webkit-outer-spin-button {
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
