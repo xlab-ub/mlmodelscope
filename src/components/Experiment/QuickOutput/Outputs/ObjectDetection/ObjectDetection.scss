@@ -8,15 +8,15 @@
   flex: 1 1;
   flex-direction: column;
   padding: 32px;
+
   @include maxWidth(1000px) {
-    margin-left: 0px;
-    margin-right: 0px;
-
-
+    margin-left: 0;
+    margin-right: 0;
   }
+
   @include mobileWidth-lg {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
     padding-left: 0;
     padding-right: 0;
   }
@@ -42,15 +42,12 @@
   }
 
   &__top-row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
     gap: 24px;
     max-height: 100vh;
 
     @include maxWidth(1500px) {
-      grid-template-columns: 1fr;
-      max-height: 100%;
+      flex-direction: column;
     }
   }
 

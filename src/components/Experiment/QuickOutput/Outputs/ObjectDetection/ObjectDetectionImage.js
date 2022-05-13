@@ -8,10 +8,10 @@ export function ObjectDetectionImage(props) {
 
   return <>
     <div id={getBlock()} className={getBlock()}>
-      <div className={getElement("overlay")}>
-        <div className={getElement("overlay-container")}>
+      <div className={getElement("wrapper")}>
+        <div className={getElement("overlay")}>
           <img ref={props.imageRef} id={getElement("image")} alt={"placeholder"} className={getElement("image")}
-               src={props.img}/>
+               src={props.img} />
 
           {props.sections.map((section) => <BoundingBox key={section.id} {...section.bounding_box}
                                                         color={section.color}
@@ -29,10 +29,7 @@ export function ObjectDetectionImage(props) {
 }
 
 function ObjectDetectionImageInputs(props) {
-
-
-  const margin = props.imageHeight + 12;
-  return <div style={{marginTop: `${margin}px`}} className={props.getElement("input-wrapper")}>
+  return <div className={props.getElement("input-wrapper")}>
     <p className={props.getElement("input-label")}> Confidence Threshold</p>
     <div className={props.getElement("input-container")}>
       <input type={"range"} min={0} max={props.confidence.maxProbability} className={props.getElement("input-range")}
@@ -45,7 +42,6 @@ function ObjectDetectionImageInputs(props) {
                value={props.confidence.state} onChange={(e) => props.confidence.setState(e.target.value)}/>
         %
       </label>
-
     </div>
   </div>
 }
