@@ -21,7 +21,7 @@ describe('Classification Rating component', () => {
       const title = wrapper.childAt(0);
 
       expect(title.prop('className')).toBe('rating__title');
-      expect(title.text()).toBe('Rate the prediction of this model and image');
+      expect(title.text()).toBe('Is this prediction correct?');
     });
 
     describe('with a button container', () => {
@@ -73,7 +73,7 @@ describe('Classification Rating component', () => {
           buttons.childAt(1).simulate('click');
 
           const containerDiv = wrapper.childAt(0)
-          expect(containerDiv.text()).toEqual("Your feedback has been submitted.")
+          expect(containerDiv.text()).toEqual("Thank you for your feedback!")
         });
       });
     });
