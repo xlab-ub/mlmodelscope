@@ -8,17 +8,19 @@ export function ObjectDetectionImage(props) {
 
   return <>
     <div id={getBlock()} className={getBlock()}>
-      <div className={getElement("overlay")}>
-        <img ref={props.imageRef} id={getElement("image")} alt={"placeholder"} className={getElement("image")}
-             src={props.img}/>
+      <div className={getElement("wrapper")}>
+        <div className={getElement("overlay")}>
+          <img ref={props.imageRef} id={getElement("image")} alt={"placeholder"} className={getElement("image")}
+               src={props.img} />
 
-        {props.sections.map((section) => <BoundingBox key={section.id} {...section.bounding_box}
-                                                      color={section.color}
-                                                      hover={props.hover} id={section.id}
-                                                      probability={section.probability}
-                                                      confidence={props.confidence.state}
-                                                      labelIsInCategories={props.labelIsInCategories}
-        />)}
+          {props.sections.map((section) => <BoundingBox key={section.id} {...section.bounding_box}
+                                                        color={section.color}
+                                                        hover={props.hover} id={section.id}
+                                                        probability={section.probability}
+                                                        confidence={props.confidence.state}
+                                                        labelIsInCategories={props.labelIsInCategories}
+          />)}
+        </div>
       </div>
 
       {props.showInputs && <ObjectDetectionImageInputs {...props} getElement={getElement}/>}

@@ -13,11 +13,24 @@
   &__overlay {
     overflow: hidden;
     position: relative;
+    width: fit-content;
+  }
+
+  &__wrapper {
+    border: 1px solid $smokeDarkest;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+
+    @include maxWidth($width-mobile-large) {
+      margin: 0 16px;
+    }
   }
 
   &__input-wrapper {
     background-color: $smoke;
     padding: 12px;
+    margin-top: 12px;
   }
 
   &__input-container {
@@ -52,6 +65,7 @@
     padding-left: 12px;
     margin-left: 10px;
     margin-right: 4px;
+    width: 52px;
 
     -moz-appearance: textfield;
     appearance: textfield;
