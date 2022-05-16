@@ -1,9 +1,11 @@
+@import "../../App";
+
 .model-list-page {
   &__responsive-header {
     grid-area: header;
 
     &-active-filters {
-      background: rgba(30,99,242,0.05);
+      background: rgba(30, 99, 242, 0.05);
       padding: 15px 80px;
       display: none;
       grid-template-columns: 1fr;
@@ -23,11 +25,13 @@
         align-items: center;
         justify-content: space-between;
       }
+
       &-title {
         margin-bottom: 0;
         font-weight: 700;
         color: $charcoalLightest;
       }
+
       &-clear {
         color: $charcoalLightest;
         border-bottom: 1px solid $charcoalLightest;
@@ -51,9 +55,10 @@
         margin-bottom: 12px;
       }
     }
+
     &-filter-container {
       &-row {
-        display:  flex;
+        display: flex;
         align-items: center;
         justify-content: space-between;
 
@@ -71,6 +76,7 @@
         }
 
       }
+
       &-btn {
         @include primaryButtonWithIconBefore("filter.svg");
 

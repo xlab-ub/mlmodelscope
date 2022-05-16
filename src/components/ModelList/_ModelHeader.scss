@@ -1,7 +1,8 @@
+@import "../../App";
+
 .model-header {
   @include paddingGutters;
-  background-image:
-    url('../../resources/img/cube-splash.jpg');
+  background-image: url('../../resources/img/cube-splash.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 72px;
@@ -12,7 +13,10 @@
     content: '';
     background-image: $secondaryGradient;
     position: absolute;
-    top: 0; bottom: 0; left: 0; right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     mix-blend-mode: overlay;
   }
 
