@@ -5,7 +5,22 @@
 
 @import 'share/style';
 
-@import 'components/ModelDetailPage/ModelDetailHeader',
+@import 'components/Buttons/SortButton',
+'components/Common/SearchBar',
+'components/Common/ModelTag',
+'src/components/ExperimentDetails/Summaries/ClassificationSummary',
+'src/components/ExperimentDetails/Summaries/ObjectDetectionSummary',
+'src/components/ExperimentDetails/Summaries/InstanceSegmentationSummary',
+'components/ExperimentDetails/ExperimentDetailHeader',
+'components/ExperimentDetails/ExperimentOverview',
+'components/ExperimentDetails/TrialOutputWrapper',
+'components/ModelList/FilterGroup',
+'components/ModelList/FilterPanel',
+'components/ModelList/ModelCard',
+'components/ModelList/ModelHeader',
+'components/ModelList/ModelList',
+'components/ModelList/ModelList.ResponsiveHeader',
+'components/ModelDetailPage/ModelDetailHeader',
 'components/ModelDetailPage/ModelDescription',
 'components/ExperimentDetails/ExperimentDetailPage',
 'components/ModelList/ModelList.ResponsiveFilterContent',

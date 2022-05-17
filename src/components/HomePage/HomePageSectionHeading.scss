@@ -1,0 +1,17 @@
+@import "../../App";
+
+.home-page-section {
+  margin-top: 160px;
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    text-align: center;
+  }
+
+  &__subtitle {
+    @include body;
+    color: $charcoalLightest;
+    text-align: center;
+  }
+}

@@ -1,4 +1,4 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 const AnonymousUserId = 'anonymous';
 
@@ -12,7 +12,7 @@ class Api {
     this.Models = new BehaviorSubject([]);
     this.Frameworks = new BehaviorSubject([]);
     this.ActiveModel = new BehaviorSubject([]);
-    this.ActiveUser = new BehaviorSubject({ id: AnonymousUserId })
+    this.ActiveUser = new BehaviorSubject({id: AnonymousUserId})
   }
 
   async getModels(filters) {
@@ -76,13 +76,13 @@ class Api {
    * it's experiment.
    */
   async deleteTrial(trialId) {
-      const result = await fetch(`${this.apiUrl}/trial/${trialId}`, { method: 'DELETE'});
+    const result = await fetch(`${this.apiUrl}/trial/${trialId}`, {method: 'DELETE'});
 
-      if (result.status === 200 || result.status === 404)
-          return;
+    if (result.status === 200 || result.status === 404)
+      return;
 
-      const response = await result.json();
-      throw new Error(response.error);
+    const response = await result.json();
+    throw new Error(response.error);
   }
 
   /*
@@ -120,7 +120,7 @@ class Api {
   }
 
   async runTrial(model, input, experimentId = null) {
-    let inputs = typeof(input) === 'string' ? [input] : input;
+    let inputs = typeof (input) === 'string' ? [input] : input;
     const requestBody = {
       architecture: "amd64",
       inputs: inputs,
@@ -146,28 +146,28 @@ class Api {
     return await response.json();
   }
 
-  async poll({ fn, params, validate, maxAttempts, subject }) {
+  async poll({fn, params, validate, maxAttempts, subject}) {
     let attempts = 0;
     // let timeout = 250;
     let timeout = 1000;
 
-    const executePoll = async(resolve, reject) => {
+    const executePoll = async (resolve, reject) => {
       const result = await fn(params);
       attempts++;
-
-      if (subject) {
+      if (subject && !subject.closed) {
         subject.next(result);
-      }
 
-      if (result && validate(result)) {
-        return resolve(result);
-      } else if (maxAttempts && attempts === maxAttempts) {
-        return reject(new Error('max polling attempts exceeded'));
-      } else if (subject && subject.observers.length > 0) {
-        setTimeout(executePoll, timeout, resolve, reject);
-        // timeout += timeout;
+        if (result && validate(result)) {
+          return resolve(result);
+        } else if (maxAttempts && attempts === maxAttempts) {
+          return reject(new Error('max polling attempts exceeded'));
+        } else if (subject && subject.observers.length > 0) {
+          setTimeout(executePoll, timeout, resolve, reject);
+          // timeout += timeout;
+        }
       }
     };
+
 
     return new Promise(executePoll);
   }

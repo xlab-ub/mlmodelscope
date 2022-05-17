@@ -6,6 +6,7 @@ import URLInputsTab from "./URLInputsTab";
 import "./QuickInput.scss";
 import Task from "../../../helpers/Task";
 
+
 export default class QuickInput extends BEMComponent {
   static defaultProps = {
     className: "quick-input",
@@ -24,34 +25,38 @@ export default class QuickInput extends BEMComponent {
       }
     };
 
-    this.tabs = [
-      {
-        id: 'sample-input',
-        title: 'Sample inputs',
-        component: SampleInputsTab,
-        props: {sampleInputs: props.sampleInputs}
-      },
-      {id: 'upload-input', title: 'Upload', component: UploadInputsTab},
-      {id: 'url-input', title: 'URL', component: URLInputsTab}
-    ];
     this.state = {
       selectedInputUrl: "",
       selectedTab: 0
     }
   }
 
+
+  getTabs = () => [
+    {
+      id: 'sample-input',
+      title: 'Sample inputs',
+      component: SampleInputsTab,
+      props: {sampleInputs: this.props.sampleInputs}
+    },
+    {id: 'upload-input', title: 'Upload', component: UploadInputsTab},
+    {id: 'url-input', title: 'URL', component: URLInputsTab}
+  ];
+
   render() {
     const task = Task.getStaticTask(this.props.model.output.type);
-
+    const tabs = this.getTabs();
     return (
       <div className={this.block()}>
-        <h2 className={this.element('title')}>Try this model</h2>
-        <div className={this.element('subtitle')}>{task.inputText}</div>
+        {!this.props.hideHeader && <>
+          <h2 className={this.element('title')}>Try this model</h2>
+          <div className={this.element('subtitle')}>{task.inputText}</div>
+        </>}
         <div className={this.element('tabs')}>
           <div className={this.element('tab-titles')} role="tablist">
-            {this.tabs.map((tab, index) => this.makeTabTitle(index, tab))}
+            {tabs.map((tab, index) => this.makeTabTitle(index, tab))}
           </div>
-          {this.tabs.map((tab, index) => this.makeTab(index, tab))}
+          {tabs.map((tab, index) => this.makeTab(index, tab))}
         </div>
         <button className={this.element('run-model')} disabled={this.state.selectedInputUrl === ""}
                 onClick={() => this.runModel()}>Run model and see results

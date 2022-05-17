@@ -13,6 +13,15 @@ $sans-serif: "Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-se
   }
 }
 
+@mixin billboardSmall {
+  font-family: Lato, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 56px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
 @mixin headline1 {
   font-size: 64px;
   font-weight: 800;

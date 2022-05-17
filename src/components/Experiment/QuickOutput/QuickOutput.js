@@ -29,7 +29,9 @@ export default class QuickOutput extends BEMComponent {
     return (
       <div className={this.block()}>
         <div className={this.element('header')}>
-          <h2 className={this.element('title')}>Try This Model</h2>
+          {!this.props.hideHeader &&
+            <h2 className={this.element('title')}>Try This Model</h2>
+          }
           {/*<button className={this.element('share-button')}>Share with community</button> Hidden for now*/}
         </div>
         <div className={this.element('content')}>

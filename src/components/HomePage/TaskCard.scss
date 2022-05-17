@@ -1,0 +1,15 @@
+@import "../../App";
+
+.example-task-card {
+  background-color: $smoke;
+
+  .quick-input {
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+
+    &__tabs {
+      margin-top: 0;
+    }
+  }
+}
