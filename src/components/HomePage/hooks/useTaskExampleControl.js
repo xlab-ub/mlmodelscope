@@ -13,7 +13,7 @@ export default function useTaskExampleControl() {
 
   const onBackClick = () => quickExperiment.resetTrial();
   const onCompare = () => {
-    if (History) History.push(`/somewhere/else`)
+    if (History) History.push(`/experiment/${quickExperiment.trial.id}`)
   }
 
   const navigation = {onBackClick, onCompare};

@@ -18,6 +18,8 @@
   &__input {
     line-height: 0;
     width: 100%;
+    max-width: 240px;
+
     & > img {
       border: 6px solid transparent;
       width: 100%;
