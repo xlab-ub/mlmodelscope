@@ -1,9 +1,17 @@
 import React, {Component} from "react";
 import ExperimentDetailPage from "../components/ExperimentDetails/ExperimentDetailPage";
 import GetApiHelper from "../helpers/api";
+import useExperimentDetailControl from "../components/ExperimentDetails/hooks/useExperimentDetailControl";
+
+export default function ExperimentDetailsContainer2() {
+
+  const childProps = useExperimentDetailControl();
+
+  return <ExperimentDetailPage {...childProps} />
+}
 
 
-export default class ExperimentDetailContainer extends Component {
+export class ExperimentDetailContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -90,27 +98,27 @@ export default class ExperimentDetailContainer extends Component {
 
   confirmDeleteTrial = async () => {
     this.setState({trialIsDeleting: true});
-    https://staging.mlmodelscope.org/
-      setTimeout(async () => {
-        const trialId = this.state.trialToDelete.id;
-        try {
-          await this.api.deleteTrial(trialId);
-          this.trialSubscriptions[trialId].unsubscribe();
-          this.trialSubscriptions[trialId] = undefined;
+    //https://staging.mlmodelscope.org/
+    setTimeout(async () => {
+      const trialId = this.state.trialToDelete.id;
+      try {
+        await this.api.deleteTrial(trialId);
+        this.trialSubscriptions[trialId].unsubscribe();
+        this.trialSubscriptions[trialId] = undefined;
 
-          let trials = this.state.trials.filter(t => t.id !== trialId);
+        let trials = this.state.trials.filter(t => t.id !== trialId);
 
-          this.setState({
-            trials,
-            trialToDelete: null
-          });
-        } catch (e) {
-          this.setState({
-            showModelCannotBeRemoved: true,
-            trialToDelete: null
-          });
-        }
-      }, 500);
+        this.setState({
+          trials,
+          trialToDelete: null
+        });
+      } catch (e) {
+        this.setState({
+          showModelCannotBeRemoved: true,
+          trialToDelete: null
+        });
+      }
+    }, 500);
   }
 
   confirmModelCannotBeRemoved = () => {
