@@ -20,7 +20,7 @@ export function TaskCard(props) {
       />
     return <QuickOutput
       input={trial.inputs ? trial.inputs[0] : null}
-      features={trial.completed_at ? trial.results.responses[0] : null}
+      features={trial.completed_at ? trial.results.responses[0].features : null}
       onBackClicked={onBackClicked}
       compare={onCompare}
       trialOutput={trial}

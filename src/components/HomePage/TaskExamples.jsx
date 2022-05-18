@@ -6,8 +6,9 @@ import {Link} from "react-router-dom";
 import {TaskControls} from "./TaskControls";
 import {TaskCard} from "./TaskCard";
 import "./TaskExamples.scss";
+import Task from "../../helpers/Task";
 
-export function TaskExamples() {
+export function TaskExamples(props) {
   const {getBlock, getElement} = useBEMNaming("home-page-tasks");
   const {taskSelection, quickExperiment, navigation} = useTaskExampleControl();
 
@@ -16,6 +17,14 @@ export function TaskExamples() {
   }
 
   const {name, description, Icon, defaultModel, sampleInputs} = taskSelection.selectedTask;
+  let taskName = name;
+
+
+  const sampleInput = props.demoTrialOutput;
+  if (sampleInput) {
+    let demoTask = Task.getStaticTask(sampleInput.model.output.type);
+    taskName = demoTask.name;
+  }
 
   return <div className={getBlock()}>
     <HomePageSectionHeading title={"What can models do?"}
@@ -27,11 +36,12 @@ export function TaskExamples() {
       />
       <div className={getElement("selected-task-header")}>
         <p className={getElement("selected-task-title")}>
-          <Icon {...taskIconProps} /> {name}
+          <Icon {...taskIconProps} /> {taskName}
         </p>
         <p className={getElement("selected-task-description")}>{description}</p>
 
-        <Link className={getElement("selected-task-link")} to={`/models?task=${name}`}>See all {name} models</Link>
+        <Link className={getElement("selected-task-link")} to={`/models?task=${taskName}`}>See
+          all {taskName} models</Link>
 
 
       </div>
@@ -40,7 +50,7 @@ export function TaskExamples() {
         defaultModel={defaultModel}
         runTrial={quickExperiment.runTrial}
         sampleInputs={sampleInputs}
-        trial={quickExperiment.trial}
+        trial={sampleInput || quickExperiment.trial}
         onBackClicked={navigation.onBackClick}
         onCompare={navigation.onCompare}
       />
