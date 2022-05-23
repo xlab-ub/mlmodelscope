@@ -42,7 +42,8 @@ export default function ExperimentDetailPage(props) {
       <Layout>
         <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal} showAddInputModal={props.showAddInputModal}
                           inputs={props.inputs}
-                          selectedInput={props.selectedInput} selectInput={props.updateInput}/>
+                          selectedInput={props.selectedInput} selectInput={props.updateInput}
+                          getAddModelsLink={props.getAddModelsLink}/>
         <div className={getElement("trial-cards")}>
           {trialComponents}
           <div className={getElement("ghost-card")}>

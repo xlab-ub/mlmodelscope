@@ -43,6 +43,6 @@ export const ExperimentInputs = (props) => {
     </div>
 
     <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
-            link={""}/>
+            link={props.getAddModelsLink(props)}/>
   </div>
 }
