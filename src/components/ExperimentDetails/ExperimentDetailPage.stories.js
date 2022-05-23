@@ -298,3 +298,38 @@ SemanticSegmentation.args = {
     ]
   }
 }
+
+const mockFn = () => {
+};
+
+export const MultipleInputs = Template.bind({});
+MultipleInputs.args = {
+  experiment: {
+    id: 1,
+    trials: [
+      TestObjectDetectionResult,
+      TestObjectDetectionResult
+    ],
+
+  },
+  addInput: mockFn,
+  addModel: mockFn,
+  cancelDeleteTrial: mockFn,
+  confirmDeleteTrial: mockFn,
+  ConfirmModelCannotBeRemoved: mockFn,
+  currentIndex: 0,
+  currentPage: "COMPARISON_PAGE",
+  getExperiment: mockFn,
+  makeExperiment: mockFn,
+  removeInput: mockFn,
+  setCurrentPage: mockFn,
+  showDeleteModal: mockFn,
+  showModelCannotBeRemoved: false,
+  trialIsDeleting: false,
+  trials: [TestObjectDetectionResult, TestObjectDetectionResult],
+  updateIndex: mockFn,
+  inputs: [
+    TestObjectDetectionResult.inputs[0],
+    TestImageSegmentationResult.inputs[0]
+  ],
+}

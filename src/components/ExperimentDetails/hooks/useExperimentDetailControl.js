@@ -3,51 +3,95 @@ import clone from "../../../helpers/cloner";
 import GetApiHelper from "../../../helpers/api";
 import {useRouteMatch} from "react-router-dom";
 
+export const experimentDetailsPages = {
+  ComparisonPage: "COMPARISON_PAGE",
+  AddModelPage: "ADD_MODEL_PAGE"
+}
+
 export default function useExperimentDetailControl() {
   const [experiment, setExperiment] = useState(null);
   const [trials, setTrials] = useState([]);
-  const [inputs, setInputs] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0);
   const [trialToDelete, setTrialToDelete] = useState(null);
   const [trialIsDeleting, setTrialIsDeleting] = useState(false);
   const [showModelCannotBeRemoved, setShowModelCannotBeRemoved] = useState(false);
   const [trialSubscriptions, setTrialSubscriptions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(experimentDetailsPages.ComparisonPage);
+
+  const getUniqueInputs = useMemo(() => trials.filter((trial, index, array) => array.findIndex(t => t.inputs[0] === trial.inputs[0]) === index).map(trial => trial.inputs[0]), [trials.length]);
+  const inputs = getUniqueInputs;
+
+  const currentInput = inputs[currentIndex];
+  let modelOutputType = "";
+  if (trials.length > 0)
+    modelOutputType = trials[0].model.output.type;
 
   const {experimentId} = useRouteMatch().params;
 
 
   const api = useMemo(() => GetApiHelper(), []);
 
-  const getCurrentTrials = () => trials ?? [];
+  const addModel = async (modelId) => {
+    inputs.forEach((input) => {
+      addTrial(modelId, input);
+    })
+  }
 
   function makeExperiment() {
     return {
       id: experiment ? experiment.id : null,
-      trials: getCurrentTrials()
+      trials: getSelectedTrials()
     }
   }
 
-  const getUniqueModelIds = () => trials.filter((trial, idx, arr) => arr.findIndex(t => t.model.id === trial.model.id) === idx);
+  const getUniqueModelIds = () => trials.filter((trial, idx, arr) => arr.findIndex(t => t.model.id === trial.model.id) === idx).map(trial => trial.model.id);
+
+  const getSelectedTrials = () => {
+    let modelIds = getUniqueModelIds();
+    return modelIds.map(id => {
+      return trials.filter(trial => trial.model.id === id && trial.inputs[0] === currentInput)[0];
+    }).filter(trial => trial);
+  }
+
+  const runTrial = async (modelId, input) => {
+    let fauxModel = {id: modelId, output: {type: modelOutputType}};
+
+    let trial = await api.runTrial(fauxModel, input, experimentId);
+
+    addTrial(trial.trialId);
+  }
+
+  const addTrial = (trialId) => {
+    const trialSubs = (trialSubscriptions);
+
+    if (!trialSubs[trialId]) {
+      trialSubs[trialId] = api.getTrial(trialId).subscribe({
+        next: trialOutput => {
+
+          if (trialOutput.completed_at || trials.findIndex(t => t.id === trialOutput.id) === -1)
+            setTrials((state) => {
+              const trialClone = clone(state);
+              const currentIndex = trialClone.findIndex(t => t.id === trialOutput.id);
+
+              if (currentIndex === -1) {
+                trialClone.push(trialOutput);
+              } else {
+                trialClone[currentIndex] = trialOutput;
+              }
+
+              return trialClone;
+            });
+        }
+      });
+    }
+    setTrialSubscriptions(trialSubs);
+  }
+
 
   const getTrials = () => {
-    const trialSubs = clone(trialSubscriptions);
     experiment.trials.forEach(trial => {
-      if (!trialSubs[trial.id])
-        trialSubs[trial.id] = api.getTrial(trial.id).subscribe({
-          next: trialOutput => {
-            const trialClone = clone(trials);
-            const currentIndex = trialClone.findIndex(t => t.id === trialOutput.id);
-
-            if (currentIndex === -1) {
-              trialClone.push(trialOutput);
-            } else {
-              trialClone[currentIndex] = trialOutput;
-            }
-            setTrials(trialClone);
-          }
-        });
+      addTrial(trial.id)
     });
-    setTrialSubscriptions(trialSubs);
   }
 
   const showDeleteModal = (trial) => {
@@ -68,9 +112,9 @@ export default function useExperimentDetailControl() {
         trialSubscriptions[trialId].unsubscribe();
         trialSubscriptions[trialId] = undefined;
 
-        let trials = trials.filter(t => t.id !== trialId);
+        let newTrials = trials.filter(t => t.id !== trialId);
 
-        setTrials(trials);
+        setTrials(newTrials);
         setTrialToDelete(null);
       } catch (e) {
         setShowModelCannotBeRemoved(true);
@@ -90,20 +134,20 @@ export default function useExperimentDetailControl() {
   }
 
   const updateIndex = (newIndex) => {
+    console.log("updateIndex");
     setCurrentIndex(newIndex);
-
   }
 
-  const addInput = (input) => {
-    let newInputs = Array.from(inputs);
-    newInputs.push(input);
-    setInputs(newInputs);
+  const addInput = (input, skipRun = false) => {
+    if (!skipRun) {
+      let modelIds = getUniqueModelIds();
+      modelIds.forEach(modelId => runTrial(modelId, input));
+    }
   }
   const removeInput = input => {
     let newInputs = Array.from(inputs);
     let index = newInputs.findIndex(i => i === input);
     newInputs.splice(index, 1);
-    setInputs(newInputs);
   }
 
 
@@ -118,8 +162,10 @@ export default function useExperimentDetailControl() {
   useEffect(() => {
     if (experiment)
       getTrials(experiment);
-  }, [experiment?.id, inputs.length])
+  }, [experiment?.id])
 
+
+  const selectedTrials = useMemo(() => getSelectedTrials(), [currentIndex, trials.length]);
 
   return {
     updateIndex,
@@ -132,11 +178,14 @@ export default function useExperimentDetailControl() {
     trialIsDeleting,
     showModelCannotBeRemoved,
     experiment: makeExperiment(),
-    trials,
+    trials: selectedTrials,
     currentIndex,
     inputs,
     addInput,
-    removeInput
+    removeInput,
+    addModel,
+    currentPage,
+    setCurrentPage
   }
 
 }

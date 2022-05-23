@@ -6,7 +6,7 @@ export default class AddModelListContainer extends Component {
   constructor(props) {
     super(props);
 
-    let { experimentId } = this.props.match.params;
+    let {experimentId} = this.props.match.params;
     this.api = GetApiHelper();
 
     this.getExperiment(experimentId);
@@ -27,7 +27,9 @@ export default class AddModelListContainer extends Component {
 
   render() {
     return (
-      <ModelListContainer add={true} runModels={(selectedModels) => { this.runModels(selectedModels) }} selectedModels={this.getModelsFromTrials()} />
+      <ModelListContainer add={true} runModels={(selectedModels) => {
+        this.runModels(selectedModels)
+      }} selectedModels={this.getModelsFromTrials()}/>
     )
   }
 
@@ -37,14 +39,19 @@ export default class AddModelListContainer extends Component {
       return !modelsFromTrials.some(m => m.id === model.id);
     });
 
-    const inputUrl = this.state.trials[0].inputs[0];
+    const inputs = this.getInputsFromTrials();
+
     const trialPromises = filteredSelectedModels.map((model) => {
-      return this.api.runTrial(model, inputUrl, this.state.experiment.id);
-    });
+      return inputs.map(inputUrl => this.api.runTrial(model, inputUrl, this.state.experiment.id));
+    }).flat();
 
     Promise.all(trialPromises).then(() => {
       this.props.history.push(`/experiment/${this.state.experiment.id}`);
     });
+  }
+
+  getInputsFromTrials = () => {
+    return this.state.trials.filter((t, i, a) => a.findIndex(tr => tr.inputs[0] === t.inputs[0]) === i).map(trial => trial.inputs[0]);
   }
 
   getModelsFromTrials() {
@@ -60,7 +67,7 @@ export default class AddModelListContainer extends Component {
 
           if (currentIndex === -1) {
             trials.push(trialOutput);
-            this.setState({ trials });
+            this.setState({trials});
           }
         }
       }));
