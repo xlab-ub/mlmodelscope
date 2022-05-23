@@ -18,7 +18,7 @@ describe('Sample Inputs Tab', () => {
 
       expect(tab.length).toBe(1);
       expect(tab.childAt(0).prop('className')).toBe('sample-inputs__title');
-      expect(tab.childAt(0).text()).toBe('Select a sample image');
+      expect(tab.childAt(0).text()).toBe('Select a sample image to ');
       expect(list.length).toBe(1);
       expect(list.children().length).toBe(0);
     });
