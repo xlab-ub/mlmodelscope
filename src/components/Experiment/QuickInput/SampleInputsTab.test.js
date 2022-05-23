@@ -26,9 +26,10 @@ describe('Sample Inputs Tab', () => {
 
   describe('Or a list of sample inputs', () => {
     let wrapper;
-
+    let jestMock;
     beforeEach(() => {
-      wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs}/>);
+      jestMock = jest.fn();
+      wrapper = shallow(<SampleInputsTab inputSelected={jestMock} sampleInputs={SampleInputs}/>);
     });
 
     it('from a provided array of sample inputs', () => {

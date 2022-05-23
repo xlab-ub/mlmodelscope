@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ModelDetailPage from "../components/ModelDetailPage/ModelDetailPage"
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import GetApiHelper from "../helpers/api";
 
-class ModelDetailContainer extends Component{
+class ModelDetailContainer extends Component {
   constructor(props) {
     super(props);
 
-    let { modelId, experimentId } = this.props.match.params;
+    let {modelId, experimentId} = this.props.match.params;
     this.api = GetApiHelper();
     this.modelId = modelId;
 
@@ -34,7 +34,7 @@ class ModelDetailContainer extends Component{
       this.modelSubscription.unsubscribe();
   }
 
-  getModel(){
+  getModel() {
     this.modelSubscription = this.api.ActiveModel.subscribe({
       next: (model) => {
         this.setState({model: model[0]});
@@ -45,7 +45,9 @@ class ModelDetailContainer extends Component{
 
   render() {
     return (
-      <ModelDetailPage model={this.state.model} onBackToModelClicked={this.backToModel} onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput} compare={this.compareModels}/>
+      <ModelDetailPage model={this.state.model} onBackToModelClicked={this.backToModel}
+                       onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput}
+                       compare={this.compareModels}/>
     )
   }
 
@@ -64,7 +66,7 @@ class ModelDetailContainer extends Component{
 
   getTrial = async (trialId) => {
     this.trialSubscription = this.api.getTrial(trialId).subscribe({
-      next: trialOutput => this.setState({ trialOutput })
+      next: trialOutput => this.setState({trialOutput})
     });
   }
 

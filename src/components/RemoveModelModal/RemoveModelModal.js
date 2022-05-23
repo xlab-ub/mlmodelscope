@@ -2,7 +2,7 @@ import React from 'react';
 import "./RemoveModelModal.scss";
 import BEMComponent from "../Common/BEMComponent";
 import {ReactComponent as TrashIcon} from "../../resources/icons/trash.svg";
-import Modal from "../Common/Modal/Modal";
+import {ConfirmationModal} from "../Common/Modal/Modal";
 
 export default class RemoveModelModal extends BEMComponent {
   static defaultProps = {
@@ -11,7 +11,7 @@ export default class RemoveModelModal extends BEMComponent {
 
   render() {
 
-    return <Modal icon={<TrashIcon className={this.element('trashcan')}/>} onCancel={this.props.onCancel}>
+    return <ConfirmationModal icon={<TrashIcon className={this.element('trashcan')}/>} onCancel={this.props.onCancel}>
       <h2 className={this.element('heading')}>
         You are about to remove this model
       </h2>
@@ -29,7 +29,7 @@ export default class RemoveModelModal extends BEMComponent {
           Yes, remove
         </button>
       </div>
-    </Modal>
+    </ConfirmationModal>
 
 
   }

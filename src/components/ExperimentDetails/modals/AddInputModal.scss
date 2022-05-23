@@ -1,0 +1,21 @@
+@import "../../../App";
+
+
+.add-input-modal {
+  &__heading {
+    @include headline2;
+    color: $azulDarkest;
+    width: 100%;
+    padding-left: 42px;
+  }
+
+  &__input-wrapper {
+    min-width: 80vw;
+
+    .quick-input {
+      background: transparent;
+      box-shadow: none;
+      padding: 0 42px;
+    }
+  }
+}

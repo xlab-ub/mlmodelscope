@@ -16,6 +16,11 @@ import {
 import TwoColumnOverview from "./Layouts/TwoColumnOverview";
 import OneColumnOverview from "./Layouts/OneColumnOverview";
 import Button from "../Buttons/Button";
+import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
+import {ExperimentInputs} from "./ExperimentInputs";
+import AddInputModal from "./modals/AddInputModal";
+import RemoveInputModal from "./modals/RemoveInputModal";
+import InputCannotBeRemovedModal from "./modals/InputCannotBeRemovedModal";
 
 export default function ExperimentDetailPage(props) {
   const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
@@ -29,26 +34,32 @@ export default function ExperimentDetailPage(props) {
 
   const Layout = getLayout();
 
+
   return (
     <div className={getBlock()}>
       <Header/>
       <ExperimentDetailHeader/>
       <Layout>
-        {trialComponents}
-        <div className={getElement("ghost-card")}>
-          <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
-                  link={getAddModelsLink(props)}/>
+        <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal} showAddInputModal={props.showAddInputModal}
+                          inputs={props.inputs}
+                          selectedInput={props.selectedInput} selectInput={props.updateInput}/>
+        <div className={getElement("trial-cards")}>
+          {trialComponents}
+          <div className={getElement("ghost-card")}>
+            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
+                    link={props.getAddModelsLink(props)}/>
+          </div>
         </div>
+
       </Layout>
-      {renderDeleteModal(props)}
-      {renderModelCannotBeRemovedModal(props)}
+      {getModal(props)}
     </div>
   );
 
   function getLayout() {
     let outputType = pending;
 
-    if (props.experiment.trials.length > 0) {
+    if (props.experiment.trials.length > 0 && props.experiment.trials[0].model) {
       outputType = props.experiment.trials[0].model.output.type;
     }
 
@@ -58,6 +69,8 @@ export default function ExperimentDetailPage(props) {
       case semantic_segmentation:
       case image_enhancement:
       case instance_segmentation:
+      case image_classification:
+
         const machine = props.experiment.trials[0].model.framework.architectures[0].name;
 
         return ({children}) => <OneColumnOverview
@@ -67,7 +80,6 @@ export default function ExperimentDetailPage(props) {
           machine={machine}
         >{children}</OneColumnOverview>
 
-      case image_classification:
       default:
         return ({children}) => <TwoColumnOverview
           {...props}
@@ -84,15 +96,22 @@ export default function ExperimentDetailPage(props) {
     return `/experiment/${props.experiment.id}/add-models`;
   }
 
-  function renderDeleteModal(props) {
-    if (props.trialToDelete && !props.trialIsDeleting) {
-      return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
-    }
-  }
-
-  function renderModelCannotBeRemovedModal(props) {
-    if (props.showModelCannotBeRemoved) {
-      return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
+  function getModal(props) {
+    switch (props.modalType) {
+      case ExperimentDetailModalTypes.confirmDeleteModel:
+        return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
+      case ExperimentDetailModalTypes.modelCannotBeRemoved:
+        return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
+      case ExperimentDetailModalTypes.addInput:
+        return <AddInputModal addInput={props.addInput} close={props.onCancelDeleteTrial}/>
+      case ExperimentDetailModalTypes.confirmDeleteInput:
+        return <RemoveInputModal close={props.onCancelDeleteTrial} deleteInput={props.deleteInput}/>
+      case ExperimentDetailModalTypes.inputCannotBeRemoved:
+        return <InputCannotBeRemovedModal onConfirm={props.onCancelDeleteTrial}/>
+      default:
+        return <></>
     }
   }
 }
+
+

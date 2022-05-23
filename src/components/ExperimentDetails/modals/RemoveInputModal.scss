@@ -1,0 +1,69 @@
+@import "src/App";
+
+.remove-input-modal {
+
+  &__heading {
+    margin-bottom: 6px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
+  }
+
+  &__text {
+    @include body;
+    margin-bottom: 4px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
+  }
+
+  &__warning {
+    @include headline5;
+    color: $charcoalLightest;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    @include mobileWidth-lg {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__cancel {
+    @include linkSmall;
+    color: $azul;
+    margin-right: 24px;
+    transition: color .3s;
+
+    @include mobileWidth-lg {
+      margin-right: 0;
+      margin-top: 24px;
+    }
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
+  &__confirm {
+    @include headline6;
+    background: $pinkLight;
+    border: solid 2px $pinkLight;
+    border-radius: 26px;
+    color: $charcoalLightest;
+    padding: 12px 24px;
+    transition: .3s;
+
+    &:hover {
+      background: $pinkLightest;
+      border-color: $pink;
+    }
+  }
+}

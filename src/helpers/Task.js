@@ -84,14 +84,19 @@ export default class Task {
   static getStaticTask(taskId) {
     switch (taskId) {
       case image_classification:
+      case Task.image_classification.name:
         return Task.image_classification;
       case image_enhancement:
+      case Task.image_enhancement.name:
         return Task.image_enhancement;
       case object_detection:
+      case Task.image_object_detection.name:
         return Task.image_object_detection;
       case semantic_segmentation:
+      case Task.image_semantic_segmentation.name:
         return Task.image_semantic_segmentation;
       case instance_segmentation:
+      case Task.image_instance_segmentation.name:
         return Task.image_instance_segmentation;
       default:
         return new Task({name: "unknown", description: "unknown task name"});

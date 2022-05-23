@@ -6,11 +6,12 @@ import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg"
 import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
 import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
+import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
 
 export default function TrialOutputWrapper(props) {
 
   const handleClose = () => {
-    props.onDeleteTrial(props.trial);
+    props.onDeleteTrial(props.trial, ExperimentDetailModalTypes.confirmDeleteModel);
   }
 
   let model = props.trial.model;
@@ -53,7 +54,7 @@ export default function TrialOutputWrapper(props) {
           <dt className="trial-output-wrapper__model-label">Model:</dt>
           <dd>
             <a className="trial-output-wrapper__model-name" target={"_blank"}
-               href={"/model/" + model.id}>{model.name}</a>
+               href={"/model/" + model?.id}>{model?.name}</a>
           </dd>
         </dl>
         <CloseIcon className="trial-output-wrapper__delete-trial-button"
@@ -66,7 +67,7 @@ export default function TrialOutputWrapper(props) {
 
               <dt className="trial-output-wrapper__detail-label">Framework:</dt>
               <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
-                                                                        content={model.framework.name}/></dd>
+                                                                        content={model?.framework.name}/></dd>
             </div>
 
 

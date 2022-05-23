@@ -26,7 +26,7 @@ export default class QuickInput extends BEMComponent {
     };
 
     this.state = {
-      selectedInputUrl: "",
+      selectedInputUrl: [""],
       selectedTab: 0
     }
   }
@@ -58,7 +58,8 @@ export default class QuickInput extends BEMComponent {
           </div>
           {tabs.map((tab, index) => this.makeTab(index, tab))}
         </div>
-        <button className={this.element('run-model')} disabled={this.state.selectedInputUrl === ""}
+        <button className={this.element('run-model')}
+                disabled={this.state.selectedInputUrl.length === 0 || this.state.selectedInputUrl[0] === ""}
                 onClick={() => this.runModel()}>Run model and see results
         </button>
       </div>
@@ -67,14 +68,31 @@ export default class QuickInput extends BEMComponent {
 
   runModel = () => {
     if (typeof (this.props.onRunModelClicked) === 'function')
-      this.props.onRunModelClicked(this.state.selectedInputUrl);
+      this.props.onRunModelClicked(this.state.selectedInputUrl.filter(url => url));
   }
 
-  selectInput = (url) => {
+  selectInput = (url, index) => {
+    let selected = this.state.selectedInputUrl;
+    if (index)
+      selected[index] = url;
+    else
+      selected = Array.isArray(url) ? url : [url];
     this.setState({
-      selectedInputUrl: url
+      selectedInputUrl: selected
     });
   }
+
+  addInput = (url = "") => {
+    let state = this.state.selectedInputUrl;
+    if (typeof url !== "string") url = "";
+
+    state.push(url);
+    this.setState({selectedInputUrl: state});
+  }
+  removeInput = (url) => {
+    this.setState({selectedInputUrl: this.state.selectedInputUrl.filter(u => u !== url)});
+  }
+
 
   makeTabTitle = (index, tab) => {
     return (
@@ -95,7 +113,8 @@ export default class QuickInput extends BEMComponent {
 
   selectTab = (index) => {
     this.setState({
-      selectedTab: index
+      selectedTab: index,
+      selectedInputUrl: [""]
     });
   }
 
@@ -107,7 +126,8 @@ export default class QuickInput extends BEMComponent {
     return (
       <div key={index} className={this.element('tab', index)} role="tabpanel" aria-labelledby={`${tab.id}`}
            id={`${tab.id}-panel`}>
-        <Component inputSelected={this.selectInput} task={this.props.model.output.type}  {...tab.props} />
+        <Component multiple={this.props.multiple ?? false} addInput={this.addInput} removeInput={this.removeInput}
+                   inputSelected={this.selectInput} task={this.props.model.output.type}  values={this.state.selectedInputUrl} {...tab.props} />
       </div>
     )
   }

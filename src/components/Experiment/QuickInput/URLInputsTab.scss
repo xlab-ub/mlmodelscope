@@ -28,4 +28,26 @@
     color: $darkRed;
     margin-top: 16px;
   }
+
+  &__add-btn {
+    background-color: $smokeDarker;
+    border-radius: 5px;
+    @include headline6;
+    color: $charcoalLightest;
+    float: left;
+    margin-top: 16px;
+    width: 170px;
+    padding: 16px 8px;
+    transition: 0.25s;
+
+    &:hover {
+      background-color: $smokeDarkest;
+    }
+
+    &-icon {
+      path {
+        fill: $charcoalLightest;
+      }
+    }
+  }
 }

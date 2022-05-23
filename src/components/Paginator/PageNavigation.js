@@ -10,15 +10,16 @@ export default class PageNavigation extends Component {
     return (
       <div className="page-nav">
         <button className="page-nav__prev-button" onClick={this.selectPreviousPage} disabled={selectedPage === 1}>
-          <Icon icon="arrow" />
+          <Icon icon="arrow"/>
           Previous
         </button>
         <div className="page-nav__page-buttons">
-          { makePageButtons(pages) }
+          {makePageButtons(pages)}
         </div>
-        <button className="page-nav__next-button" onClick={this.selectNextPage} disabled={selectedPage === pages.length}>
+        <button className="page-nav__next-button" onClick={this.selectNextPage}
+                disabled={selectedPage === pages.length}>
           Next
-          <Icon icon="arrow" />
+          <Icon icon="arrow"/>
         </button>
       </div>
     )
@@ -46,7 +47,6 @@ export default class PageNavigation extends Component {
         buttons.push(makePageButton(pages.length));
       }
 
-      console.log(buttons);
 
       return buttons;
     }
@@ -63,7 +63,7 @@ export default class PageNavigation extends Component {
     function makeEllipsisButton(key) {
       const rng = () => Math.random().toString(21);
 
-      return (<div className="page-nav__placeholder" key={key + rng()}><Icon icon="ellipsis" /></div>);
+      return (<div className="page-nav__placeholder" key={key + rng()}><Icon icon="ellipsis"/></div>);
     }
   }
 

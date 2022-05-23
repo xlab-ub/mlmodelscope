@@ -20,7 +20,7 @@ export default class UploadInputsTab extends BEMComponent {
     this.api = GetApiHelper();
     this.uppy = Uppy({
       onBeforeUpload: this.onBeforeUpload,
-      restrictions: {maxNumberOfFiles: 1},
+      restrictions: {maxNumberOfFiles: this.props.multiple ? 99 : 1},
       autoProceed: true
     });
 
