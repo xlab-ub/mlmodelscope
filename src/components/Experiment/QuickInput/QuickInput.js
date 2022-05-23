@@ -58,7 +58,8 @@ export default class QuickInput extends BEMComponent {
           </div>
           {tabs.map((tab, index) => this.makeTab(index, tab))}
         </div>
-        <button className={this.element('run-model')} disabled={this.state.selectedInputUrl === ""}
+        <button className={this.element('run-model')}
+                disabled={this.state.selectedInputUrl.length === 0 || this.state.selectedInputUrl[0] === ""}
                 onClick={() => this.runModel()}>Run model and see results
         </button>
       </div>
@@ -67,12 +68,15 @@ export default class QuickInput extends BEMComponent {
 
   runModel = () => {
     if (typeof (this.props.onRunModelClicked) === 'function')
-      this.props.onRunModelClicked(this.state.selectedInputUrl);
+      this.props.onRunModelClicked(this.state.selectedInputUrl.filter(url => url));
   }
 
   selectInput = (url, index) => {
     let selected = this.state.selectedInputUrl;
-    selected[index] = url;
+    if (index)
+      selected[index] = url;
+    else
+      selected = Array.isArray(url) ? url : [url];
     this.setState({
       selectedInputUrl: selected
     });

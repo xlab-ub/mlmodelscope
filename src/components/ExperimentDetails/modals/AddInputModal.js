@@ -9,11 +9,16 @@ import "./AddInputModal.scss";
 export default function AddInputModal(props) {
   const {getElement} = useBEMNaming("add-input-modal");
 
+  const onAdd = (urls) => {
+    props.addInput(urls);
+    props.close();
+  }
+
   return <Modal onCancel={props.close}>
     <p className={getElement("heading")}> Choose an input </p>
     <div className={getElement("input-wrapper")}>
       <QuickInput model={{output: {type: image_classification}}} hideHeader
-                  sampleInputs={SampleImageClassificationInputs} multiple/>
+                  onRunModelClicked={onAdd} sampleInputs={SampleImageClassificationInputs} multiple/>
     </div>
   </Modal>
 }

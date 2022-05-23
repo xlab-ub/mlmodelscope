@@ -28,7 +28,7 @@ export function ConfirmationModal(props) {
   const content = props.children || <>WARNING: NO CONTENT!</>
 
 
-  return <Modal>
+  return <Modal onCancel={props.onCancel}>
     <div className={getElement('top-icon')}>
       {icon}
     </div>

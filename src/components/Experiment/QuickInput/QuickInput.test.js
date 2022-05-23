@@ -149,7 +149,7 @@ describe('Experiment Quick Input Component', () => {
       });
 
       it('that becomes enabled when an input is selected', () => {
-        wrapper.instance().selectInput('http://example.com/image1.jpg');
+        wrapper.instance().selectInput('http://example.com/image1.jpg', 0);
         wrapper.update();
         const button = wrapper.find('.quick-input__run-model');
 
@@ -157,12 +157,12 @@ describe('Experiment Quick Input Component', () => {
       });
 
       it('where clicking calls the provided onRunModelClicked method with the selected input', () => {
-        wrapper.instance().selectInput('http://example.com/image1.jpg');
+        wrapper.instance().selectInput('http://example.com/image1.jpg', 0);
         wrapper.update();
         wrapper.find('.quick-input__run-model').simulate('click');
 
         expect(runModelClicked.mock.calls.length).toBe(1);
-        expect(runModelClicked.mock.calls[0][0]).toBe('http://example.com/image1.jpg');
+        expect(runModelClicked.mock.calls[0][0][0]).toBe('http://example.com/image1.jpg');
       });
     });
 
@@ -171,7 +171,7 @@ describe('Experiment Quick Input Component', () => {
         wrapper.find('SampleInputsTab').instance().selectInput(0);
         wrapper.update();
 
-        expect(wrapper.state('selectedInputUrl')).toBe(SampleInputs[0]);
+        expect(wrapper.state('selectedInputUrl')[0]).toBe(SampleInputs[0]);
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
@@ -185,7 +185,7 @@ describe('Experiment Quick Input Component', () => {
         wrapper.update();
 
         const state = wrapper.state('selectedInputUrl');
-        expect(state).toBe(SampleInputs[0]);
+        expect(state[0]).toBe(SampleInputs[0]);
 
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });

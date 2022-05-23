@@ -19,6 +19,8 @@ import Button from "../Buttons/Button";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
 import {ExperimentInputs} from "./ExperimentInputs";
 import AddInputModal from "./modals/AddInputModal";
+import RemoveInputModal from "./modals/RemoveInputModal";
+import InputCannotBeRemovedModal from "./modals/InputCannotBeRemovedModal";
 
 export default function ExperimentDetailPage(props) {
   const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
@@ -38,7 +40,8 @@ export default function ExperimentDetailPage(props) {
       <Header/>
       <ExperimentDetailHeader/>
       <Layout>
-        <ExperimentInputs showAddInputModal={props.showAddInputModal} inputs={props.inputs}
+        <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal} showAddInputModal={props.showAddInputModal}
+                          inputs={props.inputs}
                           selectedInput={props.selectedInput} selectInput={props.updateInput}/>
         <div className={getElement("trial-cards")}>
           {trialComponents}
@@ -100,7 +103,11 @@ export default function ExperimentDetailPage(props) {
       case ExperimentDetailModalTypes.modelCannotBeRemoved:
         return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
       case ExperimentDetailModalTypes.addInput:
-        return <AddInputModal close={props.onCancelDeleteTrial}/>
+        return <AddInputModal addInput={props.addInput} close={props.onCancelDeleteTrial}/>
+      case ExperimentDetailModalTypes.confirmDeleteInput:
+        return <RemoveInputModal close={props.onCancelDeleteTrial} deleteInput={props.deleteInput}/>
+      case ExperimentDetailModalTypes.inputCannotBeRemoved:
+        return <InputCannotBeRemovedModal onConfirm={props.onCancelDeleteTrial}/>
       default:
         return <></>
     }

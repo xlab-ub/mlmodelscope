@@ -75,6 +75,7 @@ export default class ExperimentDetailContainer extends Component {
                             modalType={this.state.modalType}
                             showAddInputModal={this.showAddInputModal}
                             selectedInput={this.state.selectedInput}
+                            showDeleteInputModal={this.showDeleteInputModal}
       />
     )
   }
@@ -178,7 +179,8 @@ export default class ExperimentDetailContainer extends Component {
       const trial = this.state.trialToDelete;
       try {
         await this.removeTrials((t) => t.model.id === trial.model.id);
-      } catch (e) {
+      } catch (err) {
+        console.error(err);
         this.setState({
           trialToDelete: null,
           modalType: ExperimentDetailModalTypes.modelCannotBeRemoved
@@ -186,13 +188,23 @@ export default class ExperimentDetailContainer extends Component {
       }
     }, 500);
   }
+  showDeleteInputModal = (input) => {
+    if (this.getInputs().length > 1) {
+      const fauxTrial = {inputs: [input]};
+      this.setState({trialToDelete: fauxTrial, modalType: ExperimentDetailModalTypes.confirmDeleteInput});
+    } else {
+      this.setState({modalType: ExperimentDetailModalTypes.inputCannotBeRemoved})
+    }
+
+  }
   deleteInput = async () => {
     this.setState({trialIsDeleting: true});
     setTimeout(async () => {
       const trial = this.state.trialToDelete;
       try {
         await this.removeTrials((t) => t.inputs[0] === trial.inputs[0]);
-      } catch {
+      } catch (err) {
+        console.error(err);
         this.setState({
           showModelCannotBeRemoved: true,
           trialToDelete: null
@@ -224,7 +236,11 @@ export default class ExperimentDetailContainer extends Component {
 
     await Promise.all(promises);
 
-    this.setState({trials: this.state.trials.filter(!predicate), trialToDelete: null});
+    this.setState({
+      trials: this.state.trials.filter((v, i, a) => !predicate(v, i, a)),
+      trialToDelete: null,
+      modalType: ExperimentDetailModalTypes.none
+    });
   }
 
 }

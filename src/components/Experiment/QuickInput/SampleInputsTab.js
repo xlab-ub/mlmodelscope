@@ -15,7 +15,8 @@ export default class SampleInputsTab extends BEMComponent {
     this.modifiers = {
       input: {
         selected: (state, url) => state.selectedIndex.indexOf(url) > -1,
-        unselected: (state, index) => state.selectedIndex >= 0 && state.selectedIndex !== index
+        unselected: (state, index) =>
+          state.selectedIndex.length >= 0 && state.selectedIndex.indexOf(index) === -1
       }
     }
 
@@ -37,7 +38,7 @@ export default class SampleInputsTab extends BEMComponent {
 
   makeSampleInput = (url, index) => {
     return (
-      <div key={index} className={this.element('input', url)}>
+      <div key={index} className={this.element(`input`, url)}>
         <img src={url} onClick={() => this.selectInput(index)}/>
       </div>
     )
@@ -57,12 +58,12 @@ export default class SampleInputsTab extends BEMComponent {
         selected.splice(index, 1);
       }
       this.setState({selectedIndex: selected});
+      if (typeof (this.props.inputSelected) === 'function')
+        this.props.inputSelected(this.props.sampleInputs[index]);
     } else {
       this.setState({selectedIndex: [this.props.sampleInputs[index]]})
+      if (typeof (this.props.inputSelected) === 'function')
+        this.props.inputSelected(this.props.sampleInputs[index], 0);
     }
-
-
-    if (typeof (this.props.inputSelected) === 'function')
-      this.props.inputSelected(this.props.sampleInputs[index]);
   }
 }

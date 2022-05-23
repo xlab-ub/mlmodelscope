@@ -11,7 +11,8 @@ export default function URLInputsTab(props) {
   const {getBlock, getElement} = useBEMNaming("url-inputs");
 
   const urlChanged = async (event, index) => {
-    event.persist();
+    if (event.persist)
+      event.persist();
     let url = event.target.value;
     let tempUrl = event.target.value;
     if (tempUrl.match(UrlMatcher) === null)

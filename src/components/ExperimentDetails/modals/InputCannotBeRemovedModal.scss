@@ -1,0 +1,53 @@
+@import "src/App";
+
+.input-cannot-be-removed-modal {
+  &__heading {
+    margin-bottom: 6px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
+  }
+
+  &__text {
+    @include body;
+    margin-bottom: 4px;
+
+    @include tabletWidth {
+      text-align: center;
+    }
+  }
+
+  &__warning {
+    @include headline5;
+    color: $charcoalLightest;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    @include mobileWidth-lg {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &__close {
+    @include headline6;
+    background: $mintLight;
+    border: solid 2px $mintLight;
+    border-radius: 26px;
+    color: $charcoalLightest;
+    padding: 12px 24px;
+    transition: .3s;
+    margin-top: 32px;
+
+    &:hover {
+      border-color: $mint;
+      background: $mintLightest;
+    }
+  }
+}

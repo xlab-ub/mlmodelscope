@@ -56,7 +56,10 @@ describe('URL Inputs Tab', () => {
     });
 
     it('when text with URL formatting is input', async () => {
-      wrapper.find('.url-inputs__url').simulate('change', {target: {value: LOAD_SRC}});
+      wrapper.find('.url-inputs__url').simulate('change', {
+        target: {value: LOAD_SRC}, persist: () => {
+        }
+      });
 
       await new Promise(resolve => setTimeout(resolve, 10));
 
@@ -73,7 +76,7 @@ describe('URL Inputs Tab', () => {
     it('with an empty string when non-URL formatted text is input', () => {
       wrapper.find('.url-inputs__url').simulate('change', {target: {value: 'not a URL'}});
 
-      expect(inputSelected.mock.calls[0][0]).toBe("");
+      expect(inputSelected.mock.calls[0][0]).toBe("not a URL");
     });
   });
 });

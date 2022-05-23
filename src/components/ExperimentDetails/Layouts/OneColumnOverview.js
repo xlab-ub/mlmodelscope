@@ -1,7 +1,6 @@
 import React from 'react';
 import useBEMNaming from "../../../common/useBEMNaming";
 import ModelTag from "../../Common/ModelTag";
-import Button from "../../Buttons/Button";
 import "./OneColumnOverview.scss";
 import Task from "../../../helpers/Task";
 
@@ -29,8 +28,7 @@ export default function OneColumnOverview(props) {
     </div>
     <div className={getElement("trials-section")}>
       <div className={getElement("trials-header-box")}>
-        <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
-                link={props.getAddModelsLink(props)}/>
+
       </div>
       {props.children}
     </div>
