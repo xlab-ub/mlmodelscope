@@ -13,7 +13,7 @@
     background-clip: padding-box, border-box;
 
 
-    height: 140px;
+    height: 160px;
     width: 100%;
 
     border-radius: 16px;
@@ -75,7 +75,7 @@
     &-label {
       @include headline3;
       color: $richNavy;
-      margin-top: 12px;
+      margin-top: 16px;
     }
 
     &-arrow {

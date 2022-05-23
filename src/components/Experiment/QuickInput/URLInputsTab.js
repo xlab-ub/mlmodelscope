@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import "./URLInputsTab.scss";
 import ImageVerifier from "../../../helpers/imageVerifier";
 import useBEMNaming from "../../../common/useBEMNaming";
+import Task from "../../../helpers/Task";
 
 const UrlMatcher = /https?:\/\/.+/;
 
@@ -29,9 +30,12 @@ export default function URLInputsTab(props) {
 
   const getInputClassName = () => getElement(isInvalidUrl ? "url url-error" : "url")
 
+  const task = Task.getStaticTask(props.task);
+
   return (
     <div className={getBlock()}>
-      <div className={getElement('title')}>Copy an image URL (image address) and paste.</div>
+      <div className={getElement('title')}><b>Copy an image URL (image address) and paste</b>
+        {" "}to {task.inputText.toLowerCase()}</div>
       <input className={getInputClassName()} placeholder="Paste any image URL" type="url" onChange={urlChanged}/>
       {isInvalidUrl &&
         <p className={getElement("error-text")}>Not a valid URL. Right click on an image to copy the image address.</p>}

@@ -107,7 +107,7 @@ export default class QuickInput extends BEMComponent {
     return (
       <div key={index} className={this.element('tab', index)} role="tabpanel" aria-labelledby={`${tab.id}`}
            id={`${tab.id}-panel`}>
-        <Component inputSelected={this.selectInput} {...tab.props} />
+        <Component inputSelected={this.selectInput} task={this.props.model.output.type}  {...tab.props} />
       </div>
     )
   }

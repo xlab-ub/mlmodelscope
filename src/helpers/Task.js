@@ -34,7 +34,8 @@ export default class Task {
     inputText: "See how well this model can identify what object is in an image.",
     outputText: "How this model identified the object in this image:",
     icon: (props) => <ImageClassification {...props}/>,
-    sampleInputs: SampleImageClassificationInputs
+    sampleInputs: SampleImageClassificationInputs,
+    homePageDescription: "Image Classification models can recognize a single object in an image."
   })
   static click_through_rate = new Task({
     name: "Click-Through Rate",
@@ -47,7 +48,8 @@ export default class Task {
     inputText: "See how well this model can recognize and locate multiple objects in an image.",
     outputText: "Objects this model can recognize in this image:",
     icon: (props) => <ObjectDetection {...props}/>,
-    sampleInputs: SampleObjectDetectionInputs
+    sampleInputs: SampleObjectDetectionInputs,
+    homePageDescription: "Object Detection models are used to identify where a set of objects is in an image"
   })
   static image_semantic_segmentation = new Task({
     name: "Semantic Segmentation",
@@ -56,7 +58,8 @@ export default class Task {
     inputText: "See how well this model can recognize and locate multiple objects in an image and where they overlap.",
     outputText: "Objects this model can recognize in this image:",
     icon: (props) => <SemanticSegmentation {...props} />,
-    sampleInputs: SampleSegmentationInputs
+    sampleInputs: SampleSegmentationInputs,
+    homePageDescription: "Semantic Segmentation models recognize categories of objects in an image. They assign a category to every pixel in an image."
   })
   static image_instance_segmentation = new Task({
     name: "Instance Segmentation",
@@ -64,7 +67,8 @@ export default class Task {
     inputText: "See how well this model can recognize and locate multiple distinct objects in an image.",
     outputText: "Objects this model can recognize in this image:",
     icon: (props) => <InstanceSegmentation {...props}/>,
-    sampleInputs: SampleSegmentationInputs
+    sampleInputs: SampleSegmentationInputs,
+    homePageDescription: "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image."
   })
   static image_enhancement = new Task({
     name: 'Image Enhancement',
@@ -73,7 +77,8 @@ export default class Task {
     inputText: "See how well this model can improve the details of an image.",
     outputText: "How this model improved the details in this image:",
     icon: (props) => <ImageEnhancement {...props}/>,
-    sampleInputs: SampleImageEnhancementInputs
+    sampleInputs: SampleImageEnhancementInputs,
+    homePageDescription: "Image Enhancement models improve the resolution of an image, making it crisper and clearer."
   });
 
   static getStaticTask(taskId) {
@@ -129,6 +134,8 @@ export default class Task {
     this.Icon = options.icon ?? ((props) => <></>);
     this.defaultModel = Task.getDefaultModel(this.id);
     this.sampleInputs = options.sampleInputs ?? [];
+    this.homePageDescription = options.homePageDescription ?? this.description;
+
   }
 
 

@@ -14,7 +14,17 @@ export default class ModelListWithFilters extends Component {
     super(props);
 
     let stored = this.getStoredFilters();
+
     let filterGroups = stored?.filterGroups || this.getDefaultGroups();
+
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    let task = params.task;
+    if (task) {
+      filterGroups[0].options = filterGroups[0].options.map(opt => ({...opt, isActive: opt.label === task}));
+    }
+
     let searchText = stored?.searchText || "";
     this.state = {
       filterGroups: filterGroups,

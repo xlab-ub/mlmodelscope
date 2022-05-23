@@ -12,7 +12,7 @@ export function MachineLearningOverview() {
 
   return <div className={getBlock()}>
     <HomePageSectionHeading title={"What are machine learning models?"}
-                            subtitle={"A machine learning model is a file trained to recognize certain patterns. Once trained, a model can be used to make predictions about data it has never seen before, like recognizing what object is in this image."}/>
+                            subtitle={"A machine learning model is a program trained to recognize patterns and make predictions when presented with new data. Once trained, it can perform tasks like recognizing objects in images."}/>
     <div className={getElement("wrapping-box")}>
       <div className={getElement("background-gradient")}></div>
       <div className={getElement("section-content")}>

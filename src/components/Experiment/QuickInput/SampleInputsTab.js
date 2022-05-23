@@ -1,6 +1,7 @@
 import React from 'react';
 import BEMComponent from "../../Common/BEMComponent";
 import "./SampleInputsTab.scss";
+import Task from "../../../helpers/Task";
 
 export default class SampleInputsTab extends BEMComponent {
   static defaultProps = {
@@ -25,9 +26,10 @@ export default class SampleInputsTab extends BEMComponent {
   }
 
   render() {
+    const task = Task.getStaticTask(this.props.task);
     return (
       <div className={this.block()}>
-        <div className={this.element('title')}>Select a sample image</div>
+        <div className={this.element('title')}><b>Select a sample image</b> to {task.inputText.toLowerCase()}</div>
         <div className={this.element('list')}>
           {this.props.sampleInputs.map(this.makeSampleInput)}
         </div>

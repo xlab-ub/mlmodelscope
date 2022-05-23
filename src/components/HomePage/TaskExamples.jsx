@@ -16,7 +16,7 @@ export function TaskExamples(props) {
     className: getElement("selected-task-icon")
   }
 
-  const {name, description, Icon, defaultModel, sampleInputs} = taskSelection.selectedTask;
+  const {name, description, Icon, defaultModel, sampleInputs, homePageDescription} = taskSelection.selectedTask;
   let taskName = name;
 
 
@@ -38,7 +38,7 @@ export function TaskExamples(props) {
         <p className={getElement("selected-task-title")}>
           <Icon {...taskIconProps} /> {taskName}
         </p>
-        <p className={getElement("selected-task-description")}>{description}</p>
+        <p className={getElement("selected-task-description")}>{homePageDescription}</p>
 
         <Link className={getElement("selected-task-link")} to={`/models?task=${taskName}`}>See
           all {taskName} models</Link>

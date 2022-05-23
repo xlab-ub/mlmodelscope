@@ -2,7 +2,7 @@
 
 .home-page-main {
   @include paddingGutters;
-  min-height: calc(100vh - 93px);
+  min-height: calc(100vh);
   position: relative;
 
   &__background-image {
