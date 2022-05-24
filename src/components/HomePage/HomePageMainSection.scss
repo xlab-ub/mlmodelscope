@@ -7,6 +7,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 
   &__background-image {
     background: url("../../resources/img/splash_bg.png") no-repeat;
@@ -21,17 +22,21 @@
 
   &__jump-link {
     position: absolute;
-    bottom: 24px;
+    bottom: 48px;
     @include headline5;
     color: $white;
     display: flex;
     align-items: center;
 
     &-icon {
-      margin-left: 12px;
+      margin-left: 8px;
       width: 16px;
       height: 16px;
       transform: rotate(90deg);
+
+      path {
+        fill: $electricGreen;
+      }
     }
   }
 

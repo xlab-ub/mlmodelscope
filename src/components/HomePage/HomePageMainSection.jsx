@@ -30,10 +30,11 @@ export function HomePageMainSection(props) {
       </h2>
 
       <Button content="Browse model library" link={"/models"} isPrimary={false} isSmall={false}/>
-      <button onClick={scrollToModelDetails} className={getElement("jump-link")}>
-        Learn more about models <ArrowIcon className={getElement("jump-link-icon")}/>
-      </button>
+
     </div>
+    <button onClick={scrollToModelDetails} className={getElement("jump-link")}>
+      Learn more about models <ArrowIcon className={getElement("jump-link-icon")}/>
+    </button>
 
   </div>;
 }

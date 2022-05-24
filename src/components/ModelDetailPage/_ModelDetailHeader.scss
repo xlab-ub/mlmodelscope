@@ -6,7 +6,24 @@
   padding-bottom: 32px;
 
   &__jump-link {
+    margin-top: 24px;
+    @include body;
     color: $white;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      transform: rotate(90deg);
+
+      path {
+        fill: $electricGreen;
+      }
+    }
   }
 
   &__title-box {

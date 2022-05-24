@@ -4,6 +4,7 @@ import formatDate from "../../helpers/dateFormatter";
 import ModelTag from "../Common/ModelTag";
 import 'typeface-lato';
 import useBEMNaming from "../../common/useBEMNaming";
+import {ReactComponent as Arrow} from "../../resources/icons/arrow-right-white.svg";
 
 export default function ModelDetailHeader(props) {
   const {getBlock, getElement} = useBEMNaming("model-detail-header");
@@ -47,7 +48,9 @@ export default function ModelDetailHeader(props) {
           </dl>
           <p className={getElement("model-name")}>{model.name} Version {model.version}</p>
           <p className={getElement("model-description")}>{model.description}</p>
-          <button className={getElement("jump-link")} onClick={jump}>Learn more</button>
+          <button className={getElement("jump-link")} onClick={jump}>
+            Learn more about this model <Arrow
+            className={getElement("jump-link-icon")}/></button>
 
         </div>
         <dl className={getElement("data-box")}>

@@ -38,7 +38,6 @@ export default class ModelCard extends Component {
         </div>
         <hr className="model-card__divider"/>
         {this.makeName()}
-        <p className="model-card__model-description">{model.description}</p>
         {this.makeActions()}
       </div>
     )
