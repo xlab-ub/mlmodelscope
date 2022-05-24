@@ -24,6 +24,8 @@ export const TestImageSegmentationResult = {
   },
   "id": "091ee87a-3e30-44a4-91f5-d113bccecd4e",
   results: {
+    "duration": "492.161067ms",
+    "duration_for_inference": "368.568412ms",
     "id": "48d3b998-6fa8-4bc9-bd42-46532c50e941",
     "responses": [
       {

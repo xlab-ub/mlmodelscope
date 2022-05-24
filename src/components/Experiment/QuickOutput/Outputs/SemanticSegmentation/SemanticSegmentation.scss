@@ -18,6 +18,13 @@
     padding-bottom: 16px;
     margin-bottom: 24px;
 
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
     &-heading {
       @include headline3;
     }

@@ -5,6 +5,7 @@ import "./ClassificationOutput.scss";
 import PredictionExpander from "../../../../Common/PredictionExpander";
 import NoPredictions from "../_Common/components/NoPredictions";
 import Task from "../../../../../helpers/Task";
+import OutputDuration from "../_Common/components/OutputDuration";
 
 export default class ClassificationOutput extends BEMComponent {
   static defaultProps = {
@@ -43,7 +44,11 @@ export default class ClassificationOutput extends BEMComponent {
     const task = Task.image_classification;
     return (
       <div className={this.block()}>
-        <h3 className={this.element('title')}>Output</h3>
+        <div className={this.element("title-row")}>
+          <h3 className={this.element('title')}>Output</h3>
+          <OutputDuration duration={"500ms"}/>
+
+        </div>
         <div className={this.element('subtitle')}>{task.outputText}</div>
         {this.getPredictionBody()}
       </div>

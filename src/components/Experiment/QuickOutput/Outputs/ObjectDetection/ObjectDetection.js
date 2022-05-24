@@ -7,6 +7,7 @@ import NoPredictions from "../_Common/components/NoPredictions";
 import "./ObjectDetection.scss";
 import useImageRef from "./hooks/useImageRef";
 import Task from "../../../../../helpers/Task";
+import OutputDuration from "../_Common/components/OutputDuration";
 
 export default function ObjectDetection(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection");
@@ -37,7 +38,10 @@ export default function ObjectDetection(props) {
 
   return <div className={getBlock()}>
     <div className={getElement("header")}>
-      <h3 className={getElement("header-headline")}>Output</h3>
+      <div className={getElement("header-row")}>
+        <h3 className={getElement("header-headline")}>Output</h3>
+        <OutputDuration duration={props.trial.results.duration}/>
+      </div>
       <p className={getElement("header-subheading")}>{task.outputText}</p>
     </div>
     {getBody()}

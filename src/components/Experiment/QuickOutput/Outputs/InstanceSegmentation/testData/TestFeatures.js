@@ -7,6 +7,8 @@ export const TestInstanceSegmentationOutput = {
   results: {
     "responses": [
       {
+        "duration": "492.161067ms",
+        "duration_for_inference": "368.568412ms",
         "features": [
           {
             "id": "61a6910a065391000115170d",
