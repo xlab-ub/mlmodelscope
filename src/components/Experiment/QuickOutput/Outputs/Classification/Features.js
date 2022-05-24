@@ -90,57 +90,58 @@ const TestFeatures = [
     }
   }
 ];
-const TestFeatures2 = [{
-  "id": "628bca379af6f40001820e71",
-  "probability": 0.90854275,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 6, "label": "frog"}
-}, {
-  "id": "628bca379af6f40001820e6e",
-  "probability": 0.043753818,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 3, "label": "cat"}
-}, {
-  "id": "628bca379af6f40001820e6d",
-  "probability": 0.022832753,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 2, "label": "bird"}
-}, {
-  "id": "628bca379af6f40001820e70",
-  "probability": 0.011099386,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 5, "label": "dog"}
-}, {
-  "id": "628bca379af6f40001820e6f",
-  "probability": 0.0066342438,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 4, "label": "deer"}
-}, {
-  "id": "628bca379af6f40001820e72",
-  "probability": 0.004591858,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 7, "label": "horse"}
-}, {
-  "id": "628bca379af6f40001820e74",
-  "probability": 0.0013276703,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 9, "label": "truck"}
-}, {
-  "id": "628bca379af6f40001820e6b",
-  "probability": 0.000860909,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 0, "label": "airplane"}
-}, {
-  "id": "628bca379af6f40001820e6c",
-  "probability": 0.00025211976,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 1, "label": "automobile"}
-}, {
-  "id": "628bca379af6f40001820e73",
-  "probability": 0.000104777195,
-  "type": "CLASSIFICATION",
-  "classification": {"index": 8, "label": "ship"}
-}];
+const TestFeatures2 = [
+  {
+    "id": "628bca379af6f40001820e71",
+    "probability": 0.90854275,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 6, "label": "frog"}
+  }, {
+    "id": "628bca379af6f40001820e6e",
+    "probability": 0.043753818,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 3, "label": "cat"}
+  }, {
+    "id": "628bca379af6f40001820e6d",
+    "probability": 0.022832753,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 2, "label": "bird"}
+  }, {
+    "id": "628bca379af6f40001820e70",
+    "probability": 0.011099386,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 5, "label": "dog"}
+  }, {
+    "id": "628bca379af6f40001820e6f",
+    "probability": 0.0066342438,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 4, "label": "deer"}
+  }, {
+    "id": "628bca379af6f40001820e72",
+    "probability": 0.004591858,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 7, "label": "horse"}
+  }, {
+    "id": "628bca379af6f40001820e74",
+    "probability": 0.0013276703,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 9, "label": "truck"}
+  }, {
+    "id": "628bca379af6f40001820e6b",
+    "probability": 0.000860909,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 0, "label": "airplane"}
+  }, {
+    "id": "628bca379af6f40001820e6c",
+    "probability": 0.00025211976,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 1, "label": "automobile"}
+  }, {
+    "id": "628bca379af6f40001820e73",
+    "probability": 0.000104777195,
+    "type": "CLASSIFICATION",
+    "classification": {"index": 8, "label": "ship"}
+  }];
 const TestFeatures3 = [
   {
     "id": "6262af1dbc5f0c0001a09014",
@@ -5280,6 +5281,8 @@ const MakeImageClassificationResult = (input, features) => ({
   "inputs": [input],
   "completed_at": "2022-04-22T13:35:25.914145Z",
   "results": {
+    "duration": "492.161067ms",
+    "duration_for_inference": "368.568412ms",
     "responses": [{
       "features": features
     }], "trace_id": {}

@@ -530,6 +530,8 @@ const MakeObjectDetectionResult = (input, features) => ({
   ],
   completed_at: "2022-04-20T20:39:06.359287Z",
   results: {
+    "duration": "492.161067ms",
+    "duration_for_inference": "368.568412ms",
     responses: [
       {
         features: features

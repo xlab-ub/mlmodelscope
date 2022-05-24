@@ -1,6 +1,5 @@
 .model-description {
-  background: $richNavyGradient;
-  color: $white;
+  background-color: $white;
   width: 100%;
   padding-top: 84px;
   padding-bottom: 130px;
@@ -32,7 +31,7 @@
   }
 
   &__heading {
-    color: $white;
+    color: $azulDarkest;
     font-size: 32px;
     font-weight: 800;
     line-height: 40px;
@@ -52,15 +51,16 @@
 
       p {
         @include body;
-        color: $white;
+        color: $charcoalLightest;
 
         @include tabletWidth {
           @include bodySmall;
-          color: $white;
+          color: $charcoalLightest;
 
         }
       }
     }
+
   }
 
   &__link-section {
@@ -76,12 +76,12 @@
     }
 
     &-link {
-      color: $white;
+      color: $azulDark;
       @include linkSmall;
       overflow-wrap: anywhere;
 
       &:hover {
-        color: $electricGreen;
+        color: $purple;
       }
 
       &-padded {
@@ -92,6 +92,23 @@
 
     &-icon {
       margin-right: 12px;
+
+      svg {
+        path {
+          fill: $purple;
+        }
+      }
+
+    }
+  }
+
+  &__content-wrapper-links-robot {
+    path {
+      fill: $white !important;
+    }
+
+    ellipse {
+      fill: $purple !important;
     }
   }
 }

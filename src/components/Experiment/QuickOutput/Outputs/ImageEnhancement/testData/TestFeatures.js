@@ -5,8 +5,11 @@ export const TestImageEnhancementData = {
   ],
   "completed_at": "2022-05-03T17:00:47.17038Z",
   "results": {
+    "duration": "492.161067ms",
+    "duration_for_inference": "368.568412ms",
     "responses": [
       {
+
         "features": [
           {
             "id": "62715fbfbf8e2400012af957",

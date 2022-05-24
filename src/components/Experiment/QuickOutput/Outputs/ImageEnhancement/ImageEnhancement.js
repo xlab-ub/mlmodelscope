@@ -20,6 +20,7 @@ export default function ImageEnhancement(props) {
     </div>
     <SingleColumnImageOutput
       modelId={props.trial.model.id}
+      duration={props.trial.results.duration}
       image={<ImageEnhancementImage feature={props.trial.results.responses[0].features[0]}/>}/>
   </div>
 }

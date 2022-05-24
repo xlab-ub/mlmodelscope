@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PredictionExpander from "../../Common/PredictionExpander";
+import OutputDuration from "../../Experiment/QuickOutput/Outputs/_Common/components/OutputDuration";
 
 export default class ClassificationSummary extends Component {
   makeReadableLabel = (originalLabel) => {
@@ -29,6 +30,7 @@ export default class ClassificationSummary extends Component {
     return (
       <div className="classification-summary">
         <p className="classification-summary__header">Output:</p>
+        <OutputDuration duration={this.props.results.duration}/>
         <div className="classification-summary__results">
           <div className="classification-summary__top-result">
             <span>{this.makeReadableLabel(this.getFirstPrediction().classification.label)}</span>

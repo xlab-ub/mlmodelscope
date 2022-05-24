@@ -35,7 +35,8 @@ const ModelDescription = (props) => {
         <p>{getDescription()}</p>
       </div>
       <div className={getElement("content-wrapper-links")}>
-        <ConditionalLink link={url.citation} text={"Citation"} icon={<RobotIcon/>}/>
+        <ConditionalLink link={url.citation} text={"Citation"}
+                         icon={<RobotIcon className={getElement("content-wrapper-links-robot")}/>}/>
         <ConditionalLink link={url.github} icon={<GithubIcon/>} text={"Github"}/>
         <ConditionalLink link={firstLink} icon={<LinkIcon/>}/>
         {restOfLinks.map(link => <ConditionalLink link={link} key={link}/>)}
