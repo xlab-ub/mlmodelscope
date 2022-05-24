@@ -34,7 +34,29 @@
     flex-direction: column;
     position: relative;
     padding: 80px 40px 40px 40px;
+
+    @include tabletWidth {
+      padding: 50px 0 24px 0;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
   }
+
+  &__confirmation-content {
+    align-items: center;
+    background-color: white;
+    border: solid 4px transparent;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 80px 40px 40px 40px;
+
+    @include tabletWidth {
+      padding: 50px 16px 24px 16px;
+    }
+  }
+
 
   &__top-icon {
     background: $secondaryGradient;

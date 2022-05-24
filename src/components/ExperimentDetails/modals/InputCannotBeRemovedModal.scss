@@ -2,6 +2,7 @@
 
 .input-cannot-be-removed-modal {
   &__heading {
+    margin-top: 16px;
     margin-bottom: 6px;
 
     @include tabletWidth {

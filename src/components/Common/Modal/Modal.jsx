@@ -7,11 +7,11 @@ export default function Modal(props) {
   const {getElement, getBlock} = useBEMNaming("modal");
 
   const content = props.children || <>WARNING: NO CONTENT!</>
-
+  const getContentClass = () => props.isConfirmation ? "confirmation-content" : "content";
 
   return <div className={getBlock()}>
     <div className={getElement('content-container')}>
-      <div className={getElement('content')}>
+      <div className={getElement(getContentClass())}>
         <button className={getElement('close-button')}>
           <CloseIcon onClick={props.onCancel}/>
         </button>
@@ -28,7 +28,7 @@ export function ConfirmationModal(props) {
   const content = props.children || <>WARNING: NO CONTENT!</>
 
 
-  return <Modal onCancel={props.onCancel}>
+  return <Modal isConfirmation onCancel={props.onCancel}>
     <div className={getElement('top-icon')}>
       {icon}
     </div>

@@ -10,7 +10,7 @@ export default function InputCannotBeRemovedModal(props) {
 
   return <ConfirmationModal icon={<ExclamationIcon className={getElement('trashcan')}/>} onCancel={props.onConfirm}>
     <h2 className={getElement('heading')}>
-      Input cannot be removed.
+      Input cannot be removed
     </h2>
     <p className={getElement('text')}>
       There must be at least one input in the comparison.

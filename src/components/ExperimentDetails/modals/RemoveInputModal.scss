@@ -3,6 +3,7 @@
 .remove-input-modal {
 
   &__heading {
+    margin-top: 16px;
     margin-bottom: 6px;
 
     @include tabletWidth {
@@ -12,7 +13,7 @@
 
   &__text {
     @include body;
-    margin-bottom: 4px;
+    margin-bottom: 16px;
 
     @include tabletWidth {
       text-align: center;

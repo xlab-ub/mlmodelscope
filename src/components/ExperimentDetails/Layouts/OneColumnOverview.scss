@@ -4,6 +4,10 @@
   @include gutters;
   padding-bottom: 96px;
 
+  @include mobileWidth-lg {
+    padding-bottom: 48px;
+  }
+
   &__experiment-header {
     width: 100vw;
     padding-top: 20px;
@@ -58,7 +62,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    margin-top: 36px;
+    margin-top: 16px;
     margin-bottom: 24px;
 
     @include maxWidth(710px) {

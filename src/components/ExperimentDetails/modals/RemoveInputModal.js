@@ -10,9 +10,9 @@ export default function RemoveInputModal(props) {
 
   return <ConfirmationModal icon={<TrashIcon/>} onCancel={props.close}>
     <h2 className={getElement("heading")}>
-      You are about to remove this image
+      You are about to remove this input
     </h2>
-    <p className={getElement("text")}>This will delete the image from this experiment</p>
+    <p className={getElement("text")}>This will delete the input from this experiment.</p>
     <div className={getElement('controls')}>
       <button className={getElement('cancel')} onClick={props.close}>
         No, don't delete

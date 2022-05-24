@@ -4,7 +4,11 @@
   background: $richNavy;
   position: relative;
   z-index: 1;
+  padding: 12px 0;
 
+  @include mobileWidth-lg {
+    padding: 24px 0;
+  }
 
 
   &__logos-container {

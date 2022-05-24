@@ -49,6 +49,11 @@
     &-link {
       @include linkLarge;
       color: $azul;
+      transition: 0.25s;
+
+      &:hover {
+        color: $purple;
+      }
     }
   }
 

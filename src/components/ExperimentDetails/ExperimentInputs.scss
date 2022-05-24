@@ -6,6 +6,12 @@
   justify-content: space-between;
   align-items: center;
 
+  @include tabletWidth {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
   .secondary-button {
     height: 48px;
   }
@@ -14,6 +20,10 @@
     margin-bottom: 32px;
     position: relative;
     width: clamp(200px, 500px, 400px);
+
+    @include tabletWidth {
+      max-width: 300px;
+    }
 
 
   }
@@ -73,11 +83,11 @@
 
   &__input-selector {
     &-delete {
-      margin-right: 20px;
+      margin-right: 8px;
 
       svg {
-        width: 16px;
-        height: 16px;
+        width: 24px;
+        height: 24px;
       }
 
     }
@@ -107,7 +117,7 @@
         border: 3px solid $azul;
 
         .experiment-inputs__input-selector-delete {
-          margin-right: 17px;
+          margin-right: 5px;
         }
       }
     }
