@@ -3,8 +3,10 @@ import useBEMNaming from "../../common/useBEMNaming";
 
 export function useHeaderControl(props) {
   const [showMenu, setShowMenu] = useState(false);
+  const [showModelComparison, setShowModelComparison] = useState(false);
 
   const toggleMenu = () => setShowMenu(!showMenu);
+  const toggleComparison = () => setShowModelComparison(state => !state);
 
   const {getElement, getBlock} = useBEMNaming("header")
 
@@ -19,5 +21,5 @@ export function useHeaderControl(props) {
   }
 
 
-  return {showMenu, toggleMenu, getElement, getHeaderClassNames};
+  return {showMenu, toggleMenu, getElement, getHeaderClassNames, toggleComparison, showModelComparison};
 }

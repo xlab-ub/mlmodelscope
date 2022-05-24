@@ -1,10 +1,9 @@
 @import "../../App";
 
 
-
 @keyframes slideUp {
   0% {
-    max-height:unset;
+    max-height: unset;
   }
   1% {
     transform: scaleY(1);
@@ -16,30 +15,33 @@
     display: none;
   }
 }
+
 @keyframes slideDown {
   0% {
-    max-height:0;
+    max-height: 0;
     display: none;
   }
   99% {
-    max-height:100vh;
+    max-height: 100vh;
     display: block;
   }
   to {
-    max-height:unset
+    max-height: unset
   }
 }
+
 @keyframes expandOut {
   0% {
     max-height: unset;
   }
   1% {
-    max-height: 0% ;
+    max-height: 0%;
   }
   100% {
     max-height: 100%;
   }
 }
+
 @keyframes collapseIn {
   0% {
     max-height: unset;
@@ -51,6 +53,7 @@
     max-height: 0%;
   }
 }
+
 .header {
   @include paddingGutters();
   background: white;
@@ -63,10 +66,12 @@
   left: 0;
   width: 100%;
   z-index: 10;
+
   &__placeholder {
     width: 100%;
     height: 106px;
   }
+
   &__row {
     display: flex;
     align-items: center;
@@ -77,7 +82,7 @@
   &__menu {
     align-self: flex-end;
     display: flex;
-    @include  tabletWidth {
+    @include tabletWidth {
       display: none;
     }
 
@@ -141,18 +146,21 @@
           width: 0%;
           left: 50%;
         }
+
         span:nth-child(2) {
           -webkit-transform: rotate(45deg);
           -moz-transform: rotate(45deg);
           -o-transform: rotate(45deg);
           transform: rotate(45deg);
         }
+
         span:nth-child(3) {
           -webkit-transform: rotate(-45deg);
           -moz-transform: rotate(-45deg);
           -o-transform: rotate(-45deg);
           transform: rotate(-45deg);
         }
+
         span:nth-child(4) {
           top: 18px;
           width: 0%;
@@ -231,20 +239,22 @@
 
       .header__arrow-icon {
         transform: translateX(6px);
+
         path {
           fill: $purple;
         }
       }
     }
 
-  &-expandable {
-    display: grid;
-    grid-template-columns: 8fr 1fr;
-    width: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid $electricGreen;
-  }
+    &-expandable {
+      display: grid;
+      grid-template-columns: 8fr 1fr;
+      width: 100%;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid $electricGreen;
+    }
+
     &-expand {
       border-left: 1px solid $electricGreen;
       padding-left: 26px;
@@ -252,6 +262,7 @@
 
       &:hover {
         background-color: $azulDark;
+
         svg path {
           fill: $electricGreen;
         }
@@ -260,12 +271,15 @@
       svg {
         width: 12px;
         transition: transform 0.5s;
+
         path {
           fill: $white;
         }
       }
+
       &-rotated {
         background-color: $azulDark;
+
         svg {
           transform: rotate(180deg);
         }
@@ -278,7 +292,7 @@
 
   &__submenu-item {
     background: $azulDark;
-    border:none;
+    border: none;
 
   }
 
@@ -289,6 +303,7 @@
     text-decoration: none;
     transition: color 0.3s;
   }
+
   svg path {
     fill: $azul;
 
@@ -328,6 +343,7 @@
   &__responsive-menu {
 
   }
+
   &__shown-menu {
     @include negativeMarginAndPaddingGutters();
     @include tabletWidth {
@@ -339,6 +355,7 @@
     padding-bottom: 0;
     margin-bottom: 16px;
     width: 100vw;
+
     .header__row {
       padding-bottom: 11px;
     }
@@ -355,24 +372,27 @@
     bottom: 0;
     left: 0;
     @include negativeMarginGutters();
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     .header {
       &__library-link-container {
         padding-top: 16px;
         padding-bottom: 16px;
+
         svg path {
           fill: $white;
         }
       }
+
       &__library-link {
         color: $white;
       }
     }
+
     &-children {
       width: 100%;
       max-height: 0;
-      overflow:hidden;
+      overflow: hidden;
       transition: all 0.5s;
       transition-delay: 0s;
 
@@ -380,14 +400,17 @@
         //max-height: 350px;
 
       }
+
       &-closing {
         max-height: 0;
 
       }
     }
+
     &-open {
       display: block;
     }
+
     &-section {
       display: flex;
       justify-content: space-between;
@@ -397,10 +420,12 @@
       &:last-child {
         border-bottom: none;
       }
+
       .header__responsive-menu-item {
         border-bottom: none;
       }
     }
+
     &-item {
       border-bottom: 1px solid $electricGreen;
       margin-right: -20px;
@@ -419,11 +444,13 @@
 
         .header__arrow-icon {
           transform: translateX(6px);
-           path {
+
+          path {
             fill: $electricGreen;
           }
         }
       }
+
       &:last-child {
         border-bottom: none;
       }
@@ -434,12 +461,49 @@
       }
     }
   }
+
   &__responsive-submenu-item {
     background-color: $azulDark;
     border-bottom: none;
   }
 
+  &__compare-models {
+    &-btn {
+      border: 2px solid $white;
+      background-color: $azul;
+      color: $white;
+      border-radius: 30px;
+      padding: 6px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 12px;
+
+      &-icon {
+        width: 12px;
+        height: 12px;
+        margin-left: 8px;
+
+        path {
+          fill: white !important;
+
+        }
+      }
+    }
+
+    &-task {
+
+      &-icon {
+        path {
+          fill: $white !important;
+        }
+      }
+    }
+  }
+
+
 }
+
 .header__splash.header__shown-menu {
   background: $richNavy;
 

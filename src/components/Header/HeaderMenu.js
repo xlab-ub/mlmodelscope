@@ -4,24 +4,24 @@ import {LinkSection} from "./LinkSection";
 
 export function HeaderMenu(props) {
 
-  if(props.testMenus)
+  if (props.testMenus)
     return (
-    <>
-      <LinkSection link={"/test"} display={"Menu Item 1"} {...props}>
-        <LinkItem link={"/test"} display={"Submenu Item 1"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 2"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 3"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 4"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 5"} isSubMenu {...props} />
-      </LinkSection>
-      <LinkItem link={"/test"} display={"Menu Item 2"} {...props}/>
-      <LinkSection link={"/test"} display={"Menu Item 3"} {...props}>
-        <LinkItem link={"/test"} display={"Submenu Item 1"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 2"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 3"} isSubMenu {...props} />
-        <LinkItem link={"/test"} display={"Submenu Item 4"} isSubMenu {...props} />
-      </LinkSection>
-    </>);
+      <>
+        <LinkSection link={"/test"} display={"Menu Item 1"} {...props}>
+          <LinkItem link={"/test"} display={"Submenu Item 1"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 2"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 3"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 4"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 5"} isSubMenu {...props} />
+        </LinkSection>
+        <LinkItem link={"/test"} display={"Menu Item 2"} {...props}/>
+        <LinkSection link={"/test"} display={"Menu Item 3"} {...props}>
+          <LinkItem link={"/test"} display={"Submenu Item 1"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 2"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 3"} isSubMenu {...props} />
+          <LinkItem link={"/test"} display={"Submenu Item 4"} isSubMenu {...props} />
+        </LinkSection>
+      </>);
 
 
   return (
@@ -31,5 +31,6 @@ export function HeaderMenu(props) {
         display={"Browse model library"}
         {...props}
       />
+      <LinkItem callback={props.headerCallback} display={"Compare models"} {...props} />
     </>);
 }
