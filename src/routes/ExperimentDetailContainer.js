@@ -5,6 +5,8 @@ import useExperimentDetailControl, {
   experimentDetailsPages
 } from "../components/ExperimentDetails/hooks/useExperimentDetailControl";
 import AddModelListContainer from "./AddModelListContainer";
+import Task from "../helpers/Task";
+import {image_classification} from "../helpers/TaskIDs";
 
 export function ExperimentDetailsContainer2() {
 
@@ -50,12 +52,19 @@ export default class ExperimentDetailContainer extends Component {
     this.trialSubscriptions = [];
   }
 
+  getTask() {
+    if (this.state.trials && this.state.trials.length > 0)
+      return Task.getStaticTask(this.state.trials[0].model.output.type);
+    return Task.getStaticTask(image_classification);
+  }
+
   componentWillUnmount() {
     this.trialSubscriptions.forEach(s => s.unsubscribe());
 
     if (this.experimentSubscription)
       this.experimentSubscription.unsubscribe();
   }
+
 
   render() {
     return (
@@ -76,6 +85,7 @@ export default class ExperimentDetailContainer extends Component {
                             showAddInputModal={this.showAddInputModal}
                             selectedInput={this.state.selectedInput}
                             showDeleteInputModal={this.showDeleteInputModal}
+                            task={this.getTask()}
       />
     )
   }

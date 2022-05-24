@@ -104,7 +104,8 @@ export default function ExperimentDetailPage(props) {
       case ExperimentDetailModalTypes.modelCannotBeRemoved:
         return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
       case ExperimentDetailModalTypes.addInput:
-        return <AddInputModal addInput={props.addInput} close={props.onCancelDeleteTrial}/>
+        return <AddInputModal sampleInputs={props.task.sampleInputs} addInput={props.addInput}
+                              close={props.onCancelDeleteTrial}/>
       case ExperimentDetailModalTypes.confirmDeleteInput:
         return <RemoveInputModal close={props.onCancelDeleteTrial} deleteInput={props.deleteInput}/>
       case ExperimentDetailModalTypes.inputCannotBeRemoved:
