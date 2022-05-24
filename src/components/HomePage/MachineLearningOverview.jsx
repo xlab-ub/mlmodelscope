@@ -7,10 +7,10 @@ import MachineLearning3 from '../../resources/img/machine-learning-3.png';
 import {ReactComponent as Arrow} from "../../resources/icons/fat-arrow.svg";
 import "./MachineLearningOverview.scss";
 
-export function MachineLearningOverview() {
+export function MachineLearningOverview(props) {
   const {getBlock, getElement} = useBEMNaming("machine-learning-overview");
 
-  return <div className={getBlock()}>
+  return <div ref={props.modelDetailsRef} className={getBlock()}>
     <HomePageSectionHeading title={"What are machine learning models?"}
                             subtitle={"A machine learning model is a program trained to recognize patterns and make predictions when presented with new data. Once trained, it can perform tasks like recognizing objects in images."}/>
     <div className={getElement("wrapping-box")}>

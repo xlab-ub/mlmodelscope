@@ -16,14 +16,14 @@ export default class RemoveModelModal extends BEMComponent {
         You are about to remove this model
       </h2>
       <p className={this.element('text')}>
-        This will delete the model from this experiment.
+        This will delete all outputs created with this model
       </p>
       <p className={this.element('warning')}>
         Are you sure you want to proceed?
       </p>
       <div className={this.element('controls')}>
         <button className={this.element('cancel')} onClick={this.props.onCancel}>
-          No, don't delete
+          No, don’t remove
         </button>
         <button className={this.element('confirm')} onClick={this.props.onConfirm}>
           Yes, remove

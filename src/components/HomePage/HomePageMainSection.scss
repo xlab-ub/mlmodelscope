@@ -2,8 +2,11 @@
 
 .home-page-main {
   @include paddingGutters;
-  min-height: calc(100vh);
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
   &__background-image {
     background: url("../../resources/img/splash_bg.png") no-repeat;
@@ -14,6 +17,38 @@
     right: 0;
     left: 0;
     position: absolute;
+  }
+
+  &__jump-link {
+    position: absolute;
+    bottom: 24px;
+    @include headline5;
+    color: $white;
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      margin-left: 12px;
+      width: 16px;
+      height: 16px;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+
+    > :first-child {
+      margin-right: 24px;
+    }
+
+    @include tabletWidth {
+      flex-direction: column;
+      > :first-child {
+        margin-bottom: 24px;
+        margin-right: 0;
+      }
+    }
   }
 
   &__fun-gradient {
@@ -61,6 +96,7 @@
     padding: 180px 0;
     position: relative;
     z-index: 1;
+
   }
 
   &__title {

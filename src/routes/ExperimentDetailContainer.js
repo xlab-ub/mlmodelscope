@@ -182,6 +182,7 @@ export default class ExperimentDetailContainer extends Component {
       if (storedInputs.indexOf(input) === -1)
         models.forEach(model => this.runTrial(model, input));
     });
+    this.setState({selectedInput: inputs[0]});
   }
   confirmDeleteModel = async () => {
     this.setState({trialIsDeleting: true});

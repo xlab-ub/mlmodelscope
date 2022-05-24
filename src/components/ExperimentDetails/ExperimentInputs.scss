@@ -58,6 +58,8 @@
     }
 
     &-active {
+      border: 2px solid $azulDarkest;
+
       &:after {
         transform: rotate(180deg);
         top: 40%;
@@ -78,6 +80,9 @@
     width: 100%;
     margin-top: 4px;
     box-shadow: 0px 0px 15px -2px #00000040;
+    border-top-left-radius: 5px;
+
+    border-top-right-radius: 5px;
 
   }
 
@@ -88,6 +93,14 @@
       svg {
         width: 24px;
         height: 24px;
+
+        rect {
+          fill: gray;
+        }
+
+        path {
+          fill: white;
+        }
       }
 
     }
@@ -101,7 +114,7 @@
 
 
       &:hover {
-        background: rgba($azul, 0.05);
+        background: rgba($azul, 0.15);
       }
 
       &-content {
@@ -114,10 +127,29 @@
 
 
       &-selected {
-        border: 3px solid $azul;
+        border: none;
+        background-color: $azulDarkest;
+
+        &:hover {
+          background: $azulDarkest;
+        }
+
+        .experiment-inputs__input-selector-btn-content {
+          color: $white;
+        }
 
         .experiment-inputs__input-selector-delete {
-          margin-right: 5px;
+          margin-right: 9px;
+
+          &-selected {
+            rect {
+              fill: $white;
+            }
+
+            path {
+              fill: $azulDarkest;
+            }
+          }
         }
       }
     }

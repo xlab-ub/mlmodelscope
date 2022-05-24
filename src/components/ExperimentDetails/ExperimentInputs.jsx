@@ -1,5 +1,5 @@
 import useBEMNaming from "../../common/useBEMNaming";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./ExperimentInputs.scss";
 import {ReactComponent as DeleteIcon} from "../../resources/icons/delete.svg";
 import Button from "../Buttons/Button";
@@ -9,11 +9,26 @@ export const ExperimentInputs = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const handlerRef = useRef(null);
+
+  const close = () => setIsOpen(false);
+
+  useEffect(() => {
+    function handleClick(event) {
+      if (handlerRef.current && !handlerRef.current.contains(event.target))
+        close();
+    }
+
+    document.addEventListener("mousedown", handleClick);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    }
+  }, [isOpen]);
 
   const selectedIndex = props.inputs.indexOf(props.selectedInput);
 
   return <div className={getBlock()}>
-    <div className={getElement("selection-area")}>
+    <div ref={handlerRef} className={getElement("selection-area")}>
 
       <button onClick={() => setIsOpen(!isOpen)}
               className={getElement(`selection-btn ${isOpen && "selection-btn-active"}`)}><img
@@ -30,7 +45,8 @@ export const ExperimentInputs = (props) => {
                 className={getElement("input-selector-img")} src={input}/>
               Input {idx + 1}
             </button>
-            <button onClick={() => props.showDeleteInputModal(input)} className={getElement("input-selector-delete")}>
+            <button onClick={() => props.showDeleteInputModal(input)}
+                    className={getElement(`input-selector-delete ${idx === selectedIndex && "input-selector-delete-selected"}`)}>
               <DeleteIcon/></button>
           </div>)}
           <div className={getElement("add-input-area")}>

@@ -12,10 +12,10 @@ export default function RemoveInputModal(props) {
     <h2 className={getElement("heading")}>
       You are about to remove this input
     </h2>
-    <p className={getElement("text")}>This will delete the input from this experiment.</p>
+    <p className={getElement("text")}>This will delete all outputs created from this input.</p>
     <div className={getElement('controls')}>
       <button className={getElement('cancel')} onClick={props.close}>
-        No, don't delete
+        No, don’t remove
       </button>
       <button className={getElement('confirm')} onClick={props.deleteInput}>
         Yes, remove
