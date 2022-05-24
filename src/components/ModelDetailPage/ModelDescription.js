@@ -27,7 +27,7 @@ const ModelDescription = (props) => {
   const [firstLink, ...restOfLinks] = [url.link1, url.link2].filter(link => link);
 
 
-  return <div className={getBlock()}>
+  return <div ref={props.jumpRef} className={getBlock()}>
     <h2 className={getElement("heading")}>More about this model</h2>
     <div className={getElement("divider")}/>
     <div className={getElement("content-wrapper")}>

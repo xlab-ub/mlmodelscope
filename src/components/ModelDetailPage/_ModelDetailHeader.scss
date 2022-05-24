@@ -1,7 +1,13 @@
+@import "src/App";
+
 .model-detail-header {
   $data-left-right-padding: 16px;
   background: white;
   padding-bottom: 32px;
+
+  &__jump-link {
+    color: $white;
+  }
 
   &__title-box {
     @include paddingGutters;

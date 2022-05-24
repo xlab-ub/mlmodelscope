@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {useRef} from "react";
 import ModelDetailHeader from "./ModelDetailHeader";
 import QuickInput from "../Experiment/QuickInput/QuickInput";
 import QuickOutput from "../Experiment/QuickOutput/QuickOutput";
@@ -18,15 +18,12 @@ import {
   SampleSegmentationInputs
 } from "../../helpers/sampleImages";
 
+const ModelDetailPage = (props) => {
+  const jumpRef = useRef();
 
-export default class ModelDetailPage extends Component {
-  static defaultProps = {
-    compare: () => {
-    },
-  }
 
-  getSampleInputs = () => {
-    switch (this.props.model?.output?.type || "") {
+  const getSampleInputs = () => {
+    switch (props.model?.output?.type || "") {
       case object_detection:
         return SampleObjectDetectionInputs;
       case image_enhancement:
@@ -40,30 +37,33 @@ export default class ModelDetailPage extends Component {
     }
   }
 
-  render() {
-    if (!this.props.model) return <></>
-
-    return (
-      <div className="model-detail-page">
-        <Header/>
-        <ModelDetailHeader model={this.props.model}/>
-        <div className="model-detail-page__content">
-          {this.renderContent()}
-        </div>
-        <ModelDescription model={this.props.model}/>
-      </div>
-    )
-  }
-
-  renderContent = () => {
-    if (this.props.trialOutput === undefined) {
-      return (<QuickInput model={this.props.model} sampleInputs={this.getSampleInputs()}
-                          onRunModelClicked={this.props.onRunModelClicked}/>);
+  const renderContent = () => {
+    if (props.trialOutput === undefined) {
+      return (<QuickInput model={props.model} sampleInputs={getSampleInputs()}
+                          onRunModelClicked={props.onRunModelClicked}/>);
     } else {
-      return (<QuickOutput input={this.props.trialOutput.inputs[0]}
-                           features={this.props.trialOutput.completed_at ? this.props.trialOutput.results.responses[0].features : null}
-                           onBackClicked={this.props.onBackToModelClicked} compare={this.props.compare}
-                           trialOutput={this.props.trialOutput}/>);
+      return (<QuickOutput input={props.trialOutput.inputs[0]}
+                           features={props.trialOutput.completed_at ? props.trialOutput.results.responses[0].features : null}
+                           onBackClicked={props.onBackToModelClicked} compare={props.compare}
+                           trialOutput={props.trialOutput}/>);
     }
   }
+
+
+  if (!props.model) return <></>
+
+  return (
+    <div className="model-detail-page">
+      <Header/>
+      <ModelDetailHeader jumpRef={jumpRef} model={props.model}/>
+      <div className="model-detail-page__content">
+        {renderContent()}
+      </div>
+      <ModelDescription jumpRef={jumpRef} model={props.model}/>
+    </div>
+  )
+
+
 }
+
+export default ModelDetailPage
