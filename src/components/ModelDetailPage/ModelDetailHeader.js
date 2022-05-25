@@ -47,7 +47,7 @@ export default function ModelDetailHeader(props) {
             </div>
           </dl>
           <p className={getElement("model-name")}>{model.name} Version {model.version}</p>
-          <p className={getElement("model-description")}>{model.description}</p>
+          <p className={getElement("model-description")}>{model.short_description}</p>
           <button className={getElement("jump-link")} onClick={jump}>
             Learn more about this model <Arrow
             className={getElement("jump-link-icon")}/></button>
@@ -59,7 +59,7 @@ export default function ModelDetailHeader(props) {
             <dd>
               <ModelTag type="task" content={task.name}/>
             </dd>
-            <dd className={getElement("task-description")}>{task.modelDescription}</dd>
+            <dd className={getElement("task-description")}>{task.description}</dd>
 
           </div>
           <div className={getElement("framework-box")}>

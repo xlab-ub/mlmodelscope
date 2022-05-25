@@ -18,8 +18,8 @@ const ModelDescription = (props) => {
   );
 
   const getDescription = () => {
-    if (props.model?.short_description) return props.model?.short_description;
     if (props.model?.description) return props.model?.description;
+    if (props.model?.short_description) return props.model?.short_description;
     return "";
   }
 
