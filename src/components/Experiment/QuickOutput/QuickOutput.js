@@ -61,17 +61,18 @@ export default class QuickOutput extends BEMComponent {
         case image_classification:
           return <>
             <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>
-            <ClassificationOutput features={this.props.features}/>
+            <ClassificationOutput features={this.props.features} trial={this.props.trialOutput}/>
           </>;
         case image_enhancement:
           return <>
             <ImageEnhancement trial={this.props.trialOutput}
+                              onBackClicked={this.props.onBackClicked}
                               feature={this.props.trialOutput.results.responses[0].features[0]}/>
           </>
         case object_detection:
-          return <ObjectDetection trial={this.props.trialOutput}/>
+          return <ObjectDetection onBackClicked={this.props.onBackClicked} trial={this.props.trialOutput}/>
         case semantic_segmentation:
-          return <SemanticSegmentation trial={this.props.trialOutput}/>
+          return <SemanticSegmentation onBackClicked={this.props.onBackClicked} trial={this.props.trialOutput}/>
         default:
           return <>
             <InputPreview input={this.props.input} onBackClicked={this.props.onBackClicked}/>

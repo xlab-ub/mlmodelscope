@@ -3,19 +3,16 @@ import useBEMNaming from "../../../../../common/useBEMNaming";
 import "./ImageEnhancement.scss";
 import SingleColumnImageOutput from "../_Common/components/SingleColumnImageOutput";
 import ImageEnhancementImage from "./ImageEnhancementImage";
-import {useHistory} from "react-router-dom";
 
 export default function ImageEnhancement(props) {
   const {getElement, getBlock} = useBEMNaming('image-enhancement');
-  const History = useHistory();
 
-  const goBack = () => History?.back() || null;
 
   return <div className={getBlock()}>
     <div className={getElement("input")}>
       <h3 className={getElement('title')}>Input Image</h3>
       <img className={getElement('image')} src={props.trial.inputs[0]}/>
-      <button className={getElement('back-button')} onClick={goBack}>Try a different image
+      <button className={getElement('back-button')} onClick={props.onBackClicked}>Try a different image
       </button>
     </div>
     <SingleColumnImageOutput

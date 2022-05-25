@@ -49,19 +49,17 @@ export default class SampleInputsTab extends BEMComponent {
   selectInput = (index) => {
 
     if (this.props.multiple) {
-      const selected = this.state.selectedIndex;
+      const selected = Array.from(this.state.selectedIndex);
       const url = this.props.sampleInputs[index];
       let storedIndex = selected.indexOf(url);
       if (storedIndex === -1) {
         selected.push(url);
-        this.props.addInput(url);
       } else {
-        this.props.removeInput(url);
-        selected.splice(index, 1);
+        selected.splice(storedIndex, 1);
       }
       this.setState({selectedIndex: selected});
       if (typeof (this.props.inputSelected) === 'function')
-        this.props.inputSelected(this.props.sampleInputs[index]);
+        this.props.inputSelected(selected);
     } else {
       this.setState({selectedIndex: [this.props.sampleInputs[index]]})
       if (typeof (this.props.inputSelected) === 'function')

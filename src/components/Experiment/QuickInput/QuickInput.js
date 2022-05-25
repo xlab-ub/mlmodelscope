@@ -90,7 +90,11 @@ export default class QuickInput extends BEMComponent {
     this.setState({selectedInputUrl: state});
   }
   removeInput = (url) => {
-    this.setState({selectedInputUrl: this.state.selectedInputUrl.filter(u => u !== url)});
+    let selected = Array.from(this.state.selectedInputUrl);
+    console.log(url, selected);
+    selected = selected.filter(u => u !== url);
+    console.log(url, selected);
+    this.setState({selectedInputUrl: selected});
   }
 
 
@@ -127,7 +131,8 @@ export default class QuickInput extends BEMComponent {
       <div key={index} className={this.element('tab', index)} role="tabpanel" aria-labelledby={`${tab.id}`}
            id={`${tab.id}-panel`}>
         <Component multiple={this.props.multiple ?? false} addInput={this.addInput} removeInput={this.removeInput}
-                   inputSelected={this.selectInput} task={this.props.model.output.type}  values={this.state.selectedInputUrl} {...tab.props} />
+                   inputSelected={this.selectInput} task={this.props.model.output.type}
+                   values={this.state.selectedInputUrl} {...tab.props} />
       </div>
     )
   }

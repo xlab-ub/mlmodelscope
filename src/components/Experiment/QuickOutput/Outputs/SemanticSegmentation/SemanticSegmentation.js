@@ -46,9 +46,9 @@ export default function SemanticSegmentation(props) {
       <SemanticSegmentationTable labels={usedLabels} hover={hover} labelToShow={labelToShow} categories={categories}/>
     </div>
     <div className={getElement("bottom-row")}>
-      <a href={"/test"} className={getElement("bottom-row-btn")}>
+      <button onClick={props.onBackClicked} className={getElement("bottom-row-btn")}>
         Try a different image
-      </a>
+      </button>
     </div>
   </div>
 }

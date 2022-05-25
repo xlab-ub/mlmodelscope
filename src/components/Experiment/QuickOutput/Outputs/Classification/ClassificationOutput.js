@@ -6,6 +6,7 @@ import PredictionExpander from "../../../../Common/PredictionExpander";
 import NoPredictions from "../_Common/components/NoPredictions";
 import Task from "../../../../../helpers/Task";
 import OutputDuration from "../_Common/components/OutputDuration";
+import DurationConverter from "../_Common/utils/DurationConverter";
 
 export default class ClassificationOutput extends BEMComponent {
   static defaultProps = {
@@ -46,7 +47,7 @@ export default class ClassificationOutput extends BEMComponent {
       <div className={this.block()}>
         <div className={this.element("title-row")}>
           <h3 className={this.element('title')}>Output</h3>
-          <OutputDuration duration={"500ms"}/>
+          <OutputDuration duration={DurationConverter(this.props.trialOutput.results.duration)}/>
 
         </div>
         <div className={this.element('subtitle')}>{task.outputText}</div>
