@@ -35,6 +35,16 @@ export default class ModelCard extends Component {
           <ModelTag type="task" content={task.name}/>
           <ModelTag type="framework" content={model.framework.name}/>
           {machineTags}
+          <ModelTag content={model.attributes.training_dataset}/>
+          {model.attributes.Top1 &&
+            <ModelTag content={"Top1: " + model.attributes.Top1}/>
+          }
+          {model.attributes.Top5 &&
+            <ModelTag content={"Top5: " + model.attributes.Top5}/>
+          }
+          {model.version &&
+            <ModelTag content={"Version: " + model.version}/>
+          }
         </div>
         <hr className="model-card__divider"/>
         {this.makeName()}
@@ -45,7 +55,7 @@ export default class ModelCard extends Component {
 
   makeName() {
     const model = this.props.model;
-    const text = `${model.name} Version ${model.version}`
+    const text = `${model.name}`
 
     if (this.props.actions === 'try') {
       return (
