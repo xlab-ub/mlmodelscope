@@ -82,7 +82,7 @@
   &__menu {
     align-self: flex-end;
     display: flex;
-    @include tabletWidth {
+    @include maxWidth(850px) {
       display: none;
     }
 
@@ -94,10 +94,10 @@
   &__responsive-menu-icon {
     display: none;
     align-self: flex-end;
-    @include tabletWidth {
+    @include maxWidth(850px) {
       display: block;
     }
-    @include tabletWidth {
+    @include maxWidth(850px) {
       width: 25px;
       height: 10px;
       padding: 12px;
@@ -256,7 +256,6 @@
     }
 
     &-expand {
-      border-left: 1px solid $electricGreen;
       padding-left: 26px;
       padding-right: 46px;
 
@@ -291,7 +290,7 @@
   }
 
   &__submenu-item {
-    background: $azulDark;
+    background: $white;
     border: none;
 
   }
@@ -307,7 +306,7 @@
   svg path {
     fill: $azul;
 
-    @include tabletWidth {
+    @include maxWidth(850px) {
       fill: $white;
     }
 
@@ -341,12 +340,21 @@
   }
 
   &__responsive-menu {
+    &-header {
+      background-color: $azul;
+      cursor: pointer;
 
+      &:hover {
+        background-color: $azulDark;
+
+
+      }
+    }
   }
 
   &__shown-menu {
     @include negativeMarginAndPaddingGutters();
-    @include tabletWidth {
+    @include maxWidth(850px) {
       margin-left: 0;
     }
     background: $white;
@@ -463,37 +471,171 @@
   }
 
   &__responsive-submenu-item {
-    background-color: $azulDark;
+    background-color: $white;
+    display: flex;
+    align-items: center;
     border-bottom: none;
+
+    &:last-child {
+      padding-bottom: 32px;
+    }
+
+    &:hover {
+      .header__library-link {
+        color: $purple;
+      }
+
+      svg path, .header__arrow-icon path {
+        fill: $purple;
+      }
+    }
+
+    .header__library-link {
+      color: $azul;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: $purple;
+
+        svg path {
+          fill: $purple;
+        }
+
+        .header__arrow-icon path {
+          fill: $purple;
+        }
+      }
+    }
+
+    svg {
+      path {
+        fill: $azul;
+      }
+    }
+
+  }
+
+  &__submenu-icon {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__submenu-header {
+    background-color: $white;
+    @include paddingGutters;
+    @include headline4;
+    color: $azulDarkest;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
   &__compare-models {
+    position: relative;
+
+    &-title {
+      @include headline5;
+      color: $azulDarkest;
+
+    }
+
     &-btn {
       border: 2px solid $white;
       background-color: $azul;
       color: $white;
       border-radius: 30px;
-      padding: 6px 15px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 12px;
+      margin-left: 32px;
+      @include headline6;
+      transition: 0.25s;
+
+      &-active {
+        background-color: $white;
+        color: $azul;
+        border-color: $azul;
+      }
 
       &-icon {
         width: 12px;
         height: 12px;
         margin-left: 8px;
+        transition: 0.25s;
 
         path {
           fill: white !important;
 
         }
+
+        &-active {
+          path {
+            fill: $azul !important;
+
+          }
+
+          transform: rotate(180deg);
+        }
       }
     }
 
+    &-container {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: clamp(400px, 30vw, 600px);
+      background-color: $white;
+      border: 2px solid $skyBlue;
+      border-radius: 10px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-next {
+      @include primaryButtonWithIcon(center, "arrow-right-white.svg");
+      @include headline6;
+      margin-top: 24px;
+      padding: 12px 24px;
+      align-self: flex-end;
+      text-decoration: none;
+    }
+
+    &-tasks {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
     &-task {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 2px solid $azul;
+      color: $azul;
+      display: flex;
+      align-items: center;
+      margin-right: 12px;
+      margin-top: 12px;
+      transition: 0.25s;
+      @include headline6;
 
       &-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+
+        path {
+          fill: $azul !important;
+        }
+      }
+
+      &:hover, &-selected {
+        background-color: $azul;
+        color: $white;
+
         path {
           fill: $white !important;
         }

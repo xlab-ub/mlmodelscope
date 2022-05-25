@@ -1,6 +1,22 @@
 @import "src/App";
 
 .output-duration {
+  background-color: $smokeDark;
+  border-radius: 20px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+
+    path {
+      fill: $charcoalLightest;
+    }
+  }
+
   &__title {
 
   }

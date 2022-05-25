@@ -104,13 +104,18 @@ $duration: 0.5s;
   }
 }
 
-@mixin primaryButtonWithIcon($position) {
+@mixin primaryButtonWithIcon($position, $icon: "arrow-right.svg") {
   @include primaryButton;
-  @include buttonWithIconAfter;
+  @include buttonWithIconAfter($icon);
 
   &:#{$position} {
-    @content
+    @content;
+
+    path {
+      fill: #fff;
+    }
   }
+
 }
 
 @mixin primaryButtonWithIconBefore($icon) {

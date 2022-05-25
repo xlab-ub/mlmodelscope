@@ -18,6 +18,8 @@ export default function TrialOutputWrapper(props) {
 
 
   const getContent = () => {
+    const hasNoInputs = props.trial.inputs.length === 0 || props.trial.inputs[0] === "";
+
     if (props.trial.completed_at) {
       switch (props.trial.model.output.type) {
         case image_classification:
@@ -31,6 +33,11 @@ export default function TrialOutputWrapper(props) {
       }
 
       return <></>
+
+    } else if (hasNoInputs) {
+      return <div className={"trial-output-wrapper__no-input"}>
+        <p className={"trial-output-wrapper__no-input-text"}>Add an input to see predictions</p>
+      </div>
     } else {
       return (
         <div className="trial-output-wrapper__loading">

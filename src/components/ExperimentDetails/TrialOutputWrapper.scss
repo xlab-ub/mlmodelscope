@@ -21,6 +21,19 @@
     animation: closeCard 0.5s forwards;
   }
 
+  &__no-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+
+    &-text {
+      @include headline3;
+      color: $charcoalLightest;
+    }
+  }
+
   &__title-box {
     background: $almaMater;
     border-radius: 5px 5px 0 0;

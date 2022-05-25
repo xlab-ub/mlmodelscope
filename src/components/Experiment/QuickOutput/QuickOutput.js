@@ -38,6 +38,11 @@ export default class QuickOutput extends BEMComponent {
           {this.makeOutput()}
         </div>
         <div className={this.element('footer')}>
+          {this.props.showLearnMoreLink &&
+            <a href={`/model/${this.props.trialOutput?.model?.id}`} className={this.element('learn-more-link')}
+               onClick={this.props.compare}>Learn more about this model
+            </a>
+          }
           <button className={this.element('compare-button')} onClick={this.props.compare}>Compare with other models
           </button>
         </div>

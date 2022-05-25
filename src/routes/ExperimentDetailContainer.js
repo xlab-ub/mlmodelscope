@@ -173,16 +173,27 @@ export default class ExperimentDetailContainer extends Component {
       })
     }
   }
-  addInput = (input) => {
+  hasNoInputs = () => {
+    const inputs = this.getInputs();
+    return inputs.length === 0 || inputs[0] === "";
+  }
+
+  addInput = async (input) => {
+
+
     const models = this.getUniqueModels();
     const storedInputs = this.getInputs();
     let inputs = Array.isArray(input) ? input : [input];
-
+    let modelPromises = [];
     inputs.forEach(input => {
       if (storedInputs.indexOf(input) === -1)
-        models.forEach(model => this.runTrial(model, input));
+        modelPromises = models.map(model => this.runTrial(model, input));
     });
+    await Promise.all(modelPromises);
     this.setState({selectedInput: inputs[0]});
+
+    if (this.hasNoInputs())
+      await this.removeTrials((trial) => !trial.inputs || trial.inputs[0] === "");
   }
   confirmDeleteModel = async () => {
     this.setState({trialIsDeleting: true});

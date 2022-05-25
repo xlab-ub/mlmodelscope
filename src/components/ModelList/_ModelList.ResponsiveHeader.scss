@@ -28,7 +28,13 @@
 
       &-title {
         margin-bottom: 0;
-        font-weight: 700;
+        @include labelSmall;
+        color: $charcoalLightest;
+
+      }
+
+      &-values {
+        @include bodySmall;
         color: $charcoalLightest;
       }
 

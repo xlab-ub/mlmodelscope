@@ -9,15 +9,20 @@ import SelectedModelsBanner from "./SelectedModelsBanner";
 import Header from "../Header/Header";
 import {ModelListResponsiveHeader} from "./ModelList.ResponsiveHeader";
 import {ModelListResponsiveFilterContent} from "./ModelList.ResponsiveFilterContent";
+import TaskBanner from "./TaskBanner";
 
 export default class ModelList extends Component {
   static defaultProps = {
     add: false,
     selectedModels: [],
-    selectModel: () => {},
-    deselectModel: () => {},
-    clearModels: () => {},
-    runModels: () => {},
+    selectModel: () => {
+    },
+    deselectModel: () => {
+    },
+    clearModels: () => {
+    },
+    runModels: () => {
+    },
   }
 
   constructor(props) {
@@ -28,6 +33,7 @@ export default class ModelList extends Component {
     }
     this.toggleShowFilterMenu = this.toggleShowFilterMenu.bind(this);
   }
+
   toggleShowFilterMenu() {
     this.setState({showFilterMenu: !this.state.showFilterMenu});
   }
@@ -45,12 +51,14 @@ export default class ModelList extends Component {
       <div className="model-list-page">
         <Header/>
         {this.makePageHeader()}
+        {this.props.hideTaskFilters && <TaskBanner task={this.props.task}/>}
 
         <ModelListResponsiveFilterContent
           showFilterMenu={this.state.showFilterMenu}
           closeFilter={this.toggleShowFilterMenu}
           filterGroups={this.props.filterGroups}
           toggleFilter={this.props.toggleFilter}
+          hideTasks={this.props.hideTaskFilters}
         />
         <div
           aria-hidden={this.state.showFilterMenu}
@@ -72,7 +80,7 @@ export default class ModelList extends Component {
             </div>
             <div className="model-list-page__filters">
               <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups}
-                           toggleFilter={this.props.toggleFilter}/>
+                           toggleFilter={this.props.toggleFilter} hideTasks={this.props.hideTaskFilters}/>
             </div>
           </div>
           <div className="model-list-page__list">
@@ -88,16 +96,19 @@ export default class ModelList extends Component {
   }
 
   makePageHeader() {
-    if (this.props.add) {
-      return (<ExperimentDetailHeader title={'Select models to add to your experiment'} />);
+    if (this.props.hideTaskFilters)
+      return <ExperimentDetailHeader title={"Select models for your comparison"}/>
+    else if (this.props.add) {
+      return (<ExperimentDetailHeader title={'Select models to add to your experiment'}/>);
     } else {
-      return (<ModelHeader />);
+      return (<ModelHeader/>);
     }
   }
 
   makeSelectedModelsBanner() {
     if (this.props.add) {
-      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel} clearModels={this.props.clearModels} runModels={this.props.runModels} />);
+      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel}
+                                    clearModels={this.props.clearModels} runModels={this.props.runModels}/>);
     }
   }
 }

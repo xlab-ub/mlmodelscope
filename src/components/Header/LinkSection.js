@@ -14,7 +14,7 @@ export function LinkSection({getElement, isResponsiveMenu, link, display, childr
   }
 
   useEffect(() => {
-    if(ref.current)
+    if (ref.current)
       setHeight(isOpen ? ref.current.scrollHeight : 0);
   }, [isOpen])
 
@@ -34,13 +34,16 @@ export function LinkSection({getElement, isResponsiveMenu, link, display, childr
   }
 
 
-
   if (isResponsiveMenu)
     return <>
-      <div className={getElement("responsive-menu-section")}>
-        <div className={getElement("responsive-menu-item")}>
+      <div onClick={() => {
+        if (!link) toggleSection()
+      }
+      } className={getElement("responsive-menu-section responsive-menu-header")}>
+        <div className={getElement("responsive-menu-item ")}>
           <a className={getElement("library-link")} href={link}>{display}</a>
-          <RightArrowIcon className={getElement("arrow-icon")}/>
+          {link &&
+            <RightArrowIcon className={getElement("arrow-icon")}/>}
         </div>
         <button onClick={toggleSection} className={getButtonClassName()}>
           <ChevronDown fill={"white"}/>

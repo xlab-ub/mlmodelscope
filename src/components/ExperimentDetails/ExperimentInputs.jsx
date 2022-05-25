@@ -27,6 +27,15 @@ export const ExperimentInputs = (props) => {
 
   const selectedIndex = props.inputs.indexOf(props.selectedInput);
 
+  const hasNoInputs = props.inputs.length === 0 || props.inputs[0] === "";
+
+  if (hasNoInputs)
+    return <div className={getElement("ghost-card")}>
+      <button onClick={props.showAddInputModal} className={getElement("add-input-area-btn")}>
+        Add Input
+      </button>
+    </div>
+
   return <div className={getBlock()}>
     <div ref={handlerRef} className={getElement("selection-area")}>
 

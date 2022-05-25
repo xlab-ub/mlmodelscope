@@ -6,10 +6,13 @@ export function ModelListResponsiveHeader(props) {
   const ActiveFilters = () => <div className={"model-list-page__responsive-header-active-filters"}>
     <div className={"model-list-page__responsive-header-active-filters-row"}>
       <p className={"model-list-page__responsive-header-active-filters-title"}>Active Filters:</p>
-      <button onClick={props.clearFilters} className={"model-list-page__responsive-header-active-filters-clear"}>Clear filters</button>
+      <button onClick={props.clearFilters} className={"model-list-page__responsive-header-active-filters-clear"}>Clear
+        filters
+      </button>
     </div>
 
-    <p>{props.activeFilters.map(filter => filter.label).join(", ")}</p>
+    <p
+      className={"model-list-page__responsive-header-active-filters-values"}>{props.activeFilters.map(filter => filter.label).join(", ")}</p>
   </div>
 
   const Sort = () => <div className="model-list-page__sort-container">
@@ -17,10 +20,10 @@ export function ModelListResponsiveHeader(props) {
                 updateSortByNameIsAscending={props.updateSortByNameIsAscending}/>
   </div>
 
-  const FilterButton = () => <button className={"model-list-page__responsive-header-filter-container-btn"} onClick={props.openFilter}>
+  const FilterButton = () => <button className={"model-list-page__responsive-header-filter-container-btn"}
+                                     onClick={props.openFilter}>
     Filter Models By ({props.activeFilters.length})
   </button>
-
 
 
   return <div className={"model-list-page__responsive-header"}>

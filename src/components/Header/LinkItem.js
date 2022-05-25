@@ -23,6 +23,7 @@ export function LinkItem({isResponsiveMenu, getElement, link, display, isSubMenu
 
   return <div className={getWrapperClass()}>
     <a className={getElement("library-link")} href={link}>{display}</a>
-    <RightArrowIcon className={getElement("arrow-icon")}/>
+    {link &&
+      <RightArrowIcon className={getElement("arrow-icon")}/>}
   </div>
 }

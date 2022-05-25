@@ -3,6 +3,7 @@ import ModelDetailContainer from "../routes/ModelDetailContainer";
 import ModelListContainer from "../routes/ModelListContainer";
 import ExperimentDetailContainer from "../routes/ExperimentDetailContainer";
 import AddModelListContainer from "../routes/AddModelListContainer";
+import NewExperimentContainer from "../routes/NewExperimentContainer";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: "/experiment/:experimentId/add-models",
     component: AddModelListContainer,
     exact: false,
+  },
+  {
+    path: "/experiment/new",
+    component: NewExperimentContainer,
+    exact: false
   },
   {
     path: "/experiment/:experimentId",

@@ -1,6 +1,7 @@
 import React from "react";
 import {LinkItem} from "./LinkItem";
 import {LinkSection} from "./LinkSection";
+import Task from "../../helpers/Task";
 
 export function HeaderMenu(props) {
 
@@ -23,14 +24,21 @@ export function HeaderMenu(props) {
         </LinkSection>
       </>);
 
+  const tasks = Task.getStaticTasks();
 
   return (
     <>
+
+      <LinkSection display={"Compare models"} {...props}>
+        <p className={props.getElement("submenu-header")}>Choose a task to use for your comparison</p>
+        {tasks.map(task => <LinkItem key={task.id} link={`/experiment/new?task=${task.name}`} isSubMenu display={<>
+          <task.Icon className={props.getElement("submenu-icon")}/>
+          {task.name}</>} {...props}/>)}
+      </LinkSection>
       <LinkItem
         link={"/models"}
         display={"Browse model library"}
         {...props}
       />
-      <LinkItem callback={props.headerCallback} display={"Compare models"} {...props} />
     </>);
 }

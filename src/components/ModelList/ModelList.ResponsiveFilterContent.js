@@ -26,7 +26,7 @@ export function ModelListResponsiveFilterContent(props: { showFilterMenu: boolea
       </button>
     </div>
     <div className={"model-list-page__filter-content-body"}>
-      <FilterPanel className="model-list-page__filters" filterGroups={props.filterGroups}
+      <FilterPanel hideTasks={props.hideTasks} className="model-list-page__filters" filterGroups={props.filterGroups}
                    toggleFilter={props.toggleFilter} hidePanelHeader/>
     </div>
   </div>;

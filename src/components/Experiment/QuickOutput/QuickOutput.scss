@@ -7,6 +7,16 @@
     margin-bottom: 16px;
   }
 
+  &__learn-more-link {
+    @include linkLarge;
+    margin-right: 16px;
+    color: $azul;
+
+    &:hover {
+      color: $purple;
+    }
+  }
+
   &__title {
     align-self: flex-end;
   }
@@ -35,11 +45,20 @@
   &__footer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    margin-top: 42px;
+
+    @include maxWidth(900px) {
+      flex-direction: column-reverse;
+    }
   }
 
   &__compare-button {
     @include primaryButton();
     @include buttonWithIconAfter("../../resources/icons/arrow-right-white.svg");
-    margin-top: 42px;
+
+    @include maxWidth(900px) {
+      margin-bottom: 24px;
+    }
   }
 }

@@ -14,10 +14,20 @@ export default function Header(props) {
     getElement,
     getHeaderClassNames,
     toggleComparison,
-    showModelComparison
+    showModelComparison,
+    setSelectedTask,
+    selectedTask,
+    containerRef,
+    btnRef
   } = useHeaderControl(props);
 
   const tasks = Task.getStaticTasks();
+
+  const getExperimentLink = () => {
+    let task = Task.getStaticTask(selectedTask);
+    return `/experiment/new?task=${task.name}`;
+  }
+
 
   return (
     <>
@@ -40,17 +50,25 @@ export default function Header(props) {
             <LinkItem {...props} getElement={getElement} display={"Browse model library"} link={"/models"}/>
             <div className={getElement("compare-models")}>
 
-              <button onClick={toggleComparison} className={getElement("compare-models-btn")}>
-                Compare models <ChevDown className={getElement("compare-models-btn-icon")}/>
+              <button ref={btnRef} onClick={toggleComparison}
+                      className={getElement(`compare-models-btn ${showModelComparison && "compare-models-btn-active"}`)}>
+                Compare models <ChevDown
+                className={getElement(`compare-models-btn-icon ${showModelComparison && "compare-models-btn-icon-active"}`)}/>
               </button>
-              <div hidden={!showModelComparison} className={getElement("compare-models-container")}>
+              <div ref={containerRef} style={{display: showModelComparison ? "flex" : "none"}}
+                   hidden={!showModelComparison}
+                   className={getElement("compare-models-container")}>
                 <p className={getElement("compare-models-title")}>Choose task to use for your comparison</p>
+                <div className={getElement("compare-models-tasks")}>
+                  {tasks.map(task => <button onClick={() => setSelectedTask(task.id)}
+                                             className={getElement(`compare-models-task ${task.id === selectedTask && "compare-models-task-selected"}`)}>
+                    <task.Icon className={getElement("compare-models-task-icon")}/>
+                    {task.name} </button>)}
+                </div>
 
-                {tasks.map(task => <button
-                  className={getElement("compare-models-task")}>
-                  <task.Icon className={getElement("compare-models-task-icon")}/>
-                  {task.name} </button>)}
-
+                <a href={getExperimentLink()} className={getElement("compare-models-next")}>
+                  Next
+                </a>
               </div>
             </div>
 

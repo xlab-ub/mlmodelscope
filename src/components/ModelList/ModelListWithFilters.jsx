@@ -58,7 +58,7 @@ export default class ModelListWithFilters extends Component {
     cur.forEach((group, i) => {
       let prevGroup = prev[i];
       group.options.forEach(option => {
-        let prevOption = prevGroup.options.find(opt => opt.name === option.name);
+        let prevOption = prevGroup?.options.find(opt => opt.name === option.name);
         if (prevOption)
           option.isActive = prevOption.isActive;
       })
@@ -210,9 +210,16 @@ export default class ModelListWithFilters extends Component {
 
   clearFilters() {
     let filterGroups = clone(this.state.filterGroups);
+
+    const isTask = (filterGroup) => filterGroup.header === "Tasks";
+
+
     filterGroups = filterGroups.map(filterGroup => ({
       ...filterGroup,
-      options: filterGroup.options.map(opt => ({...opt, isActive: false}))
+      options: filterGroup.options.map(opt => ({
+        ...opt,
+        isActive: isTask(filterGroup) && this.props.hideTaskFilters ? opt.isActive : false
+      }))
     }));
 
     this.setState({filterGroups: filterGroups});
@@ -279,6 +286,8 @@ export default class ModelListWithFilters extends Component {
                       clearModels={this.clearModels}
                       runModels={this.props.runModels}
                       add={this.props.add}
+                      hideTaskFilters={this.props.hideTaskFilters}
+                      task={this.props.task}
                       clearFilters={this.clearFilters}/>;
   }
 }

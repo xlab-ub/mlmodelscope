@@ -25,6 +25,7 @@ export function TaskCard(props) {
       compare={onCompare}
       trialOutput={trial}
       hideHeader
+      showLearnMoreLink
     />
   }
 
