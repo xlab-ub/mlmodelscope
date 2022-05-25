@@ -2,6 +2,10 @@
 
 .home-page-section {
   margin-top: 160px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+
 
   &__title {
     @include billboardSmall;
@@ -11,7 +15,7 @@
 
   &__subtitle {
     margin-top: 16px;
-    @include body;
+    @include bodyLarge;
     color: $charcoalLightest;
     text-align: center;
   }

@@ -1,14 +1,22 @@
 @import "../../App";
 
 .home-page-task-controls {
-  $selectBreak: 1000px;
+  $selectBreak: 1300px;
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-bottom: 48px;
 
+  &__task-header {
+    @include label;
+    color: $richNavy;
+
+    margin-bottom: 12px;
+  }
+
   &__btn-area {
     display: flex;
+    align-items: center;
 
     @include maxWidth($selectBreak) {
       display: none;
@@ -17,6 +25,7 @@
       border: 2px solid $azul;
       border-radius: 8px;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     &-shown {

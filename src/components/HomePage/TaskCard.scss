@@ -1,6 +1,21 @@
 @import "../../App";
 
 .example-task-card {
+  &__model-title {
+    @include label;
+    color: $richNavy;
+    margin-bottom: 12px;
+  }
+
+  &__model-link {
+    @include linkLarge;
+    color: $azul;
+    margin-bottom: 12px;
+
+    &:hover {
+      color: $purple;
+    }
+  }
 
   .quick-input {
     box-shadow: none;
@@ -12,5 +27,7 @@
       margin-top: 0;
       background-color: $smoke;
     }
+
+
   }
 }

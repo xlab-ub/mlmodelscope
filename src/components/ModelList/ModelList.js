@@ -96,11 +96,9 @@ export default class ModelList extends Component {
   }
 
   makePageHeader() {
-    if (this.props.hideTaskFilters)
+    if (this.props.add)
       return <ExperimentDetailHeader title={"Select models for your comparison"}/>
-    else if (this.props.add) {
-      return (<ExperimentDetailHeader title={'Select models to add to your experiment'}/>);
-    } else {
+    else {
       return (<ModelHeader/>);
     }
   }

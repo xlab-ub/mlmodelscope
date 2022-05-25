@@ -47,7 +47,7 @@ export default class UploadInputsTab extends BEMComponent {
 
   onComplete = (result) => {
     if (typeof (this.props.inputSelected) === 'function')
-      this.props.inputSelected(result.successful.map(x => x.uploadURL));
+      this.props.inputSelected([...this.props.values || [], ...result.successful.map(x => x.uploadURL)]);
   }
 
   componentDidMount() {

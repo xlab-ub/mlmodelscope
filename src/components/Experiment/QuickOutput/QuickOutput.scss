@@ -56,7 +56,7 @@
   &__compare-button {
     @include primaryButton();
     @include buttonWithIconAfter("../../resources/icons/arrow-right-white.svg");
-
+    text-decoration: none;
     @include maxWidth(900px) {
       margin-bottom: 24px;
     }

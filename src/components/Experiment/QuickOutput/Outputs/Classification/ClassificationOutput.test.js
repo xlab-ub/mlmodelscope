@@ -4,14 +4,15 @@ import {shallow} from 'enzyme';
 import ClassificationOutput from './ClassificationOutput';
 import TopPrediction from "./TopPrediction";
 import PredictionExpander from "../../../../Common/PredictionExpander";
-import TestFeatures from "./Features";
+import TestFeatures, {TestImageClassificationResult} from "./Features";
 
 describe('Classification Output Component', () => {
   describe('Renders', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<ClassificationOutput features={TestFeatures} modelId={1}/>);
+      wrapper = shallow(<ClassificationOutput trial={TestImageClassificationResult} features={TestFeatures}
+                                              modelId={1}/>);
     });
 
     it('with a container div', () => {
@@ -20,9 +21,10 @@ describe('Classification Output Component', () => {
     });
 
     it('with a title', () => {
-      expect(wrapper.childAt(0).type()).toBe('h3');
-      expect(wrapper.childAt(0).prop('className')).toBe('classification-output__title');
-      expect(wrapper.childAt(0).text()).toBe('Output');
+      const titleElement = wrapper.childAt(0).childAt(0);
+      expect(titleElement.type()).toBe('h3');
+      expect(titleElement.prop('className')).toBe('classification-output__title');
+      expect(titleElement.text()).toBe('Output');
     });
 
     it('with a subtitle', () => {

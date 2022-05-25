@@ -47,7 +47,7 @@ export default class ClassificationOutput extends BEMComponent {
       <div className={this.block()}>
         <div className={this.element("title-row")}>
           <h3 className={this.element('title')}>Output</h3>
-          <OutputDuration duration={DurationConverter(this.props.trialOutput.results.duration)}/>
+          <OutputDuration duration={DurationConverter(this.props.trial.results.duration)}/>
 
         </div>
         <div className={this.element('subtitle')}>{task.outputText}</div>

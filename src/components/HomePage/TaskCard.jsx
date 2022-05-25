@@ -6,7 +6,7 @@ import "./TaskCard.scss";
 
 
 export function TaskCard(props) {
-  const {getBlock} = useBEMNaming("example-task-card");
+  const {getBlock, getElement} = useBEMNaming("example-task-card");
 
   const {defaultModel, runTrial, sampleInputs, trial, onBackClicked, onCompare} = props;
 
@@ -30,6 +30,7 @@ export function TaskCard(props) {
   }
 
   return <div className={getBlock()}>
+
     {getContent()}
   </div>
 }

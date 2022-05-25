@@ -23,6 +23,7 @@ export function TaskControls(props) {
 
 
   return <div className={getBlock()}>
+    <p className={getElement("task-header")}>Choose a Task:</p>
 
     <button onClick={() => setShowItems(!showItems)}
             className={getElement(`toggle-btn ${showItems && "toggle-btn-active"}`)}>
