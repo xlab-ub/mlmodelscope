@@ -213,8 +213,15 @@ export default class ExperimentDetailContainer extends Component {
     this.setState({trialIsDeleting: true});
     setTimeout(async () => {
       const trial = this.state.trialToDelete;
+      const input = trial.inputs[0];
       try {
-        await this.removeTrials((t) => t.inputs[0] === trial.inputs[0]);
+        await this.removeTrials((t) => t.inputs[0] === input);
+        if (this.state.selectedInput === input) {
+          let firstRemainingInput = this.state.trials.filter(t => t.inputs[0] !== input)[0].inputs[0];
+          this.setState({
+            selectedInput: firstRemainingInput
+          })
+        }
       } catch (err) {
         console.error(err);
         this.setState({
