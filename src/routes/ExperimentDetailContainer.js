@@ -1,26 +1,9 @@
 import React, {Component} from "react";
 import ExperimentDetailPage from "../components/ExperimentDetails/ExperimentDetailPage";
 import GetApiHelper from "../helpers/api";
-import useExperimentDetailControl, {
-  experimentDetailsPages
-} from "../components/ExperimentDetails/hooks/useExperimentDetailControl";
-import AddModelListContainer from "./AddModelListContainer";
 import Task from "../helpers/Task";
 import {image_classification} from "../helpers/TaskIDs";
 
-export function ExperimentDetailsContainer2() {
-
-  const childProps = useExperimentDetailControl();
-
-  switch (childProps.currentPage) {
-    case experimentDetailsPages.ComparisonPage:
-      return <ExperimentDetailPage {...childProps} />
-    case experimentDetailsPages.AddModelPage:
-      return <AddModelListContainer {...childProps} match={{params: {experimentId: childProps.experiment.id}}}/>
-  }
-
-  return <ExperimentDetailPage {...childProps} />
-}
 
 export const ExperimentDetailModalTypes = {
   none: "NONE",
@@ -35,10 +18,8 @@ export default class ExperimentDetailContainer extends Component {
   constructor(props) {
     super(props);
 
-    let {experimentId} = this.props.match.params;
     this.api = GetApiHelper();
 
-    this.getExperiment(experimentId);
 
     this.state = {
       experiment: null,
@@ -56,6 +37,10 @@ export default class ExperimentDetailContainer extends Component {
     if (this.state.trials && this.state.trials.length > 0)
       return Task.getStaticTask(this.state.trials[0].model.output.type);
     return Task.getStaticTask(image_classification);
+  }
+
+  componentDidMount() {
+    this.getExperiment();
   }
 
   componentWillUnmount() {
@@ -179,11 +164,16 @@ export default class ExperimentDetailContainer extends Component {
   }
 
   addInput = async (input) => {
+    let inputs = Array.isArray(input) ? input : [input];
+
+    if (this.props.addInput) {
+      this.props.addInput(inputs);
+      return;
+    }
 
 
     const models = this.getUniqueModels();
     const storedInputs = this.getInputs();
-    let inputs = Array.isArray(input) ? input : [input];
     let modelPromises = [];
     inputs.forEach(input => {
       if (storedInputs.indexOf(input) === -1)
@@ -239,13 +229,22 @@ export default class ExperimentDetailContainer extends Component {
       modalType: ExperimentDetailModalTypes.none
     });
   }
-  getExperiment = async (experimentId) => {
-    this.experimentSubscription = this.api.getExperiment(experimentId).subscribe({
-      next: experiment => {
-        this.getTrials(experiment);
-        this.setState({experiment});
-      }
-    });
+
+  getExperiment = async () => {
+    if (this.props.experiment) {
+      this.setState({
+        trials: this.props.experiment.trials,
+        experiment: {id: this.props.experiment.id}
+      })
+    } else {
+      let {experimentId} = this.props.match.params;
+      this.experimentSubscription = this.api.getExperiment(experimentId).subscribe({
+        next: experiment => {
+          this.getTrials(experiment);
+          this.setState({experiment});
+        }
+      });
+    }
   }
 
   removeTrials = async (predicate) => {
