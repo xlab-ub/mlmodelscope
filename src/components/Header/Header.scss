@@ -553,10 +553,21 @@
       @include headline6;
       transition: 0.25s;
 
+      &:hover {
+        border-color: $electricGreen;
+        color: $electricGreen;
+        background-color: $azulDark;
+      }
+
       &-active {
         background-color: $white;
         color: $azul;
         border-color: $azul;
+
+        &:hover {
+          background-color: $white;
+          color: $purple;
+        }
       }
 
       &-icon {

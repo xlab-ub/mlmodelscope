@@ -40,6 +40,8 @@ export function ModelListResponsiveHeader(props) {
         :
         <div className={"model-list-page__responsive-header-filter-container-row"}>
           <FilterButton/>
+          <div className={"model-list-page__responsive-header-filter-container-placeholder"}></div>
+
           <Sort/>
         </div>
       }

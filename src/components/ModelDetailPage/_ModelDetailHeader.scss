@@ -7,12 +7,20 @@
 
   &__jump-link {
     margin-top: 24px;
-    @include body;
+    @include bodySmall;
     color: $white;
     display: flex;
     align-items: center;
     text-decoration: underline;
+    transition: 0.25s;
 
+    &:hover {
+      color: $electricGreen;
+
+      .model-detail-header__jump-link-icon {
+        animation: 750ms bounceUpAndRotate cubic-bezier(1, -0.13, .32, .89);
+      }
+    }
 
     &-icon {
       width: 16px;

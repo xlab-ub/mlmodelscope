@@ -20,3 +20,26 @@
     transform: rotate(359deg);
   }
 }
+
+@keyframes bounceUpAndRotate {
+  0% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(90deg) translateX(-12px);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes expand {
+  0% {
+  }
+  50% {
+
+  }
+  100% {
+    transform: scale(105%);
+  }
+}

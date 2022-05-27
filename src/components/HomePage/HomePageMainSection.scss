@@ -1,5 +1,6 @@
 @import "../../App";
 
+
 .home-page-main {
   @include paddingGutters;
   position: relative;
@@ -27,12 +28,23 @@
     color: $white;
     display: flex;
     align-items: center;
+    transition: 0.25s;
+
+    &:hover {
+      color: $electricGreen;
+
+      .home-page-main__jump-link-icon {
+        animation: 750ms bounceUpAndRotate cubic-bezier(1, -0.13, .32, .89);
+      }
+    }
 
     &-icon {
       margin-left: 8px;
       width: 16px;
       height: 16px;
       transform: rotate(90deg);
+      transition: 0.25s;
+
 
       path {
         fill: $electricGreen;
@@ -109,7 +121,7 @@
     color: white;
     margin-bottom: 0;
     text-align: center;
-    
+
   }
 
   &__divider {

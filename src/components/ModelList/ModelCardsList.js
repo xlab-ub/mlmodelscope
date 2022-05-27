@@ -1,16 +1,22 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ModelCard from "./ModelCard";
 
-export default class ModelCardsList extends Component{
+export default class ModelCardsList extends Component {
   static defaultProps = {
     selectedModels: [],
-    selectModel: () => {},
-    deselectModel: () => {},
+    selectModel: () => {
+    },
+    deselectModel: () => {
+    },
   }
 
   modelCards = () => {
     let modelKey = 0;
-    return this.props.models.map(model => <ModelCard key={modelKey++} model={model} actions={this.props.add ? 'add' : 'try'} isAdded={this.selectedModelsInclude(model)} selectModel={() => this.props.selectModel(model)} deselectModel={() => this.props.deselectModel(model)} />);
+    return this.props.models.map(model => <ModelCard key={modelKey++} model={model}
+                                                     actions={this.props.add ? 'add' : 'try'}
+                                                     isAdded={this.selectedModelsInclude(model)}
+                                                     selectModel={() => this.props.selectModel(model)}
+                                                     deselectModel={() => this.props.deselectModel(model)}/>);
   }
 
   selectedModelsInclude(model) {
@@ -18,8 +24,8 @@ export default class ModelCardsList extends Component{
   }
 
   render() {
-    return(
-      <div>
+    return (
+      <div className={"model-card-list"}>
         {this.modelCards()}
       </div>
     );

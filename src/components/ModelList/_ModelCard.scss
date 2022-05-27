@@ -4,10 +4,47 @@
   background: $white;
   border: 2px solid $white;
   border-radius: 5px;
-  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
-  margin-bottom: 24px;
+  box-shadow: 0 0 12px -2px rgba(0, 0, 0, 0.15);
   padding: 24px;
+  padding-top: 36px;
   overflow-wrap: break-word;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  position: relative;
+  cursor: pointer;
+
+
+  &:hover {
+    transform: scale(103%);
+
+
+  }
+
+  &__icon {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+
+    border: 1.5px solid $azul;
+    border-radius: 50px;
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+
+
+    path {
+      fill: $richNavy;
+    }
+
+    &-minus {
+      top: 8px;
+      background-color: $azul;
+
+      path {
+        fill: $white;
+      }
+    }
+  }
 
 
   &--active {
@@ -17,7 +54,7 @@
   &__tags-box {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-top: 16px;
     gap: 8px;
   }
 
@@ -31,6 +68,7 @@
     color: $almaMater;
     transition: color .3s;
     text-align: left;
+    overflow-wrap: anywhere;
 
   }
 
@@ -50,6 +88,7 @@
     align-items: center;
     display: flex;
     justify-content: flex-end;
+    margin-top: 24px;
 
     @include tabletWidth {
       flex-direction: column;

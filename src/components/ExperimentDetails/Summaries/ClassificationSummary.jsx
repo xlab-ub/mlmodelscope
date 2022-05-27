@@ -29,8 +29,11 @@ export default class ClassificationSummary extends Component {
     let predictions = this.props.results.responses[0].features;
     return (
       <div className="classification-summary">
-        <p className="classification-summary__header">Output:</p>
-        <OutputDuration duration={this.props.results.duration}/>
+        <div className={"classification-summary__header-row"}>
+          <p className="classification-summary__header">Output:</p>
+          <OutputDuration duration={this.props.results.duration}/>
+        </div>
+
         <div className="classification-summary__results">
           <div className="classification-summary__top-result">
             <span>{this.makeReadableLabel(this.getFirstPrediction().classification.label)}</span>

@@ -29,6 +29,9 @@
   @include mobileWidth-lg {
     width: 155px;
   }
+  @include mobileWidth-sm {
+    width: 120px;
+  }
 
   & > svg {
     height: 12px;
@@ -62,11 +65,11 @@
   margin-top: 48px;
 
   @include desktopWidth {
-      display: grid;
-      grid-template-areas:
+    display: grid;
+    grid-template-areas:
         "buttons buttons"
          "prev next";
-      row-gap: 30px;
+    row-gap: 30px;
     &__page-buttons {
       grid-area: buttons;
       justify-content: center;

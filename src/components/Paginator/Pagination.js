@@ -6,7 +6,7 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
   class Paginated extends Component {
     static defaultProps = {
       data: [],
-      itemsPerPage: 12,
+      itemsPerPage: 24,
       pageCount: 1,
       selectedPage: 1
     }
@@ -25,10 +25,10 @@ export default function withPagination(WrappedComponent, dataPropertyName, searc
 
     paginateData() {
       const selectedPage = this.state ? this.state.selectedPage : this.props.selectedPage;
-      const start = 12 * (selectedPage - 1);
-      const end = 12 * selectedPage;
+      const start = 24 * (selectedPage - 1);
+      const end = 24 * selectedPage;
       const pageData = this.props.data.slice(start, end);
-      const pageCount = parseInt(1 + this.props.data.length / 12);
+      const pageCount = parseInt(1 + this.props.data.length / 24);
 
       return {
         pageData,
