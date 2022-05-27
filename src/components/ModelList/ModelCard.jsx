@@ -37,10 +37,10 @@ export default class ModelCard extends Component {
           {machineTags}
           <ModelTag content={model.attributes.training_dataset}/>
           {model.attributes.Top1 &&
-            <ModelTag content={"Top1: " + model.attributes.Top1}/>
+            <ModelTag content={"Top 1: " + model.attributes.Top1 + "%"}/>
           }
           {model.attributes.Top5 &&
-            <ModelTag content={"Top5: " + model.attributes.Top5}/>
+            <ModelTag content={"Top 5: " + model.attributes.Top5 + "%"}/>
           }
           {model.version &&
             <ModelTag content={"Version: " + model.version}/>

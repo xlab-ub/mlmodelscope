@@ -15,15 +15,8 @@ export default class ModelListWithFilters extends Component {
 
     let stored = this.getStoredFilters();
 
-    let filterGroups = stored?.filterGroups || this.getDefaultGroups();
+    let filterGroups = this.forceTaskFilters(stored?.filterGroups || this.getDefaultGroups());
 
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
-    let task = params.task;
-    if (task) {
-      filterGroups[0].options = filterGroups[0].options.map(opt => ({...opt, isActive: opt.label === task}));
-    }
 
     let searchText = stored?.searchText || "";
     this.state = {
@@ -43,6 +36,7 @@ export default class ModelListWithFilters extends Component {
       this.reAssignActiveLabels(filterGroups, prevState.filterGroups);
       if (this.state.selectedModels.length > 0)
         this.ensureSelectedTaskIsChecked(filterGroups, this.state.selectedModels[0]);
+      filterGroups = this.forceTaskFilters(filterGroups);
       this.storeCurrentFilters(filterGroups);
       this.setState({filterGroups: filterGroups});
     } else {
@@ -271,7 +265,16 @@ export default class ModelListWithFilters extends Component {
     this.setState({selectedModels: []});
   }
 
+  forceTaskFilters = (filterGroups) => {
+    let task = this.props.task;
+    if (task) {
+      filterGroups[0].options = filterGroups[0].options.map(opt => ({...opt, isActive: opt.name === task}));
+    }
+    return filterGroups;
+  }
+
   render() {
+
     return <ModelList filterGroups={this.state.filterGroups}
                       isSortAscending={this.state.isSortAscending}
                       models={this.filterModels()}

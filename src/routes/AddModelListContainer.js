@@ -27,10 +27,17 @@ export default class AddModelListContainer extends Component {
 
   render() {
     return (
-      <ModelListContainer add={true} runModels={(selectedModels) => {
+      <ModelListContainer task={this.getCurrentTask()} hideTaskFilters add={true} runModels={(selectedModels) => {
         this.runModels(selectedModels)
       }} selectedModels={this.getModelsFromTrials()}/>
     )
+  }
+
+  getCurrentTask = () => {
+    let trial = this.state.trials[0];
+    if (trial)
+      return trial.model.output.type;
+    return "";
   }
 
   runModels(selectedModels) {

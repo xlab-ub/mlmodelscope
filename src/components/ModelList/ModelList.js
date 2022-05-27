@@ -39,7 +39,12 @@ export default class ModelList extends Component {
   }
 
   getActiveFilters() {
-    return this.props.filterGroups.flatMap(group => group.options.filter(opt => opt.isActive));
+    let [taskFilters, ...restFilters] = this.props.filterGroups;
+    let filters = restFilters;
+    if (!this.props.task)
+      filters.push(taskFilters);
+
+    return filters.flatMap(group => group.options.filter(opt => opt.isActive));
   }
 
   render() {
@@ -95,7 +100,7 @@ export default class ModelList extends Component {
     );
   }
 
-  makePageHeader() {
+  makePageHeader = () => {
     if (this.props.add)
       return <ExperimentDetailHeader title={"Select models for your comparison"}/>
     else {
@@ -103,7 +108,7 @@ export default class ModelList extends Component {
     }
   }
 
-  makeSelectedModelsBanner() {
+  makeSelectedModelsBanner = () => {
     if (this.props.add) {
       return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel}
                                     clearModels={this.props.clearModels} runModels={this.props.runModels}/>);

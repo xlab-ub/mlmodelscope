@@ -8,7 +8,7 @@ describe('Upload Inputs Tab', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<UploadInputsTab />);
+      wrapper = shallow(<UploadInputsTab/>);
     });
 
     it('the Uppy Dashboard', () => {
@@ -19,11 +19,20 @@ describe('Upload Inputs Tab', () => {
   describe('Calls back to uploadSelected', () => {
     it('on upload success', () => {
       const inputSelected = jest.fn();
-      const wrapper = shallow(<UploadInputsTab inputSelected={inputSelected} />);
-      wrapper.instance().onComplete({ successful: [{uploadURL: 'upload-url'}]}, {});
+      const wrapper = shallow(<UploadInputsTab values={[""]} inputSelected={inputSelected}/>);
+      wrapper.instance().onComplete({successful: [{uploadURL: 'upload-url'}]}, {});
 
       expect(inputSelected.mock.calls.length).toBe(1);
       expect(inputSelected.mock.calls[0][0]).toStrictEqual(['upload-url']);
     });
+    it("will add uploaded inputs to existing values", () => {
+      let values = ["test"];
+      const inputSelected = (v) => values = v;
+      const wrapper = shallow(<UploadInputsTab values={values} inputSelected={inputSelected}/>);
+      wrapper.instance().onComplete({successful: [{uploadURL: 'upload-url'}]}, {});
+
+      expect(values.length).toEqual(2);
+      expect(values[1]).toEqual("upload-url");
+    })
   });
 });

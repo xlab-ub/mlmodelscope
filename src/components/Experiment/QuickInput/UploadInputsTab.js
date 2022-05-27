@@ -45,9 +45,18 @@ export default class UploadInputsTab extends BEMComponent {
     return files;
   }
 
+
   onComplete = (result) => {
-    if (typeof (this.props.inputSelected) === 'function')
-      this.props.inputSelected([...this.props.values || [], ...result.successful.map(x => x.uploadURL)]);
+    const urls = result.successful.map(x => x.uploadURL);
+    if (typeof (this.props.inputSelected) === 'function') {
+      let values = Array.from(this.props.values);
+      if (values.length === 0 || values[0] === "")
+        values = urls;
+      else
+        values = [...values, ...urls];
+      this.props.inputSelected(values);
+
+    }
   }
 
   componentDidMount() {
