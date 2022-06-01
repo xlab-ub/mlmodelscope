@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ModelCard from "./ModelCard";
+import ModelListNoResults from "./NoResults";
 
 export default class ModelCardsList extends Component {
   static defaultProps = {
@@ -23,7 +24,14 @@ export default class ModelCardsList extends Component {
     return this.props.selectedModels.some(m => m.id === model.id);
   }
 
+  hasNoModels() {
+    return this.props.models.length === 0;
+  }
+
   render() {
+    if (this.hasNoModels())
+      return <ModelListNoResults/>
+
     return (
       <div className={"model-card-list"}>
         {this.modelCards()}

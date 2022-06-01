@@ -1,0 +1,35 @@
+@import "src/App";
+
+.model-list-no-results {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $smoke;
+  padding: 32px;
+
+  &__icon {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 20px;
+
+    path {
+      fill: $grayDark;
+    }
+  }
+
+  &__heading, &__subheading {
+    text-align: center;
+    color: $charcoalLightest;
+  }
+
+  &__heading {
+    @include headline3;
+    margin-bottom: 32px;
+  }
+
+  &__subheading {
+    @include body;
+  }
+
+}
