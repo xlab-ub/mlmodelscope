@@ -16,9 +16,15 @@ $gutterSize-mobile: 20px;
     margin-left: $gutterSize-tablet;
     margin-right: $gutterSize-tablet;
   }
+
   @include mobileWidth-lg {
     margin-left: $gutterSize-mobile;
     margin-right: $gutterSize-mobile;
+  }
+
+  @include maxWidth(400px) {
+    margin-left: 8px;
+    margin-right: 8px;
   }
 }
 
@@ -38,6 +44,10 @@ $gutterSize-mobile: 20px;
   @include mobileWidth-lg {
     padding-left: $gutterSize-mobile;
     padding-right: $gutterSize-mobile;
+  }
+  @include maxWidth(400px) {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 

@@ -7,6 +7,10 @@
 
   @include desktopWidth {
     flex-direction: column;
+    padding-top: 0;
+
+  }
+  @include tabletWidth {
   }
 
   &__input {
@@ -24,11 +28,38 @@
   &__summary {
 
     @include desktopWidth {
-      margin-top: 24px;
+      margin-top: 0px;
     }
 
     .image-enhancement-image__output {
-      margin-top: 10px;
+
+      &-canvas {
+        padding-top: 0;
+      }
+    }
+
+    .image-enhancement-image__wrapper {
+      width: 350px;
+
+      @include maxWidth(1600px) {
+        width: 300px;
+      }
+      @include maxWidth(1450px) {
+        width: 250px;
+      }
+
+      @include maxWidth(800px) {
+        width: 450px;
+      }
+      @include maxWidth(750px) {
+        width: 400px;
+      }
+      @include maxWidth(650px) {
+        width: 300px;
+      }
+      @include maxWidth(600px) {
+        width: 200px;
+      }
     }
 
     &__header {

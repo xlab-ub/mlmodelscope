@@ -13,11 +13,13 @@
   &__results {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
 
-    @include tabletWidth {
-      grid-template-columns: 1fr;
-    }
+
+  }
+
+  .object-detection-table {
+    max-height: unset !important;
   }
 }

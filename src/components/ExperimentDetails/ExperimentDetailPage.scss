@@ -1,6 +1,8 @@
 @import "../../App";
 
 .experiment-detail-page {
+
+
   &__content {
     @include gutters;
     display: grid;
@@ -12,6 +14,34 @@
       display: flex;
       flex-direction: column;
     }
+  }
+
+
+  &__trial-cards {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
+    background: $white;
+    padding: 20px 12px;
+    transform: rotate(180deg);
+
+    @include tabletWidth {
+      flex-direction: column;
+      transform: none;
+      overflow-x: hidden;
+      padding-right: 48px;
+
+
+    }
+
+    @include maxWidth(550px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+
   }
 
   &__trials-header {
@@ -45,7 +75,30 @@
   }
 
   &__trial {
-    margin-bottom: 24px;
+    margin-left: 24px;
+
+    transform: rotate(180deg);
+
+    &:last-child {
+      margin-left: 0;
+    }
+
+    @include maxWidth(1550px) {
+      width: 50% !important;
+    }
+
+    @include maxWidth(900px) {
+      width: 75% !important;
+    }
+
+
+    @include tabletWidth {
+      width: 100% !important;
+      transform: none;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 24px;
+    }
   }
 
   &__ghost-card {
@@ -54,5 +107,16 @@
     align-items: center;
     justify-content: center;
     padding: 80px 0;
+    margin-left: 24px;
+    min-width: 200px;
+    transform: rotate(180deg);
+
+    @include tabletWidth {
+      transform: none;
+      width: 100%;
+      min-width: 100%;
+      margin-left: 0;
+      margin-top: 24px;
+    }
   }
 }

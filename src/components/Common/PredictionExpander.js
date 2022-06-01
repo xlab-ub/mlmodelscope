@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Prediction from "../Experiment/QuickOutput/Outputs/Classification/Prediction";
 import BEMComponent from "./BEMComponent";
 import "./PredictionExpander.scss";
@@ -13,7 +13,7 @@ export default class PredictionExpander extends BEMComponent {
     super(props);
 
     this.state = {
-      predictionsExpanded: false
+      predictionsExpanded: this.props.showAll === true
     }
 
     this.modifiers = {
@@ -36,18 +36,19 @@ export default class PredictionExpander extends BEMComponent {
             {this.props.predictions.slice(3).map(this.makePrediction)}
           </div>
         </div>
-        { this.makeExpanderButton() }
+        {this.makeExpanderButton()}
       </div>
     )
   }
 
   makePrediction = (feature, index) => {
-    return <Prediction key={index} feature={feature} />
+    return <Prediction key={index} feature={feature}/>
   }
 
   makeExpanderButton() {
-    if (this.props.predictions.length > 3) {
-      return (<button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>)
+    if (!this.props.showAll && this.props.predictions.length > 3) {
+      return (
+        <button className={this.element('expand')} onClick={this.expandClicked}>{this.makeExpanderLabel()}</button>)
     }
   }
 

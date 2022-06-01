@@ -2,6 +2,8 @@
 
 .one-column-overview {
   @include gutters;
+
+
   padding-bottom: 96px;
 
   @include mobileWidth-lg {
@@ -32,9 +34,13 @@
       color: $charcoalLightest;
       margin-right: 16px;
 
-      @include mobileWidth-lg {
+      @include maxWidth(550px) {
         display: flex;
         flex-direction: column;
+      }
+
+      @include mobileWidth-sm {
+        width: 50%;
       }
 
       &-label {

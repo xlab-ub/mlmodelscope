@@ -70,6 +70,16 @@ ImageClassification.args = {
   ]
 }
 
+export const ImageClassificationManyResults = Template.bind({});
+ImageClassificationManyResults.args = {
+  trials: [
+    TestImageClassificationResult,
+    TestImageClassificationResult,
+    TestImageClassificationResult,
+    TestImageClassificationResult,
+  ]
+}
+
 export const ImageClassificationPending = Template.bind({});
 ImageClassificationPending.storyName = "Image Classification (Pending)";
 ImageClassificationPending.args = {

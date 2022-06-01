@@ -2,4 +2,8 @@
 
 .semantic-segmentation-table {
   @include table;
+
+  &__row-middle {
+    width: 100%;
+  }
 }

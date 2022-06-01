@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import TrialOutputWrapper from "./TrialOutputWrapper";
 import Header from "../Header/Header";
@@ -23,16 +23,26 @@ import RemoveInputModal from "./modals/RemoveInputModal";
 import InputCannotBeRemovedModal from "./modals/InputCannotBeRemovedModal";
 
 export default function ExperimentDetailPage(props) {
-  const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
+  const [value, setValue] = useState(50);
 
-  let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
-    <div key={trialIndex} className={getElement("trial")}>
+  const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
+  const calculateCardWidth = () => {
+    let length = props.experiment.trials.length;
+    if (length === 1)
+      return "50%";
+    if (length === 2)
+      return "33%";
+    return "25%";
+  }
+
+  let trialComponents = useMemo(() => props.experiment.trials.map((trial, trialIndex) => (
+    <div style={{width: calculateCardWidth()}} key={trialIndex} className={getElement("trial")}>
       <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial} deletedTrial={props.trialToDelete}
                           trialIsDeleting={props.trialIsDeleting}/>
     </div>
-  ));
+  )), []);
 
-  const Layout = getLayout();
+  const Layout = useMemo(() => getLayout(), []);
 
 
   return (
@@ -44,13 +54,18 @@ export default function ExperimentDetailPage(props) {
                           inputs={props.inputs}
                           selectedInput={props.selectedInput} selectInput={props.updateInput}
                           getAddModelsLink={props.getAddModelsLink}/>
-        <div className={getElement("trial-cards")}>
-          {trialComponents}
-          <div className={getElement("ghost-card")}>
-            <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
-                    link={props.getAddModelsLink(props)}/>
+
+        <div className={getElement("scroll-container")}>
+
+          <div className={getElement("trial-cards")}>
+            {trialComponents}
+            <div style={{width: calculateCardWidth()}} className={getElement("ghost-card")}>
+              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
+                      link={props.getAddModelsLink(props)}/>
+            </div>
           </div>
         </div>
+
 
       </Layout>
       {getModal(props)}

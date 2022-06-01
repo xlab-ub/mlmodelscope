@@ -19,7 +19,7 @@ describe('withPagination()', () => {
   beforeEach(() => {
     Paginated = withPagination(PaginationSpy, 'dataProp');
     selectPage = jest.fn();
-    wrapper = mount(<Paginated />);
+    wrapper = mount(<Paginated/>);
   });
 
   it('adds pagination props to wrapped component', () => {
@@ -44,13 +44,15 @@ describe('withPagination()', () => {
   });
 
   it('passes page navigation props to PageNavigationSummary', () => {
-    wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} selectedPage={2}/>);
+    wrapper = mount(<Paginated
+      data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]}
+      selectedPage={2}/>);
     const props = wrapper.find(PageNavigationSummary).props();
-    expect(props.data).toEqual([13]);
+    expect(props.data).toEqual([25]);
     expect(props.pageCount).toEqual(2);
     expect(props.searchText).toBeUndefined();
     expect(props.selectedPage).toEqual(2);
-    expect(props.totalCount).toEqual(13);
+    expect(props.totalCount).toEqual(25);
     // expect(wrapper.find(PageNavigationSummary).props()).toEqual({
     //   data: [13],
     //   pageCount: 2,
@@ -60,10 +62,10 @@ describe('withPagination()', () => {
     // });
   });
 
-  it('splits input data into pages of 12 items', () => {
-    wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} />);
+  it('splits input data into pages of 13 items', () => {
+    wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]}/>);
 
-    expect(wrapper.find(PaginationSpy).prop('dataProp')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    expect(wrapper.find(PaginationSpy).prop('dataProp')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
   });
 
   describe('page button clicks are passed through from PageNavigation', () => {
@@ -82,7 +84,9 @@ describe('withPagination()', () => {
     });
 
     it('passes the next button click', () => {
-      wrapper = mount(<Paginated data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]} selectedPage={1}/>);
+      wrapper = mount(<Paginated
+        data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]}
+        selectedPage={1}/>);
       wrapper.find('.page-nav__next-button').at(0).simulate('click');
 
       expect(wrapper.state('selectedPage')).toBe(2);
