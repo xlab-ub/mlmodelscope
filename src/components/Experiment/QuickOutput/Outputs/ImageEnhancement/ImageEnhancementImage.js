@@ -24,20 +24,37 @@ export default function ImageEnhancementImage(props) {
 
   return <div className={getBlock()}>
     <div className={getElement("output-canvas")}>
-      <div className={getElement("header-row")}>
-        <p className={getElement("header-row-text")}>
-          Original
-        </p>
-        <p className={getElement("header-row-text")}>
-          Enhanced
-        </p>
-      </div>
+      {!isTall ?
+        <div className={getElement("header-row")}>
+
+          <p className={getElement("header-row-text")}>
+            Original
+          </p>
+          <p className={getElement("header-row-text")}>
+            Enhanced
+          </p>
+        </div>
+        :
+        <div className={getElement("header-center")}>
+          <p className={getElement("header-row-text")}>
+            Original
+          </p>
+        </div>}
       <div className={getElement(`wrapper ${isTall && "wrapper-tall"}`)}>
         <ReactCompareImage leftImage={props.input}
                            rightImage={getDataUrl()}
+                           vertical={isTall}
 
         />
       </div>
+      {isTall &&
+        <div className={getElement("header-center")}>
+          <p className={getElement("header-row-text")}>
+            Enhanced
+          </p>
+        </div>
+      }
+
 
     </div>
 

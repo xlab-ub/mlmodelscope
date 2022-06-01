@@ -29,12 +29,5 @@ describe('Image Enhancement Output Component', () => {
       expect(wrapper.at(0).type()).toBe('div');
       expect(wrapper.at(0).prop('className')).toBe('image-enhancement');
     });
-
-    it('containing the input img', () => {
-      const title = wrapper.childAt(0).childAt(0);
-      expect(title.type()).toBe('h3');
-      expect(title.prop('className')).toBe('image-enhancement__title');
-      expect(title.text()).toBe('Input Image');
-    });
   });
 });
