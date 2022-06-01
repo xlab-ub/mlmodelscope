@@ -7,7 +7,10 @@ import {TestObjectDetectionResult} from "../Experiment/QuickOutput/Outputs/Objec
 import {
   TestImageSegmentationResult
 } from "../Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
-import {TestImageEnhancementData} from "../Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
+import {
+  TestImageEnhancementData,
+  TestImageEnhancementData2
+} from "../Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
 import {TestImageClassificationResult} from "../Experiment/QuickOutput/Outputs/Classification/Features";
 
 export default {
@@ -153,6 +156,9 @@ ImageEnhancement.args = makeArgs(image_enhancement);
 
 export const ImageEnhancementOutput = Template.bind({});
 ImageEnhancementOutput.args = makeArgs(image_enhancement, TestImageEnhancementData);
+
+export const ImageEnhancementOutputVertical = Template.bind({});
+ImageEnhancementOutputVertical.args = makeArgs(image_enhancement, TestImageEnhancementData2);
 
 export const InstanceSegmentation = Template.bind({});
 InstanceSegmentation.args = makeArgs("image_instance_segmentation");

@@ -9,15 +9,15 @@ export default function ImageEnhancement(props) {
 
 
   return <div className={getBlock()}>
-    <div className={getElement("input")}>
-      <h3 className={getElement('title')}>Input Image</h3>
-      <img className={getElement('image')} src={props.trial.inputs[0]}/>
-      <button className={getElement('back-button')} onClick={props.onBackClicked}>Try a different image
-      </button>
-    </div>
+
     <SingleColumnImageOutput
       modelId={props.trial.model.id}
       duration={props.trial.results.duration}
-      image={<ImageEnhancementImage feature={props.trial.results.responses[0].features[0]}/>}/>
+      image={<ImageEnhancementImage input={props.trial.inputs[0]}
+                                    feature={props.trial.results.responses[0].features[0]}/>}
+
+    />
+
+
   </div>
 }
