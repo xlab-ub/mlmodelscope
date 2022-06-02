@@ -2,6 +2,7 @@ import React from "react";
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import {colors} from "../_Common/utils/Colors";
 import "./SemanticSegmentationTable.scss";
+import TableNoRows from "../_Common/components/TableNoRows";
 
 export default function SemanticSegmentationTable(props) {
   const {getBlock, getElement} = useBEMNaming("semantic-segmentation-table");
@@ -25,6 +26,14 @@ export default function SemanticSegmentationTable(props) {
     </div>
   }
 
+  const getRows = () => {
+    if (props.labels.length === 0)
+      return <TableNoRows/>
+
+    return props.labels.map(renderRow);
+  }
+
+
   return <div className={getBlock()}>
     <div className={getElement("header-row")}>
 
@@ -33,6 +42,6 @@ export default function SemanticSegmentationTable(props) {
       </p>
       <p></p>
     </div>
-    {props.labels.map(renderRow)}
+    {getRows()}
   </div>
 }

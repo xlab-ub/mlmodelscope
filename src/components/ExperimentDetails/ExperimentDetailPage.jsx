@@ -37,10 +37,11 @@ export default function ExperimentDetailPage(props) {
 
   let trialComponents = useMemo(() => props.experiment.trials.map((trial, trialIndex) => (
     <div style={{width: calculateCardWidth()}} key={trialIndex} className={getElement("trial")}>
-      <TrialOutputWrapper trial={trial} onDeleteTrial={props.onDeleteTrial} deletedTrial={props.trialToDelete}
+      <TrialOutputWrapper value={value} trial={trial} onDeleteTrial={props.onDeleteTrial}
+                          deletedTrial={props.trialToDelete}
                           trialIsDeleting={props.trialIsDeleting}/>
     </div>
-  )), []);
+  )), [value]);
 
   const Layout = useMemo(() => getLayout(), []);
 
@@ -49,12 +50,13 @@ export default function ExperimentDetailPage(props) {
     <div className={getBlock()}>
       <Header/>
       <ExperimentDetailHeader/>
+
+
       <Layout>
         <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal} showAddInputModal={props.showAddInputModal}
                           inputs={props.inputs}
                           selectedInput={props.selectedInput} selectInput={props.updateInput}
                           getAddModelsLink={props.getAddModelsLink}/>
-
         <div className={getElement("scroll-container")}>
 
           <div className={getElement("trial-cards")}>

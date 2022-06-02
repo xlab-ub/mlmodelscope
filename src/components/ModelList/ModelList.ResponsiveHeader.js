@@ -1,19 +1,9 @@
 import SearchBar from "../Common/SearchBar";
 import SortButton from "../Buttons/SortButton";
 import React from "react";
+import {ActiveFilters} from "./ActiveFilters";
 
 export function ModelListResponsiveHeader(props) {
-  const ActiveFilters = () => <div className={"model-list-page__responsive-header-active-filters"}>
-    <div className={"model-list-page__responsive-header-active-filters-row"}>
-      <p className={"model-list-page__responsive-header-active-filters-title"}>Active Filters:</p>
-      <button onClick={props.clearFilters} className={"model-list-page__responsive-header-active-filters-clear"}>Clear
-        filters
-      </button>
-    </div>
-
-    <p
-      className={"model-list-page__responsive-header-active-filters-values"}>{props.activeFilters.map(filter => filter.label).join(", ")}</p>
-  </div>
 
   const Sort = () => <div className="model-list-page__sort-container">
     <SortButton isSortAscending={props.sortAscending}
@@ -34,7 +24,7 @@ export function ModelListResponsiveHeader(props) {
       {props.activeFilters.length > 0 ?
         <>
           <FilterButton/>
-          <ActiveFilters/>
+          <ActiveFilters clearFilters={props.clearFilters} activeFilters={props.activeFilters}/>
           <Sort/>
         </>
         :

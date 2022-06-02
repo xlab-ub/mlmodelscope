@@ -12,7 +12,12 @@
   &__icon {
     width: 78px;
     height: 78px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+
+    @include mobileWidth-sm {
+      width: 64px;
+      height: 64px;
+    }
 
     path {
       fill: $grayDark;
@@ -26,11 +31,11 @@
 
   &__heading {
     @include headline3;
-    margin-bottom: 32px;
   }
 
   &__subheading {
     @include body;
+    margin-bottom: 12px;
   }
 
 }

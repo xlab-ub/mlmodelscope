@@ -4,6 +4,7 @@ import ParseProbability from "../_Common/utils/ParseProbability";
 import {ReactComponent as EyeOpen} from "../../../../../resources/icons/eye-open.svg";
 import {ReactComponent as EyeClosed} from "../../../../../resources/icons/eye-closed.svg";
 import "./ObjectDetectionTable.scss";
+import TableNoRows from "../_Common/components/TableNoRows";
 
 export function ObjectDetectionTable(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection-table");
@@ -74,6 +75,13 @@ export function ObjectDetectionTable(props) {
 
   const sortedSections = props.sections.sort((a, b) => b.probability - a.probability);
 
+  const getBody = () => {
+    if (props.sections.filter(section => ((section.probability * 100) > props.confidence.state)).length > 0)
+      return sortedSections.map(section => <Row {...section} key={section.id}/>);
+
+    return <TableNoRows/>
+  }
+
   return <div onMouseLeave={props.hover.leave} ref={scrollRef} id={"object-detection-table"}
               style={{maxHeight: `${props.imageHeight + 80}px`}}
               className={getBlock()}>
@@ -89,6 +97,6 @@ export function ObjectDetectionTable(props) {
         Confidence
       </p>
     </div>
-    {sortedSections.map(section => <Row {...section} key={section.id}/>)}
+    {getBody()}
   </div>;
 }

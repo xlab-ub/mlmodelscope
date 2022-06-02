@@ -69,7 +69,7 @@
     @include gutters;
     display: grid;
     grid-template-areas:
-      "blank header"
+      "control-panel header"
       "control-panel list";
     grid-template-columns: 300px 1fr;
     grid-column-gap: 64px;
