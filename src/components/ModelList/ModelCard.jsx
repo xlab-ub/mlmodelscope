@@ -31,25 +31,48 @@ export default class ModelCard extends Component {
     let machineTagKey = 0;
     let machineTags = model.framework.architectures.map(machine => <ModelTag key={machineTagKey++} type="machine"
                                                                              content={machine.name}/>);
+
+
     return (
       <div onClick={this.makeClickHandler()}
            className={this.props.isAdded ? 'model-card model-card--active' : 'model-card'}>
         {this.makeName()}
 
         <div className="model-card__tags-box">
-          <ModelTag type="task" content={task.name}/>
-          <ModelTag type="framework" content={model.framework.name}/>
-          {machineTags}
-          <ModelTag content={model.attributes.training_dataset}/>
-          {model.attributes.Top1 &&
-            <ModelTag content={"Top 1: " + model.attributes.Top1 + "%"}/>
-          }
-          {model.attributes.Top5 &&
-            <ModelTag content={"Top 5: " + model.attributes.Top5 + "%"}/>
-          }
-          {model.version &&
-            <ModelTag content={"Version: " + model.version}/>
-          }
+          <div className={"model-card__tags-box-row"}>
+            <ModelTag type="task" content={task.name}/>
+            <ModelTag type="framework" content={model.framework.name}/>
+            {machineTags}
+          </div>
+
+          <hr className={"model-card__tags-box-divider"}/>
+          <div className={"model-card__tags-box-row"}>
+            <p className={"model-card__tags-box-item"} children={model.attributes.training_dataset}/>
+            <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+
+            {model.attributes.Top1 &&
+              <>
+                <p className={"model-card__tags-box-item"} children={"Top 1: " + model.attributes.Top1 + "%"}/>
+                <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+              </>
+            }
+            {model.attributes.Top5 &&
+              <>
+                <p className={"model-card__tags-box-item"}>
+                  Top 5: {model.attributes.Top5}%
+                </p>
+                <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+
+              </>
+            }
+            {model.version &&
+              <>
+                <p className={"model-card__tags-box-item"} children={"Version: " + model.version}/>
+
+              </>
+            }
+          </div>
+
         </div>
         {this.makeActions()}
       </div>

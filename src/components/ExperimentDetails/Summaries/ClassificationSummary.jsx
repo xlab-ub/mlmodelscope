@@ -40,7 +40,7 @@ export default class ClassificationSummary extends Component {
             <span>{this.makeProbabilityStringFromDecimal(this.getFirstPrediction().probability)}</span>
           </div>
           <div className="classification-summary__extra-predictions">
-            <PredictionExpander predictions={predictions}/>
+            <PredictionExpander globalValue={this.props.value} predictions={predictions}/>
           </div>
         </div>
       </div>

@@ -26,14 +26,21 @@ export default class PredictionExpander extends BEMComponent {
     }
   }
 
+  filterPredictions() {
+    let globalValue = this.props.globalValue ?? -1;
+    return this.props.predictions.filter(prediction => (prediction.probability * 100) > globalValue);
+  }
+
   render() {
+    let predictions = this.filterPredictions();
+
     return (
       <div className={this.block()}>
         <div className={this.element('predictions')}>
-          {this.props.predictions.slice(1, 3).map(this.makePrediction)}
+          {predictions.slice(1, 3).map(this.makePrediction)}
 
           <div className={this.element('prediction-overflow')}>
-            {this.props.predictions.slice(3).map(this.makePrediction)}
+            {predictions.slice(3).map(this.makePrediction)}
           </div>
         </div>
         {this.makeExpanderButton()}
@@ -57,8 +64,10 @@ export default class PredictionExpander extends BEMComponent {
   }
 
   expandClicked = () => {
-    this.setState({
-      predictionsExpanded: !this.state.predictionsExpanded
-    });
+    if (this.props.toggleShowAll) this.props.toggleShowAll();
+    else
+      this.setState({
+        predictionsExpanded: !this.state.predictionsExpanded
+      });
   }
 }

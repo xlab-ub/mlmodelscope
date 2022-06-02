@@ -23,13 +23,13 @@ export default function TrialOutputWrapper(props) {
     if (props.trial.completed_at) {
       switch (props.trial.model.output.type) {
         case image_classification:
-          return (<ClassificationSummary results={props.trial.results}/>)
+          return (<ClassificationSummary value={props.value} results={props.trial.results}/>)
         case object_detection:
-          return <ObjectDetectionSummary trial={props.trial}/>
+          return <ObjectDetectionSummary value={props.value} trial={props.trial}/>
         case image_enhancement:
-          return <ImageEnhancementSummary trial={props.trial}/>
+          return <ImageEnhancementSummary value={props.value} trial={props.trial}/>
         case semantic_segmentation:
-          return <SemanticSegmentationSummary trial={props.trial}/>
+          return <SemanticSegmentationSummary value={props.value} trial={props.trial}/>
       }
 
       return <></>

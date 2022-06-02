@@ -29,6 +29,11 @@ export const ExperimentInputs = (props) => {
 
   const hasNoInputs = props.inputs.length === 0 || props.inputs[0] === "";
 
+  const handleSelect = (input) => {
+    setIsOpen(false);
+    props.selectInput(input);
+  }
+
   if (hasNoInputs)
     return <div className={getElement("ghost-card")}>
       <button onClick={props.showAddInputModal} className={getElement("add-input-area-btn")}>
@@ -48,7 +53,7 @@ export const ExperimentInputs = (props) => {
         <div className={getElement("input-selectors")}>
           {props.inputs.map((input, idx) => <div
             className={getElement(`input-selector-btn ${idx === selectedIndex && "input-selector-btn-selected"}`)}>
-            <button onClick={() => props.selectInput(input)} className={getElement("input-selector-btn-content")}>
+            <button onClick={() => handleSelect(input)} className={getElement("input-selector-btn-content")}>
               <img
                 alt={`Input ${idx + 1}`}
                 className={getElement("input-selector-img")} src={input}/>
@@ -69,5 +74,6 @@ export const ExperimentInputs = (props) => {
 
     <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
             link={props.getAddModelsLink(props)}/>
+
   </div>
 }

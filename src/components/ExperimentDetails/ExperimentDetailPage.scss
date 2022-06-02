@@ -2,6 +2,14 @@
 
 .experiment-detail-page {
 
+  &__sticky-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: $almaMater;
+    padding: 32px;
+  }
 
   &__content {
     @include gutters;

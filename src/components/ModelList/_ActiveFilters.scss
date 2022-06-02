@@ -1,0 +1,60 @@
+@import "src/App";
+
+.active-filters {
+  background: rgba(30, 99, 242, 0.05);
+  padding: 15px 80px 15px 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 22px;
+
+  @include desktopWidth {
+    @include negativeMarginAndPaddingGutters();
+    padding-left: 150px;
+  }
+  @include mobileWidth-lg {
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  &__sidebar {
+    padding: 8px 24px;
+
+    @include desktopWidth {
+      display: none;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+    @include desktopWidth {
+      justify-content: space-between;
+    }
+  }
+
+  &__title {
+    margin-bottom: 0;
+    @include labelSmall;
+    color: $charcoalLightest;
+
+  }
+
+  &__values {
+    @include bodySmall;
+    color: $charcoalLightest;
+  }
+
+  &__clear {
+    color: $charcoalLightest;
+    border-bottom: 1px solid $charcoalLightest;
+    transition: 0.5s;
+    margin-left: 12px;
+
+    &:hover {
+      border-bottom-color: transparent;
+    }
+  }
+
+}
