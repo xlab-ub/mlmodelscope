@@ -88,7 +88,7 @@ export default class ModelList extends Component {
                            toggleFilter={this.props.toggleFilter} hideTasks={this.props.hideTaskFilters}/>
             </div>
           </div>
-          <div className="model-list-page__list">
+          <div className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
             <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models}
                                           add={this.props.add} selectedModels={this.props.selectedModels}
                                           selectModel={this.props.selectModel}
