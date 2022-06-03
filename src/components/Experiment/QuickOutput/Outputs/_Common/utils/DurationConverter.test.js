@@ -16,4 +16,10 @@ describe("DurationConverter", () => {
 
     expect(result).toEqual("90s");
   })
+
+  it("returns 0s when fed an invalid input", () => {
+    const result = DurationConverter(undefined);
+    
+    expect(result).toEqual("0s")
+  })
 })
