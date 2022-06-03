@@ -84,24 +84,15 @@
 
   &__trial {
     margin-left: 24px;
-
     transform: rotate(180deg);
+    min-width: 320px;
 
     &:last-child {
       margin-left: 0;
     }
 
-    @include maxWidth(1550px) {
-      width: 50% !important;
-    }
-
-    @include maxWidth(900px) {
-      width: 75% !important;
-    }
-
 
     @include tabletWidth {
-      width: 100% !important;
       transform: none;
       margin-left: 0;
       margin-right: 0;

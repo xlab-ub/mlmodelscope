@@ -115,5 +115,9 @@
 
   &__list {
     grid-area: list;
+
+    &-no-filters {
+
+    }
   }
 }

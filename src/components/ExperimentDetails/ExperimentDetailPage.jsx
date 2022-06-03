@@ -1,19 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import ExperimentDetailHeader from "./ExperimentDetailHeader";
 import TrialOutputWrapper from "./TrialOutputWrapper";
 import Header from "../Header/Header";
 import useBEMNaming from "../../common/useBEMNaming";
 import RemoveModelModal from "../RemoveModelModal/RemoveModelModal";
 import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotBeRemovedModal";
-import {
-  image_classification,
-  image_enhancement,
-  instance_segmentation,
-  object_detection,
-  pending,
-  semantic_segmentation
-} from "../../helpers/TaskIDs";
-import TwoColumnOverview from "./Layouts/TwoColumnOverview";
 import OneColumnOverview from "./Layouts/OneColumnOverview";
 import Button from "../Buttons/Button";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
@@ -23,7 +14,7 @@ import RemoveInputModal from "./modals/RemoveInputModal";
 import InputCannotBeRemovedModal from "./modals/InputCannotBeRemovedModal";
 
 export default function ExperimentDetailPage(props) {
-  const [value, setValue] = useState(50);
+  const [value, setValue] = useState(-1);
 
   const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
   const calculateCardWidth = () => {
@@ -35,15 +26,15 @@ export default function ExperimentDetailPage(props) {
     return "25%";
   }
 
-  let trialComponents = useMemo(() => props.experiment.trials.map((trial, trialIndex) => (
+  let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
     <div style={{width: calculateCardWidth()}} key={trialIndex} className={getElement("trial")}>
       <TrialOutputWrapper value={value} trial={trial} onDeleteTrial={props.onDeleteTrial}
                           deletedTrial={props.trialToDelete}
                           trialIsDeleting={props.trialIsDeleting}/>
     </div>
-  )), [value]);
+  ))
 
-  const Layout = useMemo(() => getLayout(), []);
+  const Layout = getLayout();
 
 
   return (
@@ -75,35 +66,14 @@ export default function ExperimentDetailPage(props) {
   );
 
   function getLayout() {
-    let outputType = pending;
+    const machine = props.machine ?? "amd64";
 
-    if (props.experiment.trials.length > 0 && props.experiment.trials[0].model) {
-      outputType = props.experiment.trials[0].model.output.type;
-    }
-
-
-    switch (outputType) {
-      case object_detection:
-      case semantic_segmentation:
-      case image_enhancement:
-      case instance_segmentation:
-      case image_classification:
-
-        const machine = props.experiment.trials[0].model.framework.architectures[0].name;
-
-        return ({children}) => <OneColumnOverview
-          {...props}
-          getAddModelsLink={getAddModelsLink}
-          task={outputType}
-          machine={machine}
-        >{children}</OneColumnOverview>
-
-      default:
-        return ({children}) => <TwoColumnOverview
-          {...props}
-          getAddModelsLink={getAddModelsLink}
-        >{children}</TwoColumnOverview>
-    }
+    return ({children}) => <OneColumnOverview
+      {...props}
+      getAddModelsLink={getAddModelsLink}
+      task={props.task.id}
+      machine={machine}
+    >{children}</OneColumnOverview>
   }
 
   function getAddModelsLink(props) {
