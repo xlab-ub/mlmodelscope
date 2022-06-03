@@ -1,11 +1,16 @@
 export default function DurationConverter(input) {
-  let functionToRun = (i) => i;
+  if (!inputIsValid(input)) return "0s";
 
+  let functionToRun = (i) => i;
   if (input.endsWith("ms")) functionToRun = millisecondConverter;
   else if (input.endsWith("s")) functionToRun = secondConverter;
   else if (input.endsWith("m")) functionToRun = minuteConverter;
 
   return functionToRun(input);
+}
+
+function inputIsValid(input) {
+  return input !== null && input !== undefined && input !== "" && typeof (input) === "string";
 }
 
 function secondConverter(input) {
