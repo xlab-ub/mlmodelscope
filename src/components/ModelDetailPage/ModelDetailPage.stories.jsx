@@ -2,7 +2,13 @@ import React from 'react';
 
 import ModelDetailPage from "./ModelDetailPage";
 import kitty from "../../stories/assets/kitty.png";
-import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
+import {
+  image_classification,
+  image_enhancement,
+  instance_segmentation,
+  object_detection,
+  semantic_segmentation
+} from "../../helpers/TaskIDs";
 import {TestObjectDetectionResult} from "../Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
 import {
   TestImageSegmentationResult
@@ -12,6 +18,9 @@ import {
   TestImageEnhancementData2
 } from "../Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
 import {TestImageClassificationResult} from "../Experiment/QuickOutput/Outputs/Classification/Features";
+import {
+  TestInstanceSegmentationOutput
+} from "../Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 
 export default {
   title: 'Models/Model Detail Page',
@@ -162,3 +171,6 @@ ImageEnhancementOutputVertical.args = makeArgs(image_enhancement, TestImageEnhan
 
 export const InstanceSegmentation = Template.bind({});
 InstanceSegmentation.args = makeArgs("image_instance_segmentation");
+
+export const InstanceSegmentationOutput = Template.bind({});
+InstanceSegmentationOutput.args = makeArgs(instance_segmentation, TestInstanceSegmentationOutput);

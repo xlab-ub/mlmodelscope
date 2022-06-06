@@ -2,11 +2,22 @@ import {useHoverControl} from "../../_Common/hooks/useHoverControl";
 import {useSectionFilters} from "./useSectionFilters";
 import React from 'react';
 import ObjectDetectionTrialParser from "../utils/ObjectDetectionTrialParser";
+import InstanceSegmentationTrialParser from "../../InstanceSegmentation/utils/InstanceSegmentationTrialParser";
+import useBoundingBoxControl from "./useBoundingBoxControl";
 
-export default function useObjectDetectionControl(trial) {
+export default function useObjectDetectionControl(props) {
   const hover = useHoverControl();
 
-  const splitter = new ObjectDetectionTrialParser(trial);
+  const boundingBoxControl = useBoundingBoxControl(props);
+
+  let splitter;
+
+  if (props.isInstanceSegmentation)
+    splitter = new InstanceSegmentationTrialParser(props.trial);
+  else
+    splitter = new ObjectDetectionTrialParser(props.trial);
+
+
   const coloredSections = splitter.Parse();
 
   const {filteredSections, confidenceFilter, categoryFilter, labelIsInCategories} = useSectionFilters(coloredSections)
@@ -15,6 +26,7 @@ export default function useObjectDetectionControl(trial) {
     hover,
     filter: {confidence: confidenceFilter, category: categoryFilter, labelIsInCategories},
     filteredSections,
-    sections: coloredSections
+    sections: coloredSections,
+    boundingBox: boundingBoxControl
   }
 }

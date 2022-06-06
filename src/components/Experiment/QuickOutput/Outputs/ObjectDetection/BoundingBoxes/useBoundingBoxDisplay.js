@@ -1,9 +1,7 @@
-import React from 'react';
-import {ConvertHexToRGB} from "../_Common/utils/HexConverter";
-import ParseProbability from "../_Common/utils/ParseProbability";
-import "./BoundingBox.scss";
+import {ConvertHexToRGB} from "../../_Common/utils/HexConverter";
+import ParseProbability from "../../_Common/utils/ParseProbability";
 
-export default function BoundingBox(props) {
+export default function useBoundingBoxDisplay(props) {
   const normalize = (val) => {
     if (val < 0) val = 0;
     if (val > 1) val = 1;
@@ -33,18 +31,6 @@ export default function BoundingBox(props) {
     (isHoveredOn)
   const LabelIsShown = props.hover.property === props.id || props.hover.labelProp === props.id;
 
-  const style = {
-    position: "absolute",
-    top: `${top}%`,
-    left: `${left}%`,
-    width: `${width}%`,
-    height: `${height}%`,
-    backgroundColor: `rgba(${rgb.r},${rgb.g},${rgb.b}, ${LabelIsShown ? 0.6 : 0.3})`,
-    border: `3px solid ${color.backgroundColor}`,
-    display: IsShown ? "block" : "none",
-    zIndex: LabelIsShown ? 20 : 0
-  }
-
   const pStyle = {
     backgroundColor: color.backgroundColor,
     color: color.fontColor,
@@ -59,15 +45,15 @@ export default function BoundingBox(props) {
   }
   const percentage = ParseProbability(props.probability);
 
-  return (
-    <div className={color.className} style={style}
-         onMouseEnter={onEnter} onMouseLeave={onLeave}>
-      <div style={pStyle} className={"color-block__label-wrapper"}>
-
-        <p style={pStyle}>
-          {label} ({percentage})
-        </p>
-      </div>
-    </div>
-  )
+  const baseStyle = {
+    position: "absolute",
+    top: `${top}%`,
+    left: `${left}%`,
+    width: `${width}%`,
+    height: `${height}%`,
+    border: `3px solid ${color.backgroundColor}`,
+    display: IsShown ? "block" : "none",
+    zIndex: LabelIsShown ? 20 : 0,
+  }
+  return {color, baseStyle, onEnter, onLeave, pStyle, label, percentage, LabelIsShown, rgb}
 }

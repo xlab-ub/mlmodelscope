@@ -11,9 +11,10 @@ import OutputDuration from "../_Common/components/OutputDuration";
 
 export default function ObjectDetection(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection");
-  const {hover, filteredSections, sections, filter} = useObjectDetectionControl(props.trial);
+  const {hover, filteredSections, sections, filter, boundingBox} = useObjectDetectionControl(props);
   const {imageRef, imageHeight} = useImageRef();
   const task = Task.image_object_detection;
+
 
   const getBody = () => {
     if (sections.length === 0) return <NoPredictions modelId={props.trial.model.id}/>
@@ -28,10 +29,18 @@ export default function ObjectDetection(props) {
                             labelIsInCategories={filter.labelIsInCategories}
                             imageRef={imageRef}
                             imageHeight={imageHeight}
+                            isInstanceSegmentation={props.isInstanceSegmentation}
+                            boundingBox={boundingBox}
+                            hasMask={boundingBox.hasMask}
+                            hasBoundingBox={boundingBox.hasBoundingBox}
+                            hasContourLines={boundingBox.hasContourLines}
+
       />
       <ObjectDetectionTable confidence={filter.confidence} sections={sections} category={filter.category}
                             showPercentages hover={hover}
                             imageHeight={imageHeight}
+                            boundingBoxProperty={boundingBox.property}
+
       />
     </div>
   }
@@ -42,7 +51,12 @@ export default function ObjectDetection(props) {
         <h3 className={getElement("header-headline")}>Output</h3>
         <OutputDuration duration={props.trial.results.duration}/>
       </div>
-      <p className={getElement("header-subheading")}>{task.outputText}</p>
+      <div className={getElement("header-row")}>
+
+        <p className={getElement("header-subheading")}>{task.outputText}</p>
+
+      </div>
+
     </div>
     {getBody()}
     <div className={getElement("bottom-row")}>

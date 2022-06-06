@@ -6,6 +6,7 @@ import PendingOutput from "./Outputs/Classification/PendingOutput";
 import {
   image_classification,
   image_enhancement,
+  instance_segmentation,
   object_detection,
   semantic_segmentation
 } from "../../../helpers/TaskIDs";
@@ -14,6 +15,7 @@ import ImageEnhancement from "./Outputs/ImageEnhancement/ImageEnhancement";
 import SemanticSegmentation from "./Outputs/SemanticSegmentation/SemanticSegmentation";
 import ProcessFailed from "./ProcessFailed";
 import "./QuickOutput.scss";
+import InstanceSegmentation from "./Outputs/InstanceSegmentation/InstanceSegmentation";
 
 export default class QuickOutput extends BEMComponent {
   static defaultProps = {
@@ -72,6 +74,8 @@ export default class QuickOutput extends BEMComponent {
                               onBackClicked={this.props.onBackClicked}
                               feature={this.props.trialOutput.results.responses[0].features[0]}/>
           </>
+        case instance_segmentation:
+          return <InstanceSegmentation onBackClicked={this.props.onBackClicked} trial={this.props.trialOutput}/>
         case object_detection:
           return <ObjectDetection onBackClicked={this.props.onBackClicked} trial={this.props.trialOutput}/>
         case semantic_segmentation:

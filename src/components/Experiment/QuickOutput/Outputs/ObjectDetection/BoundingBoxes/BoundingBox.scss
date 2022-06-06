@@ -1,9 +1,9 @@
-@import "../../../../../App";
+@import "src/App";
 
-.color-block {
+.color-block, .bounding-box {
   padding: 12px;
 
-  p {
+  p, &__label {
     @include bodySmall;
     font-size: 14px;
     position: absolute;
@@ -17,7 +17,20 @@
     overflow: hidden;
     z-index: 20;
   }
+}
 
-  &__label-wrapper {
+.bounding-box {
+  position: relative;
+
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
+
 }

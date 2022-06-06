@@ -15,7 +15,6 @@
   }
 
   &__overlay {
-    overflow: hidden;
     position: relative;
     width: fit-content;
   }
@@ -84,5 +83,100 @@
       display: flex;
       align-items: center;
     }
+  }
+
+  &__options-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: $smoke;
+    border-right: 5px;
+    align-items: center;
+    padding: 16px;
+    margin-top: 8px;
+
+    @include maxWidth(650px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+  }
+
+  &__options-title {
+    @include labelSmall;
+    color: $charcoalLightest;
+  }
+
+  &__option-label {
+    @include body;
+    color: $charcoalLightest;
+    margin-left: 8px;
+  }
+
+  &__options-area {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    @include maxWidth(480px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: $white;
+    border: 2px solid $smokeDarkest;
+
+    &:after {
+      display: none;
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1.5px;
+      width: 6px;
+      height: 11px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+
+  &__option-group {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+
+    &:hover input ~ .object-detection-image__checkmark {
+      background-color: $smokeDark;
+    }
+
+    input:checked ~ .object-detection-image__checkmark {
+      background-color: $azul;
+      border-color: $azul;
+
+      &:after {
+        display: block;
+      }
+    }
+
   }
 }
