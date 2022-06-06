@@ -17,7 +17,7 @@ export function ObjectDetectionTable(props) {
     const isOpen = props.category.state.includes(section.id);
 
 
-    const isOverFiltered = (section.probability * 100) > props.confidence.state;
+    const isOverFiltered = (section.probability * 100) >= props.confidence.state;
 
     if (!isOverFiltered) return <></>
 
