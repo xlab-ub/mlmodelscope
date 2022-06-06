@@ -19,7 +19,7 @@ export function ModelListResponsiveFilterContent(props: { showFilterMenu: boolea
               className={`model-list-page__filter-content ${isClosing && "model-list-page__filter-content-closing"}`}>
     <div className={"model-list-page__filter-content-header"}>
       <p className={"model-list-page__filter-content-header-title"}>
-        <SortBars/>{" "}Filter Models By
+        <SortBars/>{" "}Filter models by
       </p>
       <button className={"model-list-page__filter-content-header-close"} onClick={onClose}>
         <X/>

@@ -66,6 +66,8 @@ export default function TrialOutputWrapper(props) {
         </dl>
         <CloseIcon className="trial-output-wrapper__delete-trial-button"
                    onClick={() => handleClose()}/>
+
+
       </div>
       <div className="trial-output-wrapper__content-box">
         <div className="trial-output-wrapper__info-row">
@@ -76,7 +78,6 @@ export default function TrialOutputWrapper(props) {
               <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
                                                                         content={model?.framework.name}/></dd>
             </div>
-
 
           </dl>
           <div className="trial-output-wrapper__link-box">

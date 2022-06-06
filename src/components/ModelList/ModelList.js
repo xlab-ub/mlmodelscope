@@ -102,7 +102,8 @@ export default class ModelList extends Component {
 
   makePageHeader = () => {
     if (this.props.add)
-      return <ExperimentDetailHeader title={"Select models for your comparison"}/>
+      return <ExperimentDetailHeader title={"Compare models"}
+                                     subtitle={"Select models to compare. Search for a specific model or use filters to narrow your options."}/>
     else {
       return (<ModelHeader/>);
     }

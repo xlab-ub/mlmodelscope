@@ -5309,7 +5309,7 @@ const MakeImageClassificationResult = (input, features) => ({
     "framework": {"id": 1, "name": "MXNet", "version": "1.7.0", "architectures": [{"name": "amd64"}]},
     "input": {"description": "", "type": ""},
     "license": "unrestricted",
-    "name": "AlexNet",
+    "name": "AlexNet_something_really_really_really_really_long",
     "output": {"description": "the output label", "type": "image_classification"},
     "url": {
       "github": "https://github.com/apache/incubator-mxnet/blob/master/python/mxnet/gluon/model_zoo/vision/alexnet.py",
@@ -5322,7 +5322,7 @@ const MakeImageClassificationResult = (input, features) => ({
 })
 
 export const TestImageClassificationResult = MakeImageClassificationResult("https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png", TestFeatures3);
-export const TestImageClassificationResult2 = MakeImageClassificationResult("https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/crabby.png", TestFeatures2);
+export const TestImageClassificationResult2 = MakeImageClassificationResult("https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/birdy.png", TestFeatures2);
 
 
 export const TestImageClassificationResultNoFeatures = {
