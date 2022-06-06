@@ -6,7 +6,6 @@ import useBEMNaming from "../../common/useBEMNaming";
 import RemoveModelModal from "../RemoveModelModal/RemoveModelModal";
 import ModelCannotBeRemovedModal from "../ModelCannotBeRemovedModal/ModelCannotBeRemovedModal";
 import OneColumnOverview from "./Layouts/OneColumnOverview";
-import Button from "../Buttons/Button";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
 import {ExperimentInputs} from "./ExperimentInputs";
 import AddInputModal from "./modals/AddInputModal";
@@ -20,10 +19,10 @@ export default function ExperimentDetailPage(props) {
   const calculateCardWidth = () => {
     let length = props.experiment.trials.length;
     if (length === 1)
-      return "50%";
+      return "100%";
     if (length === 2)
-      return "33%";
-    return "25%";
+      return "50%";
+    return "33%";
   }
 
   let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
@@ -40,7 +39,7 @@ export default function ExperimentDetailPage(props) {
   return (
     <div className={getBlock()}>
       <Header/>
-      <ExperimentDetailHeader/>
+      <ExperimentDetailHeader subtitle={"Evaluate model outputs"}/>
 
 
       <Layout>
@@ -52,10 +51,7 @@ export default function ExperimentDetailPage(props) {
 
           <div className={getElement("trial-cards")}>
             {trialComponents}
-            <div style={{width: calculateCardWidth()}} className={getElement("ghost-card")}>
-              <Button content={"Add model"} icon="plus" isPrimary={false} isSmall={false}
-                      link={props.getAddModelsLink(props)}/>
-            </div>
+
           </div>
         </div>
 

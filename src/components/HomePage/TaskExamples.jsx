@@ -41,7 +41,7 @@ export function TaskExamples(props) {
         <p className={getElement("selected-task-description")}>{homePageDescription}</p>
 
         <Link className={getElement("selected-task-link")} to={`/models?task=${taskName}`}>See
-          all {taskName} models</Link>
+          all {taskName.toLowerCase()} models.</Link>
 
 
       </div>

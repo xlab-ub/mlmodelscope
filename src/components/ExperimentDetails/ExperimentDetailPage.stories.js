@@ -76,7 +76,8 @@ export const ImageClassificationManyResults = Template.bind({});
 ImageClassificationManyResults.args = {
   trials: [
     TestImageClassificationResult,
-    TestImageClassificationResult,
+    TestImageClassificationResult2,
+    TestImageClassificationResult2,
     TestImageClassificationResult,
     TestImageClassificationResult,
   ]

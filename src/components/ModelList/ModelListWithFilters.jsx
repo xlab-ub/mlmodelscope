@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
 import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
+import Task from "../../helpers/Task";
+import {instance_segmentation} from "../../helpers/TaskIDs";
 
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
@@ -81,23 +83,23 @@ export default class ModelListWithFilters extends Component {
   }
 
   getDefaultGroups() {
+    const taskOptions = Task.getStaticTasks().map(task => ({name: task.id, label: task.name, isActive: false}));
+
     return [
       {
         header: "Tasks",
-        description: "What the model is trying to do with the machine and input data",
+        description: "What the model is trained to do (select one)",
         select: "single",
         dataPath: ["output", "type"],
-        options: [
-          {name: "image_classification", label: "Classification", isActive: false},
-          {name: "image_object_detection", label: "Object Detection", isActive: false},
-          {name: "image_semantic_segmentation", label: "Semantic Segmentation", isActive: false},
-          {name: "image_instance_segmentation", label: "Instance Segmentation", isActive: false},
-          {name: "image_enhancement", label: "Image Enhancement", isActive: false},
-        ]
+        options: [...taskOptions, {
+          name: instance_segmentation,
+          label: Task.image_instance_segmentation.name,
+          isActive: false
+        }]
       },
       {
         header: "Frameworks",
-        description: "What the model is running on",
+        description: "What the model is running on (select one)",
         select: "single",
         dataPath: ["framework", "name"],
         options: clone(this.props.frameworkOptions),
