@@ -14,6 +14,7 @@ import {ReactComponent as ImageEnhancement} from "../resources/icons/icon-imageE
 import {
   DefaultImageClassificationModel,
   DefaultImageEnhancementModel,
+  DefaultInstanceSegmentationModel,
   DefaultObjectDetectionModel,
   DefaultSemanticSegmentationModel
 } from "./DefaultModels";
@@ -68,7 +69,7 @@ export default class Task {
     outputText: "Objects recognized in this image:",
     icon: (props) => <InstanceSegmentation {...props}/>,
     sampleInputs: SampleSegmentationInputs,
-    homePageDescription: "Instance segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image."
+    homePageDescription: "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image."
   })
   static image_enhancement = new Task({
     name: 'Image enhancement',
@@ -113,6 +114,8 @@ export default class Task {
         return DefaultObjectDetectionModel;
       case semantic_segmentation:
         return DefaultSemanticSegmentationModel;
+      case instance_segmentation:
+        return DefaultInstanceSegmentationModel;
 
       default:
         return undefined;
@@ -126,6 +129,7 @@ export default class Task {
       this.getStaticTask(object_detection),
       this.getStaticTask(image_enhancement),
       this.getStaticTask(semantic_segmentation),
+      this.getStaticTask(instance_segmentation)
     ]
   }
 

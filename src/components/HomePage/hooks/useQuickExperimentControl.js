@@ -15,7 +15,7 @@ export default function useQuickExperimentControl(model) {
 
     observer.subscribe({
       next: trialOutput => {
-        
+
         setTrial(trialOutput);
         if (trialIsComplete(trialOutput))
           setRunningState(RunningStates.COMPLETE);

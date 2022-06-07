@@ -15,7 +15,6 @@
   }
 
   &__overlay {
-    overflow: hidden;
     position: relative;
     width: fit-content;
   }
@@ -87,5 +86,129 @@
       display: flex;
       align-items: center;
     }
+  }
+
+  &__options-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: $smoke;
+    border-right: 5px;
+    padding: 16px;
+    margin-top: 8px;
+    position: relative;
+    gap: 12px;
+
+    @include maxWidth(650px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+  }
+
+  &__options-title {
+    @include labelSmall;
+    color: $charcoalLightest;
+
+    &-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__option-label {
+    @include bodySmall;
+    color: $charcoalLightest;
+    margin-left: 8px;
+  }
+
+  &__options-toggle {
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+      transition: 0.25s;
+
+      path {
+        fill: $charcoalLightest;
+      }
+
+      &-open {
+        transform: rotate(180deg);
+      }
+
+    }
+  }
+
+  &__options-area {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    @include maxWidth(525px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+
+  &__checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: $white;
+    border: 2px solid $smokeDarkest;
+
+    &:after {
+      display: none;
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1.5px;
+      width: 6px;
+      height: 11px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+
+  &__option-group {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+
+    &:hover input ~ .object-detection-image__checkmark {
+      background-color: $smokeDark;
+    }
+
+    input:checked ~ .object-detection-image__checkmark {
+      background-color: $azul;
+      border-color: $azul;
+
+      &:after {
+        display: block;
+      }
+    }
+
   }
 }

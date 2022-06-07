@@ -8,11 +8,13 @@ import useImageRef from "../../Experiment/QuickOutput/Outputs/ObjectDetection/ho
 
 export default function ObjectDetectionSummary(props) {
   const {getBlock, getElement} = useBEMNaming("object-detection-summary");
-  const {filter, sections, hover, filteredSections} = useObjectDetectionControl(props.trial);
+  const {filter, sections, hover, filteredSections, boundingBox} = useObjectDetectionControl(props);
   const {imageRef, imageHeight} = useImageRef();
+
 
   return <div className={getBlock()}>
     <p className={getElement("header")}>Output:</p>
+
     <div className={getElement("results")}>
       <ObjectDetectionImage img={props.trial.inputs[0]}
                             filteredSections={filteredSections}
@@ -23,10 +25,15 @@ export default function ObjectDetectionSummary(props) {
                             labelIsInCategories={filter.labelIsInCategories}
                             imageRef={imageRef}
                             imageHeight={imageHeight}
+                            boundingBox={boundingBox}
+                            isInstanceSegmentation={props.isInstanceSegmentation}
 
       />
       <ObjectDetectionTable confidence={filter.confidence} hover={hover} sections={sections} category={filter.category}
-                            showPercentages imageHeight={imageHeight}/>
+                            showPercentages imageHeight={imageHeight}
+                            boundingBoxProperty={boundingBox.property}
+
+      />
     </div>
   </div>
 

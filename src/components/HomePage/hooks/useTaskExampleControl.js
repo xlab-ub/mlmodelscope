@@ -5,7 +5,6 @@ import {useHistory} from "react-router-dom";
 
 export default function useTaskExampleControl() {
   const taskSelection = useTaskSelection();
-
   const quickExperiment = useQuickExperimentControl(taskSelection.selectedTask.defaultModel);
 
   const History = useHistory();

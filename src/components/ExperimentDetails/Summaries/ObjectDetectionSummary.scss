@@ -22,4 +22,18 @@
   .object-detection-table {
     max-height: unset !important;
   }
+
+  .object-detection-image {
+    &__options-box {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+
+    &__options-area {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 }

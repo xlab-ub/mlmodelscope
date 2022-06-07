@@ -37,6 +37,10 @@ export function ObjectDetectionTable(props) {
       opacity: isOpaque ? 1 : 0.3,
     }
 
+    const getLabel = (section) => {
+      return section[props.boundingBoxProperty].label;
+    }
+
 
     return <div id={`object-detection-item-${section.id}`} style={style}
                 className={getElement("row")}
@@ -48,13 +52,13 @@ export function ObjectDetectionTable(props) {
 
       </div>
       <div onMouseEnter={hover} className={getElement("row-middle")}>
-        <input name={`row-input-${section.bounding_box.label}`} type={"checkbox"}
+        <input name={`row-input-${getLabel(section)}`} type={"checkbox"}
                className={getElement("row-input-hidden")}
                value={isOpen} onChange={toggle}/>
         <div style={{backgroundColor: color.backgroundColor, borderColor: color.backgroundColor}}
              className={getElement(`row-input ${!isOpen && "row-input-closed"}`)}/>
         <label className={getElement("row-input-label")}
-               htmlFor={`row-input-${section.bounding_box.label}`}>{section.bounding_box.label}</label>
+               htmlFor={`row-input-${getLabel(section)}`}>{getLabel(section)}</label>
       </div>
       {props.showPercentages &&
         <p onMouseEnter={hover}

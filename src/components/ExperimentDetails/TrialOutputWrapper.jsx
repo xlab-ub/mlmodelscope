@@ -3,10 +3,17 @@ import ClassificationSummary from "./Summaries/ClassificationSummary";
 import ModelTag from "../Common/ModelTag";
 import ObjectDetectionSummary from "./Summaries/ObjectDetectionSummary";
 import {ReactComponent as CloseIcon} from "../../resources/icons/close-icon.svg";
-import {image_classification, image_enhancement, object_detection, semantic_segmentation} from "../../helpers/TaskIDs";
+import {
+  image_classification,
+  image_enhancement,
+  instance_segmentation,
+  object_detection,
+  semantic_segmentation
+} from "../../helpers/TaskIDs";
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
 import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
+import InstanceSegmentationSummary from "./Summaries/InstanceSegmentationSummary";
 
 export default function TrialOutputWrapper(props) {
 
@@ -30,6 +37,8 @@ export default function TrialOutputWrapper(props) {
           return <ImageEnhancementSummary value={props.value} trial={props.trial}/>
         case semantic_segmentation:
           return <SemanticSegmentationSummary value={props.value} trial={props.trial}/>
+        case instance_segmentation:
+          return <InstanceSegmentationSummary value={props.value} trial={props.trial}/>
       }
 
       return <></>
