@@ -20,3 +20,9 @@ export const SampleObjectDetectionInputs = [
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-2.jpg',
   'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/obj-3.jpg',
 ];
+
+export const SampleInstanceSegmentationInputs = [
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/person-dog.jpg',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/puppies.jpg',
+  'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/plane-blue.jpg',
+]

@@ -161,7 +161,7 @@ export const DefaultInstanceSegmentationModel = {
   "name": "DeepLabv3_MobileNet_v2_DM_05_PASCAL_VOC_Train_Aug",
   "output": {
     "description": "the output semantic segment",
-    "type": "image_semantic_segmentation"
+    "type": "image_instance_segmentation"
   },
   "url": {
     "github": "https://github.com/rai-project/tensorflow/blob/master/builtin_models/DeepLabv3_MobileNet_v2_DM_05_PASCAL_VOC_Train_Aug.yml",
@@ -169,7 +169,8 @@ export const DefaultInstanceSegmentationModel = {
     "link1": "https://arxiv.org/pdf/1706.05587.pdf",
     "link2": ""
   },
-  "version": "1.0"
+  "version": "1.0",
+
 }
 
 

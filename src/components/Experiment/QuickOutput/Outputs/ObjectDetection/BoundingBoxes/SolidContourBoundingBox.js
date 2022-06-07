@@ -19,7 +19,7 @@ export default function SolidContourBoundingBox(props) {
   const contourRef = React.createRef();
 
 
-  const showPixel = (value) => value > 0.01;
+  const showPixel = (value) => value > 0.2;
 
 
   const getAlpha = (value) => {

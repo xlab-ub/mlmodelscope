@@ -4,6 +4,8 @@ import React from "react";
 import "./ObjectDetectionImage.scss";
 import {BoundingBoxTypes} from "./utils/boundingBoxTypes";
 import SolidContourBoundingBox from "./BoundingBoxes/SolidContourBoundingBox";
+import useToggleableState from "../../../../../helpers/useTogglableState";
+import {ReactComponent as ExpandIcon} from "../../../../../resources/icons/chevron-down-azul.svg";
 
 export function ObjectDetectionImage(props) {
   const {getElement, getBlock} = useBEMNaming("object-detection-image");
@@ -55,36 +57,46 @@ export function ObjectDetectionImage(props) {
 }
 
 function InstanceSegmentationCheckboxes(props) {
+  const [isOpen, toggleOpen] = useToggleableState(true);
+
+
   const {getElement} = useBEMNaming("object-detection-image");
 
   return <div className={getElement("options-box")}>
-    <p className={getElement("options-title")}>View Options:</p>
-    <div className={getElement("options-area")}>
+    <div className={getElement("options-title-row")}>
+      <p className={getElement("options-title")}>View Options:</p>
 
-      <label onMouseUp={props.boundingBox.toggleBoundingBox} className={getElement("option-group")}>
-        <input className={getElement("checkbox")} name={"bounding_box"}
-               type={"checkbox"}
-               checked={props.boundingBox.hasBoundingBox}/>
-        <span className={getElement("checkmark")}></span>
-        <span for={"bounding_box"}
-              className={getElement("option-label")}>Bounding box</span>
-      </label>
-      <label onMouseUp={props.boundingBox.toggleMask} className={getElement("option-group")}>
-        <input className={getElement("checkbox")} name={"mask"}
-               type={"checkbox"}
-               checked={props.boundingBox.hasMask}/>
-        <span className={getElement("checkmark")}></span>
-        <span for="mask" className={getElement("option-label")}>Mask</span>
-      </label>
-      <label onMouseUp={props.boundingBox.toggleContourLine} className={getElement("option-group")}>
-        <input className={getElement("checkbox")} name={"mask"}
-               type={"checkbox"}
-               checked={props.boundingBox.hasContourLines}/>
-        <span className={getElement("checkmark")}></span>
-        <span for="mask" className={getElement("option-label")}>Contour Lines</span>
-      </label>
+      <button className={getElement("options-toggle")} onClick={toggleOpen}><ExpandIcon
+        className={getElement(`options-toggle-icon ${isOpen && "options-toggle-icon-open"}`)}/></button>
     </div>
 
+    {isOpen &&
+      <div className={getElement("options-area")}>
+
+        <label onMouseUp={props.boundingBox.toggleBoundingBox} className={getElement("option-group")}>
+          <input className={getElement("checkbox")} name={"bounding_box"}
+                 type={"checkbox"}
+                 checked={props.boundingBox.hasBoundingBox}/>
+          <span className={getElement("checkmark")}></span>
+          <span for={"bounding_box"}
+                className={getElement("option-label")}>Bounding box</span>
+        </label>
+        <label onMouseUp={props.boundingBox.toggleMask} className={getElement("option-group")}>
+          <input className={getElement("checkbox")} name={"mask"}
+                 type={"checkbox"}
+                 checked={props.boundingBox.hasMask}/>
+          <span className={getElement("checkmark")}></span>
+          <span for="mask" className={getElement("option-label")}>Mask</span>
+        </label>
+        <label onMouseUp={props.boundingBox.toggleContourLine} className={getElement("option-group")}>
+          <input className={getElement("checkbox")} name={"mask"}
+                 type={"checkbox"}
+                 checked={props.boundingBox.hasContourLines}/>
+          <span className={getElement("checkmark")}></span>
+          <span for="mask" className={getElement("option-label")}>Contour Lines</span>
+        </label>
+      </div>
+    }
   </div>
 }
 

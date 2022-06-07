@@ -8,6 +8,7 @@ export default function useTaskSelection() {
 
   const tasks = useMemo(() => Task.getStaticTasks(), []);
 
+
   const getTaskById = (id) => tasks.find(t => t.id === id);
 
   const task = useMemo(() =>

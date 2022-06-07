@@ -91,12 +91,15 @@
   &__options-box {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     background-color: $smoke;
     border-right: 5px;
-    align-items: center;
     padding: 16px;
     margin-top: 8px;
+    position: relative;
+    gap: 12px;
 
     @include maxWidth(650px) {
       flex-direction: column;
@@ -109,21 +112,47 @@
   &__options-title {
     @include labelSmall;
     color: $charcoalLightest;
+
+    &-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__option-label {
-    @include body;
+    @include bodySmall;
     color: $charcoalLightest;
     margin-left: 8px;
+  }
+
+  &__options-toggle {
+
+    &-icon {
+      width: 16px;
+      height: 16px;
+      transition: 0.25s;
+
+      path {
+        fill: $charcoalLightest;
+      }
+
+      &-open {
+        transform: rotate(180deg);
+      }
+
+    }
   }
 
   &__options-area {
     display: flex;
     align-items: center;
     gap: 24px;
-    @include maxWidth(480px) {
+    @include maxWidth(525px) {
       flex-direction: column;
       align-items: flex-start;
+      gap: 16px;
     }
   }
 

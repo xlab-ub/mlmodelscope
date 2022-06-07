@@ -21,6 +21,7 @@ import {
 import {
   SampleImageClassificationInputs,
   SampleImageEnhancementInputs,
+  SampleInstanceSegmentationInputs,
   SampleObjectDetectionInputs,
   SampleSegmentationInputs
 } from "./sampleImages";
@@ -68,8 +69,9 @@ export default class Task {
     inputText: "See how well this model can recognize and locate multiple distinct objects in an image.",
     outputText: "Objects recognized in this image:",
     icon: (props) => <InstanceSegmentation {...props}/>,
-    sampleInputs: SampleSegmentationInputs,
-    homePageDescription: "Instance segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image."
+    sampleInputs: SampleInstanceSegmentationInputs,
+    homePageDescription: "Instance segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image.",
+    id: instance_segmentation
   })
   static image_enhancement = new Task({
     name: 'Image enhancement',
