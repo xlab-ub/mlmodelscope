@@ -1,6 +1,9 @@
 export const BoundingBoxTypes = {
   default: "DEFAULT",
-  solid_mask: "SOLID_MASK",
-  contour_mask: "CONTOUR_MASK",
-  bounding_box: "BOUNDING_BOX"
+  instance_segmentation: "INSTANCE_SEGMENTATION"
+}
+
+export const BoundingBoxProperties = {
+  bounding_box: "bounding_box",
+  instance_segment: "instance_segment"
 }

@@ -3,8 +3,8 @@ import ParseProbability from "../../_Common/utils/ParseProbability";
 
 export default function useBoundingBoxDisplay(props) {
   const normalize = (val) => {
-    if (val < 0) val = 0;
-    if (val > 1) val = 1;
+    if (val < 0) return 0;
+    if (val > 1) return 1;
 
     return val;
   }

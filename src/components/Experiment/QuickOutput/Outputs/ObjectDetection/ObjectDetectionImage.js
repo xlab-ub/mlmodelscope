@@ -16,9 +16,7 @@ export function ObjectDetectionImage(props) {
     const type = props.boundingBox.boundingBoxType ?? BoundingBoxTypes.default;
 
     switch (type) {
-      case BoundingBoxTypes.contour_mask:
-        return (props) => <SolidContourBoundingBox {...props} />
-      case BoundingBoxTypes.solid_mask:
+      case BoundingBoxTypes.instance_segmentation:
         return (props) => <SolidContourBoundingBox {...props} />
       case BoundingBoxTypes.default:
       default:
@@ -27,10 +25,7 @@ export function ObjectDetectionImage(props) {
   }
 
   const BoundingBoxComponent = getBoundingBoxComponent();
-  const clickHandle = () => {
-    console.log("click handle");
 
-  }
 
   return <>
     <div id={getBlock()} className={getBlock()}>

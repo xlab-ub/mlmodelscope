@@ -1,30 +1,22 @@
-import {useState} from "react";
 import {BoundingBoxTypes} from "../utils/boundingBoxTypes";
+import useToggleableState from "../../../../../../helpers/useTogglableState";
 
 const getDefaultBoundingBoxType = (props) => {
   if (!props.isInstanceSegmentation) return BoundingBoxTypes.default;
-  return BoundingBoxTypes.solid_mask;
+  return BoundingBoxTypes.instance_segmentation;
 }
 
 export default function useBoundingBoxControl(props) {
-  const [boundingBoxType, setBoundingBoxType] = useState(getDefaultBoundingBoxType(props));
-  const [hasBoundingBox, setHasBoundingBox] = useState(true);
-  const [hasMask, setHasMask] = useState(true);
-  const [hasContourLines, setHasCountourLines] = useState(true);
+  const boundingBoxType = getDefaultBoundingBoxType(props);
 
-  const toggleBoundingBox = () => setHasBoundingBox(!hasBoundingBox);
-  const toggleMask = () => setHasMask(!hasMask);
-  const toggleContourLine = () => setHasCountourLines(!hasContourLines);
-
-  const switchBoundingBoxTypeMask = () => {
-    setBoundingBoxType(boundingBoxType === BoundingBoxTypes.solid_mask ? BoundingBoxTypes.contour_mask : BoundingBoxTypes.solid_mask);
-  }
+  const [hasBoundingBox, toggleBoundingBox] = useToggleableState(true);
+  const [hasMask, toggleMask] = useToggleableState(true);
+  const [hasContourLines, toggleContourLine] = useToggleableState(true);
 
   const property = props.boundingBoxProperty ?? "bounding_box";
 
   return {
     boundingBoxType,
-    switchBoundingBoxTypeMask,
     property,
     hasMask,
     hasBoundingBox,
