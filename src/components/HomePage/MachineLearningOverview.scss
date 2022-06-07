@@ -5,6 +5,13 @@
 
   @include gutters;
 
+  &__caption {
+    @include bodySmall;
+    text-align: right;
+    color: $charcoalLightest;
+    margin-top: 12px;
+  }
+
   &__wrapping-box {
     position: relative;
     border: 2px solid transparent;

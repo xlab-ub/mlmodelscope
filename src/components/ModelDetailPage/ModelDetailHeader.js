@@ -46,7 +46,7 @@ export default function ModelDetailHeader(props) {
               <dd className={getElement("date")}>{dateModified}</dd>
             </div>
           </dl>
-          <p className={getElement("model-name")}>{model.name} Version {model.version}</p>
+          <p className={getElement("model-name")}>{model.name} </p>
           <p className={getElement("model-description")}>{model.short_description}</p>
           <button className={getElement("jump-link")} onClick={jump}>
             Learn more about this model <Arrow

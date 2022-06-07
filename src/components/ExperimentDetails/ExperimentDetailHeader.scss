@@ -17,4 +17,9 @@
       line-height: 42px;
     }
   }
+
+  &__subtitle {
+    @include bodyLarge;
+    color: $white;
+  }
 }

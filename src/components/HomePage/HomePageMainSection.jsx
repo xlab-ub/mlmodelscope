@@ -21,7 +21,7 @@ export function HomePageMainSection(props) {
       <div className={getElement("tint")}/>
     </div>
     <div className={getElement("content-container")}>
-      <h1 className={getElement("title")}>Discover and compare state-of-the-art machine learning models</h1>
+      <h1 className={getElement("title")}>Discover and compare machine learning models.</h1>
       <hr className={getElement("divider")}/>
       <h2 className={getElement("subtitle")}>
         MLModelScope is an open source platform for evaluating and profiling machine learning models to help

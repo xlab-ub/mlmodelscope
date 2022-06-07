@@ -38,7 +38,7 @@ export default function SemanticSegmentationTable(props) {
     <div className={getElement("header-row")}>
 
       <p className={getElement("header-row-item row-middle")}>
-        Objects Detected
+        Categories Recognized
       </p>
       <p></p>
     </div>

@@ -47,7 +47,7 @@ export default function Header(props) {
             </a>
           </div>
           <div hidden={showMenu} aria-hidden={showMenu} className={getElement("menu")}>
-            <LinkItem {...props} getElement={getElement} display={"Browse model library"} link={"/models"}/>
+            <LinkItem {...props} getElement={getElement} display={"Browse models"} link={"/models"}/>
             <div className={getElement("compare-models")}>
 
               <button ref={btnRef} onClick={toggleComparison}

@@ -2,27 +2,29 @@
 
 .classification-summary {
   border: 1px solid $smokeDarker;
-  padding: 24px 16px;
+  padding: 12px 8px;
 
   @include mobileWidth-lg {
     padding: 16px 8px;
   }
 
   &__header {
-    @include labelSmall;
-    color: $charcoalLightest;
+    @include headline5;
+    color: $almaMater;
 
     &-row {
       display: flex;
       justify-content: space-between;
+      flex-direction: column;
       width: 100%;
       margin-bottom: 24px;
-      align-items: center;
+      align-items: flex-start;
+      gap: 8px;
     }
   }
 
   &__top-result {
-    @include headline3;
+    @include headline4;
     background: rgba($azul, 0.03);
     display: flex;
     color: $charcoalLightest;

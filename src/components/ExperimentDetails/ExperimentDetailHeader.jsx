@@ -8,7 +8,9 @@ export default class ExperimentDetailHeader extends Component {
   render() {
     return (
       <div className="experiment-detail-header">
-        <h1 className="experiment-detail-header__title">{ this.props.title }</h1>
+        <h1 className="experiment-detail-header__title">{this.props.title}</h1>
+
+        <p className={"experiment-detail-header__subtitle"}>{this.props.subtitle}</p>
       </div>
     );
   }

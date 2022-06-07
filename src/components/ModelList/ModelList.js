@@ -88,7 +88,7 @@ export default class ModelList extends Component {
                            toggleFilter={this.props.toggleFilter} hideTasks={this.props.hideTaskFilters}/>
             </div>
           </div>
-          <div className="model-list-page__list">
+          <div className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
             <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models}
                                           add={this.props.add} selectedModels={this.props.selectedModels}
                                           selectModel={this.props.selectModel}
@@ -102,7 +102,8 @@ export default class ModelList extends Component {
 
   makePageHeader = () => {
     if (this.props.add)
-      return <ExperimentDetailHeader title={"Select models for your comparison"}/>
+      return <ExperimentDetailHeader title={"Compare models"}
+                                     subtitle={"Select models to compare. Search for a specific model or use filters to narrow your options."}/>
     else {
       return (<ModelHeader/>);
     }

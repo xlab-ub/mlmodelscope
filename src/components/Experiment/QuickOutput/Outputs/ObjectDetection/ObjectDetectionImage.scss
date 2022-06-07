@@ -40,6 +40,9 @@
     display: flex;
     align-items: center;
     margin-top: 0;
+    @include bodySmall;
+    color: $charcoalLightest;
+    font-weight: bold;
   }
 
   &__input-range {

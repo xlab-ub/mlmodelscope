@@ -39,6 +39,7 @@ export function MachineLearningOverview(props) {
         </div>
       </div>
     </div>
+    <p className={getElement("caption")}> Example of image classification task</p>
 
   </div>
 }
