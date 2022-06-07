@@ -3,6 +3,7 @@ import ExperimentDetailPage from "../components/ExperimentDetails/ExperimentDeta
 import GetApiHelper from "../helpers/api";
 import Task from "../helpers/Task";
 import {image_classification} from "../helpers/TaskIDs";
+import MultipleSort from "../helpers/MultipleSort";
 
 
 export const ExperimentDetailModalTypes = {
@@ -76,7 +77,14 @@ export default class ExperimentDetailContainer extends Component {
   }
 
   getSelectedTrials = () => {
-    return this.state.trials.filter(trial => trial.inputs[0] === this.state.selectedInput).sort((a, b) => a.model.name > b.model.name ? 1 : -1);
+    let filtered = this.state.trials.filter(trial => trial.inputs[0] === this.state.selectedInput);
+
+    const sortingOptions = [
+      (a) => a.model.name,
+      (a) => a.model.framework.name
+    ]
+
+    return MultipleSort(filtered, sortingOptions);
   }
   getInputs = () => {
     return this.state.trials.filter((t, i, a) => a.findIndex(tr => tr.inputs[0] === t.inputs[0]) === i).map(trial => trial.inputs[0]);
