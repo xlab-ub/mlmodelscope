@@ -24,7 +24,7 @@ export default class InstanceSegmentationTrialParser extends TrialParser {
   }
 
   _hasValidProbability(feature) {
-    return this.isValidNumber(feature.probability) && feature.probability > 0.0;
+    return this.isValidNumber(feature.probability) && feature.probability > 0.01;
   }
 
   _hasBoundingCoordinates(feature) {

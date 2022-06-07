@@ -19,7 +19,7 @@ describe("InstanceSegmentationTrialParser", () => {
   })
   it("filters out too low probability", () => {
     let copy = clone(TestInstanceSegmentationOutput);
-    copy.results.responses[0].features[0].probability = 0.0005;
+    copy.results.responses[0].features[0].probability = 0.00005;
 
     copy.results.responses[0].features[1].instance_segment.label = "chicken";
 
