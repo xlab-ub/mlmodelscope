@@ -40,9 +40,9 @@ export default class SampleInputsTab extends BEMComponent {
 
   makeSampleInput = (url, index) => {
     return (
-      <div key={index} className={this.element(`input`, url)}>
-        <img src={url} onClick={() => this.selectInput(index)}/>
-      </div>
+      <button onClick={() => this.selectInput(index)} key={index} className={this.element(`input`, url)}>
+        <img src={url}/>
+      </button>
     )
   };
 
