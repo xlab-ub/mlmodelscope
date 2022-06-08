@@ -39,7 +39,7 @@ export default function ExperimentDetailPage(props) {
   return (
     <div className={getBlock()}>
       <Header/>
-      <ExperimentDetailHeader subtitle={"Evaluate model outputs"}/>
+      <ExperimentDetailHeader subtitle={"Compare models"}/>
 
 
       <Layout>
