@@ -3,7 +3,6 @@ import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
 import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
 import Task from "../../helpers/Task";
-import {instance_segmentation} from "../../helpers/TaskIDs";
 
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
@@ -91,11 +90,7 @@ export default class ModelListWithFilters extends Component {
         description: "What the model is trained to do (select one)",
         select: "single",
         dataPath: ["output", "type"],
-        options: [...taskOptions, {
-          name: instance_segmentation,
-          label: Task.image_instance_segmentation.name,
-          isActive: false
-        }]
+        options: taskOptions
       },
       {
         header: "Frameworks",

@@ -70,15 +70,6 @@ export default class ModelList extends Component {
           hidden={this.state.showFilterMenu}
           className={`model-list-page__content ${this.state.showFilterMenu && "model-list-page__content-hidden"}`}
         >
-          <ModelListResponsiveHeader
-            updateSearchText={this.props.updateSearchText}
-            searchText={this.props.searchText}
-            openFilter={this.toggleShowFilterMenu}
-            sortAscending={this.props.isSortAscending}
-            updateSortByNameIsAscending={this.props.updateSortByNameIsAscending}
-            activeFilters={activeFilters}
-            clearFilters={this.props.clearFilters}/>
-
           <div className="model-list-page__filters-search-container">
             <div className="model-list-page__search-bar">
               <SearchBar updateSearchText={this.props.updateSearchText} searchText={this.props.searchText}/>
@@ -88,12 +79,25 @@ export default class ModelList extends Component {
                            toggleFilter={this.props.toggleFilter} hideTasks={this.props.hideTaskFilters}/>
             </div>
           </div>
-          <div className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
-            <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models}
-                                          add={this.props.add} selectedModels={this.props.selectedModels}
-                                          selectModel={this.props.selectModel}
-                                          deselectModel={this.props.deselectModel}/>
+
+          <div className={"model-list-page__body-wrapper"}>
+            <ModelListResponsiveHeader
+              updateSearchText={this.props.updateSearchText}
+              searchText={this.props.searchText}
+              openFilter={this.toggleShowFilterMenu}
+              sortAscending={this.props.isSortAscending}
+              updateSortByNameIsAscending={this.props.updateSortByNameIsAscending}
+              activeFilters={activeFilters}
+              clearFilters={this.props.clearFilters}/>
+            <div
+              className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
+              <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models}
+                                            add={this.props.add} selectedModels={this.props.selectedModels}
+                                            selectModel={this.props.selectModel}
+                                            deselectModel={this.props.deselectModel}/>
+            </div>
           </div>
+
         </div>
         {this.makeSelectedModelsBanner()}
       </div>

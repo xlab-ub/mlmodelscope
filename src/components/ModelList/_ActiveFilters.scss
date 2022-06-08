@@ -12,8 +12,7 @@
     padding-left: 150px;
   }
   @include mobileWidth-lg {
-    margin-bottom: 8px;
-    margin-top: 16px;
+    margin: 16px -4px 8px;
   }
 
   &__sidebar {
