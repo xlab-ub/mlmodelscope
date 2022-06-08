@@ -3,6 +3,7 @@ import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
 import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
 import Task from "../../helpers/Task";
+import {getTaskFromQueryString} from "../../helpers/QueryParsers";
 
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
@@ -17,7 +18,6 @@ export default class ModelListWithFilters extends Component {
     let stored = this.getStoredFilters();
 
     let filterGroups = this.forceTaskFilters(stored?.filterGroups || this.getDefaultGroups());
-
 
     let searchText = stored?.searchText || "";
     this.state = {
@@ -82,7 +82,13 @@ export default class ModelListWithFilters extends Component {
   }
 
   getDefaultGroups() {
-    const taskOptions = Task.getStaticTasks().map(task => ({name: task.id, label: task.name, isActive: false}));
+    const isInQueryString = (id) => getTaskFromQueryString(window.location.search) === id;
+
+    const taskOptions = Task.getStaticTasks().map(task => ({
+      name: task.id,
+      label: task.name,
+      isActive: isInQueryString(task.id)
+    }));
 
     return [
       {
@@ -263,7 +269,8 @@ export default class ModelListWithFilters extends Component {
   }
 
   forceTaskFilters = (filterGroups) => {
-    let task = this.props.task;
+    let task = this.props.task || getTaskFromQueryString(window.location.search);
+
     if (task) {
       filterGroups[0].options = filterGroups[0].options.map(opt => ({...opt, isActive: opt.name === task}));
     }

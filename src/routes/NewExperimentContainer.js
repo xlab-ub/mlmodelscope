@@ -4,6 +4,7 @@ import GetApiHelper from "../helpers/api";
 import {useHistory} from "react-router-dom";
 import Task from "../helpers/Task";
 import ExperimentDetailContainer from "./ExperimentDetailContainer";
+import {getTaskFromQueryString} from "../helpers/QueryParsers";
 
 const modelListPage = "MODEL_LIST";
 const experimentPage = "EXPERIMENT";
@@ -14,9 +15,7 @@ export default function NewExperimentContainer(props) {
 
   const api = useMemo(() => GetApiHelper(), []);
   const History = useHistory();
-  const {task} = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-  });
+  const task = getTaskFromQueryString(window.location.search);
 
   const {id: taskId} = Task.getStaticTask(task);
   const selectModels = (selectedModels) => {

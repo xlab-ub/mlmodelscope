@@ -2,7 +2,6 @@ import useBEMNaming from "../../common/useBEMNaming";
 import {HomePageSectionHeading} from "./HomePageSectionHeading";
 import React from "react";
 import useTaskExampleControl from "./hooks/useTaskExampleControl";
-import {Link} from "react-router-dom";
 import {TaskControls} from "./TaskControls";
 import {TaskCard} from "./TaskCard";
 import "./TaskExamples.scss";
@@ -16,7 +15,7 @@ export function TaskExamples(props) {
     className: getElement("selected-task-icon")
   }
 
-  const {name, description, Icon, defaultModel, sampleInputs, homePageDescription} = taskSelection.selectedTask;
+  const {name, description, Icon, defaultModel, sampleInputs, homePageDescription, id} = taskSelection.selectedTask;
   let taskName = name;
 
 
@@ -39,9 +38,9 @@ export function TaskExamples(props) {
           <Icon {...taskIconProps} /> {taskName}
         </p>
         <p className={getElement("selected-task-description")}>{homePageDescription}</p>
-
-        <Link className={getElement("selected-task-link")} to={`/models?task=${taskName}`}>See
-          all {taskName.toLowerCase()} models.</Link>
+        <a className={getElement("selected-task-link")} href={`/models?task=${id}`}>
+          See all {taskName.toLowerCase()} models.
+        </a>
 
 
       </div>
