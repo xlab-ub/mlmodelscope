@@ -171,21 +171,21 @@ describe('Experiment Quick Input Component', () => {
         wrapper.find('SampleInputsTab').instance().selectInput(0);
         wrapper.update();
 
-        expect(wrapper.state('selectedInputUrl')[0]).toBe(SampleInputs[0]);
+        expect(wrapper.state('selectedInputUrl')[0]).toBe(SampleInputs[0].src);
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
 
     describe('a URL Inputs Tab', () => {
       it('that calls back to selectInput()', async () => {
-        wrapper.find('.url-inputs__url').simulate('change', {target: {value: SampleInputs[0]}});
+        wrapper.find('.url-inputs__url').simulate('change', {target: {value: SampleInputs[0].src}});
 
         await new Promise(resolve => setTimeout(resolve, 10));
 
         wrapper.update();
 
         const state = wrapper.state('selectedInputUrl');
-        expect(state[0]).toBe(SampleInputs[0]);
+        expect(state[0]).toBe(SampleInputs[0].src);
 
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });

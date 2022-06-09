@@ -4,9 +4,9 @@ import {shallow} from 'enzyme';
 import SampleInputsTab from "./SampleInputsTab";
 
 export const SampleInputs = [
-  'https://example.com/sample1.jpg',
-  'https://example.com/sample2.jpg',
-  'https://example.com/sample3.jpg',
+  {src: 'https://example.com/sample1.jpg', alt: "image 1"},
+  {src: 'https://example.com/sample2.jpg', alt: "image 2"},
+  {src: 'https://example.com/sample3.jpg', alt: "image 3"},
 ];
 
 describe('Sample Inputs Tab', () => {
@@ -37,9 +37,9 @@ describe('Sample Inputs Tab', () => {
       const inputs = list.find('.sample-inputs__input');
 
       expect(inputs.length).toBe(3);
-      expect(inputs.at(0).find('img').prop('src')).toBe(SampleInputs[0]);
-      expect(inputs.at(1).find('img').prop('src')).toBe(SampleInputs[1]);
-      expect(inputs.at(2).find('img').prop('src')).toBe(SampleInputs[2]);
+      expect(inputs.at(0).find('img').prop('src')).toBe(SampleInputs[0].src);
+      expect(inputs.at(1).find('img').prop('src')).toBe(SampleInputs[1].src);
+      expect(inputs.at(2).find('img').prop('src')).toBe(SampleInputs[2].src);
     });
 
     it('starting with no input selected', () => {
@@ -47,16 +47,16 @@ describe('Sample Inputs Tab', () => {
     });
 
     it('allowing selection by clicking by clicking the input img', () => {
-      const image = wrapper.find('.sample-inputs__input').at(2).find('img');
+      const image = wrapper.find('.sample-inputs__input').at(2).find('button');
       image.simulate('click');
       const selected = wrapper.find('.sample-inputs__input--selected');
 
       expect(selected.length).toBe(1);
-      expect(selected.find('img').prop('src')).toBe(SampleInputs[2]);
+      expect(selected.find('img').prop('src')).toBe(SampleInputs[2].src);
     });
 
     it('only allowing single selection', () => {
-      const image = wrapper.find('.sample-inputs__input').at(1).find('img');
+      const image = wrapper.find('.sample-inputs__input').at(1).find('button');
       image.simulate('click');
       const selected = wrapper.find('.sample-inputs__input--selected');
 
@@ -64,23 +64,23 @@ describe('Sample Inputs Tab', () => {
     });
 
     it('marking the unselected inputs with the correct class', () => {
-      const image = wrapper.find('.sample-inputs__input').at(0).find('img');
+      const image = wrapper.find('.sample-inputs__input').at(0).find('button');
       image.simulate('click');
       const unselected = wrapper.find('.sample-inputs__input--unselected');
 
       expect(unselected.length).toBe(2);
-      expect(unselected.at(0).find('img').prop('src')).toBe(SampleInputs[1]);
-      expect(unselected.at(1).find('img').prop('src')).toBe(SampleInputs[2]);
+      expect(unselected.at(0).find('img').prop('src')).toBe(SampleInputs[1].src);
+      expect(unselected.at(1).find('img').prop('src')).toBe(SampleInputs[2].src);
     });
 
     it('calling the inputSelected callback when an input is selected', () => {
       const inputSelected = jest.fn();
       wrapper = shallow(<SampleInputsTab sampleInputs={SampleInputs} inputSelected={inputSelected}/>);
-      const image = wrapper.find('.sample-inputs__input').at(1).find('img');
+      const image = wrapper.find('.sample-inputs__input').at(1).find('button');
       image.simulate('click');
 
       expect(inputSelected.mock.calls.length).toBe(1);
-      expect(inputSelected.mock.calls[0][0]).toBe(SampleInputs[1]);
+      expect(inputSelected.mock.calls[0][0]).toBe(SampleInputs[1].src);
     });
   });
 });

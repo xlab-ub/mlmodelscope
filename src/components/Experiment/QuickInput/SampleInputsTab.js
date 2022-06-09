@@ -15,9 +15,9 @@ export default class SampleInputsTab extends BEMComponent {
 
     this.modifiers = {
       input: {
-        selected: (state, url) => state.selectedIndex.indexOf(url) > -1,
+        selected: (state, url) => state.selectedIndex.indexOf(url.src) > -1,
         unselected: (state, index) =>
-          state.selectedIndex.length >= 0 && state.selectedIndex.indexOf(index) === -1
+          state.selectedIndex.length >= 0 && state.selectedIndex.indexOf(index.src) === -1
       }
     }
 
@@ -41,7 +41,7 @@ export default class SampleInputsTab extends BEMComponent {
   makeSampleInput = (url, index) => {
     return (
       <button onClick={() => this.selectInput(index)} key={index} className={this.element(`input`, url)}>
-        <img src={url}/>
+        <img src={url.src} alt={url.alt}/>
       </button>
     )
   };
@@ -50,7 +50,7 @@ export default class SampleInputsTab extends BEMComponent {
 
     if (this.props.multiple) {
       const selected = Array.from(this.state.selectedIndex);
-      const url = this.props.sampleInputs[index];
+      const url = this.props.sampleInputs[index].src;
       let storedIndex = selected.indexOf(url);
       if (storedIndex === -1) {
         selected.push(url);
@@ -61,9 +61,9 @@ export default class SampleInputsTab extends BEMComponent {
       if (typeof (this.props.inputSelected) === 'function')
         this.props.inputSelected(selected);
     } else {
-      this.setState({selectedIndex: [this.props.sampleInputs[index]]})
+      this.setState({selectedIndex: [this.props.sampleInputs[index].src]})
       if (typeof (this.props.inputSelected) === 'function')
-        this.props.inputSelected(this.props.sampleInputs[index], 0);
+        this.props.inputSelected(this.props.sampleInputs[index].src, 0);
     }
   }
 }
