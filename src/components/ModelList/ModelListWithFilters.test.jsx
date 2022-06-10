@@ -2,7 +2,7 @@ import ModelListWithFilters from "./ModelListWithFilters";
 import expect from "expect";
 import React from 'react';
 import {shallow} from 'enzyme';
-import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
+import {image_classification, instance_segmentation, object_detection} from "../../helpers/TaskIDs";
 
 describe('The Model List Filters', () => {
 
@@ -15,13 +15,13 @@ describe('The Model List Filters', () => {
   ];
 
   const defaultModels = [
-    createModel("ChickenModel", "chicken", "MXNet", "image_classification", ["amd64"]),
-    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", "image_classification", ["amd64"]),
-    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", "image_object_detection", ["amd64"]),
-    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", "image_classification", ["ILLIAC", "ENIAC"]),
-    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", "image_classification", ["amd64"]),
-    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", "instancesegment", ["amd64"]),
-    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", "instancesegment", ["amd64"]),
+    createModel("ChickenModel", "chicken", "MXNet", image_classification, ["amd64"]),
+    createModel("TigerSharkModel", "this model says everything is a tiger shark", "PyTorch", image_classification, ["amd64"]),
+    createModel("BoxModel", "this model puts boxes around stuff", "TensorFlow", object_detection, ["amd64"]),
+    createModel("OnyxModel", "this model uses onnxruntime", "Onnxruntime", image_classification, ["ILLIAC", "ENIAC"]),
+    createModel("ClonyxModel", "a clone of onnxruntime tigershark", "Onnxruntime", image_classification, ["amd64"]),
+    createModel("InstanceModel", "this model segments an instance", "Onnxruntime", instance_segmentation, ["amd64"]),
+    createModel("Clonyx2", "tigershark tigershark", "Onnxruntime", instance_segmentation, ["amd64"]),
   ];
 
   const defaultMachines = [
@@ -29,16 +29,13 @@ describe('The Model List Filters', () => {
     {name: "ILLIAC", label: "ILLIAC", isActive: false},
     {name: "ENIAC", label: "ENIAC", isActive: false},
   ]
-  let storageHelper = new SearchFiltersLocalStorage();
   let modelList;
 
-  beforeEach(() => {
-    storageHelper.clearFilters();
-  })
 
   beforeEach(() => {
     modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels}
                                               machineOptions={defaultMachines}/>);
+    modelList.instance().clearFilters();
   });
 
 
@@ -69,7 +66,7 @@ describe('The Model List Filters', () => {
   });
 
   it('can filter by task', () => {
-    modelList.instance().toggleFilter("Tasks", "single", "image_object_detection");
+    modelList.instance().toggleFilter("Tasks", "single", object_detection);
     let filteredModels = modelList.instance().filterModels();
     expect(filteredModels.length).toEqual(1);
     expect(filteredModels[0]).toEqual(defaultModels[2]);
@@ -84,7 +81,7 @@ describe('The Model List Filters', () => {
 
   it('can combine filters', () => {
     modelList.instance().toggleFilter("Frameworks", "single", "Onnxruntime");
-    modelList.instance().toggleFilter("Tasks", "single", "image_classification");
+    modelList.instance().toggleFilter("Tasks", "single", image_classification);
     modelList.instance().updateSearchText("tigershark");
     let filteredModels = modelList.instance().filterModels();
     expect(modelList.state("searchText")).toEqual("tigershark");
@@ -138,84 +135,6 @@ describe('The Model List Filters', () => {
     instance.deselectModel(model);
     const taskListLengthNotSelected = instance.state.filterGroups[0].options.length;
     expect(taskListLengthNotSelected).toBeGreaterThan(taskListLengthSelected);
-  })
-
-  describe("localStorage filters", () => {
-    beforeEach(() => {
-      storageHelper.setFilters({
-        searchText: "",
-        filterGroups: [{
-          "header": "Tasks",
-          "description": "What the model is trying to do with the machine and input data",
-          "select": "single",
-          "dataPath": ["output", "type"],
-          "options": [{
-            "name": "image_classification",
-            "label": "Classification",
-            "isActive": true
-          }, {
-            "name": "image_object_detection",
-            "label": "Object Detection",
-            "isActive": false
-          }, {
-            "name": "image_semantic_segmentation",
-            "label": "Semantic Segmentation",
-            "isActive": false
-          }, {
-            "name": "image_instance_segmentation",
-            "label": "Instance Segmentation",
-            "isActive": false
-          }, {"name": "image_enhancement", "label": "Image Enhancement", "isActive": false}, {
-            "name": "clickthroughrate",
-            "label": "Click-Through Rate",
-            "isActive": false
-          }]
-        }, {
-          "header": "Frameworks",
-          "description": "What the model is running on",
-          "select": "single",
-          "dataPath": ["framework", "name"],
-          "options": [{"id": 1, "name": "MXNet", "label": "MXNet", "isActive": true}, {
-            "id": 2,
-            "name": "Onnxruntime",
-            "label": "Onnxruntime",
-            "isActive": false
-          }, {"id": 3, "name": "PyTorch", "label": "PyTorch", "isActive": false}, {
-            "id": 4,
-            "name": "TensorFlow",
-            "label": "TensorFlow",
-            "isActive": false
-          }]
-        }, {
-          "header": "Machines",
-          "description": "Hardware that processes the model's functions",
-          "select": "single",
-          "dataPath": ["framework", "architectures", "0", "name"],
-          "options": [{"name": "amd64", "label": "amd64", "isActive": true}]
-        }]
-      })
-
-      modelList = shallow(<ModelListWithFilters frameworkOptions={defaultFrameworks} models={defaultModels}
-                                                machineOptions={defaultMachines}/>);
-    })
-    it("filters classification by default when that is what is stored in filters", () => {
-      let filterGroups = modelList.instance().state.filterGroups;
-
-      expect(filterGroups[0].options[0].isActive).toBeTruthy();
-    })
-
-    it("filters the first framework by default when that is what is stored in filters", () => {
-      let filterGroups = modelList.instance().state.filterGroups;
-
-      expect(filterGroups[1].options[0].isActive).toBeTruthy();
-    })
-
-    it("filters the first machine by default when that is what is stored in filters", () => {
-      let filterGroups = modelList.instance().state.filterGroups;
-
-      expect(filterGroups[2].options[0].isActive).toBeTruthy();
-    })
-
   })
 
 

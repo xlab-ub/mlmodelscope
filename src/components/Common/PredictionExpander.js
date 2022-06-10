@@ -39,7 +39,7 @@ export default class PredictionExpander extends BEMComponent {
         <div className={this.element('predictions')}>
           {predictions.slice(1, 3).map(this.makePrediction)}
 
-          <div className={this.element('prediction-overflow')}>
+          <div hidden={!this.props.showAll} className={this.element('prediction-overflow')}>
             {predictions.slice(3).map(this.makePrediction)}
           </div>
         </div>

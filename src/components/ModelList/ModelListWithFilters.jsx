@@ -1,9 +1,13 @@
 import React, {Component} from "react";
 import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
-import {SearchFiltersLocalStorage} from "../../helpers/localStorage";
 import Task from "../../helpers/Task";
-import {getTaskFromQueryString} from "../../helpers/QueryParsers";
+import {
+  getModelListingParametersFromQueryString,
+  getSearchParametersFromQueryString,
+  getTaskFromQueryString
+} from "../../helpers/QueryParsers";
+import {RemoveQueryParameter, SetQueryParameter} from "../../helpers/QuerySetters";
 
 export default class ModelListWithFilters extends Component {
   static defaultProps: {
@@ -15,11 +19,10 @@ export default class ModelListWithFilters extends Component {
   constructor(props) {
     super(props);
 
-    let stored = this.getStoredFilters();
+    let searchText = getSearchParametersFromQueryString(window.location.search) ?? "";
 
-    let filterGroups = this.forceTaskFilters(stored?.filterGroups || this.getDefaultGroups());
+    let filterGroups = this.applyDefaultFilters(this.getDefaultGroups());
 
-    let searchText = stored?.searchText || "";
     this.state = {
       filterGroups: filterGroups,
       searchText: searchText,
@@ -37,11 +40,8 @@ export default class ModelListWithFilters extends Component {
       this.reAssignActiveLabels(filterGroups, prevState.filterGroups);
       if (this.state.selectedModels.length > 0)
         this.ensureSelectedTaskIsChecked(filterGroups, this.state.selectedModels[0]);
-      filterGroups = this.forceTaskFilters(filterGroups);
-      this.storeCurrentFilters(filterGroups);
+      filterGroups = this.applyDefaultFilters(filterGroups);
       this.setState({filterGroups: filterGroups});
-    } else {
-      this.storeCurrentFilters();
     }
     if (this.props.selectedModels !== prevProps.selectedModels) {
       this.setState({selectedModels: this.props.selectedModels});
@@ -67,19 +67,6 @@ export default class ModelListWithFilters extends Component {
     option.isActive = true;
   }
 
-  storeCurrentFilters = (filterGroupOverride = null) => {
-    let storageObject = {
-      searchText: this.state.searchText,
-      filterGroups: filterGroupOverride || this.state.filterGroups
-    };
-    let storageHelper = new SearchFiltersLocalStorage();
-    storageHelper.setFilters(storageObject);
-  }
-
-  getStoredFilters = () => {
-    let storageHelper = new SearchFiltersLocalStorage();
-    return storageHelper.getFilters();
-  }
 
   getDefaultGroups() {
     const isInQueryString = (id) => getTaskFromQueryString(window.location.search) === id;
@@ -96,7 +83,8 @@ export default class ModelListWithFilters extends Component {
         description: "What the model is trained to do (select one)",
         select: "single",
         dataPath: ["output", "type"],
-        options: taskOptions
+        options: taskOptions,
+        id: "task"
       },
       {
         header: "Frameworks",
@@ -104,6 +92,7 @@ export default class ModelListWithFilters extends Component {
         select: "single",
         dataPath: ["framework", "name"],
         options: clone(this.props.frameworkOptions),
+        id: "framework"
       },
       {
         header: "Machines",
@@ -111,6 +100,7 @@ export default class ModelListWithFilters extends Component {
         select: "single",
         dataPath: ["framework", "architectures", "0", "name"],
         options: clone(this.props.machineOptions),
+        id: "machine"
       }
     ];
   }
@@ -179,9 +169,19 @@ export default class ModelListWithFilters extends Component {
     } else {
       this.toggleFilterSingle(filterGroup, target)
     }
+    this.toggleQueryParameterFilter(filterGroup, target);
 
     filterGroupsCopy[i] = filterGroup;
     this.setState({filterGroups: filterGroupsCopy});
+  }
+
+  toggleQueryParameterFilter = (filterGroup, target) => {
+    let filterType = filterGroup.id;
+    let storedFilter = getModelListingParametersFromQueryString(window.location.search)[filterType];
+    if (storedFilter && storedFilter === target)
+      RemoveQueryParameter(filterType);
+    else
+      SetQueryParameter(filterType, target);
   }
 
   toggleFilterMulti = (filterGroup, target) => {
@@ -218,7 +218,14 @@ export default class ModelListWithFilters extends Component {
       }))
     }));
 
+    this.clearQueryParameters();
+
     this.setState({filterGroups: filterGroups});
+  }
+
+  clearQueryParameters = () => {
+    const parametersToRemove = ["task", "framework", "machine", "search"];
+    parametersToRemove.forEach(parameter => RemoveQueryParameter(parameter));
   }
 
   updateSearchText = (inputText) => {
@@ -268,12 +275,28 @@ export default class ModelListWithFilters extends Component {
     this.setState({selectedModels: []});
   }
 
-  forceTaskFilters = (filterGroups) => {
-    let task = this.props.task || getTaskFromQueryString(window.location.search);
+  applyDefaultFilters = (filterGroups) => {
+    const queryParameters = getModelListingParametersFromQueryString(window.location.search);
 
-    if (task) {
-      filterGroups[0].options = filterGroups[0].options.map(opt => ({...opt, isActive: opt.name === task}));
+    if (queryParameters.task) {
+      filterGroups[0].options = filterGroups[0].options.map(opt => ({
+        ...opt,
+        isActive: opt.name === queryParameters.task
+      }));
     }
+    if (queryParameters.framework) {
+      filterGroups[1].options = filterGroups[1].options.map(opt => ({
+        ...opt,
+        isActive: opt.name === queryParameters.framework
+      }))
+    }
+    if (queryParameters.machine) {
+      filterGroups[2].options = filterGroups[2].options.map(opt => ({
+        ...opt,
+        isActive: opt.name === queryParameters.machine
+      }));
+    }
+
     return filterGroups;
   }
 
