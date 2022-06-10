@@ -31,12 +31,9 @@
 
   &__top-row {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
     max-height: 100%;
-
-
+    display: flex;
+    flex-direction: column;
   }
 
   &__bottom-row {
@@ -47,5 +44,9 @@
       max-width: 270px;
     }
 
+  }
+
+  .semantic-segmentation-table {
+    margin-top: 24px;
   }
 }

@@ -558,6 +558,7 @@ export const InstanceSegmentation = Template.bind({});
 InstanceSegmentation.args = {
   trials: [
     TestInstanceSegmentationOutput,
+    TestInstanceSegmentationOutput,
     TestInstanceSegmentationOutput
   ]
 }
@@ -578,7 +579,8 @@ export const SemanticSegmentation = Template.bind({});
 SemanticSegmentation.args = {
   trials: [
     TestImageSegmentationResult,
-    TestImageSegmentationResult
+    TestImageSegmentationResult,
+    TestImageSegmentationResult,
   ]
 }
 
