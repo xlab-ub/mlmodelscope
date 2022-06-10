@@ -73,8 +73,11 @@ export default function TrialOutputWrapper(props) {
                href={"/model/" + model?.id}>{model?.name}</a>
           </dd>
         </dl>
-        <CloseIcon className="trial-output-wrapper__delete-trial-button"
-                   onClick={() => handleClose()}/>
+        <button className="trial-output-wrapper__delete-trial-button-wrapper" onClick={() => handleClose()}>
+
+          <CloseIcon className="trial-output-wrapper__delete-trial-button"
+          />
+        </button>
 
 
       </div>

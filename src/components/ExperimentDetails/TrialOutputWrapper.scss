@@ -70,12 +70,15 @@
   }
 
   &__delete-trial-button {
-    position: absolute;
-    right: 24px;
-    top: 20px;
     cursor: pointer;
     width: 20px;
     height: 20px;
+
+    &-wrapper {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+    }
   }
 
   &__delete-trial-button path {
