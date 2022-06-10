@@ -26,7 +26,7 @@
     &--collapsed {
       max-height: 0;
       overflow: hidden;
-      display: none;
+      visibility: hidden;
     }
 
     & > * {
