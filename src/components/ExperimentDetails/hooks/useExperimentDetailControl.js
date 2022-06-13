@@ -2,6 +2,7 @@ import {useEffect, useMemo, useState} from "react";
 import clone from "../../../helpers/cloner";
 import GetApiHelper from "../../../helpers/api";
 import {useRouteMatch} from "react-router-dom";
+import MultipleSort from "../../../helpers/MultipleSort";
 
 export const experimentDetailsPages = {
   ComparisonPage: "COMPARISON_PAGE",
@@ -19,7 +20,7 @@ export default function useExperimentDetailControl() {
   const [currentPage, setCurrentPage] = useState(experimentDetailsPages.ComparisonPage);
 
   const getUniqueInputs = useMemo(() => trials.filter((trial, index, array) => array.findIndex(t => t.inputs[0] === trial.inputs[0]) === index).map(trial => trial.inputs[0]), [trials.length]);
-  const inputs = getUniqueInputs;
+  const inputs = MultipleSort(getUniqueInputs, [a => a]);
 
   const currentInput = inputs[currentIndex];
   let modelOutputType = "";
