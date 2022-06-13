@@ -32,18 +32,4 @@
     padding: 8px 16px;
     text-transform: capitalize;
   }
-
-  .prediction-expander {
-    &__predictions {
-      max-height: 18000000px;
-    }
-
-    &__prediction-overflow {
-      max-height: 100%;
-    }
-  }
-
-  .prediction-expander__predictions {
-  }
-
 }
