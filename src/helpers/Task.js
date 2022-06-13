@@ -25,6 +25,19 @@ import {
   SampleObjectDetectionInputs,
   SampleSegmentationInputs
 } from "./sampleImages";
+import {TestImageClassificationResult} from "../components/Experiment/QuickOutput/Outputs/Classification/Features";
+import {
+  TestImageEnhancementData
+} from "../components/Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
+import {
+  TestObjectDetectionResult
+} from "../components/Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
+import {
+  TestImageSegmentationResult
+} from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
+import {
+  TestInstanceSegmentationOutput3
+} from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 
 
 export default class Task {
@@ -121,6 +134,21 @@ export default class Task {
 
       default:
         return undefined;
+    }
+  }
+
+  static getSampleOutput(taskId) {
+    switch (taskId) {
+      case image_classification:
+        return TestImageClassificationResult;
+      case image_enhancement:
+        return TestImageEnhancementData;
+      case object_detection:
+        return TestObjectDetectionResult;
+      case semantic_segmentation:
+        return TestImageSegmentationResult;
+      case instance_segmentation:
+        return TestInstanceSegmentationOutput3;
     }
   }
 

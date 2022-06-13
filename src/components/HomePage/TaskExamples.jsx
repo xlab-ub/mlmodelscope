@@ -9,7 +9,7 @@ import Task from "../../helpers/Task";
 
 export function TaskExamples(props) {
   const {getBlock, getElement} = useBEMNaming("home-page-tasks");
-  const {taskSelection, quickExperiment, navigation} = useTaskExampleControl();
+  const {taskSelection, quickExperiment, navigation, trialOutput} = useTaskExampleControl();
 
   const taskIconProps = {
     className: getElement("selected-task-icon")
@@ -49,7 +49,7 @@ export function TaskExamples(props) {
         defaultModel={defaultModel}
         runTrial={quickExperiment.runTrial}
         sampleInputs={sampleInputs}
-        trial={sampleInput || quickExperiment.trial}
+        trial={trialOutput}
         onBackClicked={navigation.onBackClick}
         onCompare={navigation.onCompare}
       />
