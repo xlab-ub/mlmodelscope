@@ -23,6 +23,15 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+
+      @include maxWidth(475px) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+
+        h3 {
+          margin-top: 8px;
+        }
+      }
     }
 
     &-heading {
