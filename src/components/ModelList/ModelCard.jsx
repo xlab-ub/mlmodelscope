@@ -65,12 +65,7 @@ export default class ModelCard extends Component {
 
               </>
             }
-            {model.version &&
-              <>
-                <p className={"model-card__tags-box-item"} children={"Version: " + model.version}/>
 
-              </>
-            }
           </div>
 
         </div>
