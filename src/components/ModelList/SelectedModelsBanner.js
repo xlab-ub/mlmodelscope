@@ -9,9 +9,12 @@ export default class SelectedModelsBanner extends BEMComponent {
   static defaultProps = {
     className: "selected-models-banner",
     selectedModels: [],
-    deselectModel: () => {},
-    clearModels: () => {},
-    runModels: () => {},
+    deselectModel: () => {
+    },
+    clearModels: () => {
+    },
+    runModels: () => {
+    },
   }
 
   constructor(props) {
@@ -34,27 +37,42 @@ export default class SelectedModelsBanner extends BEMComponent {
     };
   }
 
+  isOpen = (state) => state.open === true;
+  hasCards = (props) => props.selectedModels.length > 0;
+
+  open = () => this.setState({open: true});
+  close = () => this.setState({open: false});
+
+
+  componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    if (!this.isOpen(this.state) && this.hasCards(this.props) && !this.hasCards(prevProps))
+      this.open();
+    else if (this.isOpen(this.state) && !this.hasCards(this.props) && this.hasCards(prevProps))
+      this.close();
+  }
+
   render() {
     return (
       <div className={this.block()}>
         <div className={this.element('controls')}>
           <div className={this.element("toggle-col")}>
             <button className={this.element('toggle')} onClick={() => this.toggle()}>
-              <MenuToggle className={this.element('toggle-icon')} />
+              <MenuToggle className={this.element('toggle-icon')}/>
             </button>
           </div>
           <div className={this.element("controls-col")}>
  <span className={this.element('toggle-text')}>
               Models selected to add to experiment: {this.props.selectedModels.length}
             </span>
-            { this.getRemoveButton() }
+            {this.getRemoveButton()}
             <div className={this.element('run')}>
-              <Button content="Run models" isPrimary={false} isSmall={true} onClick={() => this.props.runModels(this.props.selectedModels)} />
+              <Button content="Run models to compare" isPrimary={false} isSmall={true}
+                      onClick={() => this.props.runModels(this.props.selectedModels)}/>
             </div>
           </div>
         </div>
         <div className={this.element('list')}>
-          { this.getModelCards() }
+          {this.getModelCards()}
         </div>
       </div>
     );
@@ -80,6 +98,8 @@ export default class SelectedModelsBanner extends BEMComponent {
   getModelCards() {
     let modelKey = 0;
 
-    return this.props.selectedModels.map(model => <SelectedModelCard key={modelKey++} model={model} remove={() => { this.props.deselectModel(model); }} />)
+    return this.props.selectedModels.map(model => <SelectedModelCard key={modelKey++} model={model} remove={() => {
+      this.props.deselectModel(model);
+    }}/>)
   }
 }
