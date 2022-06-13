@@ -12,7 +12,7 @@ export function ModelListResponsiveHeader(props) {
 
   const FilterButton = () => <button className={"model-list-page__responsive-header-filter-container-btn"}
                                      onClick={props.openFilter}>
-    Filter Models By ({props.activeFilters.length})
+    Filter models by ({props.activeFilters.length})
   </button>
 
 
