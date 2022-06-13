@@ -2,7 +2,7 @@ name: Deploy MLModelscope Staging
 on:
   push:
     branches:
-      - staging
+      - develop
     paths:
       - 'src/**'
   workflow_dispatch:
@@ -36,7 +36,5 @@ jobs:
           S3_BUCKET_NAME: staging.mlmodelscope.org
           CLOUDFRONT_ID: ${{ secrets.STAGING_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
-          apt-get update
-          apt-get install -y awscli
           aws s3 sync build s3://${S3_BUCKET_NAME}
           aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID} --path "/*"
