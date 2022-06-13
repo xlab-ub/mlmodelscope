@@ -8,6 +8,6 @@ export default function OutputDuration({duration}) {
   const {getElement, getBlock} = useBEMNaming("output-duration");
 
   return <div className={getBlock()}><Timer className={getElement("icon")}/><p
-    className={getElement("label")}>Duration: <span
+    className={getElement("label")}>Inference Duration: <span
     className={getElement("seconds")}>{DurationConverter(duration)}</span></p></div>
 }
