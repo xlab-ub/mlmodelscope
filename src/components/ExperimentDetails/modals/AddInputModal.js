@@ -17,7 +17,7 @@ export default function AddInputModal(props) {
     <p className={getElement("heading")}> Choose an input </p>
     <div className={getElement("input-wrapper")}>
       <QuickInput model={{output: {type: image_classification}}} hideHeader
-                  onRunModelClicked={onAdd} sampleInputs={props.sampleInputs} multiple/>
+                  onRunModelClicked={onAdd} sampleInputs={props.sampleInputs} multiple hideSample/>
     </div>
   </Modal>
 }

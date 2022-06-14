@@ -32,16 +32,24 @@ export default class QuickInput extends BEMComponent {
   }
 
 
-  getTabs = () => [
-    {
+  getTabs = () => {
+    const sample = {
       id: 'sample-input',
       title: 'Sample inputs',
       component: SampleInputsTab,
       props: {sampleInputs: this.props.sampleInputs}
-    },
-    {id: 'upload-input', title: 'Upload', component: UploadInputsTab},
-    {id: 'url-input', title: 'URL', component: URLInputsTab}
-  ];
+    }
+    const upload = {id: 'upload-input', title: 'Upload', component: UploadInputsTab};
+    const url = {id: 'url-input', title: 'URL', component: URLInputsTab}
+
+    const tabs = [];
+
+    if (!this.props.hideSample) tabs.push(sample);
+    if (!this.props.hideUpload) tabs.push(upload);
+    if (!this.props.hideUrl) tabs.push(url);
+
+    return tabs;
+  }
 
   render() {
     const task = Task.getStaticTask(this.props.model.output.type);
