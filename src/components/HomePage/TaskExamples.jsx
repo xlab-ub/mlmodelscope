@@ -1,6 +1,6 @@
 import useBEMNaming from "../../common/useBEMNaming";
 import {HomePageSectionHeading} from "./HomePageSectionHeading";
-import React from "react";
+import React, {useState} from "react";
 import useTaskExampleControl from "./hooks/useTaskExampleControl";
 import {TaskControls} from "./TaskControls";
 import {TaskCard} from "./TaskCard";
@@ -10,6 +10,20 @@ import Task from "../../helpers/Task";
 export function TaskExamples(props) {
   const {getBlock, getElement} = useBEMNaming("home-page-tasks");
   const {taskSelection, quickExperiment, navigation, trialOutput} = useTaskExampleControl();
+
+  const [useHardCodedOutput, setUseHardCodedOutput] = useState(true);
+
+  const onBackClicked = () => {
+    if (useHardCodedOutput) setUseHardCodedOutput(false);
+
+    navigation.onBackClick();
+  }
+
+  const updateTask = (task) => {
+    if (!useHardCodedOutput) setUseHardCodedOutput(true);
+
+    taskSelection.updateTask(task);
+  }
 
   const taskIconProps = {
     className: getElement("selected-task-icon")
@@ -25,12 +39,17 @@ export function TaskExamples(props) {
     taskName = demoTask.name;
   }
 
+  const getTrial = () => {
+    if (useHardCodedOutput) return trialOutput;
+    return quickExperiment.trial;
+  }
+
   return <div className={getBlock()}>
     <HomePageSectionHeading title={"What can models do?"}
                             subtitle={"Models can perform a variety of tasks, like recognizing objects in an image or identifying a speaker in an audio file. Here are some model tasks you’ll find on this website."}/>
     <div className={getElement("section-content")}>
       <TaskControls tasks={taskSelection.tasks} taskIsSelected={taskSelection.taskIsSelected}
-                    updateTask={taskSelection.updateTask}
+                    updateTask={updateTask}
                     selectedTask={taskSelection.selectedTask}
       />
       <div className={getElement("selected-task-header")}>
@@ -49,8 +68,8 @@ export function TaskExamples(props) {
         defaultModel={defaultModel}
         runTrial={quickExperiment.runTrial}
         sampleInputs={sampleInputs}
-        trial={trialOutput}
-        onBackClicked={navigation.onBackClick}
+        trial={getTrial()}
+        onBackClicked={onBackClicked}
         onCompare={navigation.onCompare}
       />
     </div>

@@ -60,9 +60,9 @@ export default function ObjectDetection(props) {
     </div>
     {getBody()}
     <div className={getElement("bottom-row")}>
-      <a href={"#"} onClick={props.onBackClicked} className={getElement("bottom-row-btn")}>
+      <button onClick={props.onBackClicked} className={getElement("bottom-row-btn")}>
         Try a different image
-      </a>
+      </button>
     </div>
   </div>
 }
