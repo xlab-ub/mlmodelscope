@@ -59,10 +59,15 @@
 
   &__model-name {
     @include headline3;
-    color: white;
+    color: $white;
     text-decoration: underline;
     transition: color 0.3s;
     word-wrap: anywhere;
+    width: 100%;
+
+    @include safari {
+      overflow-wrap: break-word;
+    }
   }
 
   &__model-name:hover {

@@ -8,6 +8,7 @@ $width-mobile-small: 375px;
     @content;
   }
 }
+
 @mixin minWidth($width) {
   @media screen and (min-width: $width) {
     @content;
@@ -19,18 +20,22 @@ $width-mobile-small: 375px;
     @content;
   }
 }
+
 @mixin tabletWidth {
-  @include maxWidth($width-tablet){
+  @include maxWidth($width-tablet) {
     @content;
   }
 }
+
 @mixin mobileWidth-lg {
-  @include maxWidth($width-mobile-large){
+  @include maxWidth($width-mobile-large) {
     @content;
   }
 }
+
 @mixin mobileWidth-sm {
   @include maxWidth($width-mobile-small) {
     @content;
   }
 }
+
