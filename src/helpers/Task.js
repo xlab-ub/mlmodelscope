@@ -21,7 +21,6 @@ import {
 import {
   SampleImageClassificationInputs,
   SampleImageEnhancementInputs,
-  SampleInstanceSegmentationInputs,
   SampleObjectDetectionInputs,
   SampleSegmentationInputs
 } from "./sampleImages";
@@ -36,7 +35,7 @@ import {
   TestImageSegmentationResult
 } from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 import {
-  TestInstanceSegmentationOutput3
+  TestInstanceSegmentationOutput
 } from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 
 
@@ -82,7 +81,7 @@ export default class Task {
     inputText: "See how well this model can recognize and locate multiple distinct objects in an image.",
     outputText: "Objects recognized in this image:",
     icon: (props) => <InstanceSegmentation {...props}/>,
-    sampleInputs: SampleInstanceSegmentationInputs,
+    sampleInputs: SampleSegmentationInputs,
     homePageDescription: "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image.",
     id: instance_segmentation
   })
@@ -148,7 +147,7 @@ export default class Task {
       case semantic_segmentation:
         return TestImageSegmentationResult;
       case instance_segmentation:
-        return TestInstanceSegmentationOutput3;
+        return TestInstanceSegmentationOutput;
     }
   }
 

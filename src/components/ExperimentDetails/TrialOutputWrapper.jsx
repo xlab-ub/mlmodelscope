@@ -13,7 +13,6 @@ import {
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
 import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
-import InstanceSegmentationSummary from "./Summaries/InstanceSegmentationSummary";
 
 export default function TrialOutputWrapper(props) {
 
@@ -36,9 +35,8 @@ export default function TrialOutputWrapper(props) {
         case image_enhancement:
           return <ImageEnhancementSummary value={props.value} trial={props.trial}/>
         case semantic_segmentation:
-          return <SemanticSegmentationSummary value={props.value} trial={props.trial}/>
         case instance_segmentation:
-          return <InstanceSegmentationSummary value={props.value} trial={props.trial}/>
+          return <SemanticSegmentationSummary value={props.value} trial={props.trial}/>
       }
 
       return <></>

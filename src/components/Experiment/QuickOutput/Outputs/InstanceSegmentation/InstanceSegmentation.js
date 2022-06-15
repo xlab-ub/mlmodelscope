@@ -1,8 +1,6 @@
 import React from 'react';
-import ObjectDetection from "../ObjectDetection/ObjectDetection";
-import {BoundingBoxProperties} from "../ObjectDetection/utils/boundingBoxTypes";
+import SemanticSegmentation from "../SemanticSegmentation/SemanticSegmentation";
 
 export default function InstanceSegmentation(props) {
-  return <ObjectDetection {...props} isInstanceSegmentation
-                          boundingBoxProperty={BoundingBoxProperties.instance_segment}/>
+  return <SemanticSegmentation {...props} />
 }
