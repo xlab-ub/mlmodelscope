@@ -1,7 +1,7 @@
 import GetApiHelper from "../../../../../helpers/api";
 import Uppy from '@uppy/core';
 import AwsS3Multipart from "@uppy/aws-s3-multipart";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export default function useUploadInputControl(props) {
   const [activeUser, setActiveUser] = useState("undefined");
@@ -20,6 +20,7 @@ export default function useUploadInputControl(props) {
   }
 
   const onComplete = (result) => {
+    console.log(result);
     const urls = result.successful.map(x => x.uploadURL);
     if (typeof (props.inputSelected) === 'function') {
       let values = Array.from(props.values);
@@ -34,17 +35,21 @@ export default function useUploadInputControl(props) {
 
 
   const api = GetApiHelper();
-  const uppy = Uppy({
-    autoProceed: true,
-    restrictions: {maxNumberOfFiles: props.multiple ? 99 : 1},
-    onBeforeUpload: onBeforeUpload
-  })
-  uppy.use(AwsS3Multipart, {
-    limit: 5,
-    companionUrl: process.env.REACT_APP_COMPANION_URL
-  });
-  uppy.on("complete", onComplete);
+  const uppy = useMemo(() => {
+    let u = Uppy({
+      autoProceed: true,
+      restrictions: {maxNumberOfFiles: props.multiple ? 99 : 1},
+      onBeforeUpload: onBeforeUpload
+    })
+    u.use(AwsS3Multipart, {
+      limit: 5,
+      companionUrl: process.env.REACT_APP_COMPANION_URL
+    });
+    u.on("complete", onComplete);
 
+
+    return u;
+  }, [])
 
   useEffect(() => {
     api.ActiveUser.subscribe({
