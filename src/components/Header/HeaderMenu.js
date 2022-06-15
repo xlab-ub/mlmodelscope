@@ -31,7 +31,7 @@ export function HeaderMenu(props) {
 
       <LinkSection display={"Compare models"} {...props}>
         <p className={props.getElement("submenu-header")}>Choose a task to use for your comparison</p>
-        {tasks.map(task => <LinkItem key={task.id} link={`/experiment/new?task=${task.name}`} isSubMenu display={<>
+        {tasks.map(task => <LinkItem key={task.id} link={`/experiment/new?task=${task.id}`} isSubMenu display={<>
           <task.Icon className={props.getElement("submenu-icon")}/>
           {task.name}</>} {...props}/>)}
       </LinkSection>
