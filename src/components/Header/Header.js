@@ -27,7 +27,7 @@ export default function Header(props) {
 
   const getExperimentLink = () => {
     let task = Task.getStaticTask(selectedTask);
-    return `/experiment/new?task=${task.name}`;
+    return `/experiment/new?task=${task.id}`;
   }
 
 
