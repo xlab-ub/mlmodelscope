@@ -49,6 +49,8 @@ describe('Sample Inputs Tab', () => {
     it('allowing selection by clicking by clicking the input img', () => {
       const image = wrapper.find('.sample-inputs__input').at(2).find('button');
       image.simulate('click');
+
+      wrapper.update();
       const selected = wrapper.find('.sample-inputs__input--selected');
 
       expect(selected.length).toBe(1);

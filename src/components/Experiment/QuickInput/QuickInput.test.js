@@ -2,10 +2,10 @@ import React from 'react';
 import expect from 'expect';
 import {mount} from 'enzyme';
 import QuickInput from "./QuickInput";
-import SampleInputsTab from "./SampleInputsTab";
-import {SampleInputs} from "./SampleInputsTab.test";
-import UploadInputsTab from "./UploadInputsTab";
-import URLInputsTab from "./URLInputsTab";
+import SampleInputsTab from "./Tabs/SampleInput/SampleInputsTab";
+import {SampleInputs} from "./Tabs/SampleInput/SampleInputsTab.test";
+import UploadInputsTab from "./Tabs/UploadInput/UploadInputsTab";
+import URLInputsTab from "./Tabs/URLInput/URLInputsTab";
 import {image_classification} from "../../../helpers/TaskIDs";
 import Task from "../../../helpers/Task";
 
@@ -149,7 +149,7 @@ describe('Experiment Quick Input Component', () => {
       });
 
       it('that becomes enabled when an input is selected', () => {
-        wrapper.instance().selectInput('http://example.com/image1.jpg', 0);
+        wrapper.find("img").first().simulate("click");
         wrapper.update();
         const button = wrapper.find('.quick-input__run-model');
 
@@ -157,21 +157,21 @@ describe('Experiment Quick Input Component', () => {
       });
 
       it('where clicking calls the provided onRunModelClicked method with the selected input', () => {
-        wrapper.instance().selectInput('http://example.com/image1.jpg', 0);
+        wrapper.find("img").first().simulate("click");
         wrapper.update();
         wrapper.find('.quick-input__run-model').simulate('click');
 
         expect(runModelClicked.mock.calls.length).toBe(1);
-        expect(runModelClicked.mock.calls[0][0][0]).toBe('http://example.com/image1.jpg');
+        expect(runModelClicked.mock.calls[0][0][0]).toBe('https://example.com/sample1.jpg');
       });
     });
 
     describe('a Sample Inputs Tab', () => {
       it('that calls back to selectInput()', () => {
-        wrapper.find('SampleInputsTab').instance().selectInput(0);
+        wrapper.find("img").first().simulate("click");
         wrapper.update();
 
-        expect(wrapper.state('selectedInputUrl')[0]).toBe(SampleInputs[0].src);
+
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
@@ -184,21 +184,11 @@ describe('Experiment Quick Input Component', () => {
 
         wrapper.update();
 
-        const state = wrapper.state('selectedInputUrl');
-        expect(state[0]).toBe(SampleInputs[0].src);
 
         expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
       });
     });
 
-    describe('an Upload Inputs Tab', () => {
-      it('that calls back to selectInput()', () => {
-        wrapper.find(UploadInputsTab).instance().onComplete({successful: [{uploadURL: SampleInputs[2]}]}, {});
-        wrapper.update();
 
-        expect(wrapper.state('selectedInputUrl')).toStrictEqual([SampleInputs[2]]);
-        expect(wrapper.find('.quick-input__run-model').prop('disabled')).toBeFalsy();
-      });
-    })
   });
 });
