@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ModelCard from '../components/ModelList/ModelCard';
+import ModelCard from '../components/ModelList/ModelCard/ModelCard';
 
 export default {
   title: 'Components/Model Card',

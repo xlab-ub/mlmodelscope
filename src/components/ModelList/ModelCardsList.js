@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ModelCard from "./ModelCard";
+import ModelCard from "./ModelCard/ModelCard";
 import ModelListNoResults from "./NoResults";
 
 export default class ModelCardsList extends Component {

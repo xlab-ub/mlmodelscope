@@ -1,9 +1,31 @@
 import React, {Component} from "react";
-import Task from "../../helpers/Task";
-import Button from "../Buttons/Button"
-import ModelTag from "../Common/ModelTag";
-import {ReactComponent as Plus} from "../../resources/icons/plus-sign.svg";
-import {ReactComponent as Minus} from "../../resources/icons/minus-sign.svg";
+import Task from "../../../helpers/Task";
+import ModelTag from "../../Common/ModelTag";
+import {ReactComponent as Plus} from "../../../resources/icons/plus-sign.svg";
+import {ReactComponent as Minus} from "../../../resources/icons/minus-sign.svg";
+
+function ModelCardName(props) {
+  const model = props.model;
+  const text = `${model.name}`
+
+  if (props.actions === 'try') {
+    return (
+      <a className="model-card__model-name" href={props.makeModelLink()}>{text}</a>
+    )
+  }
+  return <button className="model-card__model-name"
+                 onClick={() => props.isAdded ? props.deselectModel() : props.selectModel()}>{text}</button>
+}
+
+function ModelCardActions(props) {
+  if (props.actions === 'add' && !props.isAdded) {
+    return <Plus className={"model-card__icon"}/>
+
+  } else if (props.actions === 'add' && props.isAdded) {
+    return <Minus className={"model-card__icon model-card__icon-minus"}/>
+  }
+  return <></>
+}
 
 export default class ModelCard extends Component {
   static defaultProps = {
@@ -36,7 +58,7 @@ export default class ModelCard extends Component {
     return (
       <div onClick={this.makeClickHandler()}
            className={this.props.isAdded ? 'model-card model-card--active' : 'model-card'}>
-        {this.makeName()}
+        <ModelCardName {...this.props} makeModelLink={this.makeModelLink.bind(this)}/>
 
         <div className="model-card__tags-box">
           <div className={"model-card__tags-box-row"}>
@@ -69,24 +91,11 @@ export default class ModelCard extends Component {
           </div>
 
         </div>
-        {this.makeActions()}
+        <ModelCardActions {...this.props} />
       </div>
     )
   }
 
-  makeName() {
-    const model = this.props.model;
-    const text = `${model.name}`
-
-    if (this.props.actions === 'try') {
-      return (
-        <a className="model-card__model-name" href={this.makeModelLink()}>{text}</a>
-      )
-    } else {
-      return <button className="model-card__model-name"
-                     onClick={() => this.props.isAdded ? this.props.deselectModel() : this.props.selectModel()}>{text}</button>
-    }
-  }
 
   makeModelLink() {
     return "/model/" + this.props.model.id;
@@ -102,28 +111,4 @@ export default class ModelCard extends Component {
     }
   }
 
-  makeActions() {
-    if (this.props.actions === 'add' && !this.props.isAdded) {
-      return <Plus className={"model-card__icon"}/>
-      return (
-        <div className="model-card__actions-box">
-          <div className="model-card__add-model-button">
-            <Button content="Add Model" onClick={this.props.selectModel} isPrimary={false} isSmall={true}
-                    icon={'plus'}/>
-          </div>
-        </div>
-      );
-    } else if (this.props.actions === 'add' && this.props.isAdded) {
-      return <Minus className={"model-card__icon model-card__icon-minus"}/>
-      return (
-        <div className="model-card__actions-box">
-          <div className="model-card__add-model-button">
-            <Button content="Remove Model" onClick={this.props.deselectModel} isPrimary={true} isSmall={true}
-                    icon={'minus'}/>
-          </div>
-        </div>
-      );
-    }
-    return <></>
-  }
 }
