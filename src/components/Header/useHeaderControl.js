@@ -6,8 +6,24 @@ export function useHeaderControl(props) {
   const [showMenu, setShowMenu] = useState(false);
   const [showModelComparison, setShowModelComparison] = useState(false);
   const [selectedTask, setSelectedTask] = useState(image_classification);
+  const [isScrolled, setIsScrolled] = useState(false);
   const containerRef = useRef();
   const btnRef = useRef();
+  const headerRef = useRef();
+
+
+  const scrollListener = () => {
+    if (headerRef.current && document.documentElement.scrollTop > headerRef.current.scrollHeight) {
+      setIsScrolled(true);
+    } else setIsScrolled(false);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollListener);
+
+    return () => window.removeEventListener("scroll", scrollListener);
+
+  }, [headerRef])
 
   const toggleMenu = () => setShowMenu(!showMenu);
   const toggleComparison = () => setShowModelComparison(!showModelComparison);
@@ -20,6 +36,8 @@ export function useHeaderControl(props) {
 
     if (props.splash) add(getElement("splash"));
     if (showMenu) add(getElement("shown-menu"));
+    if (isScrolled) add(getElement("scrolled"));
+    if (props.splash && isScrolled) add(getElement("scrolled-splash"));
 
     return classes;
   }
@@ -47,6 +65,7 @@ export function useHeaderControl(props) {
     selectedTask,
     setSelectedTask,
     containerRef,
-    btnRef
+    btnRef,
+    headerRef
   };
 }

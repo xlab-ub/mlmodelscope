@@ -18,8 +18,10 @@ export default function Header(props) {
     setSelectedTask,
     selectedTask,
     containerRef,
-    btnRef
+    btnRef,
+    headerRef
   } = useHeaderControl(props);
+
 
   const tasks = Task.getStaticTasks();
 
@@ -36,7 +38,7 @@ export default function Header(props) {
 
         </div>
       }
-      <div className={getHeaderClassNames()}>
+      <div ref={headerRef} className={getHeaderClassNames()}>
         <div className={getElement("row")}>
 
           <div className={getElement("logo-container")}>
