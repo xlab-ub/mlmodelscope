@@ -68,6 +68,10 @@ $gutterSize-mobile: 20px;
     padding-left: $gutterSize-mobile;
     margin-left: -$gutterSize-mobile;
   }
+  @include maxWidth(400px) {
+    padding-left: 8px;
+    margin-left: 8px;
+  }
 }
 
 @mixin negativeMarginGutters {
@@ -81,6 +85,10 @@ $gutterSize-mobile: 20px;
   @include mobileWidth-lg {
     margin-left: -$gutterSize-mobile;
     margin-right: -$gutterSize-mobile;
+  }
+  @include maxWidth(400px) {
+    margin-left: -8px;
+    margin-right: -8px;
   }
 }
 
