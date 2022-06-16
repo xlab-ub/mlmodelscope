@@ -57,9 +57,7 @@ export default function useUploadInputControl(props) {
       }
     });
 
-    return () => {
-      api.ActiveUser.unsubscribe();
-    }
+
   }, [])
 
   return {
