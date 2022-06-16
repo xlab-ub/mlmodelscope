@@ -4,7 +4,7 @@ import AwsS3Multipart from "@uppy/aws-s3-multipart";
 import {useEffect, useMemo, useState} from "react";
 
 export default function useUploadInputControl(props) {
-  const [activeUser, setActiveUser] = useState("undefined");
+  const [activeUser, setActiveUser] = useState("anonymous");
 
   const onBeforeUpload = (files) => {
     Object.keys(files)
@@ -20,7 +20,6 @@ export default function useUploadInputControl(props) {
   }
 
   const onComplete = (result) => {
-    console.log(result);
     const urls = result.successful.map(x => x.uploadURL);
     if (typeof (props.inputSelected) === 'function') {
       let values = Array.from(props.values);
