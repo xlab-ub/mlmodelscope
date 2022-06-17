@@ -1,0 +1,98 @@
+@import "src/App";
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.section-wrapper {
+  &__fade {
+    opacity: 0;
+
+    &-visible {
+      animation: fade 0.5s forwards;
+    }
+  }
+
+  &__slide-left {
+    visibility: hidden;
+
+    &-visible {
+      visibility: visible;
+      animation: slideFromLeft 0.5s forwards;
+    }
+  }
+
+  &__slide-right {
+    visibility: hidden;
+
+    &-visible {
+      visibility: visible;
+      animation: slideFromRight 0.5s forwards;
+    }
+  }
+
+  &__slide-top {
+    visibility: hidden;
+
+    &-visible {
+      visibility: visible;
+      animation: slideFromTop 0.5s forwards;
+    }
+  }
+
+  &__slide-bottom {
+    visibility: hidden;
+
+    &-visible {
+      visibility: visible;
+      animation: slideFromBottom 0.5s forwards;
+    }
+  }
+
+
+  &__hidden {
+    display: none;
+  }
+
+}
