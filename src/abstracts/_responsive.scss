@@ -9,6 +9,12 @@ $width-mobile-small: 375px;
   }
 }
 
+@mixin maxHeight($height) {
+  @media screen and (max-height: $height) {
+    @content;
+  }
+}
+
 @mixin minWidth($width) {
   @media screen and (min-width: $width) {
     @content;
