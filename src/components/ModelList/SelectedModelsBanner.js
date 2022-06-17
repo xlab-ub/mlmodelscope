@@ -43,9 +43,10 @@ export default class SelectedModelsBanner extends BEMComponent {
   open = () => this.setState({open: true});
   close = () => this.setState({open: false});
 
+  screenIsLargeEnough = () => window.innerWidth > 925;
 
   componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
-    if (!this.isOpen(this.state) && this.hasCards(this.props) && !this.hasCards(prevProps))
+    if (!this.isOpen(this.state) && this.hasCards(this.props) && !this.hasCards(prevProps) && this.screenIsLargeEnough())
       this.open();
     else if (this.isOpen(this.state) && !this.hasCards(this.props) && this.hasCards(prevProps))
       this.close();
@@ -58,11 +59,15 @@ export default class SelectedModelsBanner extends BEMComponent {
           <div className={this.element("toggle-col")}>
             <button className={this.element('toggle')} onClick={() => this.toggle()}>
               <MenuToggle className={this.element('toggle-icon')}/>
+              <span className={this.element("hide-text")}>
+              {this.state.open ? "Hide" : "Show"}
+            </span>
             </button>
           </div>
           <div className={this.element("controls-col")}>
- <span className={this.element('toggle-text')}>
-              Models selected to add to experiment: {this.props.selectedModels.length}
+
+            <span className={this.element('toggle-text')}>
+              Models added: <span className={this.element("red-circle")}>{this.props.selectedModels.length}</span>
             </span>
             {this.getRemoveButton()}
             <div className={this.element('run')}>

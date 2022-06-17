@@ -89,6 +89,9 @@
     transition: color .3s;
     text-align: left;
     overflow-wrap: anywhere;
+    @include safari {
+      overflow-wrap: break-word;
+    }
 
   }
 
