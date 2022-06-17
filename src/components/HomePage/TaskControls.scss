@@ -1,7 +1,7 @@
 @import "../../App";
 
 .home-page-task-controls {
-  $selectBreak: 1300px;
+  $selectBreak: 1200px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,28 +9,41 @@
   flex-wrap: wrap;
 
   &__task-header {
-    @include label;
-    color: $richNavy;
+    display: none;
 
-    margin-bottom: 12px;
+    @include maxWidth($selectBreak) {
+      @include label;
+      color: $richNavy;
+      margin-top: 32px;
+      display: block;
+      margin-bottom: 12px;
+
+    }
+
+    @include tabletWidth {
+      margin-top: 16px;
+    }
+
+
   }
 
   &__btn-area {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    background-color: $smokeDarkest;
+    gap: 4px;
+    margin-left: -48px;
+    margin-right: -48px;
 
     @include maxWidth($selectBreak) {
       display: none;
-      margin-top: 4px;
-      padding: 12px;
+      margin-left: inherit;
+      margin-right: inherit;
       border: 2px solid $azul;
       border-radius: 8px;
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
-
+      background-color: $white;
+      gap: 0;
     }
 
     &-shown {
@@ -43,8 +56,8 @@
   &__toggle-btn {
     display: none;
     transition: 0.25s;
-    @include headline6;
-    color: $azul;
+    @include headline5;
+    color: $richNavy;
     position: relative;
 
 
@@ -52,9 +65,10 @@
       display: flex;
       align-items: center;
       width: 100%;
-      border-radius: 20px;
+      border-radius: 5px;
       border: 2px solid $azul;
       padding: 8px 16px;
+      margin-bottom: 12px;
     }
 
     &:after {
@@ -97,36 +111,60 @@
   }
 
   &__task-btn {
-    @include headline6;
-    color: $azul;
-    border: 2px solid $azul;
-    border-radius: 20px;
+    @include headline5;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px 16px;
+    padding: 12px 24px;
     transition: 0.25s;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $smokeDark;
+    color: $charcoalLightest;
+    width: calc(20%);
+    line-height: 1.4rem;
+
+    svg path {
+      fill: $charcoalLightest;
+    }
+
+    &-selected, &:hover {
+      background-color: $white;
+      color: $richNavy;
+
+      svg path {
+        fill: $azul;
+      }
+    }
 
     @include maxWidth($selectBreak) {
       justify-content: flex-start;
-      width: fit-content;
       border-radius: 4px;
       border: none;
-    }
+      padding: 12px;
 
+      width: 100%;
+      background-color: $smokeDark;
+      border-bottom: 1px solid $smokeDarkest;
 
-    &-selected, &:hover {
-      background-color: $azul;
-      color: $white;
+      &-selected, &:hover {
+        background-color: $white;
+        color: $richNavy;
 
-      svg path {
-        fill: $white;
+        svg path {
+          fill: $azul;
+        }
       }
     }
+
 
     &-icon {
       width: 24px;
       height: 24px;
+      min-width: 24px;
+      min-height: 24px;
+      max-width: 24px;
+      max-height: 24px;
       margin-right: 8px;
     }
   }
