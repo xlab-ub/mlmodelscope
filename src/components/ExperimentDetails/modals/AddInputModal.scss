@@ -7,15 +7,25 @@
     color: $azulDarkest;
     width: 100%;
     padding-left: 42px;
+
+    @include maxWidth(900px) {
+      padding-left: 0;
+    }
   }
 
   &__input-wrapper {
     min-width: 80vw;
+    align-self: flex-start;
+
 
     .quick-input {
       background: transparent;
       box-shadow: none;
       padding: 0 42px;
+
+      @include maxWidth(900px) {
+        padding: 0;
+      }
     }
   }
 }

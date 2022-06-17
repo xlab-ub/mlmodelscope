@@ -20,6 +20,7 @@ import {
 } from "../Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
 import Task from "../../helpers/Task";
+import Footer from "../Footer/Footer";
 
 export default {
   title: 'Experiments/Model Comparison Page',
@@ -38,7 +39,7 @@ const MockContainer = (props) => {
   };
   const resetModal = () => setModalType(ExperimentDetailModalTypes.none);
 
-  return <ExperimentDetailPage
+  return <><ExperimentDetailPage
     addInput={mockFn}
     deleteInput={mockFn}
     experiment={makeExperiment()}
@@ -58,6 +59,8 @@ const MockContainer = (props) => {
 
 
   />
+    <Footer/>
+  </>
 
 }
 
