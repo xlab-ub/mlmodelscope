@@ -49,12 +49,12 @@ export default function Header(props) {
             </a>
           </div>
           <div hidden={showMenu} aria-hidden={showMenu} className={getElement("menu")}>
-            <LinkItem {...props} getElement={getElement} display={"Browse models"} link={"/models"}/>
+            <LinkItem {...props} getElement={getElement} display={"All models"} link={"/models"}/>
             <div className={getElement("compare-models")}>
 
               <button ref={btnRef} onClick={toggleComparison}
                       className={getElement(`compare-models-btn ${showModelComparison && "compare-models-btn-active"}`)}>
-                Compare models <ChevDown
+                Start a model comparison models <ChevDown
                 className={getElement(`compare-models-btn-icon ${showModelComparison && "compare-models-btn-icon-active"}`)}/>
               </button>
               <div ref={containerRef} style={{display: showModelComparison ? "flex" : "none"}}

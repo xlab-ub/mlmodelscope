@@ -30,7 +30,7 @@ export function HomePageMainSection(props) {
           systems.
         </h2>
 
-        <Button content="Browse model library" link={"/models"} isPrimary={false} isSmall={false}/>
+        <Button content="View models to compare" link={"/models"} isPrimary={false} isSmall={false}/>
 
       </div>
       <button onClick={scrollToModelDetails} className={getElement("jump-link")}>
