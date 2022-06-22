@@ -54,7 +54,7 @@ export default function Header(props) {
 
               <button ref={btnRef} onClick={toggleComparison}
                       className={getElement(`compare-models-btn ${showModelComparison && "compare-models-btn-active"}`)}>
-                Start a model comparison models <ChevDown
+                Start a model comparison <ChevDown
                 className={getElement(`compare-models-btn-icon ${showModelComparison && "compare-models-btn-icon-active"}`)}/>
               </button>
               <div ref={containerRef} style={{display: showModelComparison ? "flex" : "none"}}
