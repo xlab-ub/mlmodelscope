@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TutorialStepper from "./TutorialStepper";
+import TutorialStepper, {makeComponent} from "./TutorialStepper";
 import {goToTypes} from "./hooks/useTutorialController";
 
 export default {
@@ -42,7 +42,6 @@ const Template = (args) => {
     setSection(s);
   };
 
-  const makeComponent = (component, transition = "") => ({component, transition})
 
   return <TutorialStepper
     goToSection={goToSection}

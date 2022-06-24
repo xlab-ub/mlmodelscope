@@ -1,0 +1,141 @@
+@import "src/App";
+
+.intro-tutorial-slide-5 {
+  width: 100%;
+  min-height: 1000px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: $white;
+  $colBreak: 900px;
+
+  &__intro-text {
+    @include labelBold();
+    color: $azul;
+    margin-bottom: 12px;
+    text-align: center;
+
+  }
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    margin-bottom: 12px;
+  }
+
+  &__caption {
+    @include bodySmall;
+    text-align: right;
+    color: $charcoalLightest;
+    margin-top: 12px;
+    width: 100%;
+    margin-right: 20%;
+  }
+
+  &__wrapping-box {
+    position: relative;
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #7E30E1 2.08%, #0072F7 60.94%, #67ADFF 91.15%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+
+    height: 160px;
+    width: 80%;
+
+    border-radius: 16px;
+    margin-top: 136px;
+
+    @include maxWidth($colBreak) {
+      height: 100%;
+    }
+
+  }
+
+  &__background-gradient {
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
+    left: 2px;
+    top: 2px;
+    background: linear-gradient(180deg, rgba(104, 174, 255, 0.1) 0%, rgba(104, 174, 255, 0) 100%);
+    border-radius: 16px;
+    position: absolute;
+    z-index: 1;
+  }
+
+
+  &__section-content {
+    position: relative;
+    margin-top: -90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    z-index: 2;
+    @include desktopWidth {
+      margin-top: -70px;
+    }
+    @include maxWidth($colBreak) {
+      flex-direction: column;
+      margin-top: -90px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__content {
+    &-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-image {
+      height: 176px;
+
+      @include desktopWidth {
+        height: 136px;
+      }
+      @include maxWidth($colBreak) {
+        height: 176px;
+      }
+    }
+
+    &-label {
+      @include headline3;
+      color: $richNavy;
+      margin-top: 16px;
+    }
+
+    &-arrow {
+      height: 64px;
+      margin-bottom: 42px;
+      @include desktopWidth {
+        height: 32px;
+      }
+      @include maxWidth($colBreak) {
+        transform: rotate(90deg);
+        margin-top: 24px;
+      }
+    }
+  }
+
+  &__cta {
+    margin-top: 52px;
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
+
+}

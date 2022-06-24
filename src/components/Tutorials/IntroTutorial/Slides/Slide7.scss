@@ -1,0 +1,81 @@
+@import "src/App";
+
+.intro-tutorial-slide-7 {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $white;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  overflow-x: hidden;
+
+  @include tabletWidth {
+    flex-direction: column;
+  }
+
+  &__text-area {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-right: 24px;
+
+    @include tabletWidth {
+      margin-right: 12px;
+      margin-left: 12px;
+      width: unset;
+    }
+  }
+
+  &__models-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    pointer-events: none;
+    transform: translateX(100px);
+    @include tabletWidth {
+      margin-top: 12px;
+
+      grid-template-columns: 1fr;
+      transform: none;
+
+      > :nth-child(n+4) {
+        display: none;
+      }
+    }
+
+  }
+
+  &__intro-text {
+    @include labelBold();
+    color: $azul;
+    margin-bottom: 4px;
+
+  }
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    margin-bottom: 50px;
+    text-align: left;
+
+  }
+
+
+  &__cta {
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
+}

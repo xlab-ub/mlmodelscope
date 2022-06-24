@@ -4,6 +4,7 @@ import ModelListContainer from "../routes/ModelListContainer";
 import ExperimentDetailContainer from "../routes/ExperimentDetailContainer";
 import AddModelListContainer from "../routes/AddModelListContainer";
 import NewExperimentContainer from "../routes/NewExperimentContainer";
+import IntroTutorial from "../components/Tutorials/IntroTutorial/IntroTutorial";
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: "/experiment/:experimentId",
     component: ExperimentDetailContainer,
     exact: false,
+  },
+  {
+    path: "/intro-tutorial",
+    component: IntroTutorial,
+    exact: false
   }
 ];
 

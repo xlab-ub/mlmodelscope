@@ -1,0 +1,98 @@
+@import "src/App";
+
+.intro-tutorial-slide-4 {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-right: 200px;
+
+  @include maxWidth(1200px) {
+    padding-right: 0;
+  }
+
+  &__intro-text {
+    @include labelBold();
+    color: $azul;
+    margin-bottom: 4px;
+    text-align: center;
+
+  }
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    margin-bottom: 50px;
+  }
+
+  .classification-output {
+    width: unset;
+
+    .top-prediction__probability {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &__explanation {
+    background-color: rgba($electricGreenLight, 0.2);
+    padding: 16px 20px;
+    display: flex;
+    position: relative;
+    max-width: 650px;
+    margin-top: 40px;
+    margin-bottom: 24px;
+
+    &-arrow {
+      position: absolute;
+      top: -193px;
+      left: 25px;
+      height: 184px;
+      transform: rotate(-10deg);
+
+      @include maxWidth(700px) {
+        height: 67px;
+        top: -59px;
+        left: 69px;
+        transform: rotate(-45deg);
+
+        path {
+          stroke-width: 2px;
+        }
+      }
+    }
+
+    &-info {
+      width: 20px;
+      height: 20px;
+      flex-basis: 20%;
+      margin-top: 20px;
+
+    }
+
+    &-text {
+      @include body;
+      color: $charcoalLightest;
+    }
+  }
+
+  &__cta {
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
+}

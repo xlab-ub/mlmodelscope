@@ -49,6 +49,8 @@ export default function Header(props) {
             </a>
           </div>
           <div hidden={showMenu} aria-hidden={showMenu} className={getElement("menu")}>
+            <LinkItem {...props} getElement={getElement} display={"Intro to machine learning"}
+                      link={"/intro-tutorial"}/>
             <LinkItem {...props} getElement={getElement} display={"All models"} link={"/models"}/>
             <div className={getElement("compare-models")}>
 

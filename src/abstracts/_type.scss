@@ -126,6 +126,14 @@ $sans-serif: "Lato", "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-se
   text-transform: uppercase;
 }
 
+@mixin labelBold {
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 $jumboText: 36px;
 $extraLargeText: 24px;
 $largeText: 20px;

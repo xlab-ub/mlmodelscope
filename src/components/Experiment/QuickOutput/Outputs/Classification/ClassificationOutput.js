@@ -34,7 +34,7 @@ export default class ClassificationOutput extends BEMComponent {
   getPredictionBody = () => {
     if (this.props.features.length > 0)
       return <div className={this.element('predictions')}>
-        <TopPrediction feature={this.props.features[0]}/>
+        <TopPrediction hideRating={this.props.hideRating} feature={this.props.features[0]}/>
         <PredictionExpander predictions={this.props.features}/>
       </div>
 
@@ -47,8 +47,9 @@ export default class ClassificationOutput extends BEMComponent {
       <div className={this.block()}>
         <div className={this.element("title-row")}>
           <h3 className={this.element('title')}>Output</h3>
-          <OutputDuration duration={DurationConverter(this.props.trial.results.duration)}/>
-
+          {!this.props.hideDuration &&
+            <OutputDuration duration={DurationConverter(this.props.trial.results.duration)}/>
+          }
         </div>
         <div className={this.element('subtitle')}>{task.outputText}</div>
         {this.getPredictionBody()}

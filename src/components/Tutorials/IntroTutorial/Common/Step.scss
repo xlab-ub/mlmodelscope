@@ -1,0 +1,49 @@
+@import "src/App";
+
+.stepper-step {
+  &__step {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    cursor: pointer;
+
+    &:last-child .stepper-step__line {
+      visibility: hidden;
+    }
+  }
+
+  &__step-completed {
+
+  }
+
+  &__stepper {
+    position: relative;
+
+
+  }
+
+  &__circle {
+    background-color: white;
+    border: 3px solid $azulDarkest;
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin: 0;
+
+    &--completed {
+      visibility: visible;
+      background-color: $electricGreen;
+    }
+  }
+
+  &__line {
+    top: 15px;
+    left: 4.5px;
+    height: 150%;
+    position: absolute;
+    border-left: 3px solid $azulDarkest;
+  }
+}

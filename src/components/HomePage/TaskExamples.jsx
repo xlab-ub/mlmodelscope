@@ -45,8 +45,10 @@ export function TaskExamples(props) {
   }
 
   return <div className={getBlock()}>
-    <HomePageSectionHeading title={"What can models do?"}
-                            subtitle={"Models can perform a variety of tasks, like recognizing objects in an image or identifying a speaker in an audio file. Here are some model tasks you’ll find on this website."}/>
+    {!props.noHeading &&
+      <HomePageSectionHeading title={"What can models do?"}
+                              subtitle={"Models can perform a variety of tasks, like recognizing objects in an image or identifying a speaker in an audio file. Here are some model tasks you’ll find on this website."}/>
+    }
     <div className={getElement("section-content")}>
       <TaskControls tasks={taskSelection.tasks} taskIsSelected={taskSelection.taskIsSelected}
                     updateTask={updateTask}

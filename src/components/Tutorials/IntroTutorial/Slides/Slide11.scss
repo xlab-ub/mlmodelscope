@@ -1,0 +1,33 @@
+@import "src/App";
+
+.intro-tutorial-slide-11 {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  position: relative;
+
+  &__intro-text {
+    @include labelBold();
+    color: $azul;
+    margin-bottom: 4px;
+    text-align: center;
+
+  }
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    margin-bottom: 50px;
+  }
+
+  &__sub-title {
+    @include body;
+    color: $charcoalLightest;
+    text-align: center;
+  }
+}

@@ -1,0 +1,42 @@
+@import "src/App";
+
+
+.intro-tutorial-slide-10 {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: $richNavy;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+
+  &__intro-text {
+    text-align: center;
+    color: $skyBlue;
+    @include labelBold();
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    text-align: center;
+    @include billboard;
+    color: $white;
+    margin-bottom: 16px;
+  }
+
+  &__cta {
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
+}

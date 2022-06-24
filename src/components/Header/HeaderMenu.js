@@ -36,6 +36,11 @@ export function HeaderMenu(props) {
           {task.name}</>} {...props}/>)}
       </LinkSection>
       <LinkItem
+        {...props}
+        link={"/intro-tutorial"}
+        display={"Intro to machine learning"}
+      />
+      <LinkItem
         link={"/models"}
         display={"All models"}
         {...props}

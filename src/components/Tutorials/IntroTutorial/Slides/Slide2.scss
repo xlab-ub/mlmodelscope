@@ -1,0 +1,95 @@
+@import "src/App";
+
+.intro-tutorial-slide-2 {
+  width: 100%;
+  min-height: 1000px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  @include maxWidth(1200px) {
+    flex-direction: column;
+  }
+
+  &__text-area {
+    width: 50%;
+  }
+
+
+  &__intro-text {
+    @include labelBold();
+    color: $azul;
+    margin-bottom: 12px;
+
+  }
+
+  &__title {
+    @include billboardSmall;
+    color: $richNavy;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+
+  &__sub-title {
+    @include body;
+    color: $charcoalLightest;
+    margin-bottom: 32px;
+  }
+
+  &__cta {
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
+
+  &__img-area {
+    position: relative;
+    width: 400px;
+    height: 500px;
+
+    @include maxWidth(1200px) {
+      margin-top: 40px;
+
+    }
+  }
+
+  &__img-1 {
+    position: absolute;
+    padding: 4px;
+    top: 0px;
+    left: 5%;
+    z-index: 1;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
+    border-image-slice: 1;
+
+  }
+
+  &__img-2 {
+    position: absolute;
+    padding: 4px;
+    top: 150px;
+    left: 30%;
+    border: 2px solid;
+    box-sizing: border-box;
+
+    border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
+    border-image-slice: 1;
+
+
+  }
+
+
+}
