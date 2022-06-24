@@ -13,8 +13,8 @@ function ModelCardName(props) {
       <a className="model-card__model-name" href={props.makeModelLink()}>{text}</a>
     )
   }
-  return <button className="model-card__model-name"
-                 onClick={() => props.isAdded ? props.deselectModel() : props.selectModel()}>{text}</button>
+  return <p className="model-card__model-name"
+            onClick={() => props.isAdded ? props.deselectModel() : props.selectModel()}>{text}</p>
 }
 
 function ModelCardActions(props) {
