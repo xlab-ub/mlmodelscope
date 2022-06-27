@@ -7,11 +7,15 @@
   background-color: $purple;
   border-color: $purple;
   color: $white;
-  position: fixed;
+  position: sticky;
   text-decoration: none;
   z-index: 10;
-  top: 120px;
-  right: 40px;
+  bottom: 12px;
+  left: 100%;
+  margin-bottom: 12px;
+  margin-right: 12px;
+  align-self: flex-end;
+  box-shadow: 0px 0px 12px 2px #00000040;
 
   &:hover {
     background-position: bottom center;

@@ -1,7 +1,7 @@
 @import "src/App";
 
 .intro-tutorial-slide-6 {
-  $colBreakpoint: 1350px;
+  $colBreakpoint: 1360px;
 
   width: 100%;
   min-height: 100vh;
@@ -24,7 +24,11 @@
   &__title {
     @include billboardSmall;
     color: $richNavy;
-    margin-bottom: 50px;
+    margin-bottom: 58px;
+
+    @include maxWidth($colBreakpoint) {
+      margin-bottom: 32px;
+    }
   }
 
   &__cta {
@@ -50,10 +54,24 @@
     margin-top: 170px;
     margin-bottom: 250px;
 
+
     @include maxWidth($colBreakpoint) {
       flex-direction: column;
 
       margin-bottom: 20px;
+    }
+
+    @include maxWidth(750px) {
+      transform: scale(0.75);
+
+      margin-top: -20px;
+      margin-bottom: -72px;
+    }
+
+
+    &-arrow {
+      transform: scale(0.8) translateY(-16px);
+
     }
 
     &-left {
@@ -73,7 +91,7 @@
 
       &-background {
         position: absolute;
-        top: -70px;
+        top: -82px;
         left: 0;
         z-index: 0;
         width: 100%;
@@ -97,13 +115,12 @@
         }
 
         @include mobileWidth-lg {
-          bottom: 64%;
+          bottom: 52%;
+        }
+        @include mobileWidth-sm {
+          bottom: 37%;
         }
 
-        @include mobileWidth-sm {
-          left: 24%;
-          bottom: 68%;
-        }
       }
 
       &-bottom-group {
@@ -111,12 +128,13 @@
         top: 58%;
         left: 12%;
         @include mobileWidth-lg {
-          top: 64%;
+          top: 52%;
         }
+
         @include mobileWidth-sm {
-          left: 24%;
-          top: 68%;
+          top: 37%;
         }
+
       }
 
       &-text {
@@ -124,6 +142,7 @@
         @include headline5;
         max-width: 300px;
         overflow-wrap: break-word;
+        margin: 12px 0;
 
         @include maxWidth($colBreakpoint) {
           background-color: $white;
@@ -136,7 +155,7 @@
         }
 
         @include mobileWidth-sm {
-          max-width: 110px;
+          max-width: 200px;
           font-size: 14px;
         }
       }
@@ -154,6 +173,7 @@
         @include headline5;
         color: $richNavy;
         text-align: center;
+        margin: 16px 0;
       }
     }
 
@@ -177,13 +197,8 @@
     @include maxWidth($colBreakpoint) {
       width: 200px;
     }
-
-    @include mobileWidth-lg {
-      width: 120px;
-    }
-
-    @include mobileWidth-sm {
-      width: 80px;
+    @include maxWidth(370px) {
+      transform: scale(.9);
     }
 
   }

@@ -10,7 +10,7 @@ export default function Slide4(props) {
 
 
   return <>
-    <p className={getElement("intro-text")}>Model Outputs</p>
+    <p className={getElement("intro-text")}>Model Output</p>
     <p className={getElement("title")}>It can!</p>
 
     <ClassificationOutput
@@ -111,8 +111,8 @@ export default function Slide4(props) {
       <GreenArrow className={getElement("explanation-arrow")}/>
       <InfoIcon className={getElement("explanation-info")}/>
       <p className={getElement("explanation-text")}>
-        This is called a model output, and it shows the model’s predictions for what it thinks the image is. This
-        machine learning model is 90% sure this is a Snake Plant, which is accurate.
+        This is the model output. It shows the model's predictions for objects displayed in the image. This machine
+        learning model is 90% sure this is an image of a Snake Plant, which is accurate.
       </p>
     </div>
 

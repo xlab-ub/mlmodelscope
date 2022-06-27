@@ -5,13 +5,13 @@
   min-height: 100vh;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   background-color: $white;
   padding-top: 100px;
   padding-bottom: 100px;
   position: relative;
   overflow-x: hidden;
+  overflow-y: hidden;
 
   @include tabletWidth {
     flex-direction: column;
@@ -22,11 +22,18 @@
     flex-direction: column;
     width: 45%;
     margin-right: 24px;
+    background-color: $white;
+    z-index: 1;
+    padding: 24px;
 
     @include tabletWidth {
-      margin-right: 12px;
-      margin-left: 12px;
+      margin-right: 0px;
+      margin-left: 0px;
       width: unset;
+      padding: 0;
+      margin-bottom: 400px;
+      align-items: center;
+      text-align: center;
     }
   }
 
@@ -35,15 +42,34 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 8px;
     pointer-events: none;
-    transform: translateX(100px);
+    transform: translateX(0px) scale(.75);
+    position: absolute;
+    z-index: 0;
+    width: 804px;
+    right: -11%;
+    top: -88px;
+
+    @include maxWidth(1325px) {
+      right: -24%;
+    }
+    @include maxWidth(1150px) {
+      right: -11%;
+    }
+    @include maxWidth(1025px) {
+      right: -32%;
+
+    }
+
     @include tabletWidth {
-      margin-top: 12px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      width: 140%;
+      top: 55%;
+      left: -5%;
 
-      grid-template-columns: 1fr;
-      transform: none;
+      transform: translateX(0px) scale(.9);
 
-      > :nth-child(n+4) {
-        display: none;
+      .model-card {
+        min-width: 300px;
       }
     }
 
@@ -62,11 +88,23 @@
     margin-bottom: 50px;
     text-align: left;
 
+    @include tabletWidth {
+      text-align: center;
+    }
   }
 
 
   &__cta {
     @include secondaryButtonWithIconAfter("arrow-right.svg");
+    padding: 32px 24px;
+    width: fit-content;
+    @include maxWidth(1650px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    @include mobileWidth-sm {
+      line-height: 16px;
+    }
 
     &:after {
       transform: translateX(0px) rotate(90deg);

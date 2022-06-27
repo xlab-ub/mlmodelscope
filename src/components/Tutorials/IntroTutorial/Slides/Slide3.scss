@@ -12,11 +12,7 @@
   background-color: $white;
   padding-top: 100px;
   padding-bottom: 100px;
-  padding-right: 200px;
 
-  @include maxWidth(1200px) {
-    padding-right: 0;
-  }
 
   &__intro-text {
     @include labelBold();
@@ -30,18 +26,38 @@
     @include billboardSmall;
     color: $richNavy;
     margin-bottom: 50px;
+
+    max-width: 800px;
+
+    @include maxWidth(800px) {
+
+    }
   }
 
   &__img {
-    width: 50%;
-    height: auto;
-    padding: 4px;
-    border: 2px solid;
-    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 2px solid $smokeDarker;
 
-    border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
-    border-image-slice: 1;
-    margin-bottom: 16px;
+    &-wrapper {
+      width: 60%;
+      height: auto;
+      position: relative;
+      padding: 8px;
+      border: 2px solid;
+      box-sizing: border-box;
+      border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
+      border-image-slice: 1;
+      margin-bottom: 40px;
+
+      @include maxWidth(700px) {
+        width: 80%;
+      }
+
+      @include mobileWidth-sm {
+        width: 100%;
+      }
+    }
   }
 
   &__cta {

@@ -1,7 +1,9 @@
-import {ReactComponent as RightArrowIcon} from "../../resources/icons/arrow-right-white.svg";
 import React from "react";
 
 export function LinkItem({isResponsiveMenu, getElement, link, display, isSubMenu, callback, className}) {
+  const isActive = window.location.href.includes(link);
+
+
   const getWrapperClass = () => {
     if (isResponsiveMenu) {
       return isSubMenu ?
@@ -14,16 +16,22 @@ export function LinkItem({isResponsiveMenu, getElement, link, display, isSubMenu
     }
   }
 
+
   if (callback) {
     return <div className={getWrapperClass() + ` ${className}`}>
       <button onClick={callback} className={getElement("button")}>{display}</button>
     </div>
   }
 
+  const getActiveClass = () => {
+    if (isActive) return " " + getElement("link-active")
 
-  return <div className={getWrapperClass()}>
+    return ""
+  }
+
+
+  return <div className={getWrapperClass() + getActiveClass()}>
     <a className={getElement("library-link")} href={link}>{display}</a>
-    {link &&
-      <RightArrowIcon className={getElement("arrow-icon")}/>}
+    <div className={getElement("library-link-bar")}/>
   </div>
 }

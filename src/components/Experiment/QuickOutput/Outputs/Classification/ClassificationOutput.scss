@@ -41,6 +41,10 @@
     border-bottom: 1px solid $smokeDarkest;
     margin-bottom: 24px;
     padding-bottom: 16px;
+
+    @include mobileWidth-lg {
+      @include bodySmall;
+    }
   }
 
   &__predictions {

@@ -1,13 +1,25 @@
 @import "src/App";
 
 .stepper-step {
+
+
   &__step {
-    padding: 10px;
+    padding: 16px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap: 12px;
     cursor: pointer;
+
+    :hover, &:hover {
+      color: $purple;
+      transition: 0.25s;
+
+
+      .stepper-step__circle {
+        border-color: $purple;
+      }
+    }
 
     &:last-child .stepper-step__line {
       visibility: hidden;
@@ -20,18 +32,22 @@
 
   &__stepper {
     position: relative;
+  }
 
-
+  &__content {
+    @include headline6;
+    color: $azulDarkest;
+    margin-top: 2px;
   }
 
   &__circle {
     background-color: white;
-    border: 3px solid $azulDarkest;
+    border: 2px solid $azulDarkest;
     border-radius: 100%;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     display: inline-block;
-    margin: 0;
+    margin: -4px;
 
     &--completed {
       visibility: visible;
@@ -40,10 +56,12 @@
   }
 
   &__line {
-    top: 15px;
-    left: 4.5px;
-    height: 150%;
+    top: 18px;
+    left: 3px;
+    height: 205%;
     position: absolute;
-    border-left: 3px solid $azulDarkest;
+    border-left: 2px solid $azulDarkest;
   }
+
+
 }

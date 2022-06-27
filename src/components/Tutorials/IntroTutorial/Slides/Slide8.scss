@@ -31,20 +31,28 @@
     display: flex;
     position: relative;
     max-width: 650px;
-    margin: 40px 12px 24px;
+    margin: 24px 0px 32px;
+    border-radius: 10px;
+
 
     &-info {
       width: 20px;
       height: 20px;
-      flex-basis: 20%;
-      margin-top: 4px;
-
-
+      min-width: 20px;
+      max-width: 20px;
+      min-height: 20px;
+      max-height: 20px;
+      margin-right: 12px;
+      margin-top: 3px;
     }
 
     &-text {
       @include body;
       color: $charcoalLightest;
+
+      @include mobileWidth-lg {
+        @include bodySmall;
+      }
     }
   }
 
@@ -63,6 +71,7 @@
   }
 
   &__compare-graphic {
+    height: 500px;
     @include maxWidth(900px) {
       display: none;
     }
@@ -78,9 +87,14 @@
     }
     @include mobileWidth-lg {
       transform: scale(.75);
+      margin-top: -100px;
+      margin-bottom: -24px;
+
     }
-    @include mobileWidth-sm {
+    @include maxWidth(430px) {
       transform: scale(0.5);
+      margin-top: -180px;
+      margin-bottom: -132px;
     }
 
     &-top {
@@ -105,10 +119,18 @@
 
       &-left {
         left: 69px;
+
+        @include mobileWidth-lg {
+          left: 62px;
+        }
       }
 
       &-right {
         right: 71px;
+
+        @include mobileWidth-lg {
+          right: 55px;
+        }
       }
     }
 
@@ -130,10 +152,19 @@
       width: 45%;
       padding: 8px;
 
+      @include mobileWidth-lg {
+        transform: scale(1.3);
+        width: 40%;
+      }
+
+
       &-text {
         @include headline5;
         color: $almaMater;
+
+
       }
+
 
       &-results {
         background-color: rgba($azul, 0.03);
@@ -185,5 +216,10 @@
     border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
     border-image-slice: 1;
     margin-bottom: 16px;
+
+    @include mobileWidth-lg {
+      left: 20.75%;
+      width: 60.1%;
+    }
   }
 }

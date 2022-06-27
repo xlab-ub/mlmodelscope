@@ -4,30 +4,95 @@
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 100px;
+
+  padding-top: 200px;
   position: relative;
+
+
+  @include maxWidth(1150px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  &__text-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @include mobileWidth-lg {
+      padding: 12px;
+    }
+  }
 
   &__intro-text {
     @include labelBold();
     color: $azul;
     margin-bottom: 4px;
     text-align: center;
+    width: 100%;
 
   }
 
   &__title {
     @include billboardSmall;
     color: $richNavy;
-    margin-bottom: 50px;
+    margin-bottom: 16px;
+    width: 100%;
+
+
   }
 
   &__sub-title {
     @include body;
     color: $charcoalLightest;
     text-align: center;
+    max-width: 800px;
+    padding: 0 24px;
+
+    &-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+  }
+
+  .home-page-tasks {
+
+    &__section-content {
+
+      @include mobileWidth-lg {
+        margin-top: 32px;
+        margin-bottom: 64px;
+
+      }
+    }
+
+    .input-preview__back-button {
+      @include maxWidth(1200px) {
+        line-height: 20px;
+      }
+    }
+
+    .image-enhancement-image__wrapper {
+      @include maxWidth(1375px) {
+        width: 575px;
+      }
+      @include maxWidth(1150px) {
+        width: 800px;
+      }
+      @include maxWidth(930px) {
+        width: 600px;
+      }
+      @include maxWidth(720px) {
+        width: 400px;
+      }
+      @include maxWidth(460px) {
+        width: 275px;
+      }
+    }
   }
 }

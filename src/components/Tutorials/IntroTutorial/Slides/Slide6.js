@@ -33,7 +33,7 @@ export default function Slide6(props) {
 
   return <>
     <p className={getElement("intro-text")}>
-      Training Models
+      Model Training
     </p>
     <p className={getElement("title")}>
       Data is used to train models.
@@ -43,7 +43,7 @@ export default function Slide6(props) {
       <div className={getElement("training-graphic-left")}>
         <Background className={getElement("training-graphic-left-background")}/>
         <div className={getElement("training-graphic-left-top-group")}>
-          <p className={getElement("training-graphic-left-text")}>Pictures of snake plants</p>
+          <p className={getElement("training-graphic-left-text")}>Pictures of Snake Plants</p>
           <ImageGroup images={snakePlantImages} className={getElement("training-graphic-left-first")}/>
         </div>
         <div className={getElement("training-graphic-left-bottom-group")}>
@@ -55,14 +55,14 @@ export default function Slide6(props) {
       <div className={getElement("training-graphic-group")}>
         <MiddleGraphic className={getElement("training-graphic-group-img")}/>
         <p className={getElement("training-graphic-group-text")}>
-          Untrained Model
+          Untrained model
         </p>
       </div>
       <FatArrow className={getElement("training-graphic-arrow")}/>
       <div className={getElement("training-graphic-group")}>
         <EndGraphic className={getElement("training-graphic-group-img")}/>
         <p className={getElement("training-graphic-group-text")}>
-          Trained Model
+          Trained model
         </p>
       </div>
     </div>

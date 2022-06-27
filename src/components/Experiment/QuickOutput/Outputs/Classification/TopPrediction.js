@@ -21,7 +21,7 @@ export default class TopPrediction extends BEMComponent {
       <div className={this.block()}>
         <div className={this.element('prediction')}>{this.getPredictionLabel()}</div>
         <div className={this.element('probability')}>{this.getPredictionProbability()}</div>
-        {!this.props.hideRating &&
+        {false &&
           <Rating/>
         }
       </div>

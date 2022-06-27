@@ -1,31 +1,28 @@
 @import "src/App";
 
 .tutorial-with-side-nav {
-  padding-left: 25%;
+  padding-left: 500px;
+  padding-right: 40px;
 
-  @include maxWidth(1300px) {
-    padding-left: 15%;
+  @include maxWidth(1500px) {
+    padding-left: 400px;
   }
 
   @include maxWidth(1150px) {
-    padding-left: 0;
+    padding-left: 40px;
   }
 }
 
 
 .side-navigation {
-  box-shadow: 0px 0px 15px -2px #00000040;
-  background-color: $white;
-  padding: 44px 30px;
-  border-radius: 10px;
   position: fixed;
   z-index: 15;
   top: 30vh;
-  left: 100px;
+  left: 150px;
 
-
-  @include maxWidth(1300px) {
+  @include maxWidth(1500px) {
     left: 50px;
+
   }
   @include maxWidth(1150px) {
     display: none;
@@ -39,7 +36,12 @@
     position: fixed;
     z-index: 15;
     top: 30vh;
-    left: 100px;
+    left: 150px;
+
+    @include maxWidth(1500px) {
+      left: 50px;
+
+    }
   }
 
 
@@ -57,7 +59,7 @@
       position: absolute;
       z-index: -1;
       inset: 0;
-      padding: 4px;
+      padding: 2px;
       border-radius: 15px;
       background: $primaryGradient;
       -webkit-mask: linear-gradient(#fff 0 0) content-box,

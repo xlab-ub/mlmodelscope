@@ -13,6 +13,10 @@
   position: relative;
   background-color: $white;
 
+  @include tabletWidth {
+    padding-bottom: 200px;
+  }
+
   &__intro-text {
     @include labelBold();
     color: $azul;
@@ -24,13 +28,14 @@
   &__title {
     @include billboardSmall;
     color: $richNavy;
-    margin-bottom: 50px;
+    margin-bottom: 24px;
   }
 
   &__sub-title {
     @include body;
     color: $charcoalLightest;
     text-align: center;
+    margin-bottom: 32px;
   }
 
   &__explanation {
@@ -39,19 +44,27 @@
     display: flex;
     position: relative;
     max-width: 650px;
-    margin: 40px 12px 24px;
+    margin: 40px 0 40px;
+    border-radius: 10px;
 
     &-info {
       width: 20px;
       height: 20px;
-      flex-basis: 20%;
-      margin-top: 4px;
-
+      min-width: 20px;
+      max-width: 20px;
+      min-height: 20px;
+      max-height: 20px;
+      margin-right: 12px;
+      margin-top: 3px;
     }
 
     &-text {
       @include body;
       color: $charcoalLightest;
+
+      @include mobileWidth-lg {
+        @include bodySmall;
+      }
     }
   }
 
@@ -65,12 +78,14 @@
     @include maxWidth(600px) {
       flex-direction: column;
       align-items: center;
+
+      gap: 40px;
     }
 
   }
 
   &__model-card {
-    border: 1px solid;
+    border: 3px solid;
     position: relative;
     width: 300px;
     padding: 40px 14px 14px;
@@ -99,8 +114,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 12px 8px;
-      height: 200px;
+      padding: 12px 12px;
+      height: 275px;
 
     }
 
@@ -108,6 +123,7 @@
       @include headline3;
       color: $almaMater;
       text-align: center;
+      margin-bottom: 12px;
     }
 
     &-output {
@@ -118,10 +134,22 @@
       align-items: center;
       flex-direction: column;
       height: 100%;
+      border-radius: 5px;
+
+      &-result {
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 16px;
+        letter-spacing: 0px;
+        text-align: right;
+        color: $charcoalLightest;
+        margin-top: 12px;
+      }
 
       &-title {
-        @include headline5;
+        @include headline3;
         color: $charcoalLightest;
+        margin-top: -12px;
       }
 
       &-text {
@@ -136,11 +164,25 @@
     }
   }
 
+  &__cta {
+    @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    &:after {
+      transform: translateX(0px) rotate(90deg);
+    }
+
+    &:not(:disabled) {
+      &:hover:after {
+        transform: translateX(6px) rotate(90deg);
+      }
+    }
+  }
 
   &__scroll-line {
     position: absolute;
     bottom: -250px;
     right: 37%;
+    display: none;
 
     @include maxWidth(900px) {
       right: 50%;

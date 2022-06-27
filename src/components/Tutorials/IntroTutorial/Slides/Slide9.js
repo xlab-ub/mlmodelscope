@@ -69,6 +69,10 @@ export default function Slide9(props) {
       </p>
     </div>
 
+    <button className={getElement("cta")} onClick={() => props.goToSection(props.index + 1)}>
+      Let's wrap up the basics
+    </button>
+
     <GreenLine className={getElement("scroll-line")}/>
   </>
 }

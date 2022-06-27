@@ -1,5 +1,5 @@
 import useBEMNaming from "../../../../common/useBEMNaming";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./SideNavigation.scss";
 import {Step} from "./Step";
 
@@ -9,8 +9,12 @@ const links = [
     index: 0
   },
   {
-    name: "Model outputs",
+    name: "Model input",
     index: 2
+  },
+  {
+    name: "Model output",
+    index: 3
   },
   {
     name: "Model training",
@@ -29,20 +33,20 @@ const links = [
 
 export default function SideNavigation(props) {
   const [gradientWidth, setGradientWidth] = useState(299);
-  const [gradientHeight, setGradientHeight] = useState(286);
+  const [gradientHeight, setGradientHeight] = useState(402);
 
   const {getBlock, getElement} = useBEMNaming("side-navigation");
   const mainRef = useRef();
 
   const getGradientStyle = () => ({width: `${gradientWidth}px`, height: `${gradientHeight}px`})
 
-  // useEffect(() => {
-  //   if (mainRef.current && gradientWidth === 0) {
-  //     const {scrollWidth, scrollHeight} = mainRef.current;
-  //     setGradientHeight(scrollHeight);
-  //     setGradientWidth(scrollWidth);
-  //   }
-  // }, [mainRef.current])
+  useEffect(() => {
+    if (mainRef.current && gradientWidth === 0) {
+      const {scrollWidth, scrollHeight} = mainRef.current;
+      setGradientHeight(scrollHeight);
+      setGradientWidth(scrollWidth);
+    }
+  }, [mainRef.current])
 
 
   return <div className={getBlock()}>

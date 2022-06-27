@@ -11,7 +11,7 @@ export default function Slide5(props) {
 
   return <>
     <p className={getElement("intro-text")}>
-      Training models
+      Model Training
     </p>
     <p className={getElement("title")}>
       Machine learning uses models that are trained to recognize different patterns and make predictions.

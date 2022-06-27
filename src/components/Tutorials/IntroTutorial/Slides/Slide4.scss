@@ -10,11 +10,7 @@
   flex-direction: column;
   padding-top: 100px;
   padding-bottom: 100px;
-  padding-right: 200px;
 
-  @include maxWidth(1200px) {
-    padding-right: 0;
-  }
 
   &__intro-text {
     @include labelBold();
@@ -47,7 +43,9 @@
     position: relative;
     max-width: 650px;
     margin-top: 40px;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    width: 100%;
 
     &-arrow {
       position: absolute;
@@ -61,6 +59,7 @@
         top: -59px;
         left: 69px;
         transform: rotate(-45deg);
+        display: none;
 
         path {
           stroke-width: 2px;
@@ -71,18 +70,26 @@
     &-info {
       width: 20px;
       height: 20px;
-      flex-basis: 20%;
-      margin-top: 20px;
-
+      min-width: 20px;
+      max-width: 20px;
+      min-height: 20px;
+      max-height: 20px;
+      margin-right: 12px;
+      margin-top: 3px;
     }
 
     &-text {
       @include body;
       color: $charcoalLightest;
+
+      @include mobileWidth-lg {
+        @include bodySmall;
+      }
     }
   }
 
   &__cta {
+
     @include secondaryButtonWithIconAfter("arrow-right.svg");
 
     &:after {

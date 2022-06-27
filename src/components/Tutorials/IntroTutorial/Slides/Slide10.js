@@ -8,7 +8,7 @@ export default function Slide10(props) {
   return <>
     <p className={getElement("intro-text")}>Exploring other model tasks</p>
     <p className={getElement("title")}>
-      Now that you’ve got the basics down for machine learning, let’s explore other things machine learning can do!
+      Now that you've got the basics down, let's explore other things machine learning can do!
     </p>
     <button className={getElement("cta")} onClick={() => props.goToSection(props.index + 1)}>Start exploring
     </button>

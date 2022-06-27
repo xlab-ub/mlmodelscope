@@ -3,7 +3,6 @@
 .intro-tutorial-slide-1 {
   width: 100%;
   min-height: 100vh;
-  height: 100%;
   background-color: $richNavy;
   display: flex;
   justify-content: center;
@@ -21,7 +20,7 @@
     text-align: center;
     @include billboard;
     color: $white;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
   }
 
   &__cta {

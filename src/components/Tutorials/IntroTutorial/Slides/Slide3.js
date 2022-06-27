@@ -8,10 +8,11 @@ export default function Slide3(props) {
 
 
   return <>
-    <p className={getElement("intro-text")}>Model Outputs</p>
+    <p className={getElement("intro-text")}>Model Input</p>
     <p className={getElement("title")}>Can a machine learning model identify what type of plant this is?</p>
-
-    <img src={PlantPicture} alt={"a picture of a plant"} className={getElement("img")}/>
+    <div className={getElement("img-wrapper")}>
+      <img src={PlantPicture} alt={"a picture of a plant"} className={getElement("img")}/>
+    </div>
 
     <button className={getElement("cta")} onClick={() => props.goToSection(props.index + 1)}>
       Let's try it out!

@@ -53,12 +53,13 @@ export default function Header(props) {
                       link={"/intro-tutorial"}/>
             <LinkItem {...props} getElement={getElement} display={"All models"} link={"/models"}/>
             <div className={getElement("compare-models")}>
-
               <button ref={btnRef} onClick={toggleComparison}
                       className={getElement(`compare-models-btn ${showModelComparison && "compare-models-btn-active"}`)}>
                 Start a model comparison <ChevDown
                 className={getElement(`compare-models-btn-icon ${showModelComparison && "compare-models-btn-icon-active"}`)}/>
               </button>
+
+
               <div ref={containerRef} style={{display: showModelComparison ? "flex" : "none"}}
                    hidden={!showModelComparison}
                    className={getElement("compare-models-container")}>

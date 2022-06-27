@@ -10,12 +10,24 @@
   padding-top: 100px;
   padding-bottom: 100px;
 
-  @include maxWidth(1200px) {
+  @include maxWidth(1150px) {
     flex-direction: column;
+  }
+
+  @include mobileWidth-lg {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   &__text-area {
     width: 50%;
+
+    @include maxWidth(1150px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 75%;
+    }
   }
 
 
@@ -24,6 +36,9 @@
     color: $azul;
     margin-bottom: 12px;
 
+    @include maxWidth(1150px) {
+      text-align: center;
+    }
   }
 
   &__title {
@@ -31,16 +46,30 @@
     color: $richNavy;
     margin-bottom: 12px;
     text-align: left;
+
+    @include maxWidth(1150px) {
+      text-align: center;
+    }
   }
 
   &__sub-title {
     @include body;
     color: $charcoalLightest;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+
+    @include maxWidth(1150px) {
+      text-align: center;
+    }
+
+    @include mobileWidth-lg {
+      @include bodySmall;
+    }
   }
 
   &__cta {
     @include secondaryButtonWithIconAfter("arrow-right.svg");
+
+    line-height: 20px;
 
     &:after {
       transform: translateX(0px) rotate(90deg);
@@ -51,6 +80,10 @@
         transform: translateX(6px) rotate(90deg);
       }
     }
+
+    @include maxWidth(460px) {
+      line-height: 16px;
+    }
   }
 
   &__img-area {
@@ -58,9 +91,24 @@
     width: 400px;
     height: 500px;
 
-    @include maxWidth(1200px) {
-      margin-top: 40px;
+    @include maxWidth(1300px) {
+      transform: scale(0.8);
+    }
 
+    @include maxWidth(1150px) {
+      transform: scale(1);
+      margin-top: 16px;
+
+    }
+
+    @include mobileWidth-lg {
+      margin-top: -32px;
+      transform: scale(.8);
+    }
+    @include mobileWidth-sm {
+      margin-top: -44px;
+
+      transform: scale(.7);
     }
   }
 
@@ -68,26 +116,34 @@
     position: absolute;
     padding: 4px;
     top: 0px;
-    left: 5%;
+    left: 0%;
     z-index: 1;
     border: 2px solid transparent;
     box-sizing: border-box;
     border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
     border-image-slice: 1;
+    transform: scale(0.8);
+
+    @include maxWidth(1150px) {
+      left: -10%;
+    }
 
   }
 
   &__img-2 {
     position: absolute;
     padding: 4px;
-    top: 150px;
+    top: 192px;
     left: 30%;
     border: 2px solid;
     box-sizing: border-box;
+    transform: scaleX(-1);
 
     border-image-source: linear-gradient(267.7deg, #7E30E1 35.68%, #0072F7 58.04%, #67ADFF 73.86%);
     border-image-slice: 1;
-
+    @include maxWidth(1150px) {
+      left: 20%;
+    }
 
   }
 

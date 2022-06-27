@@ -39,7 +39,7 @@ export default function TutorialStepper(props) {
   const StaticComponent = staticComponent || ((props) => <></>);
 
   return <div className={"tutorial-stepper"}>
-    <StaticComponent currentSection={section} goToSection={goToSection}/>
     {sections}
+    <StaticComponent currentSection={section} goToSection={goToSection}/>
   </div>
 }
