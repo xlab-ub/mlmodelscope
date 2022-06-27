@@ -1,13 +1,13 @@
 import React from 'react';
 import useBEMNaming from "../../../../common/useBEMNaming";
-import {TestImageClassificationResult} from "../../../Experiment/QuickOutput/Outputs/Classification/Features";
 import ModelCard from "../../../ModelList/ModelCard/ModelCard";
 import "./Slide7.scss";
+import ExampleModels from "../utils/ExampleModels";
 
 export default function Slide7(props) {
   const {getElement} = useBEMNaming("intro-tutorial-slide-7");
 
-  const models = new Array(15).fill(TestImageClassificationResult.model);
+  const models = ExampleModels;
 
   return <>
     <div className={getElement("text-area")}>
