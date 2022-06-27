@@ -24,7 +24,7 @@ const TestFeatures = [
     type: "BOUNDINGBOX",
     bounding_box: {
       "index": 3,
-      "label": "carthatisareallyreallyreallyreallyreallylongname",
+      "label": "car1",
       "xmax": 0.7149137,
       "xmin": 0.6304271,
       "ymax": 0.5578812,

@@ -2,20 +2,21 @@ import React, {useRef} from 'react';
 import "./HomePage.scss";
 import useBEMNaming from "../../common/useBEMNaming";
 import {HomePageMainSection} from "./HomePageMainSection";
-import {MachineLearningOverview} from "./MachineLearningOverview";
-import {TaskExamples} from "./TaskExamples";
+import TutorialSection from "./TutorialSection";
 
 export default function HomePage(props) {
   const {getBlock} = useBEMNaming("home-page");
 
   const modelDetailsRef = useRef();
+  const otherRef = useRef()
 
 
   return (
     <div className={getBlock()}>
       <HomePageMainSection modelDetailsRef={modelDetailsRef}/>
-      <MachineLearningOverview modelDetailsRef={modelDetailsRef}/>
-      <TaskExamples {...props}/>
+      <TutorialSection modelDetailsRef={modelDetailsRef}/>
+      {/*<MachineLearningOverview modelDetailsRef={otherRef}/>*/}
+      {/*<TaskExamples {...props}/>*/}
     </div>
   )
 }

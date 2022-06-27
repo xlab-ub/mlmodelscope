@@ -1,0 +1,71 @@
+@import "src/App";
+
+.home-page-tutorial-section {
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  @include gutters;
+
+
+  @include maxWidth(1025px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  &__text-area {
+    padding: 24px;
+    width: 50%;
+    text-align: left;
+    @include maxWidth(1025px) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .home-page-section {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+    }
+
+    .home-page-section__title, .home-page-section__subtitle {
+      text-align: left;
+
+      @include maxWidth(1025px) {
+        text-align: center;
+      }
+    }
+
+  }
+
+  &__graphic-area {
+    padding: 24px;
+    width: 50%;
+
+    svg {
+      width: 100%;
+    }
+
+    @include maxWidth(1025px) {
+      width: 100%;
+      margin-top: 32px;
+    }
+
+    @include maxWidth(420px) {
+      margin-top: -80px;
+      margin-bottom: -180px;
+    }
+
+  }
+
+  &__cta {
+    @include primaryButtonWithIcon("after", "arrow-right-white.svg");
+    width: fit-content;
+    text-decoration: none;
+    margin-top: 24px;
+  }
+}

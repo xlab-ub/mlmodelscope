@@ -34,7 +34,7 @@ export function HomePageMainSection(props) {
 
       </div>
       <button onClick={scrollToModelDetails} className={getElement("jump-link")}>
-        Learn more about models <ArrowIcon className={getElement("jump-link-icon")}/>
+        New to machine learning? <ArrowIcon className={getElement("jump-link-icon")}/>
       </button>
 
     </div>
