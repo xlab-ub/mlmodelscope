@@ -139,7 +139,7 @@
 
     &:not(:disabled) {
       &:hover:after {
-        transform: translateX(6px) rotate(90deg);
+        transform: translateY(2px) rotate(90deg);
       }
     }
   }
