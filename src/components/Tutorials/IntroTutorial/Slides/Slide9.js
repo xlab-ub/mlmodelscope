@@ -18,7 +18,7 @@ export default function Slide9(props) {
       Model 1 is better at identifying our plant.
     </p>
     <p className={getElement("sub-title")}>
-      Model 2 is 90% sure our plant is a turkey in the image. This is incorrect.
+      Model 2 is 98% sure our plant is a turkey in the image. This is incorrect.
     </p>
 
     <div className={getElement("model-cards")}>
