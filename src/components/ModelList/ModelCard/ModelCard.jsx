@@ -70,12 +70,14 @@ export default class ModelCard extends Component {
           <hr className={"model-card__tags-box-divider"}/>
           <div className={"model-card__tags-box-row"}>
             <p className={"model-card__tags-box-item"} children={model.attributes.training_dataset}/>
-            <span className={"model-card__tags-box-item-divider"}>&bull;</span>
 
             {model.attributes.Top1 &&
               <>
-                <p className={"model-card__tags-box-item"} children={"Top 1: " + model.attributes.Top1 + "%"}/>
                 <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+                <p className={"model-card__tags-box-item"} children={"Top 1: " + model.attributes.Top1 + "%"}/>
+                {model.attributes.Top1 &&
+                  <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+                }
               </>
             }
             {model.attributes.Top5 &&
@@ -83,7 +85,6 @@ export default class ModelCard extends Component {
                 <p className={"model-card__tags-box-item"}>
                   Top 5: {model.attributes.Top5}%
                 </p>
-                <span className={"model-card__tags-box-item-divider"}>&bull;</span>
 
               </>
             }
