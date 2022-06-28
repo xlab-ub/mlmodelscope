@@ -7,8 +7,8 @@ export default function Slide1(props) {
 
 
   return <>
-    <p className={getElement("intro-text")}>Intro to machine learning</p>
-    <h1 className={getElement("title")}>What is machine learning?</h1>
+    <p className={getElement("intro-text")}>Model intro</p>
+    <h1 className={getElement("title")}>What are machine learning models?</h1>
     <button className={getElement("cta")} onClick={() => props.goToSection(props.index + 1)}>Let's start learning
     </button>
   </>

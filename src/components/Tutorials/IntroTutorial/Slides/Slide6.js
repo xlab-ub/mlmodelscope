@@ -36,7 +36,10 @@ export default function Slide6(props) {
       Model Training
     </p>
     <p className={getElement("title")}>
-      Data is used to train models.
+      Models require training.
+    </p>
+    <p className={getElement("sub-title")}>
+      Data is fed into models in order to train them, so that they can make accurate predictions.
     </p>
 
     <div className={getElement("training-graphic")}>

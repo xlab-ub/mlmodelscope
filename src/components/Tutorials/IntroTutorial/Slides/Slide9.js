@@ -64,8 +64,8 @@ export default function Slide9(props) {
     <div className={getElement("explanation")}>
       <InfoIcon className={getElement("explanation-info")}/>
       <p className={getElement("explanation-text")}>
-        As an app builder, if I were building an application for identifying plants, this tells me that I would want to
-        use <b> Model 1 </b> instead of Model 2.
+        As an modeler, if I were building an application for identifying plants, this tells me that I would want to
+        use <b> Model 1 </b> instead of <b>Model 2</b>.
       </p>
     </div>
 

@@ -12,5 +12,10 @@ export function HomePageSectionHeading(props) {
     <p className={getElement("subtitle")}>
       {props.subtitle}
     </p>
+    {props.subtitle2 &&
+      <p className={getElement("subtitle")}>
+        {props.subtitle2}
+      </p>
+    }
   </div>
 }

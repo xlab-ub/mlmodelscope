@@ -28,6 +28,7 @@
 
   .classification-output {
     width: unset;
+    max-height: 500px;
 
     .top-prediction__probability {
       border-bottom: none;

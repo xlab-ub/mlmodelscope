@@ -10,6 +10,7 @@
   flex-direction: column;
   padding-top: 100px;
   padding-bottom: 100px;
+  background-color: $white;
 
   &__intro-text {
     @include labelBold();
@@ -23,6 +24,7 @@
     @include billboardSmall;
     color: $richNavy;
     margin-bottom: 50px;
+    max-width: 1000px;
   }
 
   &__explanation {

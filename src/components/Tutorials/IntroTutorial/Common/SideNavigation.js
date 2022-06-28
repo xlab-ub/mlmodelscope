@@ -5,20 +5,20 @@ import {Step} from "./Step";
 
 const links = [
   {
-    name: "Intro to machine learning",
+    name: "Model intro",
     index: 0
   },
   {
     name: "Model input",
-    index: 2
-  },
-  {
-    name: "Model output",
     index: 3
   },
   {
-    name: "Model training",
+    name: "Model output",
     index: 4
+  },
+  {
+    name: "Model training",
+    index: 5
   },
   {
     name: "Comparing models",

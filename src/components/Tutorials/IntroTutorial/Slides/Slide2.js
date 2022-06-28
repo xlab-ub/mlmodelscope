@@ -9,14 +9,15 @@ export default function Slide2(props) {
 
   return <>
     <div className={getElement("text-area")}>
-      <p className={getElement("intro-text")}>Intro to machine learning</p>
+      <p className={getElement("intro-text")}>Model intro</p>
       <p className={getElement("title")}>Machine learning is all around you!</p>
 
-      <p className={getElement("sub-title")}>People use machine learning to help them identify things like birds or
+      <p className={getElement("sub-title")}>People use machine learning models to help them identify things like birds
+        or
         plants.</p>
 
       <button className={getElement("cta")} onClick={() => props.goToSection(props.index + 1)}>
-        Let's try a real world example
+        Let's try it out
       </button>
     </div>
     <div className={getElement("img-area")}>

@@ -24,10 +24,11 @@ export default function IntroTutorial(props) {
 
   const Components = [
     makeComponent(Slide1, "", "intro-tutorial-slide-1"),
+    makeComponent(Slide5, "", "intro-tutorial-slide-5"),
+
     makeComponent(Slide2, "", "intro-tutorial-slide-2"),
     makeComponent(Slide3, "", "intro-tutorial-slide-3"),
     makeComponent(Slide4, "", "intro-tutorial-slide-4"),
-    makeComponent(Slide5, "", "intro-tutorial-slide-5"),
     makeComponent(Slide6, "", "intro-tutorial-slide-6"),
     makeComponent(Slide7, "", "intro-tutorial-slide-7"),
     makeComponent(Slide8, "", "intro-tutorial-slide-8"),

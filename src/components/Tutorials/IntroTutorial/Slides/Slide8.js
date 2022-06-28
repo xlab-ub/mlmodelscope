@@ -12,7 +12,7 @@ export default function Slide8(props) {
 
   return <>
     <p className={getElement("intro-text")}>Comparing Models</p>
-    <p className={getElement("title")}>Modelers will often times compare models to identify which one they want to
+    <p className={getElement("title")}>Modelers will often compare models to identify which one they want to
       use.</p>
 
 

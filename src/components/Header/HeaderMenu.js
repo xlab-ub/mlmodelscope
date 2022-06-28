@@ -38,7 +38,7 @@ export function HeaderMenu(props) {
       <LinkItem
         {...props}
         link={"/intro-tutorial"}
-        display={"Intro to machine learning"}
+        display={"Intro to MLModelscope"}
       />
       <LinkItem
         link={"/models"}

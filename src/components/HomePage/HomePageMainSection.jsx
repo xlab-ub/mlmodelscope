@@ -22,19 +22,19 @@ export function HomePageMainSection(props) {
         <div className={getElement("tint")}/>
       </div>
       <div className={getElement("content-container")}>
-        <h1 className={getElement("title")}>Discover and compare machine learning models.</h1>
+        <h1 className={getElement("title")}>Find out which machine learning models are best through your own
+          experience.</h1>
         <hr className={getElement("divider")}/>
         <h2 className={getElement("subtitle")}>
-          MLModelScope is an open source platform for evaluating and profiling machine learning models to help
-          app builders, data scientists, and system developers discover, compare and optimize models, frameworks and
-          systems.
+          MLModelscope helps people without any programming experience to experience the power of machine learning and
+          decide how and which machine learning models can solve your tasks the best.
         </h2>
 
         <Button content="View models to compare" link={"/models"} isPrimary={false} isSmall={false}/>
 
       </div>
       <button onClick={scrollToModelDetails} className={getElement("jump-link")}>
-        New to machine learning? <ArrowIcon className={getElement("jump-link-icon")}/>
+        New to MLModelscope? <ArrowIcon className={getElement("jump-link-icon")}/>
       </button>
 
     </div>
