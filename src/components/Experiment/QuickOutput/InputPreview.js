@@ -1,23 +1,25 @@
 import React from 'react';
-import BEMComponent from "../../Common/BEMComponent";
 import "./InputPreview.scss";
+import useBEMNaming from "../../../common/useBEMNaming";
 
-export default class InputPreview extends BEMComponent {
-  static defaultProps = {
-    className: "input-preview",
-    input: "",
-    onBackClicked: () => {
-    }
+const defaultProps = {
+  className: "input-preview",
+  input: "",
+  onBackClicked: () => {
   }
+};
 
-  render() {
-    return (
-      <div className={this.block()}>
-        <h3 className={this.element('title')}>Input Image</h3>
-        <img className={this.element('image')} src={this.props.input}/>
-        <button className={this.element('back-button')} onClick={this.props.onBackClicked}>Try a different image
-        </button>
-      </div>
-    );
-  }
+export default function InputPreview(givenProps) {
+  const props = {...defaultProps, ...givenProps};
+  const { getBlock, getElement } = useBEMNaming(props.className);
+
+  return (
+    <div className={getBlock()}>
+      <h3 className={getElement('title')}>Input Image</h3>
+      <img className={getElement('image')} src={props.input}/>
+      <button className={getElement('back-button')} onClick={props.onBackClicked}>
+        Try a different image
+      </button>
+    </div>
+  );
 }
