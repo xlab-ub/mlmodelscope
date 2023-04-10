@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Prediction from "../Experiment/QuickOutput/Outputs/Classification/Prediction";
+import BEMComponent from "./BEMComponent";
 import "./PredictionExpander.scss";
 import useBEMNaming from "../../common/useBEMNaming";
 
@@ -18,10 +19,12 @@ export default function PredictionExpander(givenProps) {
     return <Prediction key={index} feature={feature}/>
   };
 
+  const buttonClassName = getElement(`expand${predictionsExpanded ? '' : ' expand--collapsed'}`);
+
   const makeExpanderButton = () => {
     if (!props.showAll && props.predictions.length > 3) {
       return (
-        <button className={getElement('expand')} onClick={expandClicked}>{makeExpanderLabel()}</button>)
+        <button className={buttonClassName} onClick={expandClicked}>{makeExpanderLabel()}</button>)
     }
   }
 
@@ -30,17 +33,16 @@ export default function PredictionExpander(givenProps) {
   }
 
   const expandClicked = () => {
-    if (props.toggleShowAll) props.toggleShowAll();
-    else
-      setPredictionsExpanded(!predictionsExpanded);
+    setPredictionsExpanded(!predictionsExpanded);
   }
 
+  const predictionOverflowClassName = getElement(`prediction-overflow${predictionsExpanded ? '' : ' prediction-overflow--collapsed'}`);
   return (
     <div className={getBlock()}>
       <div className={getElement('predictions')}>
         {predictions.slice(1, 3).map(makePrediction)}
 
-        <div hidden={!props.showAll} className={getElement('prediction-overflow')}>
+        <div hidden={!predictionsExpanded} className={predictionOverflowClassName}>
           {predictions.slice(3).map(makePrediction)}
         </div>
       </div>
