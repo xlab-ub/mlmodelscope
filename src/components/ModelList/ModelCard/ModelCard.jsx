@@ -1,54 +1,41 @@
-import React, {Component} from "react";
+import React from "react";
 import Task from "../../../helpers/Task";
 import ModelTag from "../../Common/ModelTag";
-import {ReactComponent as Plus} from "../../../resources/icons/plus-sign.svg";
-import {ReactComponent as Minus} from "../../../resources/icons/minus-sign.svg";
+import {ModelCardActions} from "./ModelCardActions";
+import {ModelCardName} from "./ModelCardName";
 
-function ModelCardName(props) {
-  const model = props.model;
-  const text = `${model.name}`
-
-  if (props.actions === 'try') {
-    return (
-      <a className="model-card__model-name" href={props.makeModelLink()}>{text}</a>
-    )
-  }
-  return <p className="model-card__model-name"
-            onClick={() => props.isAdded ? props.deselectModel() : props.selectModel()}>{text}</p>
-}
-
-function ModelCardActions(props) {
-  if (props.actions === 'add' && !props.isAdded) {
-    return <Plus className={"model-card__icon"}/>
-
-  } else if (props.actions === 'add' && props.isAdded) {
-    return <Minus className={"model-card__icon model-card__icon-minus"}/>
-  }
-  return <></>
-}
-
-export default class ModelCard extends Component {
-  static defaultProps = {
+const defaultProps = {
     actions: 'try',
     isAdded: false,
     selectModel: () => {
-      alert('SELECTED')
+        alert('SELECTED')
     },
     deselectModel: () => {
-      alert('DESELECTED')
+        alert('DESELECTED')
     },
-  }
+}
 
-  constructor() {
-    super();
-    this.type = "test";
-  }
+export default function ModelCard(givenProps) {
+    const props = {...defaultProps, ...givenProps};
 
-  render() {
-    const model = this.props.model;
+    const makeModelLink = () => {
+        return "/model/" + props.model.id;
+    }
+
+    const makeClickHandler = () => {
+        if (props.actions === 'try') {
+            return () => window.location.href = (makeModelLink());
+        } else if (props.actions === "add" && !props.isAdded) {
+            return props.selectModel;
+        } else if (props.actions === 'add' && props.isAdded) {
+            return props.deselectModel;
+        }
+    }
+
+    const model = props.model;
     let task = Task[model.output.type];
     if (!task) {
-      task = new Task({name: model.output.type, description: "This task has no definition"});
+        task = new Task({name: model.output.type, description: "This task has no definition"});
     }
     let machineTagKey = 0;
     let machineTags = model.framework.architectures.map(machine => <ModelTag key={machineTagKey++} type="machine"
@@ -56,60 +43,45 @@ export default class ModelCard extends Component {
 
 
     return (
-      <div onClick={this.makeClickHandler()}
-           className={this.props.isAdded ? 'model-card model-card--active' : 'model-card'}>
-        <ModelCardName {...this.props} makeModelLink={this.makeModelLink.bind(this)}/>
+        <div onClick={makeClickHandler()}
+             className={props.isAdded ? 'model-card model-card--active' : 'model-card'}>
+            <ModelCardName {...props} makeModelLink={makeModelLink.bind(this)}/>
 
-        <div className="model-card__tags-box">
-          <div className={"model-card__tags-box-row"}>
-            <ModelTag type="task" content={task.name}/>
-            <ModelTag type="framework" content={model.framework.name}/>
-            {machineTags}
-          </div>
+            <div className="model-card__tags-box">
+                <div className={"model-card__tags-box-row"}>
+                    <ModelTag type="task" content={task.name}/>
+                    <ModelTag type="framework" content={model.framework.name}/>
+                    {machineTags}
+                </div>
 
-          <hr className={"model-card__tags-box-divider"}/>
-          <div className={"model-card__tags-box-row"}>
-            <p className={"model-card__tags-box-item"} children={model.attributes.training_dataset}/>
+                <hr className={"model-card__tags-box-divider"}/>
+                <div className={"model-card__tags-box-row"}>
+                    <p className={"model-card__tags-box-item"} children={model.attributes.training_dataset}/>
 
-            {model.attributes.Top1 &&
-              <>
-                <span className={"model-card__tags-box-item-divider"}>&bull;</span>
-                <p className={"model-card__tags-box-item"} children={"Top 1: " + model.attributes.Top1 + "%"}/>
-                {model.attributes.Top1 &&
-                  <span className={"model-card__tags-box-item-divider"}>&bull;</span>
-                }
-              </>
-            }
-            {model.attributes.Top5 &&
-              <>
-                <p className={"model-card__tags-box-item"}>
-                  Top 5: {model.attributes.Top5}%
-                </p>
+                    {model.attributes.Top1 &&
+                        <>
+                            <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+                            <p className={"model-card__tags-box-item"}
+                               children={"Top 1: " + model.attributes.Top1 + "%"}/>
+                            {model.attributes.Top1 &&
+                                <span className={"model-card__tags-box-item-divider"}>&bull;</span>
+                            }
+                        </>
+                    }
+                    {model.attributes.Top5 &&
+                        <>
+                            <p className={"model-card__tags-box-item"}>
+                                Top 5: {model.attributes.Top5}%
+                            </p>
 
-              </>
-            }
+                        </>
+                    }
 
-          </div>
+                </div>
 
+            </div>
+            <ModelCardActions {...props} />
         </div>
-        <ModelCardActions {...this.props} />
-      </div>
     )
-  }
-
-
-  makeModelLink() {
-    return "/model/" + this.props.model.id;
-  }
-
-  makeClickHandler = () => {
-    if (this.props.actions === 'try') {
-      return () => window.location.href = (this.makeModelLink());
-    } else if (this.props.actions === "add" && !this.props.isAdded) {
-      return this.props.selectModel;
-    } else if (this.props.actions === 'add' && this.props.isAdded) {
-      return this.props.deselectModel;
-    }
-  }
-
 }
+
