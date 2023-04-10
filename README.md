@@ -46,3 +46,7 @@ docker run --rm -d -p 8088:8088 --name=mlmodelscope_web_ui \
 ```
 
 Then the web will be on [http://localhost:8088](localhost:8088).
+
+# Running the Unit Tests
+1. Add the environment variable `REACT_APP_API_URL=http://api.local.mlmodelscope.org`
+1. Run `npm test` for the interactive test runner.
