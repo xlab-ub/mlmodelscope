@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import "./FilterGroup.js"
 import FilterGroup from "./FilterGroup";
 
 export default class FilterPanel extends Component {
