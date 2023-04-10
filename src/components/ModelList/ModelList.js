@@ -1,18 +1,16 @@
-import React, {Component} from "react";
-import ModelHeader from "./ModelHeader"
+import React from "react";
 import FilterPanel from "./FilterPanel";
-import ModelCardsList from "./ModelCardsList";
 import SearchBar from "../Common/SearchBar";
-import withPagination from "../Paginator/Pagination";
-import ExperimentDetailHeader from "../ExperimentDetails/ExperimentDetailHeader";
-import SelectedModelsBanner from "./SelectedModelsBanner";
 import Header from "../Header/Header";
 import {ModelListResponsiveHeader} from "./ModelList.ResponsiveHeader";
 import {ModelListResponsiveFilterContent} from "./ModelList.ResponsiveFilterContent";
 import TaskBanner from "./TaskBanner";
+import {useModelListFilters} from "./useModelListFilters";
+import {useModelListUI} from "./useModelListUI";
+import withPagination from "../Paginator/Pagination";
+import ModelCardsList from "./ModelCardsList";
 
-export default class ModelList extends Component {
-  static defaultProps = {
+const defaultProps = {
     add: false,
     selectedModels: [],
     selectModel: () => {
@@ -23,100 +21,63 @@ export default class ModelList extends Component {
     },
     runModels: () => {
     },
-  }
+}
 
-  constructor(props) {
-    super(props);
+export default function ModelList(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+    let {showFilterMenu, toggleShowFilterMenu, activeFilters} = useModelListFilters(props);
+    let {makePageHeader, makeSelectedModelsBanner} = useModelListUI(props);
 
-    this.state = {
-      showFilterMenu: false
-    }
-    this.toggleShowFilterMenu = this.toggleShowFilterMenu.bind(this);
-  }
-
-  toggleShowFilterMenu() {
-    this.setState({showFilterMenu: !this.state.showFilterMenu});
-  }
-
-  getActiveFilters() {
-    let [taskFilters, ...restFilters] = this.props.filterGroups;
-    let filters = restFilters;
-    if (!this.props.task)
-      filters.push(taskFilters);
-
-    return filters.flatMap(group => group.options.filter(opt => opt.isActive));
-  }
-
-  render() {
-    let activeFilters = this.getActiveFilters();
-
-    let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models', this.props.searchText);
-
+    let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models', props.searchText);
+    
     return (
-      <div className="model-list-page">
-        <Header/>
-        {this.makePageHeader()}
-        {this.props.hideTaskFilters && <TaskBanner task={this.props.task}/>}
+        <div className="model-list-page">
+            <Header/>
+            {makePageHeader()}
+            {props.hideTaskFilters && <TaskBanner task={props.task}/>}
 
-        <ModelListResponsiveFilterContent
-          showFilterMenu={this.state.showFilterMenu}
-          closeFilter={this.toggleShowFilterMenu}
-          filterGroups={this.props.filterGroups}
-          toggleFilter={this.props.toggleFilter}
-          hideTasks={this.props.hideTaskFilters}
-        />
-        <div
-          aria-hidden={this.state.showFilterMenu}
-          hidden={this.state.showFilterMenu}
-          className={`model-list-page__content ${this.state.showFilterMenu && "model-list-page__content-hidden"}`}
-        >
-          <div className="model-list-page__filters-search-container">
-            <div className="model-list-page__search-bar">
-              <SearchBar updateSearchText={this.props.updateSearchText} searchText={this.props.searchText}/>
-            </div>
-            <div className="model-list-page__filters">
-              <FilterPanel className="model-list-page__filters" filterGroups={this.props.filterGroups}
-                           toggleFilter={this.props.toggleFilter} hideTasks={this.props.hideTaskFilters}/>
-            </div>
-          </div>
-
-          <div className={"model-list-page__body-wrapper"}>
-            <ModelListResponsiveHeader
-              updateSearchText={this.props.updateSearchText}
-              searchText={this.props.searchText}
-              openFilter={this.toggleShowFilterMenu}
-              sortAscending={this.props.isSortAscending}
-              updateSortByNameIsAscending={this.props.updateSortByNameIsAscending}
-              activeFilters={activeFilters}
-              clearFilters={this.props.clearFilters}/>
+            <ModelListResponsiveFilterContent
+                showFilterMenu={showFilterMenu}
+                closeFilter={toggleShowFilterMenu}
+                filterGroups={props.filterGroups}
+                toggleFilter={props.toggleFilter}
+                hideTasks={props.hideTaskFilters}
+            />
             <div
-              className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
-              <ModelCardsListWithPagination className="model-list-page__list" data={this.props.models}
-                                            add={this.props.add} selectedModels={this.props.selectedModels}
-                                            selectModel={this.props.selectModel}
-                                            deselectModel={this.props.deselectModel}/>
+                aria-hidden={showFilterMenu}
+                hidden={showFilterMenu}
+                className={`model-list-page__content ${showFilterMenu && "model-list-page__content-hidden"}`}
+            >
+                <div className="model-list-page__filters-search-container">
+                    <div className="model-list-page__search-bar">
+                        <SearchBar updateSearchText={props.updateSearchText} searchText={props.searchText}/>
+                    </div>
+                    <div className="model-list-page__filters">
+                        <FilterPanel className="model-list-page__filters" filterGroups={props.filterGroups}
+                                     toggleFilter={props.toggleFilter} hideTasks={props.hideTaskFilters}/>
+                    </div>
+                </div>
+
+                <div className={"model-list-page__body-wrapper"}>
+                    <ModelListResponsiveHeader
+                        updateSearchText={props.updateSearchText}
+                        searchText={props.searchText}
+                        openFilter={toggleShowFilterMenu}
+                        sortAscending={props.isSortAscending}
+                        updateSortByNameIsAscending={props.updateSortByNameIsAscending}
+                        activeFilters={activeFilters}
+                        clearFilters={props.clearFilters}/>
+                    <div
+                        className={`model-list-page__list ${activeFilters.length === 0 && "model-list-page__list-no-filters"}`}>
+                        <ModelCardsListWithPagination className="model-list-page__list" data={props.models}
+                                                      add={props.add} selectedModels={props.selectedModels}
+                                                      selectModel={props.selectModel}
+                                                      deselectModel={props.deselectModel}/>
+                    </div>
+                </div>
+
             </div>
-          </div>
-
+            {makeSelectedModelsBanner()}
         </div>
-        {this.makeSelectedModelsBanner()}
-      </div>
     );
-  }
-
-  makePageHeader = () => {
-    if (this.props.add)
-      return <ExperimentDetailHeader title={"Compare models"}
-                                     subtitle={"Select models to compare. Search for a specific model or use filters to narrow your options."}/>
-    else {
-      return (<ModelHeader/>);
-    }
-  }
-
-  makeSelectedModelsBanner = () => {
-    if (this.props.add) {
-      return (<SelectedModelsBanner selectedModels={this.props.selectedModels} deselectModel={this.props.deselectModel}
-                                    clearModels={this.props.clearModels} runModels={this.props.runModels}/>);
-    }
-  }
 }
