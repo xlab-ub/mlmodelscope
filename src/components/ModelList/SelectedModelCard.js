@@ -1,22 +1,25 @@
 import React from "react";
-import BEMComponent from "../Common/BEMComponent";
 import Task from "../../helpers/Task";
 import ModelTag from "../Common/ModelTag";
 import {ReactComponent as CloseIcon} from "../../resources/icons/x.svg";
 import './_SelectedModelCard.scss';
+import useBEMNaming from "../../common/useBEMNaming";
 
-export default class SelectedModelCard extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: "selected-model-card",
     remove: () => {
     },
-  }
+}
 
-  render() {
-    const model = this.props.model;
+export default function SelectedModelCard(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+
+    const {getBlock, getElement} = useBEMNaming(props.className);
+
+    const model = props.model;
     let task = Task[model.output.type];
     if (!task) {
-      task = new Task({name: model.output.type, description: "This task has no definition"});
+        task = new Task({name: model.output.type, description: "This task has no definition"});
     }
     let machineTagKey = 0;
     let architectures = model.framework ? model.framework.architectures : null;
@@ -24,28 +27,27 @@ export default class SelectedModelCard extends BEMComponent {
                                                                              content={machine.name}/>) : '';
 
     return (
-      <div className={this.block()}>
-        <span className={this.element('name')}>
+        <div className={getBlock()}>
+        <span className={getElement('name')}>
           {model.name}
         </span>
-        <div className={this.element('tags')}>
-          <div className={this.element('tag-group')}>
-            <span className={this.element('tag-label')}>Framework:</span>
-            <span className={this.element('tag-content')}>
+            <div className={getElement('tags')}>
+                <div className={getElement('tag-group')}>
+                    <span className={getElement('tag-label')}>Framework:</span>
+                    <span className={getElement('tag-content')}>
               <ModelTag type="framework" content={model.framework.name}/>
             </span>
-          </div>
-          <div className={this.element('tag-group')}>
-            <span className={this.element('tag-label')}>Machine:</span>
-            <span className={this.element('tag-content')}>
+                </div>
+                <div className={getElement('tag-group')}>
+                    <span className={getElement('tag-label')}>Machine:</span>
+                    <span className={getElement('tag-content')}>
               {machineTags}
             </span>
-          </div>
+                </div>
+            </div>
+            <button className={getElement('close')} onClick={props.remove}>
+                <CloseIcon/>
+            </button>
         </div>
-        <button className={this.element('close')} onClick={this.props.remove}>
-          <CloseIcon/>
-        </button>
-      </div>
     )
-  }
 }
