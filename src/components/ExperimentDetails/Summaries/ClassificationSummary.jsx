@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PredictionExpander from "../../Common/PredictionExpander";
 import OutputDuration from "../../Experiment/QuickOutput/Outputs/_Common/components/OutputDuration";
 
-export default class ClassificationSummary extends Component {
-  makeReadableLabel = (originalLabel) => {
+export default function ClassificationSummary(props) {
+  const makeReadableLabel = (originalLabel) => {
     let firstSpaceLoc = originalLabel.indexOf(" ");
     return originalLabel.slice(firstSpaceLoc + 1);
   }
 
-  makeProbabilityStringFromDecimal = (decimalProbability) => {
+  const makeProbabilityStringFromDecimal = (decimalProbability) => {
     return `${Math.round(decimalProbability * 100)}%`;
   }
 
-  getFirstPrediction() {
-    const predictions = this.props.results.responses[0].features;
+  const getFirstPrediction = () => {
+    const predictions = props.results.responses[0].features;
     if (predictions.length > 0)
       return predictions[0];
 
@@ -25,25 +25,23 @@ export default class ClassificationSummary extends Component {
     };
   }
 
-  render() {
-    let predictions = this.props.results.responses[0].features;
-    return (
-      <div className="classification-summary">
-        <div className={"classification-summary__header-row"}>
-          <p className="classification-summary__header">Output:</p>
-          <OutputDuration duration={this.props.results.duration}/>
-        </div>
+  let predictions = props.results.responses[0].features;
+  return (
+    <div className="classification-summary">
+      <div className={"classification-summary__header-row"}>
+        <p className="classification-summary__header">Output:</p>
+        <OutputDuration duration={props.results.duration}/>
+      </div>
 
-        <div className="classification-summary__results">
-          <div className="classification-summary__top-result">
-            <span>{this.makeReadableLabel(this.getFirstPrediction().classification.label)}</span>
-            <span>{this.makeProbabilityStringFromDecimal(this.getFirstPrediction().probability)}</span>
-          </div>
-          <div className="classification-summary__extra-predictions">
-            <PredictionExpander globalValue={this.props.value} predictions={predictions}/>
-          </div>
+      <div className="classification-summary__results">
+        <div className="classification-summary__top-result">
+          <span>{makeReadableLabel(getFirstPrediction().classification.label)}</span>
+          <span>{makeProbabilityStringFromDecimal(getFirstPrediction().probability)}</span>
+        </div>
+        <div className="classification-summary__extra-predictions">
+          <PredictionExpander globalValue={props.value} predictions={predictions}/>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
