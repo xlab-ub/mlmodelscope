@@ -1,41 +1,41 @@
-import React, {Component} from "react";
+import React from "react";
 import ModelCard from "./ModelCard/ModelCard";
 import ModelListNoResults from "./NoResults";
 
-export default class ModelCardsList extends Component {
-  static defaultProps = {
-    selectedModels: [],
-    selectModel: () => {
-    },
-    deselectModel: () => {
-    },
-  }
+const defaultProps = {
+  selectedModels: [],
+  selectModel: () => {
+  },
+  deselectModel: () => {
+  },
+};
 
-  modelCards = () => {
+export default function ModelCardsList(givenProps) {
+  const props = {...defaultProps, ...givenProps};
+
+  const modelCards = () => {
     let modelKey = 0;
-    return this.props.models.map(model => <ModelCard key={modelKey++} model={model}
-                                                     actions={this.props.add ? 'add' : 'try'}
-                                                     isAdded={this.selectedModelsInclude(model)}
-                                                     selectModel={() => this.props.selectModel(model)}
-                                                     deselectModel={() => this.props.deselectModel(model)}/>);
+    return props.models.map(model => <ModelCard key={modelKey++} model={model}
+                                                actions={props.add ? 'add' : 'try'}
+                                                isAdded={selectedModelsInclude(model)}
+                                                selectModel={() => props.selectModel(model)}
+                                                deselectModel={() => props.deselectModel(model)}/>);
   }
 
-  selectedModelsInclude(model) {
-    return this.props.selectedModels.some(m => m.id === model.id);
+  const selectedModelsInclude = (model) => {
+    return props.selectedModels.some(m => m.id === model.id);
   }
 
-  hasNoModels() {
-    return this.props.models.length === 0;
+  const hasNoModels = () => {
+    return props.models.length === 0;
   }
 
-  render() {
-    if (this.hasNoModels())
-      return <ModelListNoResults/>
+  if (hasNoModels())
+    return <ModelListNoResults/>
 
-    return (
+  return (
       <div className={"model-card-list"}>
-        {this.modelCards()}
+        {modelCards()}
       </div>
-    );
-  }
+  );
 }
