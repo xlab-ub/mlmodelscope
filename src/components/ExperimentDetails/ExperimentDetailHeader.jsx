@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class ExperimentDetailHeader extends Component {
-  static defaultProps = {
-    title: 'Model comparison',
-  }
+const defaultProps = {
+  title: 'Model comparison',
+};
 
-  render() {
-    return (
-      <div className="experiment-detail-header">
-        <h1 className="experiment-detail-header__title">{this.props.title}</h1>
+export default function ExperimentDetailHeader(givenProps) {
+  const props = { ...defaultProps, ...givenProps };
 
-        <p className={"experiment-detail-header__subtitle"}>{this.props.subtitle}</p>
-      </div>
-    );
-  }
+  return (
+    <div className="experiment-detail-header">
+      <h1 className="experiment-detail-header__title">{props.title}</h1>
+
+      <p className={"experiment-detail-header__subtitle"}>{props.subtitle}</p>
+    </div>
+  );
 }
