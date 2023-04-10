@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import expect from 'expect';
 import {mount} from 'enzyme';
 import withPagination from "./Pagination";
 import PageNavigation from "./PageNavigation";
 import PageNavigationSummary from "./PageNavigationSummary";
 
-class PaginationSpy extends Component {
-    render() {
-        return <div></div>;
-    }
+function PaginationSpy(props) {
+    return <div></div>;
 }
+
 
 describe('withPagination()', () => {
     let Paginated;
