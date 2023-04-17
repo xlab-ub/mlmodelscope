@@ -3,11 +3,12 @@ import ModelList from "./ModelList";
 import clone from "../../helpers/cloner";
 import Task from "../../helpers/Task";
 import {
-  getModelListingParametersFromQueryString,
-  getSearchParametersFromQueryString,
-  getTaskFromQueryString
+    getModelListingParametersFromQueryString,
+    getSearchParametersFromQueryString,
+    getTaskFromQueryString
 } from "../../helpers/QueryParsers";
 import {RemoveQueryParameter, SetQueryParameter} from "../../helpers/QuerySetters";
+import {FilterGroupNames} from "../../helpers/FilterGroupNames";
 
 export const getDefaultGroups = (frameworkOptions = [], machineOptions = []) => {
     const isInQueryString = (id) => getTaskFromQueryString(window.location.search) === id;
@@ -20,7 +21,7 @@ export const getDefaultGroups = (frameworkOptions = [], machineOptions = []) => 
 
     return [
         {
-            header: "Tasks",
+            header: FilterGroupNames.tasks,
             description: "What the model is trained to do (select one)",
             select: "single",
             dataPath: ["output", "type"],
@@ -28,7 +29,7 @@ export const getDefaultGroups = (frameworkOptions = [], machineOptions = []) => 
             id: "task"
         },
         {
-            header: "Frameworks",
+            header: FilterGroupNames.frameworks,
             description: "What the model is running on (select one)",
             select: "single",
             dataPath: ["framework", "name"],
@@ -36,7 +37,7 @@ export const getDefaultGroups = (frameworkOptions = [], machineOptions = []) => 
             id: "framework"
         },
         {
-            header: "Machines",
+            header: FilterGroupNames.machines,
             description: "Hardware that processes the model's functions",
             select: "single",
             dataPath: ["framework", "architectures", "0", "name"],
