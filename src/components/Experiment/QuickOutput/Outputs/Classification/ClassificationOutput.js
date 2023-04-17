@@ -1,5 +1,4 @@
 import React from 'react';
-import BEMComponent from "../../../../Common/BEMComponent";
 import TopPrediction from "./TopPrediction";
 import "./ClassificationOutput.scss";
 import PredictionExpander from "../../../../Common/PredictionExpander";
@@ -7,64 +6,38 @@ import NoPredictions from "../_Common/components/NoPredictions";
 import Task from "../../../../../helpers/Task";
 import OutputDuration from "../_Common/components/OutputDuration";
 import DurationConverter from "../_Common/utils/DurationConverter";
+import useBEMNaming from "../../../../../common/useBEMNaming";
 
-export default class ClassificationOutput extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: "classification-output",
     features: []
-  }
+}
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      predictionsExpanded: false
-    }
-
-    this.modifiers = {
-      expand: {
-        collapsed: (state) => !state.predictionsExpanded
-      },
-      "prediction-overflow": {
-        collapsed: (state) => !state.predictionsExpanded
-      }
-    }
-  }
-
-  getPredictionBody = () => {
-    if (this.props.features.length > 0)
-      return <div className={this.element('predictions')}>
-        <TopPrediction hideRating={this.props.hideRating} feature={this.props.features[0]}/>
-        <PredictionExpander predictions={this.props.features}/>
-      </div>
-
-    return <NoPredictions modelId={this.props.modelId}/>
-  }
-
-  render() {
+export default function ClassificationOutput(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+    const {getBlock, getElement} = useBEMNaming(props.className);
     const task = Task.image_classification;
+
+    const getPredictionBody = () => {
+        if (props.features.length > 0)
+            return <div className={getElement('predictions')}>
+                <TopPrediction hideRating={props.hideRating} feature={props.features[0]}/>
+                <PredictionExpander predictions={props.features}/>
+            </div>
+
+        return <NoPredictions modelId={props.modelId}/>
+    }
+
     return (
-      <div className={this.block()}>
-        <div className={this.element("title-row")}>
-          <h3 className={this.element('title')}>Output</h3>
-          {!this.props.hideDuration &&
-            <OutputDuration duration={DurationConverter(this.props.trial.results.duration)}/>
-          }
+        <div className={getBlock()}>
+            <div className={getElement("title-row")}>
+                <h3 className={getElement('title')}>Output</h3>
+                {!props.hideDuration &&
+                    <OutputDuration duration={DurationConverter(props.trial.results.duration)}/>
+                }
+            </div>
+            <div className={getElement('subtitle')}>{task.outputText}</div>
+            {getPredictionBody()}
         </div>
-        <div className={this.element('subtitle')}>{task.outputText}</div>
-        {this.getPredictionBody()}
-      </div>
     );
-  }
-
-
-  makeExpanderLabel = () => {
-    return `${this.state.predictionsExpanded ? 'Hide' : 'Show'} all predictions`;
-  }
-
-  expandClicked = () => {
-    this.setState({
-      predictionsExpanded: !this.state.predictionsExpanded
-    });
-  }
 }
