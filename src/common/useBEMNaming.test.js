@@ -1,30 +1,20 @@
 import useBEMNaming from "./useBEMNaming";
 import React from 'react';
-import {shallow} from "enzyme";
+import {renderHook} from "@testing-library/react-hooks";
 
 
 describe("useBEMNaming", () => {
-  const TestComponent = () => {
-    const {getElement, getBlock} = useBEMNaming("test-component", {isActive: true});
+    let result;
 
-    return <div className={getBlock()}>
-      <p className={getElement("element")}>Hello World</p>
-    </div>
-  }
+    beforeEach(() => {
+        result = renderHook(() => useBEMNaming("test-component")).result;
+    })
 
-  it("Can set the block name based on the given base name", () => {
-    const component = shallow(<TestComponent />);
+    it("Can set the block name based on the given base name", () => {
+        expect(result.current.getBlock()).toEqual("test-component");
+    })
 
-    const result = component.find("test-component");
-
-    expect(result).not.toBeNull();
-  })
-
-  it("Can set the element name based on the given base name with no state", () => {
-    const component = shallow(<TestComponent />);
-
-    const result = component.find("test-component__element");
-
-    expect(result).not.toBeNull();
-  })
+    it("Can set the element name based on the given base name with no state", () => {
+        expect(result.current.getElement("test-element")).toEqual("test-component__test-element");
+    })
 })
