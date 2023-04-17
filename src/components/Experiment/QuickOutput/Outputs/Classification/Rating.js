@@ -1,100 +1,66 @@
 import React from 'react';
-import BEMComponent from "../../../../Common/BEMComponent";
 import Icon from "../../../../Icon/Icon";
 import "./Rating.scss";
+import useBEMNaming from "../../../../../common/useBEMNaming";
 
-export default class Rating extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: "rating"
-  }
+}
 
-  constructor(props) {
-    super(props);
+export default function Rating(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+    const {getBlock, getElement} = useBEMNaming(props.className);
 
-    this.state = {
-      ratings: [
+    const [ratings, setRatings] = React.useState([
         {
-          title: "Correct",
-          element: "correct",
-          icon: "check",
-          checked: false
+            title: "Correct",
+            element: "correct",
+            icon: "check",
+            checked: false
         },
         {
-          title: "Incorrect",
-          element: "incorrect",
-          icon: "x",
-          checked: false
+            title: "Incorrect",
+            element: "incorrect",
+            icon: "x",
+            checked: false
         }
-      ]
+    ]);
+
+    const makeRadioButton = (rating, index) => {
+        const tabIndex = rating.checked ? 0 : (ratings.some(r => r.checked) || index > 0) ? -1 : 0;
+
+        return (
+            <div key={index} className={getElement(rating.element)} role="radio" aria-checked={rating.checked}
+                 tabIndex={tabIndex} onClick={() => clickRating(index)}>
+                <Icon icon={rating.icon}/>
+                <span>{rating.title}</span>
+            </div>
+        )
     };
 
-    this.modifiers = {
-      correct: {
-        checked: (state, index) => state.ratings[index].checked
-      },
-      incorrect: {
-        checked: (state, index) => state.ratings[index].checked
-      }
-    }
-  }
+    const clickRating = (clickedIndex) => {
+        const updatedRatings = ratings.map((rating, index) => {
+            return {
+                ...rating,
+                checked: clickedIndex === index
+            }
+        });
 
-  render() {
+        setRatings(updatedRatings);
+    };
 
-
-    return (
-      <div className={this.block()}>
-        {
-          this.getBody()
-        }
-      </div>
-    )
-  }
-
-  getBody = () => {
-    const isChecked = this.state.ratings.some(rating => rating.checked);
-
+    const isChecked = ratings.some(rating => rating.checked);
     if (isChecked)
-      return <div className={this.element("submitted")}>Thank you for your feedback!</div>
+        return <div className={getElement("submitted")}>Thank you for your feedback!</div>
 
     return (
-      <>
-        <div className={this.element('title')}>Is this prediction correct?</div>
-        <div className={this.element('buttons')} role="radiogroup">
-          {
-            this.state.ratings.map(this.makeRadioButton)
-          }
+        <div className={getBlock()}>
+            <div className={getElement('title')}>Is this prediction correct?</div>
+            <div className={getElement('buttons')} role="radiogroup">
+                {
+                    ratings.map(makeRadioButton)
+                }
+            </div>
         </div>
-      </>
-    )
-  }
-
-  makeRadioButton = (rating, index) => {
-    const tabIndex = rating.checked ? 0 : (this.state.ratings.some(r => r.checked) || index > 0) ? -1 : 0;
-
-    return (
-      <div key={index} className={this.element(rating.element, index)} role="radio" aria-checked={rating.checked}
-           tabIndex={tabIndex} onClick={() => this.clickRating(index)}>
-        <Icon icon={rating.icon}/>
-        <span>{rating.title}</span>
-      </div>
-    )
-  }
-
-  unCheckRating = () => {
-    let ratings = this.state.ratings.map(rating => ({...rating, checked: false}));
-    this.setState({ratings});
-  }
-
-  clickRating = (clickedIndex) => {
-    let ratings = this.state.ratings.map((rating, index) => {
-      return {
-        ...rating,
-        checked: clickedIndex === index
-      }
-    });
-
-    this.setState({
-      ratings
-    });
-  }
+    );
 }
