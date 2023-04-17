@@ -1,29 +1,26 @@
 import React from 'react';
-import BEMComponent from "../../../../Common/BEMComponent";
 import './PendingOutput.scss';
+import useBEMNaming from "../../../../../common/useBEMNaming";
 
-export default class PendingOutput extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: 'pending-output'
-  }
+};
 
-  render() {
+export default function PendingOutput(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+    const {getBlock, getElement} = useBEMNaming(props.className);
+
     return (
-      <div className={this.block()}>
-        <h3 className={this.element('title')}>Output</h3>
-        <div className={this.element('subtitle')}>Fetching results...</div>
-        {this.props.unsupportedModel &&
-          <div className={this.element('subtitle')}>Warning: unsupported model</div>
-        }
-        <div className={this.element('spinner-container')}>
-          <div className={this.element('spinner')}>
-
-          </div>
-          <p className={this.element("spinner-text")}>This could take a few minutes...</p>
-
+        <div className={getBlock()}>
+            <h3 className={getElement('title')}>Output</h3>
+            <div className={getElement('subtitle')}>Fetching results...</div>
+            {props.unsupportedModel &&
+                <div className={getElement('subtitle')}>Warning: unsupported model</div>
+            }
+            <div className={getElement('spinner-container')}>
+                <div className={getElement('spinner')}></div>
+                <p className={getElement("spinner-text")}>This could take a few minutes...</p>
+            </div>
         </div>
-
-      </div>
     );
-  }
 }
