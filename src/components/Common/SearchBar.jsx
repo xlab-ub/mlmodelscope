@@ -1,39 +1,41 @@
 import React from "react";
-import BEMComponent from "./BEMComponent";
 import {ReactComponent as Cancel} from '../../resources/icons/x.svg';
 import "./_SearchBar.scss";
+import useBEMNaming from "../../common/useBEMNaming";
 
-export default class SearchBar extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: 'search-bar'
-  }
-  onSearchChange = (e) => {
-    this.props.updateSearchText(e.target.value);
-  }
-  clearSearch = () => {
-    this.props.updateSearchText("");
-  }
 
-  getDismissClassName() {
-    return this.element(this.props.searchText === "" ? "tag--hidden" : "tag--visible");
-  }
+}
+export default function SearchBar(givenProps) {
+    const props = {...defaultProps, ...givenProps};
 
-  render() {
+    const {getBlock, getElement} = useBEMNaming(props.className);
+
+    const onSearchChange = (e) => {
+        props.updateSearchText(e.target.value);
+    }
+    const clearSearch = () => {
+        props.updateSearchText("");
+    }
+
+    const getDismissClassName = () => {
+        return getElement(props.searchText === "" ? "tag--hidden" : "tag--visible");
+    }
+
     return (
-      <span className={this.block()}>
-        <input className={this.element("input")}
+        <span className={getBlock()}>
+        <input className={getElement("input")}
                type="text"
                placeholder="Search"
                name="search"
                id="search"
-               onChange={this.onSearchChange}
+               onChange={onSearchChange}
                aria-label="Search models by name or description"
-               value={this.props.searchText}/>
-          <button className={this.getDismissClassName()} onClick={this.clearSearch}>
+               value={props.searchText}/>
+          <button className={getDismissClassName()} onClick={clearSearch}>
            <Cancel/>
           </button>
       </span>
-
     );
-  }
 }
