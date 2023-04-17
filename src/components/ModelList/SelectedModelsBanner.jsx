@@ -3,7 +3,6 @@ import Button from "../Buttons/Button"
 import {ReactComponent as MenuToggle} from "../../resources/icons/menu-toggle.svg";
 import './_SelectedModelsBanner.scss';
 import useBEMNaming from "../../common/useBEMNaming";
-import clone from "../../helpers/cloner";
 import {useSelectedModelBannerControl} from "./UseSelectedModelBannerControl";
 import SelectedModelCard from "./SelectedModelCard";
 
@@ -31,7 +30,7 @@ const modifiers = {
 };
 
 export default function SelectedModelsBanner(givenProps) {
-    const props = clone({...defaultProps, ...givenProps});
+    const props = ({...defaultProps, ...givenProps});
     const {getBlock, getElement} = useBEMNaming(props.className, modifiers);
 
     const {open, toggleOpen} = useSelectedModelBannerControl(props);
@@ -54,6 +53,8 @@ export default function SelectedModelsBanner(givenProps) {
                 props.deselectModel(model);
         }}/>)
     }
+
+    console.log(props, defaultProps, givenProps);
 
     return (
         <div className={getBlock()}>
