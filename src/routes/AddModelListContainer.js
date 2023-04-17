@@ -1,92 +1,85 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import ModelListContainer from "./ModelListContainer";
-import GetApiHelper from "../helpers/api";
 
-export default class AddModelListContainer extends Component {
-  constructor(props) {
-    super(props);
+let experimentSubscription = null;
+let trialSubscriptions = [];
 
-    let {experimentId} = this.props.match.params;
-    this.api = GetApiHelper();
+export default function AddModelListContainer(props) {
+    const [trials, setTrials] = useState([]);
+    const [experiment, setExperiment] = useState(null);
 
-    this.getExperiment(experimentId);
+    const getTrials = (experiment) => {
+        experiment.trials.forEach(trial => {
+            trialSubscriptions.push(api.getTrial(trial.id).subscribe({
+                next: trialOutput => {
+                    setTrials(oldState => {
+                        const alreadyExists = oldState.findIndex(t => t.id === trialOutput.id) > -1;
 
-    this.state = {
-      trials: [],
+                        if (!alreadyExists) {
+                            return [...oldState, trialOutput];
+                        }
+                        return oldState;
+                    })
+                }
+            }));
+        })
     }
 
-    this.trialSubscriptions = [];
-  }
+    const getExperiment = (experimentId) => {
+        experimentSubscription = api.getExperiment(experimentId).subscribe({
+            next: experiment => {
+                getTrials(experiment);
+                setExperiment(experiment);
+            }
+        });
+    }
 
-  componentWillUnmount() {
-    this.trialSubscriptions.forEach(s => s.unsubscribe());
+    const getCurrentTask = () => {
+        let trial = trials[0];
+        if (trial)
+            return trial.model.output.type;
+        return "";
+    }
 
-    if (this.experimentSubscription)
-      this.experimentSubscription.unsubscribe();
-  }
+    const runModels = (selectedModels) => {
+        const modelsFromTrials = getModelsFromTrials();
+        const filteredSelectedModels = selectedModels.filter(model => {
+            return !modelsFromTrials.some(m => m.id === model.id);
+        });
 
-  render() {
+        const inputs = getInputsFromTrials();
+
+        const trialPromises = filteredSelectedModels.map((model) => {
+            return inputs.map(inputUrl => api.runTrial(model, inputUrl, experiment.id));
+        }).flat();
+
+        Promise.all(trialPromises).then(() => {
+            props.history.push(`/experiment/${experiment.id}`);
+        });
+    }
+
+    const getInputsFromTrials = () => {
+        return trials.filter((t, i, a) => a.findIndex(tr => tr.inputs[0] === t.inputs[0]) === i).map(trial => trial.inputs[0]);
+    }
+
+    const getModelsFromTrials = () => {
+        return trials.map(t => t.model);
+    }
+
+    useEffect(() => {
+        getExperiment(props.match.params.experimentId);
+
+        return () => {
+            trialSubscriptions.forEach(s => s.unsubscribe());
+
+            if (experimentSubscription)
+                experimentSubscription.unsubscribe();
+        };
+    }, []);
+
     return (
-      <ModelListContainer task={this.getCurrentTask()} hideTaskFilters add={true} runModels={(selectedModels) => {
-        this.runModels(selectedModels)
-      }} selectedModels={this.getModelsFromTrials()}/>
+        <ModelListContainer task={getCurrentTask()} hideTaskFilters add={true} runModels={(selectedModels) => {
+            runModels(selectedModels)
+        }} selectedModels={getModelsFromTrials()}/>
     )
-  }
-
-  getCurrentTask = () => {
-    let trial = this.state.trials[0];
-    if (trial)
-      return trial.model.output.type;
-    return "";
-  }
-
-  runModels(selectedModels) {
-    const modelsFromTrials = this.getModelsFromTrials();
-    const filteredSelectedModels = selectedModels.filter(model => {
-      return !modelsFromTrials.some(m => m.id === model.id);
-    });
-
-    const inputs = this.getInputsFromTrials();
-
-    const trialPromises = filteredSelectedModels.map((model) => {
-      return inputs.map(inputUrl => this.api.runTrial(model, inputUrl, this.state.experiment.id));
-    }).flat();
-
-    Promise.all(trialPromises).then(() => {
-      this.props.history.push(`/experiment/${this.state.experiment.id}`);
-    });
-  }
-
-  getInputsFromTrials = () => {
-    return this.state.trials.filter((t, i, a) => a.findIndex(tr => tr.inputs[0] === t.inputs[0]) === i).map(trial => trial.inputs[0]);
-  }
-
-  getModelsFromTrials() {
-    return this.state.trials.map(t => t.model);
-  }
-
-  getTrials(experiment) {
-    experiment.trials.forEach(trial => {
-      this.trialSubscriptions.push(this.api.getTrial(trial.id).subscribe({
-        next: trialOutput => {
-          const trials = this.state.trials;
-          const currentIndex = trials.findIndex(t => t.id === trialOutput.id);
-
-          if (currentIndex === -1) {
-            trials.push(trialOutput);
-            this.setState({trials});
-          }
-        }
-      }));
-    })
-  }
-
-  getExperiment = async (experimentId) => {
-    this.experimentSubscription = this.api.getExperiment(experimentId).subscribe({
-      next: experiment => {
-        this.getTrials(experiment);
-        this.setState({experiment});
-      }
-    });
-  }
 }
