@@ -1,57 +1,55 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {getDefaultGroups} from "./ModelListWithFilters";
 import clone from "../../helpers/cloner";
 import {FilterGroupNames} from "../../helpers/FilterGroupNames";
+import {getSearchParametersFromQueryString} from "../../helpers/QueryParsers";
 
-export default function useModelListWithFilters(frameworks, models, machines) {
+export const SortDirection = {
+    ASC: 'ASC',
+    DESC: 'DESC',
+};
+
+export default function useModelListWithFilters(frameworks, models, machines, selectedModels) {
     const [filterGroups, setFilterGroups] = useState(getDefaultGroups(frameworks, machines));
-    const [searchText, setSearchText] = useState('');
+    const [sortDirection, setSortDirection] = useState(SortDirection.ASC);
+
+    const [searchText, setSearchText] = useState(getSearchParametersFromQueryString(window.location.search) || '');
 
     const clearFilters = () => {
         setFilterGroups(getDefaultGroups(frameworks, machines));
     };
 
-    const toggleFilterSingle = (filterGroup, target) => {
-        let options = filterGroup.options;
-        if (!options) {
-            return;
-        }
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].name === target) {
-                options[i].isActive = !options[i].isActive;
-            } else {
-                options[i].isActive = false;
-            }
-        }
-        setFilterGroups(clone(filterGroups));
-    };
-
-    const toggleFilters = (filterGroupHeader, target) => {
+    const toggleFilter = (filterGroupHeader, target) => {
         const newFilterGroups = clone(filterGroups);
-
         const filterGroup = newFilterGroups.find(group => group.header === filterGroupHeader);
 
         if (!filterGroup) {
             return;
         }
 
-        const targetOption = filterGroup.options.find(option => option.name === target);
-        targetOption.isActive = !targetOption.isActive;
-
+        filterGroup.options.forEach(option => option.isActive = option.name === target ? !option.isActive : false);
         setFilterGroups(newFilterGroups);
+    }
+
+    function sortOptionsByState(filteredModelsBySearchText) {
+        const isSortingByAscending = sortDirection === SortDirection.ASC;
+
+        return filteredModelsBySearchText
+            .sort((a, b) => isSortingByAscending ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
     }
 
     const updateFilteredModels = () => {
         const getActiveOptions = getActiveOptionsWithHeaders()
         const filteredMatchingModels = models.filter(model => {
-            return getActiveOptions.some(option => option.name === filterGroupDataAccessors[option.header](model));
+            return getActiveOptions.every(option => option.name === filterGroupDataAccessors[option.header](model));
         });
 
         const filteredModelsBySearchText = filteredMatchingModels.filter(model => {
-            return model.name.toLowerCase().includes(searchText.toLowerCase());
+            return model.name.toLowerCase().includes(searchText.toLowerCase())
+                || model.description.toLowerCase().includes(searchText.toLowerCase());
         });
 
-        return filteredModelsBySearchText;
+        return sortOptionsByState(filteredModelsBySearchText);
     }
 
     const getActiveOptionsWithHeaders = () => {
@@ -64,10 +62,8 @@ export default function useModelListWithFilters(frameworks, models, machines) {
         }, []);
 
         const activeOptionsWithHeaders = options.filter(option => option.isActive);
-        if (activeOptionsWithHeaders.length == 0)
-            return options;
-        else
-            return activeOptionsWithHeaders;
+
+        return activeOptionsWithHeaders;
     }
 
     const filterGroupDataAccessors = {
@@ -76,19 +72,24 @@ export default function useModelListWithFilters(frameworks, models, machines) {
         [FilterGroupNames.tasks]: (model) => model.output.type,
     };
 
-    const getDataFromFieldPath = (object, fields) => {
-        let result = object;
-        for (let i = 0; i < fields.length; i++) {
-            result = result[fields[i]];
-        }
-        return result;
-    }
-
     const updateSearchText = (newSearchText) => {
         setSearchText(newSearchText);
     }
 
     const filteredModels = updateFilteredModels();
 
-    return {clearFilters, toggleFilters, updateSearchText, filterGroups, filteredModels, searchText};
+    useEffect(() => {
+        setFilterGroups(getDefaultGroups(frameworks, machines));
+    }, [frameworks.length, frameworks.length])
+
+    return {
+        clearFilters,
+        toggleFilter,
+        updateSearchText,
+        filterGroups,
+        filteredModels,
+        searchText,
+        setSortDirection,
+        sortDirection
+    };
 }

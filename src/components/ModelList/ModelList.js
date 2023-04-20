@@ -29,7 +29,7 @@ export default function ModelList(givenProps) {
     let {makePageHeader, makeSelectedModelsBanner} = useModelListUI(props);
 
     let ModelCardsListWithPagination = withPagination(ModelCardsList, 'models', props.searchText);
-    
+
     return (
         <div className="model-list-page">
             <Header/>
@@ -63,8 +63,8 @@ export default function ModelList(givenProps) {
                         updateSearchText={props.updateSearchText}
                         searchText={props.searchText}
                         openFilter={toggleShowFilterMenu}
-                        sortAscending={props.isSortAscending}
-                        updateSortByNameIsAscending={props.updateSortByNameIsAscending}
+                        sortAscending={props.sortDirection}
+                        setSortDirection={props.setSortDirection}
                         activeFilters={activeFilters}
                         clearFilters={props.clearFilters}/>
                     <div
