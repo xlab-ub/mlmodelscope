@@ -1,26 +1,27 @@
 import React from 'react';
-import BEMComponent from "../../../../Common/BEMComponent";
 import formatProbability from "./ProbabilityFormatter";
 import "./Prediction.scss";
 import trim from "../../../../../helpers/labelTrimmer";
+import useBEMNaming from "../../../../../common/useBEMNaming";
 
-export default class Prediction extends BEMComponent {
-  static defaultProps = {
+const defaultProps = {
     className: "prediction",
     feature: {
-      classification: {
-        label: 'Unknown'
-      },
-      probability: 1
+        classification: {
+            label: 'Unknown'
+        },
+        probability: 1
     }
-  }
+}
 
-  render() {
+export default function Prediction(givenProps) {
+    const props = {...defaultProps, ...givenProps};
+    const {getBlock, getElement} = useBEMNaming(props.className);
+
     return (
-      <div className={this.block()}>
-        <div className={this.element('label')}>{trim(this.props.feature.classification.label)}</div>
-        <div className={this.element('probability')}>{formatProbability(this.props.feature.probability)}</div>
-      </div>
+        <div className={getBlock()}>
+            <div className={getElement('label')}>{trim(props.feature.classification.label)}</div>
+            <div className={getElement('probability')}>{formatProbability(props.feature.probability)}</div>
+        </div>
     )
-  }
 }
