@@ -1,83 +1,88 @@
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
 import ModelDetailPage from "../components/ModelDetailPage/ModelDetailPage"
 import {withRouter} from "react-router-dom";
 import GetApiHelper from "../helpers/api";
 
-class ModelDetailContainer extends Component {
-  constructor(props) {
-    super(props);
+let experimentSubscription = null;
+let trialSubscription = null;
+let modelSubscription = null;
+let api = GetApiHelper();
 
-    let {modelId, experimentId} = this.props.match.params;
-    this.api = GetApiHelper();
-    this.modelId = modelId;
+export function ModelDetailContainer(props) {
+    const [model, setModel] = useState(null);
+    const [experiment, setExperiment] = useState(null);
+    const [trialOutput, setTrialOutput] = useState(undefined);
 
-    if (!!experimentId)
-      this.getExperiment(experimentId);
+    let {modelId, experimentId} = props.match.params;
 
-    this.state = {
-      model: null,
+    const backToModel = () => {
+        props.history.push(`/model/${modelId}`);
     }
-  }
 
-  componentDidMount() {
-    this.getModel();
-  }
+    const runModel = async (inputUrl) => {
+        const response = await api.runTrial(model, inputUrl);
+        props.history.push(`/model/${modelId}/experiment/${response.experimentId}`);
+    }
 
-  componentWillUnmount() {
-    if (this.experimentSubscription)
-      this.experimentSubscription.unsubscribe();
+    const compareModels = () => {
+        props.history.push(`/experiment/${experiment.id}`);
+    }
 
-    if (this.trialSubscription)
-      this.trialSubscription.unsubscribe();
+    const getTrial = async (trialId) => {
+        trialSubscription = api.getTrial(trialId).subscribe({
+            next: nextTrialOutput => setTrialOutput(nextTrialOutput)
+        });
+    }
 
-    if (this.modelSubscription)
-      this.modelSubscription.unsubscribe();
-  }
+    const getExperiment = async (experimentId) => {
+        experimentSubscription = api.getExperiment(experimentId).subscribe({
+            next: nextExperiment => {
+                getTrial(nextExperiment.trials[0].id);
+                setExperiment(nextExperiment);
+            }
+        });
+    }
 
-  getModel() {
-    this.modelSubscription = this.api.ActiveModel.subscribe({
-      next: (model) => {
-        this.setState({model: model[0]});
-      }
+    const getModel = () => {
+        modelSubscription = api.ActiveModel.subscribe({
+            next: (nextModels) => {
+                setModel(nextModels[0]);
+            }
+        });
+        api.getModel(modelId);
+    }
+
+    useEffect(() => {
+        if (!!experimentId)
+            getExperiment(experimentId);
+
+        return () => {
+            if (experimentSubscription)
+                experimentSubscription.unsubscribe();
+        }
     });
-    this.api.getModel(this.modelId);
-  }
 
-  render() {
+    useEffect(() => {
+        getModel();
+
+        return () => {
+            if (modelSubscription)
+                modelSubscription.unsubscribe();
+        }
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            if (trialSubscription)
+                trialSubscription.unsubscribe();
+        }
+    }, []);
+
     return (
-      <ModelDetailPage model={this.state.model} onBackToModelClicked={this.backToModel}
-                       onRunModelClicked={this.runModel} trialOutput={this.state.trialOutput}
-                       compare={this.compareModels}/>
+        <ModelDetailPage model={model} onBackToModelClicked={backToModel}
+                         onRunModelClicked={runModel} trialOutput={trialOutput}
+                         compare={compareModels}/>
     )
-  }
-
-  backToModel = () => {
-    this.props.history.push(`/model/${this.modelId}`);
-  }
-
-  runModel = async (inputUrl) => {
-    const response = await this.api.runTrial(this.state.model, inputUrl);
-    this.props.history.push(`/model/${this.modelId}/experiment/${response.experimentId}`);
-  }
-
-  compareModels = () => {
-    this.props.history.push(`/experiment/${this.state.experiment.id}`);
-  }
-
-  getTrial = async (trialId) => {
-    this.trialSubscription = this.api.getTrial(trialId).subscribe({
-      next: trialOutput => this.setState({trialOutput})
-    });
-  }
-
-  getExperiment = async (experimentId) => {
-    this.experimentSubscription = this.api.getExperiment(experimentId).subscribe({
-      next: experiment => {
-        this.getTrial(experiment.trials[0].id);
-        this.setState({experiment});
-      }
-    });
-  }
 }
 
 export default withRouter(ModelDetailContainer);
