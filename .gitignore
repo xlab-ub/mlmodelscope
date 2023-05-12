@@ -45,3 +45,5 @@ storybook-static
 
 #local shell scripts
 staging.sh
+
+.env
