@@ -11,7 +11,6 @@ export default function TrialFailed() {
                 <ErrorIcon/>
                 <p className={getElement("box-heading")}>Process Failed</p>
             </div>
-
         </div>
     )
 }
