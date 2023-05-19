@@ -12,6 +12,12 @@
   padding-bottom: 100px;
   background-color: $white;
   $colBreak: 725px;
+  width: 95%;
+  margin-left: 60px;
+  @include maxWidth(1150px) {
+    margin-left: 0;
+    width: 100%;
+  }
 
   &__intro-text {
     @include labelBold();
@@ -33,7 +39,6 @@
     text-align: right;
     color: $charcoalLightest;
     margin-top: 12px;
-    width: 100%;
 
     @include maxWidth($colBreak) {
       text-align: center;
@@ -46,11 +51,7 @@
     background-image: linear-gradient(white, white), radial-gradient(circle at top left, #7E30E1 2.08%, #0072F7 60.94%, #67ADFF 91.15%);
     background-origin: border-box;
     background-clip: padding-box, border-box;
-
-
     height: 160px;
-    width: 100%;
-
     border-radius: 16px;
     margin-top: 136px;
 
@@ -77,14 +78,15 @@
   &__section-content {
     position: relative;
     margin-top: -70px;
+    margin-left: 24px;
+    margin-right: 24px;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+
     z-index: 2;
-    @include desktopWidth {
-    }
+
     @include maxWidth($colBreak) {
       flex-direction: column;
       margin-top: -90px;
