@@ -13,90 +13,93 @@ import RemoveInputModal from "./modals/RemoveInputModal";
 import InputCannotBeRemovedModal from "./modals/InputCannotBeRemovedModal";
 
 export default function ExperimentDetailPage(props) {
-  const [value, setValue] = useState(-1);
+    const [value, setValue] = useState(-1);
 
-  const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
-  const calculateCardWidth = () => {
-    let length = props.experiment.trials.length;
-    if (length === 1)
-      return "100%";
-    if (length === 2)
-      return "50%";
-    return "33%";
-  }
+    const {getBlock, getElement} = useBEMNaming("experiment-detail-page");
+    const calculateCardWidth = () => {
+        let length = props.experiment.trials.length;
+        if (length === 1)
+            return "100%";
+        if (length === 2)
+            return "50%";
+        return "33%";
+    }
 
-  let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
-    <div style={{width: calculateCardWidth()}} key={trialIndex} className={getElement("trial")}>
-      <TrialOutputWrapper value={value} trial={trial} onDeleteTrial={props.onDeleteTrial}
-                          deletedTrial={props.trialToDelete}
-                          trialIsDeleting={props.trialIsDeleting}/>
-    </div>
-  ))
-
-  const Layout = getLayout();
-
-
-  return (
-    <div className={getBlock()}>
-      <Header/>
-      <ExperimentDetailHeader subtitle={"Compare models"}/>
-
-
-      <Layout>
-        <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal} showAddInputModal={props.showAddInputModal}
-                          inputs={props.inputs}
-                          selectedInput={props.selectedInput} selectInput={props.updateInput}
-                          getAddModelsLink={props.getAddModelsLink}/>
-        <div className={getElement("scroll-container")}>
-
-          <div className={getElement("trial-cards")}>
-            {trialComponents}
-
-          </div>
+    let trialComponents = props.experiment.trials.map((trial, trialIndex) => (
+        <div style={{width: calculateCardWidth()}} key={trialIndex} className={getElement("trial")}>
+            <TrialOutputWrapper value={value} trial={trial} onDeleteTrial={props.onDeleteTrial}
+                                deletedTrial={props.trialToDelete}
+                                trialIsDeleting={props.trialIsDeleting}
+                                processFailed={props.failedTrials?.indexOf(trialIndex) > -1}
+            />
         </div>
+    ))
+
+    const Layout = getLayout();
 
 
-      </Layout>
-      {getModal(props)}
-    </div>
-  );
+    return (
+        <div className={getBlock()}>
+            <Header/>
+            <ExperimentDetailHeader subtitle={"Compare models"}/>
 
-  function getLayout() {
-    const machine = props.machine ?? "amd64";
 
-    return ({children}) => <OneColumnOverview
-      {...props}
-      getAddModelsLink={getAddModelsLink}
-      task={props.task.id}
-      machine={machine}
-    >{children}</OneColumnOverview>
-  }
+            <Layout>
+                <ExperimentInputs showDeleteInputModal={props.showDeleteInputModal}
+                                  showAddInputModal={props.showAddInputModal}
+                                  inputs={props.inputs}
+                                  selectedInput={props.selectedInput} selectInput={props.updateInput}
+                                  getAddModelsLink={props.getAddModelsLink}/>
+                <div className={getElement("scroll-container")}>
 
-  function getAddModelsLink(props) {
-    if (!props.experiment) {
-      return null;
+                    <div className={getElement("trial-cards")}>
+                        {trialComponents}
+
+                    </div>
+                </div>
+
+
+            </Layout>
+            {getModal(props)}
+        </div>
+    );
+
+    function getLayout() {
+        const machine = props.machine ?? "amd64";
+
+        return ({children}) => <OneColumnOverview
+            {...props}
+            getAddModelsLink={getAddModelsLink}
+            task={props.task.id}
+            machine={machine}
+        >{children}</OneColumnOverview>
     }
 
-    return `/experiment/${props.experiment.id}/add-models`;
-  }
+    function getAddModelsLink(props) {
+        if (!props.experiment) {
+            return null;
+        }
 
-  function getModal(props) {
-    switch (props.modalType) {
-      case ExperimentDetailModalTypes.confirmDeleteModel:
-        return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
-      case ExperimentDetailModalTypes.modelCannotBeRemoved:
-        return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
-      case ExperimentDetailModalTypes.addInput:
-        return <AddInputModal sampleInputs={props.task.sampleInputs} addInput={props.addInput}
-                              close={props.onCancelDeleteTrial}/>
-      case ExperimentDetailModalTypes.confirmDeleteInput:
-        return <RemoveInputModal close={props.onCancelDeleteTrial} deleteInput={props.deleteInput}/>
-      case ExperimentDetailModalTypes.inputCannotBeRemoved:
-        return <InputCannotBeRemovedModal onConfirm={props.onCancelDeleteTrial}/>
-      default:
-        return <></>
+        return `/experiment/${props.experiment.id}/add-models`;
     }
-  }
+
+    function getModal(props) {
+        switch (props.modalType) {
+            case ExperimentDetailModalTypes.confirmDeleteModel:
+                return <RemoveModelModal onCancel={props.onCancelDeleteTrial} onConfirm={props.onConfirmDeleteTrial}/>
+            case ExperimentDetailModalTypes.modelCannotBeRemoved:
+                return <ModelCannotBeRemovedModal onConfirm={props.onConfirmModelCannotBeRemoved}/>
+            case ExperimentDetailModalTypes.addInput:
+                return <AddInputModal sampleInputs={props.task.sampleInputs} addInput={props.addInput}
+                                      close={props.onCancelDeleteTrial}/>
+            case ExperimentDetailModalTypes.confirmDeleteInput:
+                return <RemoveInputModal close={props.onCancelDeleteTrial} deleteInput={props.deleteInput}/>
+            case ExperimentDetailModalTypes.inputCannotBeRemoved:
+                return <InputCannotBeRemovedModal onConfirm={props.onCancelDeleteTrial}/>
+            default:
+                return <></>
+        }
+    }
 }
 
 

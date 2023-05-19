@@ -13,6 +13,7 @@ import {
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
 import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
 import {ExperimentDetailModalTypes} from "../../routes/ExperimentDetailContainer";
+import TrialFailed from "./TrialFailed";
 
 export default function TrialOutputWrapper(props) {
 
@@ -25,6 +26,10 @@ export default function TrialOutputWrapper(props) {
 
   const getContent = () => {
     const hasNoInputs = props.trial.inputs.length === 0 || props.trial.inputs[0] === "";
+
+    if (props.processFailed) {
+      return <TrialFailed/>
+    }
 
     if (props.trial.completed_at) {
       switch (props.trial.model.output.type) {
@@ -47,57 +52,57 @@ export default function TrialOutputWrapper(props) {
       </div>
     } else {
       return (
-        <div className="trial-output-wrapper__loading">
-          <p className="trial-output-wrapper__loading-header">Output:</p>
-          <div className="trial-output-wrapper__spinner-container">
-            <div className="trial-output-wrapper__spinner">
+          <div className="trial-output-wrapper__loading">
+            <p className="trial-output-wrapper__loading-header">Output:</p>
+            <div className="trial-output-wrapper__spinner-container">
+              <div className="trial-output-wrapper__spinner">
 
+              </div>
+              <p className="trial-output-wrapper__spinner-text">This could take a few minutes...</p>
             </div>
-            <p className="trial-output-wrapper__spinner-text">This could take a few minutes...</p>
           </div>
-        </div>
       )
     }
   }
 
   return (
-    <div
-      className={`trial-output-wrapper ${props.trialIsDeleting && props.deletedTrial?.id === props.trial.id && "trial-output-wrapper__closing"}`}>
-      <div className="trial-output-wrapper__title-box">
-        <dl className="trial-output-wrapper__title-definition-list">
-          <dt className="trial-output-wrapper__model-label">Model:</dt>
-          <dd>
-            <a className="trial-output-wrapper__model-name" target={"_blank"}
-               href={"/model/" + model?.id}>{model?.name}</a>
-          </dd>
-        </dl>
-        <button className="trial-output-wrapper__delete-trial-button-wrapper" onClick={() => handleClose()}>
-
-          <CloseIcon className="trial-output-wrapper__delete-trial-button"
-          />
-        </button>
-
-
-      </div>
-      <div className="trial-output-wrapper__content-box">
-        <div className="trial-output-wrapper__info-row">
-          <dl className="trial-output-wrapper__model-details">
-            <div className={"trial-output-wrapper__model-details-section"}>
-
-              <dt className="trial-output-wrapper__detail-label">Framework:</dt>
-              <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
-                                                                        content={model?.framework.name}/></dd>
-            </div>
-
+      <div
+          className={`trial-output-wrapper ${props.trialIsDeleting && props.deletedTrial?.id === props.trial.id && "trial-output-wrapper__closing"}`}>
+        <div className="trial-output-wrapper__title-box">
+          <dl className="trial-output-wrapper__title-definition-list">
+            <dt className="trial-output-wrapper__model-label">Model:</dt>
+            <dd>
+              <a className="trial-output-wrapper__model-name" target={"_blank"}
+                 href={"/model/" + model?.id}>{model?.name}</a>
+            </dd>
           </dl>
-          <div className="trial-output-wrapper__link-box">
-            {/*<a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>*/}
-            {/*<ExternalLink /> Hidden for now */}
-          </div>
+          <button className="trial-output-wrapper__delete-trial-button-wrapper" onClick={() => handleClose()}>
+
+            <CloseIcon className="trial-output-wrapper__delete-trial-button"
+            />
+          </button>
+
+
         </div>
-        {getContent()}
+        <div className="trial-output-wrapper__content-box">
+          <div className="trial-output-wrapper__info-row">
+            <dl className="trial-output-wrapper__model-details">
+              <div className={"trial-output-wrapper__model-details-section"}>
+
+                <dt className="trial-output-wrapper__detail-label">Framework:</dt>
+                <dd className="trial-output-wrapper__model-tag"><ModelTag type="framework"
+                                                                          content={model?.framework.name}/></dd>
+              </div>
+
+            </dl>
+            <div className="trial-output-wrapper__link-box">
+              {/*<a className="trial-output-wrapper__link" href="">Advanced Output Analysis</a>*/}
+              {/*<ExternalLink /> Hidden for now */}
+            </div>
+          </div>
+          {getContent()}
+        </div>
       </div>
-    </div>
   )
 }
 

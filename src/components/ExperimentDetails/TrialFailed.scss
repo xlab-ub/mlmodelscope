@@ -1,0 +1,29 @@
+.trial-failed {
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(30, 99, 242, 0.03);
+    border-radius: 5px;
+    min-height: 400px;
+
+    svg {
+      width: 64px;
+      height: 64px;
+    }
+
+    &-heading {
+      color: $charcoalLightest;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    &-link {
+      color: $azul;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+}
