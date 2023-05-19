@@ -6,7 +6,7 @@ import {ReactComponent as InfoIcon} from "../../../../resources/icons/info-icon.
 import "./IntroTutorialPlantOutput.scss";
 
 export default function IntroTutorialPlantOutput(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-4");
+    const {getElement} = useBEMNaming("intro-tutorial-plant-output");
 
 
     return <>

@@ -5,7 +5,7 @@ import PlantPicture from '../../../../resources/img/tutorial-plant-1.png'
 import "./IntroTutorialMachineLearningUses.scss";
 
 export default function IntroTutorialMachineLearningUses(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-2");
+    const {getElement} = useBEMNaming("intro-tutorial-machine-learning-uses");
 
     return <>
         <div className={getElement("text-area")}>

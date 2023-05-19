@@ -1,7 +1,7 @@
 @import "src/App";
 
 
-.intro-tutorial-slide-3 {
+.intro-tutorial-plant-prompt {
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -17,7 +17,7 @@
   &__intro-text {
     @include labelBold();
     color: $azul;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     text-align: center;
 
   }
@@ -37,10 +37,12 @@
   &__img {
     width: 100%;
     height: 100%;
+    max-width: 464px;
     border: 2px solid $smokeDarker;
 
     &-wrapper {
       width: 60%;
+      max-width: 480px;
       height: auto;
       position: relative;
       padding: 8px;

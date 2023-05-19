@@ -9,10 +9,10 @@ import IntroTutorialPlantOutput from "./Slides/IntroTutorialPlantOutput";
 import IntroTutorialMachineLearningOverview from "./Slides/IntroTutorialMachineLearningOverview";
 import IntroTutorialTrainingInfographic from "./Slides/IntroTutorialTrainingInfographic";
 import IntroTutorialModelsInfographic from "./Slides/IntroTutorialModelsInfographic";
-import Slide8 from "./Slides/Slide8";
-import Slide9 from "./Slides/Slide9";
-import Slide10 from "./Slides/Slide10";
-import Slide11 from "./Slides/Slide11";
+import IntroTutorialComparingModels from "./Slides/IntroTutorialComparingModels";
+import IntroTutorialModelComparisonResult from "./Slides/IntroTutorialModelComparisonResult";
+import IntroTutorialModelTasksIntro from "./Slides/IntroTutorialModelTasksIntro";
+import IntroTutorialTasks from "./Slides/IntroTutorialTasks";
 import Header from "../../Header/Header";
 
 export default function IntroTutorial(props) {
@@ -23,18 +23,17 @@ export default function IntroTutorial(props) {
     };
 
     const Components = [
-        makeComponent(IntroTutorialIntro, "", "intro-tutorial-slide-1"),
-        makeComponent(IntroTutorialMachineLearningOverview, "", "intro-tutorial-slide-5"),
-
-        makeComponent(IntroTutorialMachineLearningUses, "", "intro-tutorial-slide-2"),
-        makeComponent(IntroTutorialPlantPrompt, "", "intro-tutorial-slide-3"),
-        makeComponent(IntroTutorialPlantOutput, "", "intro-tutorial-slide-4"),
-        makeComponent(IntroTutorialTrainingInfographic, "", "intro-tutorial-slide-6"),
-        makeComponent(IntroTutorialModelsInfographic, "", "intro-tutorial-slide-7"),
-        makeComponent(Slide8, "", "intro-tutorial-slide-8"),
-        makeComponent(Slide9, "", "intro-tutorial-slide-9"),
-        makeComponent(Slide10, "", "intro-tutorial-slide-10"),
-        makeComponent(Slide11, "", "intro-tutorial-slide-11")
+        makeComponent(IntroTutorialIntro, "", "intro-tutorial-intro"),
+        makeComponent(IntroTutorialMachineLearningOverview, "", "intro-tutorial-machine-learning-overview"),
+        makeComponent(IntroTutorialMachineLearningUses, "", "intro-tutorial-machine-learning-uses"),
+        makeComponent(IntroTutorialPlantPrompt, "", "intro-tutorial-plant-prompt"),
+        makeComponent(IntroTutorialPlantOutput, "", "intro-tutorial-plant-output"),
+        makeComponent(IntroTutorialTrainingInfographic, "", "intro-tutorial-training-infographic"),
+        makeComponent(IntroTutorialModelsInfographic, "", "intro-tutorial-models-infographic"),
+        makeComponent(IntroTutorialComparingModels, "", "intro-tutorial-comparing-models"),
+        makeComponent(IntroTutorialModelComparisonResult, "", "intro-tutorial-model-comparison-result"),
+        makeComponent(IntroTutorialModelTasksIntro, "", "intro-tutorial-model-tasks-intro"),
+        makeComponent(IntroTutorialTasks, "", "intro-tutorial-tasks")
     ]
 
     const staticComponents = (props) => <>

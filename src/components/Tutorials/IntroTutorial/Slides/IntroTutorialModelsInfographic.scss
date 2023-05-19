@@ -1,6 +1,6 @@
 @import "src/App";
 
-.intro-tutorial-slide-7 {
+.intro-tutorial-models-infographic {
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -21,7 +21,6 @@
     flex-direction: column;
     width: 45%;
     margin-right: 24px;
-    background-color: $smoke;
     z-index: 1;
     padding: 24px;
 
@@ -30,7 +29,7 @@
       margin-left: 0px;
       width: unset;
       padding: 0;
-      margin-bottom: 400px;
+      margin-bottom: 200px;
       align-items: center;
       text-align: center;
     }
@@ -38,15 +37,27 @@
 
   &__models-area {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 8px;
     pointer-events: none;
     transform: translateX(0px) scale(.75);
     position: absolute;
     z-index: 0;
     width: 804px;
-    right: -11%;
+    right: 3%;
     top: -88px;
+
+    @include maxWidth(1800px) {
+      right: -5%;
+    }
+
+    @include maxWidth(1600px) {
+      right: -10%;
+    }
+
+    @include maxWidth(1400px) {
+      right: -15%;
+    }
 
     @include maxWidth(1325px) {
       right: -24%;
@@ -54,7 +65,7 @@
     @include maxWidth(1150px) {
       right: -11%;
     }
-    @include maxWidth(1025px) {
+    @include maxWidth(1080px) {
       right: -32%;
 
     }
@@ -77,8 +88,7 @@
   &__intro-text {
     @include labelBold();
     color: $azul;
-    margin-bottom: 4px;
-
+    margin-bottom: 12px;
   }
 
   &__title {
@@ -95,7 +105,6 @@
 
   &__cta {
     @include secondaryButtonWithIconAfter("arrow-right.svg");
-    padding: 32px 24px;
     width: fit-content;
     @include maxWidth(1650px) {
       font-size: 16px;

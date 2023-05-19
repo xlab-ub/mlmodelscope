@@ -16,7 +16,7 @@ import "./IntroTutorialTrainingInfographic.scss";
 import {ReactComponent as EndGraphic} from "../../../../resources/icons/model-training-3.svg";
 
 function ImageGroup(props) {
-    const {getBlock, getElement} = useBEMNaming("intro-tutorial-slide-6-image-group");
+    const {getBlock, getElement} = useBEMNaming("intro-tutorial-training-infographic-image-group");
 
     return <div className={getBlock() + " " + props.className}>
         {props.images.map(img => <img src={img} alt={"picture of a plant"} className={getElement("img")}/>)}
@@ -24,7 +24,7 @@ function ImageGroup(props) {
 }
 
 export default function IntroTutorialTrainingInfographic(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-6");
+    const {getElement} = useBEMNaming("intro-tutorial-training-infographic");
 
     const snakePlantImages = [SnakePlant1, SnakePlant2, SnakePlant3, SnakePlant4];
 

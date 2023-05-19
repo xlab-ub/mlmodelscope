@@ -4,7 +4,7 @@ import PlantPicture from '../../../../resources/img/tutorial-plant-1.png'
 import "./IntroTutorialPlantPrompt.scss";
 
 export default function IntroTutorialPlantPrompt(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-3");
+    const {getElement} = useBEMNaming("intro-tutorial-plant-prompt");
 
 
     return <>

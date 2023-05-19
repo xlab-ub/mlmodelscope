@@ -1,6 +1,6 @@
 @import "src/App";
 
-.intro-tutorial-slide-4 {
+.intro-tutorial-plant-output {
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -15,7 +15,7 @@
   &__intro-text {
     @include labelBold();
     color: $azul;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     text-align: center;
 
   }

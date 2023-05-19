@@ -7,7 +7,7 @@ import MachineLearning3 from "../../../../resources/img/intro-illustration-3.png
 import "./IntroTutorialMachineLearningOverview.scss";
 
 export default function IntroTutorialMachineLearningOverview(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-5")
+    const {getElement} = useBEMNaming("intro-tutorial-machine-learning-overview")
 
     return <>
         <p className={getElement("intro-text")}>

@@ -3,7 +3,7 @@ import React from "react";
 import "./IntroTutorialIntro.scss";
 
 export default function IntroTutorialIntro(props) {
-    const {getBlock, getElement} = useBEMNaming("intro-tutorial-slide-1");
+    const {getBlock, getElement} = useBEMNaming("intro-tutorial-intro");
 
 
     return <>

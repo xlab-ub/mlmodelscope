@@ -1,6 +1,6 @@
 @import "src/App";
 
-.intro-tutorial-slide-9 {
+.intro-tutorial-model-comparison-result {
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -87,7 +87,7 @@
     border: 3px solid;
     position: relative;
     width: 300px;
-    padding: 40px 14px 14px;
+    padding: 14px 14px;
 
     &-success {
       border-color: $mintLight;
@@ -102,7 +102,7 @@
       width: 64px;
       height: 64px;
       left: 38%;
-      top: -33px;
+      bottom: -33px;
       background: white;
       border-radius: 100px;
     }

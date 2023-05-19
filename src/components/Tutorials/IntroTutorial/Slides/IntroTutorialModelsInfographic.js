@@ -5,7 +5,7 @@ import "./IntroTutorialModelsInfographic.scss";
 import ExampleModels from "../utils/ExampleModels";
 
 export default function IntroTutorialModelsInfographic(props) {
-    const {getElement} = useBEMNaming("intro-tutorial-slide-7");
+    const {getElement} = useBEMNaming("intro-tutorial-models-infographic");
 
     const models = ExampleModels;
 
