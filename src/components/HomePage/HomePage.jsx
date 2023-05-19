@@ -5,18 +5,18 @@ import {HomePageMainSection} from "./HomePageMainSection";
 import TutorialSection from "./TutorialSection";
 
 export default function HomePage(props) {
-  const {getBlock} = useBEMNaming("home-page");
+    const {getBlock} = useBEMNaming("home-page");
 
-  const modelDetailsRef = useRef();
-  const otherRef = useRef()
+    const modelDetailsRef = useRef();
+    const otherRef = useRef()
 
 
-  return (
-    <div className={getBlock()}>
-      <HomePageMainSection modelDetailsRef={modelDetailsRef}/>
-      <TutorialSection modelDetailsRef={modelDetailsRef}/>
-      {/*<MachineLearningOverview modelDetailsRef={otherRef}/>*/}
-      {/*<TaskExamples {...props}/>*/}
-    </div>
-  )
+    return (
+        <div className={getBlock()}>
+            <HomePageMainSection modelDetailsRef={modelDetailsRef}/>
+            <TutorialSection modelDetailsRef={modelDetailsRef}/>
+            {/*<IntroTutorialMachineLearningOverview modelDetailsRef={otherRef}/>*/}
+            {/*<TaskExamples {...props}/>*/}
+        </div>
+    )
 }
