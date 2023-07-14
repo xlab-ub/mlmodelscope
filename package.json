@@ -4,6 +4,7 @@
   "private": true,
   "config-overrides-path": "/config-overrides.js",
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "12.1.5",
     "@uppy/react": "^1.3.2",
     "node-sass": "^4.12.0",
