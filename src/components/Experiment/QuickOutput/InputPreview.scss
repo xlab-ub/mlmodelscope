@@ -5,8 +5,8 @@
   border-radius: 5px;
   box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.25);
   flex: 1 1;
-  padding: 32px;
   height: fit-content;
+  padding: 32px;
 
   &__title {
     margin-bottom: 16px;
@@ -21,11 +21,20 @@
     }
   }
 
+  &__text {
+    border: 2px solid $charcoalLightest;
+    border-radius: 5px;
+    margin-top: 16px;
+    min-height: 128px;
+    padding: 8px 16px;
+
+  }
+
   &__back-button {
     @include secondaryButtonWithIconBefore("arrow-right.svg");
     align-self: flex-start;
-    margin-top: 16px;
     justify-content: center;
+    margin-top: 16px;
 
     @include mobileWidth-lg {
       width: 100%;

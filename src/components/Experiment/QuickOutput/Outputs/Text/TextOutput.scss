@@ -5,7 +5,6 @@
   flex-direction: row;
   gap: 72px;
   justify-content: space-between;
-  padding: 24px;
   width: 100%;
 
   @include maxWidth(1000px) {
@@ -30,13 +29,6 @@
   }
 
   &__input {
-    margin-left: 16px;
-
-    @include maxWidth(1000px) {
-      margin-left: 0;
-    }
-
-
     &-container-text {
       border: 2px solid $grayDark;
       margin-top: 32px;
@@ -56,14 +48,6 @@
       justify-content: center;
       margin-top: 24px;
       max-width: fit-content;
-    }
-  }
-
-  &__results {
-    margin-right: 16px;
-
-    @include maxWidth(1000px) {
-      margin-right: 0;
     }
   }
 

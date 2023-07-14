@@ -1,3 +1,5 @@
+import { text } from "../../../../../../helpers/TaskIDs";
+
 export const TestTextOutputGeneratedToken = {
   id: "9d52d414-cc78-4cd5-a292-afdc0b9332ec",
   inputs: ["translate English to German: The house is wonderful."],
@@ -163,7 +165,7 @@ export const TestTextOutput = {
     name: "Mask_RCNN_Inception_v2_COCO",
     output: {
       description: "the output instance segment",
-      type: "image_instance_segmentation",
+      type: text,
     },
     url: {
       github:

@@ -3,98 +3,127 @@ import {
   image_enhancement,
   instance_segmentation,
   object_detection,
-  semantic_segmentation
+  semantic_segmentation,
+  text,
 } from "./TaskIDs";
-import React from 'react';
-import {ReactComponent as ImageClassification} from "../resources/icons/icon-imageClassification.svg";
-import {ReactComponent as ObjectDetection} from "../resources/icons/icon-objectDetection.svg";
-import {ReactComponent as SemanticSegmentation} from "../resources/icons/icon-semanticSegmentation.svg";
-import {ReactComponent as InstanceSegmentation} from "../resources/icons/icon-instanceSegmentation.svg";
-import {ReactComponent as ImageEnhancement} from "../resources/icons/icon-imageEnhancement.svg";
+import React from "react";
+import { ReactComponent as ImageClassification } from "../resources/icons/icon-imageClassification.svg";
+import { ReactComponent as ObjectDetection } from "../resources/icons/icon-objectDetection.svg";
+import { ReactComponent as SemanticSegmentation } from "../resources/icons/icon-semanticSegmentation.svg";
+import { ReactComponent as InstanceSegmentation } from "../resources/icons/icon-instanceSegmentation.svg";
+import { ReactComponent as ImageEnhancement } from "../resources/icons/icon-imageEnhancement.svg";
 import {
   DefaultImageClassificationModel,
   DefaultImageEnhancementModel,
   DefaultInstanceSegmentationModel,
   DefaultObjectDetectionModel,
-  DefaultSemanticSegmentationModel
+  DefaultSemanticSegmentationModel,
 } from "./DefaultModels";
 import {
   SampleImageClassificationInputs,
   SampleImageEnhancementInputs,
   SampleObjectDetectionInputs,
-  SampleSegmentationInputs
+  SampleSegmentationInputs,
 } from "./sampleImages";
-import {TestImageClassificationResult} from "../components/Experiment/QuickOutput/Outputs/Classification/Features";
-import {
-  TestImageEnhancementData
-} from "../components/Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
-import {
-  TestObjectDetectionResult
-} from "../components/Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
-import {
-  TestImageSegmentationResult
-} from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
-import {
-  TestInstanceSegmentationOutput
-} from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
-
+import { TestImageClassificationResult } from "../components/Experiment/QuickOutput/Outputs/Classification/Features";
+import { TestImageEnhancementData } from "../components/Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
+import { TestObjectDetectionResult } from "../components/Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
+import { TestImageSegmentationResult } from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
+import { TestInstanceSegmentationOutput } from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 
 export default class Task {
   static image_classification = new Task({
     name: "Classification",
-    description: "Used to recognize a single object in an image and can help you answer what is in the image.",
-    modelDescription: "Used to recognize a single object in an image and can help you answer what is in the image.",
+    description:
+      "Used to recognize a single object in an image and can help you answer what is in the image.",
+    modelDescription:
+      "Used to recognize a single object in an image and can help you answer what is in the image.",
     id: image_classification,
     inputText: "See how well this model can identify the object.",
     outputText: "How this model identified the object in this image:",
-    icon: (props) => <ImageClassification {...props}/>,
+    icon: (props) => <ImageClassification {...props} />,
     sampleInputs: SampleImageClassificationInputs,
-    homePageDescription: "Image classification models can recognize a single object in an image."
-  })
+    homePageDescription:
+      "Image classification models can recognize a single object in an image.",
+  });
   static click_through_rate = new Task({
     name: "Click-Through Rate",
-    description: "[insert click-through rate description here]"
-  })
+    description: "[insert click-through rate description here]",
+  });
   static image_object_detection = new Task({
     name: "Object detection",
-    description: "Used to recognize and locate multiple objects in an image (for example, humans, animals, cars), and can help you answer what is in the image and where in the image is it located.",
+    description:
+      "Used to recognize and locate multiple objects in an image (for example, humans, animals, cars), and can help you answer what is in the image and where in the image is it located.",
     id: object_detection,
-    inputText: "See how well this model can recognize and locate multiple objects in an image.",
+    inputText:
+      "See how well this model can recognize and locate multiple objects in an image.",
     outputText: "Objects recognized in this image:",
-    icon: (props) => <ObjectDetection {...props}/>,
+    icon: (props) => <ObjectDetection {...props} />,
     sampleInputs: SampleObjectDetectionInputs,
-    homePageDescription: "Object detection models identify where objects are in an image."
-  })
+    homePageDescription:
+      "Object detection models identify where objects are in an image.",
+  });
   static image_semantic_segmentation = new Task({
     name: "Semantic segmentation",
-    description: "Used to segment out different parts of an image that belong to the same class. Can help you answer what is in the image, where in the image it is located, and if similar object overlap.",
+    description:
+      "Used to segment out different parts of an image that belong to the same class. Can help you answer what is in the image, where in the image it is located, and if similar object overlap.",
     id: semantic_segmentation,
-    inputText: "See how well this model can recognize and locate multiple objects in an image and where they overlap.",
+    inputText:
+      "See how well this model can recognize and locate multiple objects in an image and where they overlap.",
     outputText: "Objects recognized in this image:",
     icon: (props) => <SemanticSegmentation {...props} />,
     sampleInputs: SampleSegmentationInputs,
-    homePageDescription: "Semantic segmentation models recognize categories of objects in an image. They assign a category to every pixel in an image."
-  })
+    homePageDescription:
+      "Semantic segmentation models recognize categories of objects in an image. They assign a category to every pixel in an image.",
+  });
   static image_instance_segmentation = new Task({
     name: "Instance segmentation",
-    description: "Used to segment out every distinct object in an image. Can help you answer what is in the image, where in the image it is located, and how many distinct objects there are.",
-    inputText: "See how well this model can recognize and locate multiple distinct objects in an image.",
+    description:
+      "Used to segment out every distinct object in an image. Can help you answer what is in the image, where in the image it is located, and how many distinct objects there are.",
+    inputText:
+      "See how well this model can recognize and locate multiple distinct objects in an image.",
     outputText: "Objects recognized in this image:",
-    icon: (props) => <InstanceSegmentation {...props}/>,
+    icon: (props) => <InstanceSegmentation {...props} />,
     sampleInputs: SampleSegmentationInputs,
-    homePageDescription: "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image.",
-    id: instance_segmentation
-  })
+    homePageDescription:
+      "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image.",
+    id: instance_segmentation,
+  });
   static image_enhancement = new Task({
-    name: 'Image enhancement',
-    description: 'Used to sharpen an image and bring out details. Can help you focus or pick out important features in an image.',
+    name: "Image enhancement",
+    description:
+      "Used to sharpen an image and bring out details. Can help you focus or pick out important features in an image.",
     id: image_enhancement,
     inputText: "See how well this model can improve the details of an image.",
     outputText: "Enhanced image:",
-    icon: (props) => <ImageEnhancement {...props}/>,
+    icon: (props) => <ImageEnhancement {...props} />,
     sampleInputs: SampleImageEnhancementInputs,
-    homePageDescription: "Image enhancement models improve the resolution of an image, making it crisper and clearer."
+    homePageDescription:
+      "Image enhancement models improve the resolution of an image, making it crisper and clearer.",
   });
+  static text = new Task({
+    name: "Text",
+    description: "[insert text description here]",
+    id: text,
+    inputText: "[insert text input text here]",
+    outputText: "[insert text output text here]",
+    icon: (props) => <></>,
+    sampleInputs: [],
+    homePageDescription: "[insert text home page description here]",
+  });
+
+  constructor(options) {
+    this.name = options.name ?? "";
+    this.id = options.id ?? this.name;
+    this.description = options.description ?? "";
+    this.modelDescription = options.modelDescription ?? this.description;
+    this.inputText = options.inputText ?? "";
+    this.outputText = options.outputText ?? "";
+    this.Icon = options.icon ?? ((props) => <></>);
+    this.defaultModel = Task.getDefaultModel(this.id);
+    this.sampleInputs = options.sampleInputs ?? [];
+    this.homePageDescription = options.homePageDescription ?? this.description;
+  }
 
   static getStaticTask(taskId) {
     switch (taskId) {
@@ -114,7 +143,7 @@ export default class Task {
       case Task.image_instance_segmentation.name:
         return Task.image_instance_segmentation;
       default:
-        return new Task({name: "unknown", description: "unknown task name"});
+        return new Task({ name: "unknown", description: "unknown task name" });
     }
   }
 
@@ -151,30 +180,14 @@ export default class Task {
     }
   }
 
-
   static getStaticTasks() {
     return [
       this.getStaticTask(image_classification),
       this.getStaticTask(object_detection),
       this.getStaticTask(image_enhancement),
       this.getStaticTask(semantic_segmentation),
-      this.getStaticTask(instance_segmentation)
-    ]
+      this.getStaticTask(instance_segmentation),
+      this.getStaticTask(text),
+    ];
   }
-
-  constructor(options) {
-    this.name = options.name ?? "";
-    this.id = options.id ?? this.name;
-    this.description = options.description ?? "";
-    this.modelDescription = options.modelDescription ?? this.description;
-    this.inputText = options.inputText ?? "";
-    this.outputText = options.outputText ?? "";
-    this.Icon = options.icon ?? ((props) => <></>);
-    this.defaultModel = Task.getDefaultModel(this.id);
-    this.sampleInputs = options.sampleInputs ?? [];
-    this.homePageDescription = options.homePageDescription ?? this.description;
-
-  }
-
-
 }
