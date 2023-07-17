@@ -18,7 +18,6 @@ import {
   SampleObjectDetectionInputs,
   SampleSegmentationInputs,
 } from "../../helpers/sampleImages";
-import QuickTextInput from "../Experiment/QuickInput/QuickTextInput";
 
 const ModelDetailPage = (props) => {
   const jumpRef = useRef();
@@ -40,35 +39,15 @@ const ModelDetailPage = (props) => {
     }
   };
 
-  const renderInput = () => {
-    switch (outputType) {
-      case text:
-        return (
-          <QuickTextInput
-            model={props.model}
-            onSubmit={props.onRunModelClicked}
-          />
-        );
-
-      case image_classification:
-      case image_enhancement:
-      case semantic_segmentation:
-      case instance_segmentation:
-      case object_detection:
-      default:
-        return (
-          <QuickInput
-            model={props.model}
-            sampleInputs={getSampleInputs()}
-            onRunModelClicked={props.onRunModelClicked}
-          />
-        );
-    }
-  };
-
   const renderContent = () => {
     if (props.trialOutput === undefined) {
-      return renderInput();
+      return (
+        <QuickInput
+          model={props.model}
+          sampleInputs={getSampleInputs()}
+          onRunModelClicked={props.onRunModelClicked}
+        />
+      );
     } else {
       return (
         <QuickOutput

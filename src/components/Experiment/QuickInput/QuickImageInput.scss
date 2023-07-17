@@ -1,6 +1,6 @@
 @import "../../../App";
 
-.quick-input {
+.quick-image-input {
 
   background: $white;
   border-radius: 5px;
@@ -38,36 +38,36 @@
   &__tab-titles {
     border-bottom: 1px solid $smokeDarkest;
     display: flex;
-    overflow-x: scroll;
-    margin-right: -40px;
     margin-left: -40px;
+    margin-right: -40px;
+    -ms-overflow-style: none;
+    overflow-x: scroll;
     padding-left: 40px;
+
+
     padding-right: 40px;
 
+    scrollbar-width: none;
 
     @include mobileWidth-lg {
-      margin-right: -16px;
       margin-left: -16px;
+      margin-right: -16px;
       padding-left: 16px;
       padding-right: 16px;
 
     }
-
     &::-webkit-scrollbar {
       display: none;
     }
-
-    scrollbar-width: none;
-    -ms-overflow-style: none;
   }
 
   &__tab-title {
     @include body;
     background: transparent;
     border: none;
+    border-bottom: 2px solid transparent;
     color: $azul;
     padding-bottom: 10px;
-    border-bottom: 2px solid transparent;
     transition: 0.25s;
 
     &:hover {
@@ -75,8 +75,8 @@
     }
 
     &--selected {
-      font-weight: bold;
       border-bottom: 5px solid $azul;
+      font-weight: bold;
       padding-bottom: 5px;
     }
 
@@ -99,8 +99,8 @@
     @include buttonWithIconAfter("arrow-right-white.svg");
 
     align-self: flex-end;
-    margin-top: 24px;
     line-height: 16px;
+    margin-top: 24px;
 
   }
 }

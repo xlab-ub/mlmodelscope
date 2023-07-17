@@ -5,8 +5,8 @@
   &__heading {
     @include headline2;
     color: $azulDarkest;
-    width: 100%;
     padding-left: 42px;
+    width: 100%;
 
     @include maxWidth(900px) {
       padding-left: 0;
@@ -14,11 +14,11 @@
   }
 
   &__input-wrapper {
-    min-width: 80vw;
     align-self: flex-start;
+    min-width: 80vw;
 
 
-    .quick-input {
+    .quick-image-input {
       background: transparent;
       box-shadow: none;
       padding: 0 42px;

@@ -17,15 +17,15 @@
     }
   }
 
-  .quick-input {
+  .quick-image-input {
+    background-color: $white;
     box-shadow: none;
     padding: 0;
-    background-color: $white;
 
 
     &__tabs {
-      margin-top: 0;
       background-color: $smoke;
+      margin-top: 0;
     }
 
 

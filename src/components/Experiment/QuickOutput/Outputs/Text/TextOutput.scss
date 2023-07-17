@@ -30,12 +30,14 @@
 
   &__input {
     &-container-text {
+      @include body();
       border: 2px solid $grayDark;
       margin-top: 32px;
       min-height: 128px;
       padding: 16px 12px 12px;
       resize: vertical;
       width: 100%;
+
     }
 
     &-submit-button {
@@ -74,6 +76,10 @@
 
     @include maxWidth(500px) {
       margin-top: 16px;
+    }
+
+    &-text {
+      @include body();
     }
   }
 
