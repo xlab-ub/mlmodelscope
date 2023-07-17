@@ -1,0 +1,16 @@
+@import "../../../App";
+
+.no-inputs {
+  align-items: center;
+  background-color: $white;
+  border: 1px solid $smokeDarkest;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  margin-bottom: 12px;
+  width: 100%;
+
+  &__button {
+    @include secondaryButtonWithIconAfter("plus-sign.svg");
+  }
+}

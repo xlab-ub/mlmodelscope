@@ -18,6 +18,7 @@ import {
   DefaultInstanceSegmentationModel,
   DefaultObjectDetectionModel,
   DefaultSemanticSegmentationModel,
+  DefaultTextModel,
 } from "./DefaultModels";
 import {
   SampleImageClassificationInputs,
@@ -30,6 +31,7 @@ import { TestImageEnhancementData } from "../components/Experiment/QuickOutput/O
 import { TestObjectDetectionResult } from "../components/Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
 import { TestImageSegmentationResult } from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 import { TestInstanceSegmentationOutput } from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
+import { TestTextOutput } from "../components/Experiment/QuickOutput/Outputs/Text/testData/testTextOutput";
 
 export default class Task {
   static image_classification = new Task({
@@ -43,7 +45,7 @@ export default class Task {
     outputText: "How this model identified the object in this image:",
     icon: (props) => <ImageClassification {...props} />,
     sampleInputs: SampleImageClassificationInputs,
-    homePageDescription:
+    tutorialDescription:
       "Image classification models can recognize a single object in an image.",
   });
   static click_through_rate = new Task({
@@ -60,7 +62,7 @@ export default class Task {
     outputText: "Objects recognized in this image:",
     icon: (props) => <ObjectDetection {...props} />,
     sampleInputs: SampleObjectDetectionInputs,
-    homePageDescription:
+    tutorialDescription:
       "Object detection models identify where objects are in an image.",
   });
   static image_semantic_segmentation = new Task({
@@ -73,7 +75,7 @@ export default class Task {
     outputText: "Objects recognized in this image:",
     icon: (props) => <SemanticSegmentation {...props} />,
     sampleInputs: SampleSegmentationInputs,
-    homePageDescription:
+    tutorialDescription:
       "Semantic segmentation models recognize categories of objects in an image. They assign a category to every pixel in an image.",
   });
   static image_instance_segmentation = new Task({
@@ -85,7 +87,7 @@ export default class Task {
     outputText: "Objects recognized in this image:",
     icon: (props) => <InstanceSegmentation {...props} />,
     sampleInputs: SampleSegmentationInputs,
-    homePageDescription:
+    tutorialDescription:
       "Instance Segmentation models recognize very specific categories of objects in an image. They assign a category to every pixel in an image.",
     id: instance_segmentation,
   });
@@ -98,7 +100,7 @@ export default class Task {
     outputText: "Enhanced image:",
     icon: (props) => <ImageEnhancement {...props} />,
     sampleInputs: SampleImageEnhancementInputs,
-    homePageDescription:
+    tutorialDescription:
       "Image enhancement models improve the resolution of an image, making it crisper and clearer.",
   });
   static text = new Task({
@@ -109,7 +111,7 @@ export default class Task {
     outputText: "[insert text output text here]",
     icon: (props) => <></>,
     sampleInputs: [],
-    homePageDescription: "[insert text home page description here]",
+    tutorialDescription: "[insert text tutorial page description here]",
   });
 
   constructor(options) {
@@ -122,7 +124,7 @@ export default class Task {
     this.Icon = options.icon ?? ((props) => <></>);
     this.defaultModel = Task.getDefaultModel(this.id);
     this.sampleInputs = options.sampleInputs ?? [];
-    this.homePageDescription = options.homePageDescription ?? this.description;
+    this.tutorialDescription = options.tutorialDescription ?? this.description;
   }
 
   static getStaticTask(taskId) {
@@ -142,6 +144,9 @@ export default class Task {
       case instance_segmentation:
       case Task.image_instance_segmentation.name:
         return Task.image_instance_segmentation;
+      case text:
+        return Task.text;
+
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
     }
@@ -159,6 +164,8 @@ export default class Task {
         return DefaultSemanticSegmentationModel;
       case instance_segmentation:
         return DefaultInstanceSegmentationModel;
+      case text:
+        return DefaultTextModel;
 
       default:
         return undefined;
@@ -177,6 +184,8 @@ export default class Task {
         return TestImageSegmentationResult;
       case instance_segmentation:
         return TestInstanceSegmentationOutput;
+      case text:
+        return TestTextOutput;
     }
   }
 

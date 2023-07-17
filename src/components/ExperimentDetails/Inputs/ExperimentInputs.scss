@@ -1,0 +1,28 @@
+@import "src/App";
+
+.experiment-inputs {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @include tabletWidth {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+
+  .secondary-button {
+    height: 48px;
+  }
+
+  &__selection-area {
+    margin-bottom: 32px;
+    position: relative;
+    width: clamp(200px, 500px, 400px);
+
+    @include tabletWidth {
+      max-width: 300px;
+    }
+  }
+}
