@@ -3,6 +3,7 @@ import InputSelectors from "./InputSelectors";
 import React from "react";
 import expect from "expect";
 import { SampleInputs } from "../../Experiment/QuickInput/Tabs/SampleInput/SampleInputsTab.test";
+import Task from "../../../helpers/Task";
 
 describe("InputSelectors", () => {
   let result;
@@ -22,6 +23,7 @@ describe("InputSelectors", () => {
         showAddInputModal={showAddMock}
         handleSelect={selectMock}
         selectedIndex={0}
+        task={Task.image_classification}
       />
     );
   });
