@@ -109,6 +109,7 @@ export default function ExperimentDetailPage(props) {
             sampleInputs={props.task.sampleInputs}
             addInput={props.addInput}
             close={props.onCancelDeleteTrial}
+            task={props.task}
           />
         );
       case ExperimentDetailModalTypes.confirmDeleteInput:

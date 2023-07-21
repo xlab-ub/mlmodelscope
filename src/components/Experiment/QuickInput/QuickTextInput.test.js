@@ -145,4 +145,20 @@ describe("QuickTextInput", () => {
 
     expect(submitButton).not.toBeDisabled();
   });
+
+  it("when passing in hideHeader, the header is not rendered", () => {
+    const { container } = render(
+      <QuickTextInput
+        onSubmit={submitMock}
+        model={makeTestModel(image_classification)}
+        hideHeader
+      />
+    );
+
+    const header = container.querySelector(".quick-text-input__title");
+    const subtitle = container.querySelector(".quick-text-input__subtitle");
+
+    expect(header).not.toBeInTheDocument();
+    expect(subtitle).not.toBeInTheDocument();
+  });
 });

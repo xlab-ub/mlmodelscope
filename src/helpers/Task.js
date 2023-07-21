@@ -32,6 +32,7 @@ import { TestObjectDetectionResult } from "../components/Experiment/QuickOutput/
 import { TestImageSegmentationResult } from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 import { TestInstanceSegmentationOutput } from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 import { TestTextOutput } from "../components/Experiment/QuickOutput/Outputs/Text/testData/testTextOutput";
+import { TaskInputTypes } from "./TaskInputTypes";
 
 export default class Task {
   static image_classification = new Task({
@@ -112,6 +113,7 @@ export default class Task {
     icon: (props) => <></>,
     sampleInputs: [],
     tutorialDescription: "[insert text tutorial page description here]",
+    inputType: TaskInputTypes.Text,
   });
 
   constructor(options) {
@@ -125,6 +127,7 @@ export default class Task {
     this.defaultModel = Task.getDefaultModel(this.id);
     this.sampleInputs = options.sampleInputs ?? [];
     this.tutorialDescription = options.tutorialDescription ?? this.description;
+    this.inputType = options.inputType ?? TaskInputTypes.Image;
   }
 
   static getStaticTask(taskId) {

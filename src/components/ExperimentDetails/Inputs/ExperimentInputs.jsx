@@ -47,6 +47,7 @@ export const ExperimentInputs = (props) => {
           selectedInput={props.selectedInput}
           selectedIndex={selectedIndex}
           isOpen={isOpen}
+          task={props.task}
         />
 
         {isOpen && (
@@ -56,6 +57,7 @@ export const ExperimentInputs = (props) => {
             handleSelect={handleSelect}
             showAddInputModal={props.showAddInputModal}
             showDeleteInputModal={props.showDeleteInputModal}
+            task={props.task}
           />
         )}
       </div>

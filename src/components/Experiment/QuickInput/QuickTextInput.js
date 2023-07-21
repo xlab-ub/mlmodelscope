@@ -15,9 +15,12 @@ export default function QuickTextInput(props) {
 
   return (
     <div className={getBlock()}>
-      <h2 className={getElement("title")}>Try this model</h2>
-      <div className={getElement("subtitle")}>{task.inputText}</div>
-
+      {!props.hideHeader && (
+        <>
+          <h2 className={getElement("title")}>Try this model</h2>
+          <div className={getElement("subtitle")}>{task.inputText}</div>
+        </>
+      )}
       <p className={getElement("help-text")}>[INSERT HELP TEXT HERE]</p>
       <textarea
         value={value}
