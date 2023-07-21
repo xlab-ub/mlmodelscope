@@ -1,8 +1,7 @@
 import React from "react";
 import useBEMNaming from "../../../../../common/useBEMNaming";
-import OutputDuration from "../_Common/components/OutputDuration";
 import useTextOutput from "./useTextOutput";
-import Rating from "../Classification/Rating";
+import { TextOutputBox } from "./TextOutputBox";
 
 export default function TextOutput(props) {
   const { getBlock, getElement } = useBEMNaming("text-output");
@@ -33,18 +32,7 @@ export default function TextOutput(props) {
         </button>
       </div>
 
-      <div className={getElement("results")}>
-        <div className={getElement("title-row")}>
-          <h3 className={getElement("title-row-title")}>Output</h3>
-          <OutputDuration duration={inferenceDuration} />
-        </div>
-
-        <div className={getElement("output-container")}>
-          <p className={getElement("output-container-text")}>{output}</p>
-        </div>
-
-        <Rating />
-      </div>
+      <TextOutputBox duration={inferenceDuration} output={output} />
     </div>
   );
 }

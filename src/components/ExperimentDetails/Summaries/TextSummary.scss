@@ -1,0 +1,21 @@
+@import "../../../App";
+
+.text-summary {
+  display: flex;
+  flex-direction: column;
+
+  &__subtitle {
+    @include labelSmall;
+    border-top: 1px solid $smokeDarker;
+    color: $charcoalLightest;
+    padding-top: 16px;
+  }
+
+  &__output {
+    @include bodySmall;
+
+    background-color: $azulLightest;
+    color: $charcoalLightest;
+    padding: 32px 16px;
+  }
+}
