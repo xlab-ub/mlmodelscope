@@ -67,6 +67,12 @@
     }
   }
 
+  &__subtitle {
+    @include body();
+    color: $charcoalLightest;
+
+  }
+
   &__output-container {
     background-color: $azulLightest;
     margin-top: 32px;
