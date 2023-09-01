@@ -8,7 +8,7 @@ export default function InputSelectors(props) {
   const { getBlock, getElement } = useBEMNaming("input-selector");
 
   const getInputPreviewContent = (input, index) => {
-    if (props.task.inputType === TaskInputTypes.Text) return <>{input}</>;
+    if (props.task.inputType === TaskInputTypes.Text) return getTextInputPreviewContent(input, index);
 
     return (
       <>
@@ -22,10 +22,25 @@ export default function InputSelectors(props) {
     );
   };
 
+  const getTextInputPreviewContent = (input, index) => {
+      let shortened = input.split(" ").slice(0, 5).join(" ");
+      shortened = shortened + (shortened.length < input.length ? "..." : "");
+
+      return (
+          <>
+              <div className={getElement("input-selector-text")}>
+                  <div className={getElement("input-selector-text__text")}>{shortened}</div>
+                  <div className={getElement("input-selector-text__label")}>Input {index + 1}</div>
+              </div>
+          </>
+      )
+  };
+
   return (
     <div className={getBlock()}>
       {props.inputs.map((input, idx) => (
         <div
+            key={idx}
           className={getElement(
             `input-selector-btn ${
               idx === props.selectedIndex && "input-selector-btn-selected"

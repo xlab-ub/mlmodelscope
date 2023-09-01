@@ -37,6 +37,13 @@
       max-width: 110px;
     }
 
+    &-text {
+      display: flex;
+      flex: 1 1;
+      justify-content: space-between;
+      margin-right: 16px;
+    }
+
     &-btn {
       align-items: center;
       border: 1px solid $smokeDarkest;
