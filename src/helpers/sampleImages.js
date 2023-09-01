@@ -30,3 +30,9 @@ export const SampleInstanceSegmentationInputs = [
   {src: 'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/puppies.jpg', alt: "puppies"},
   {src: 'https://s3.amazonaws.com/uploads.staging.mlmodelscope.org/plane-blue.jpg', alt: "airplane"},
 ]
+
+export const SampleTextInputs = [
+    "Lorem ipsum dolor sit amet",
+    "Consectetur adipiscing elit",
+    "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+]

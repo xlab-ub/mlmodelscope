@@ -15,7 +15,7 @@
     }
   }
 
-  &__input {
+  &__input-image {
     line-height: 0;
     width: 100%;
     max-width: 240px;
@@ -34,6 +34,26 @@
         border-color: $azul;
         box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
       }
+    }
+
+    &--unselected {
+      opacity: 0.5;
+    }
+  }
+
+  &__input-text {
+    border: 1px solid $gray;
+    flex: 1 1;
+    padding: 4px 8px;
+    text-align: start;
+
+    &:not(:first-child) {
+      margin-left: 4px;
+    }
+
+    &--selected {
+      border-color: $azul;
+      box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     &--unselected {

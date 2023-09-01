@@ -1,164 +1,196 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import {fireEvent, render} from "@testing-library/react";
 import QuickTextInput from "./QuickTextInput";
 import Task from "../../../helpers/Task";
-import { image_classification } from "../../../helpers/TaskIDs";
-import { makeTestModel } from "../../ModelDetailPage/MakeTestModel";
+import {image_classification} from "../../../helpers/TaskIDs";
+import {makeTestModel} from "../../ModelDetailPage/MakeTestModel";
 
 describe("QuickTextInput", () => {
-  let result;
-  let submitMock;
+    let result;
+    let submitMock;
 
-  beforeEach(() => {
-    submitMock = jest.fn();
+    describe('Renders', () => {
+        beforeEach(() => {
+            result = render(
+                <QuickTextInput
+                    onSubmit={submitMock}
+                    model={makeTestModel(image_classification)}
+                />
+            );
+        });
 
-    result = render(
-      <QuickTextInput
-        onSubmit={submitMock}
-        model={makeTestModel(image_classification)}
-      />
-    );
-  });
+        it("a root element with the class name 'quick-text-input'", () => {
+            const {container} = result;
+            const rootElement = container.firstChild;
+            expect(rootElement).toHaveClass("quick-text-input");
+        });
 
-  it("should render without breaking", () => {
-    expect(result).toBeDefined();
-  });
+        it("a heading for the input", () => {
+            const {getByText} = result;
+            expect(getByText("Try this model")).toBeInTheDocument();
+        });
 
-  it("contains a root element with the class name 'quick-text-input'", () => {
-    const { container } = result;
-    const rootElement = container.firstChild;
-    expect(rootElement).toHaveClass("quick-text-input");
-  });
+        it("a subheading for the given task of the input", () => {
+            const {getByText} = result;
 
-  it("contains a heading for the input", () => {
-    const { getByText } = result;
-    expect(getByText("Try this model")).toBeInTheDocument();
-  });
+            expect(getByText(Task.image_classification.inputText)).toBeInTheDocument();
+        });
 
-  it("contains a subheading for the given task of the input", () => {
-    const { getByText } = result;
+        it("help text for what to enter for the input", () => {
+            const {container} = result;
 
-    expect(getByText(Task.image_classification.inputText)).toBeInTheDocument();
-  });
+            const helpText = container.querySelector(".quick-text-input__help-text");
 
-  it("contains help text for what to enter for the input", () => {
-    const { container } = result;
+            expect(helpText).toBeInTheDocument();
+        });
 
-    const helpText = container.querySelector(".quick-text-input__help-text");
+        describe('with tabs', () => {
+            it('in a tab container', () => {
+                const {container} = result;
 
-    expect(helpText).toBeInTheDocument();
-  });
+                const tabContainer = container.querySelector(".quick-text-input__tabs");
 
-  it("contains a text input", () => {
-    const { container } = result;
+                expect(tabContainer).toBeInTheDocument();
+            });
 
-    const input = container.querySelector(".quick-text-input__input");
+            it('that have titles', () => {
+                const {container} = result;
+                const titleContainer = container.querySelector(".quick-text-input__tab-titles");
+                const titles = titleContainer.querySelectorAll('button.quick-text-input__tab-title');
 
-    expect(input).toBeInTheDocument();
-  });
+                expect(titles.length).toBe(3);
+                expect(titles[0]).toHaveTextContent('Sample inputs');
+                expect(titles[1]).toHaveTextContent('Upload');
+                expect(titles[2]).toHaveTextContent('Text');
+            });
+        });
 
-  it("can change the text input", () => {
-    const { container } = result;
+        it("a text input", () => {
+            const {container} = result;
 
-    const input = container.querySelector(".quick-text-input__input");
+            const input = container.querySelector(".quick-text-input__input");
 
-    fireEvent.change(input, { target: { value: "test" } });
+            expect(input).toBeInTheDocument();
+        });
 
-    expect(input.value).toBe("test");
-  });
+        it("can change the text input", () => {
+            const {container} = result;
 
-  it("has a submit button", () => {
-    const { container } = result;
+            const input = container.querySelector(".quick-text-input__input");
 
-    const submitButton = container.querySelector(
-      ".quick-text-input__submit-button"
-    );
+            fireEvent.change(input, {target: {value: "test"}});
 
-    expect(submitButton).toBeInTheDocument();
-  });
+            expect(input.value).toBe("test");
+        });
 
-  it("clicking the submit button calls the onSubmit prop", () => {
-    const { container } = result;
+        it("has a submit button", () => {
+            const {container} = result;
 
-    const input = container.querySelector(".quick-text-input__input");
+            const submitButton = container.querySelector(
+                ".quick-text-input__submit-button"
+            );
 
-    fireEvent.change(input, { target: { value: "test" } });
-    const submitButton = container.querySelector(
-      ".quick-text-input__submit-button"
-    );
+            expect(submitButton).toBeInTheDocument();
+        });
 
-    fireEvent.click(submitButton);
+    });
 
-    expect(submitMock).toHaveBeenCalled();
-  });
+    describe('submit button', () => {
+        beforeEach(() => {
+            submitMock = jest.fn();
 
-  it("submitting passes along the current text value", () => {
-    const { container } = result;
+            result = render(
+                <QuickTextInput
+                    onSubmit={submitMock}
+                    model={makeTestModel(image_classification)}
+                />
+            );
+        });
 
-    const input = container.querySelector(".quick-text-input__input");
+        it("calls the onSubmit prop when clicked", () => {
+            const {container} = result;
 
-    fireEvent.change(input, { target: { value: "test" } });
+            const input = container.querySelector(".quick-text-input__input");
 
-    const submitButton = container.querySelector(
-      ".quick-text-input__submit-button"
-    );
+            fireEvent.change(input, {target: {value: "test"}});
+            const submitButton = container.querySelector(
+                ".quick-text-input__submit-button"
+            );
 
-    fireEvent.click(submitButton);
+            fireEvent.click(submitButton);
 
-    expect(submitMock).toHaveBeenCalledWith("test");
-  });
+            expect(submitMock).toHaveBeenCalled();
+        });
 
-  it("can give the input a default value", () => {
-    const { container } = render(
-      <QuickTextInput
-        onSubmit={submitMock}
-        model={makeTestModel(image_classification)}
-        defaultValue="test"
-      />
-    );
+        it("passes along the current text value when submitting", () => {
+            const {container} = result;
 
-    const input = container.querySelector(".quick-text-input__input");
+            const input = container.querySelector(".quick-text-input__input");
 
-    expect(input.value).toBe("test");
-  });
+            fireEvent.change(input, {target: {value: "test"}});
 
-  it("the submit button is disabled when the textbox is empty", () => {
-    const { container } = result;
+            const submitButton = container.querySelector(
+                ".quick-text-input__submit-button"
+            );
 
-    const submitButton = container.querySelector(
-      ".quick-text-input__submit-button"
-    );
+            fireEvent.click(submitButton);
 
-    expect(submitButton).toBeDisabled();
-  });
+            expect(submitMock).toHaveBeenCalledWith("test");
+        });
 
-  it("the submit button is enabled once the textbox is not empty", () => {
-    const { container } = result;
+        it("is disabled when the textbox is empty", () => {
+            const {container} = result;
 
-    const input = container.querySelector(".quick-text-input__input");
+            const submitButton = container.querySelector(
+                ".quick-text-input__submit-button"
+            );
 
-    fireEvent.change(input, { target: { value: "test" } });
+            expect(submitButton).toBeDisabled();
+        });
 
-    const submitButton = container.querySelector(
-      ".quick-text-input__submit-button"
-    );
+        it("is enabled once the textbox is not empty", () => {
+            const {container} = result;
 
-    expect(submitButton).not.toBeDisabled();
-  });
+            const input = container.querySelector(".quick-text-input__input");
 
-  it("when passing in hideHeader, the header is not rendered", () => {
-    const { container } = render(
-      <QuickTextInput
-        onSubmit={submitMock}
-        model={makeTestModel(image_classification)}
-        hideHeader
-      />
-    );
+            fireEvent.change(input, {target: {value: "test"}});
 
-    const header = container.querySelector(".quick-text-input__title");
-    const subtitle = container.querySelector(".quick-text-input__subtitle");
+            const submitButton = container.querySelector(
+                ".quick-text-input__submit-button"
+            );
 
-    expect(header).not.toBeInTheDocument();
-    expect(subtitle).not.toBeInTheDocument();
-  });
+            expect(submitButton).not.toBeDisabled();
+        });
+    });
+
+    it("can give the input a default value", () => {
+        const {container} = render(
+            <QuickTextInput
+                onSubmit={submitMock}
+                model={makeTestModel(image_classification)}
+                defaultValue="test"
+            />
+        );
+
+        const input = container.querySelector(".quick-text-input__input");
+
+        expect(input.value).toBe("test");
+    });
+
+
+    it("when passing in hideHeader, the header is not rendered", () => {
+        const {container} = render(
+            <QuickTextInput
+                onSubmit={submitMock}
+                model={makeTestModel(image_classification)}
+                hideHeader
+            />
+        );
+
+        const header = container.querySelector(".quick-text-input__title");
+        const subtitle = container.querySelector(".quick-text-input__subtitle");
+
+        expect(header).not.toBeInTheDocument();
+        expect(subtitle).not.toBeInTheDocument();
+    });
 });

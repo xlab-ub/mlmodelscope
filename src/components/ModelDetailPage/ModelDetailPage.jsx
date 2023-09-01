@@ -13,10 +13,11 @@ import {
   text,
 } from "../../helpers/TaskIDs";
 import {
-  SampleImageClassificationInputs,
-  SampleImageEnhancementInputs,
-  SampleObjectDetectionInputs,
-  SampleSegmentationInputs,
+    SampleImageClassificationInputs,
+    SampleImageEnhancementInputs,
+    SampleObjectDetectionInputs,
+    SampleSegmentationInputs,
+    SampleTextInputs,
 } from "../../helpers/sampleImages";
 
 const ModelDetailPage = (props) => {
@@ -33,6 +34,8 @@ const ModelDetailPage = (props) => {
       case semantic_segmentation:
       case instance_segmentation:
         return SampleSegmentationInputs;
+      case text:
+        return SampleTextInputs;
       case image_classification:
       default:
         return SampleImageClassificationInputs;

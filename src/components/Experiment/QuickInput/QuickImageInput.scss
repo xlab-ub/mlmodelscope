@@ -1,6 +1,7 @@
 @import "../../../App";
 
 .quick-image-input {
+  @include tabs;
 
   background: $white;
   border-radius: 5px;
@@ -22,77 +23,77 @@
     @include body;
   }
 
-  &__tabs {
-    background: $smoke;
-    display: flex;
-    flex-direction: column;
-    margin-top: 32px;
-    padding: 40px;
-    @include mobileWidth-lg {
-      padding-left: 16px;
-      padding-right: 16px;
-
-    }
-  }
-
-  &__tab-titles {
-    border-bottom: 1px solid $smokeDarkest;
-    display: flex;
-    margin-left: -40px;
-    margin-right: -40px;
-    -ms-overflow-style: none;
-    overflow-x: scroll;
-    padding-left: 40px;
-
-
-    padding-right: 40px;
-
-    scrollbar-width: none;
-
-    @include mobileWidth-lg {
-      margin-left: -16px;
-      margin-right: -16px;
-      padding-left: 16px;
-      padding-right: 16px;
-
-    }
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  &__tab-title {
-    @include body;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: $azul;
-    padding-bottom: 10px;
-    transition: 0.25s;
-
-    &:hover {
-      border-color: $azul;
-    }
-
-    &--selected {
-      border-bottom: 5px solid $azul;
-      font-weight: bold;
-      padding-bottom: 5px;
-    }
-
-    &:not(:first-child) {
-      margin-left: 32px;
-    }
-  }
-
-  &__tab {
-    display: none;
-    margin-top: 32px;
-
-    &--selected {
-      display: flex;
-    }
-  }
+  //&__tabs {
+  //  background: $smoke;
+  //  display: flex;
+  //  flex-direction: column;
+  //  margin-top: 32px;
+  //  padding: 40px;
+  //  @include mobileWidth-lg {
+  //    padding-left: 16px;
+  //    padding-right: 16px;
+  //
+  //  }
+  //}
+  //
+  //&__tab-titles {
+  //  border-bottom: 1px solid $smokeDarkest;
+  //  display: flex;
+  //  margin-left: -40px;
+  //  margin-right: -40px;
+  //  -ms-overflow-style: none;
+  //  overflow-x: scroll;
+  //  padding-left: 40px;
+  //
+  //
+  //  padding-right: 40px;
+  //
+  //  scrollbar-width: none;
+  //
+  //  @include mobileWidth-lg {
+  //    margin-left: -16px;
+  //    margin-right: -16px;
+  //    padding-left: 16px;
+  //    padding-right: 16px;
+  //
+  //  }
+  //  &::-webkit-scrollbar {
+  //    display: none;
+  //  }
+  //}
+  //
+  //&__tab-title {
+  //  @include body;
+  //  background: transparent;
+  //  border: none;
+  //  border-bottom: 2px solid transparent;
+  //  color: $azul;
+  //  padding-bottom: 10px;
+  //  transition: 0.25s;
+  //
+  //  &:hover {
+  //    border-color: $azul;
+  //  }
+  //
+  //  &--selected {
+  //    border-bottom: 5px solid $azul;
+  //    font-weight: bold;
+  //    padding-bottom: 5px;
+  //  }
+  //
+  //  &:not(:first-child) {
+  //    margin-left: 32px;
+  //  }
+  //}
+  //
+  //&__tab {
+  //  display: none;
+  //  margin-top: 32px;
+  //
+  //  &--selected {
+  //    display: flex;
+  //  }
+  //}
 
   &__run-model {
     @include primaryButton;

@@ -3,26 +3,33 @@ import SampleInputsTab from "./Tabs/SampleInput/SampleInputsTab";
 import UploadInputsTab from "./Tabs/UploadInput/UploadInputsTab";
 import URLInputsTab from "./Tabs/URLInput/URLInputsTab";
 import clone from "../../../helpers/cloner";
+import {QuickInputType} from "./quickInputType";
+import TextInputTab from "./Tabs/TextInput/TextInputTab";
+import UploadTextInputTab from "./Tabs/UploadTextInput/UploadTextInputTab";
 
 export default function useQuickInputControl(props) {
   const [selectedInputs, setSelectedInputs] = useState([""]);
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const getTabs = () => {
+  const getTabs = (type = QuickInputType.Image) => {
     const sample = {
       id: 'sample-input',
       title: 'Sample inputs',
       component: SampleInputsTab,
-      props: {sampleInputs: props.sampleInputs}
+      props: {sampleInputs: props.sampleInputs, type: type}
     }
-    const upload = {id: 'upload-input', title: 'Upload', component: UploadInputsTab};
-    const url = {id: 'url-input', title: 'URL', component: URLInputsTab}
+    const upload = type === QuickInputType.Image ?
+        {id: 'upload-input', title: 'Upload', component: UploadInputsTab} :
+        {id: 'upload-input', title: 'Upload', component: UploadTextInputTab};
+    const input = type === QuickInputType.Image ?
+        {id: 'url-input', title: 'URL', component: URLInputsTab} :
+        {id: 'text-input', title: 'Text', component: TextInputTab};
 
     const tabs = [];
 
     if (!props.hideSample) tabs.push(sample);
     if (!props.hideUpload) tabs.push(upload);
-    if (!props.hideUrl) tabs.push(url);
+    if (!props.hideUrl) tabs.push(input);
 
     return tabs;
   }

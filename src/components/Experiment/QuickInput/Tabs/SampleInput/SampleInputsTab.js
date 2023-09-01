@@ -3,36 +3,63 @@ import "./SampleInputsTab.scss";
 import Task from "../../../../../helpers/Task";
 import useSampleInputControl from "./useSampleInputControl";
 import useBEMNaming from "../../../../../common/useBEMNaming";
+import {QuickInputType} from "../../quickInputType";
 
 export default function SampleInputsTab(props) {
-  const {getBlock, getElement} = useBEMNaming("sample-inputs");
-  const {isUnselected, isSelected, selectedIndex, selectInput} = useSampleInputControl(props);
+    const {getBlock, getElement} = useBEMNaming("sample-inputs");
+    const {isUnselected, isSelected, selectedIndex, selectInput, type} = useSampleInputControl(props);
 
-  const getImageClassName = (url) => {
-    let className = "input";
-    if (isSelected(url)) className += " input--selected";
-    if (isUnselected(url)) className += " input--unselected";
+    const getInputClassName = (url) => {
+        let className = `input-${type}`;
+        if (isSelected(url)) className += ` ${className}--selected`;
+        if (isUnselected(url)) className += ` ${className}--unselected`;
 
-    return className;
-  }
+        return className;
+    }
 
-  const makeSampleInput = (url, index) => {
+    const makeSampleInput = (url, index) => {
+        switch (props.type) {
+            case QuickInputType.Image:
+                return makeSampleImageInput(url, index);
+            case QuickInputType.Text:
+                return makeSampleTextInput(url, index);
+        }
+    }
+
+    function makeSampleImageInput(url, index) {
+        return (
+            <button onClick={() => selectInput(index)} key={index} className={getElement(getInputClassName(url))}>
+                <img src={url.src} alt={url.alt}/>
+            </button>
+        )
+    }
+
+    function makeSampleTextInput(text, index) {
+        return (
+            <button onClick={() => selectInput(index)} key={index} className={getElement(getInputClassName(text))}>
+                <div>{text}</div>
+            </button>
+        )
+    }
+
+    const task = Task.getStaticTask(props.task);
+    const sampleInputs = props.sampleInputs ?? [];
     return (
-      <button onClick={() => selectInput(index)} key={index} className={getElement(getImageClassName(url))}>
-        <img src={url.src} alt={url.alt}/>
-      </button>
-    )
-  }
+        <div className={getBlock()}>
+            <div className={getElement('title')}><b>{makeTaskTitle(props)}</b> to {task.inputText.toLowerCase()}</div>
+            <div className={getElement('list')}>
+                {sampleInputs.map(makeSampleInput)}
+            </div>
+        </div>
+    );
 
-  const task = Task.getStaticTask(props.task);
-  const sampleInputs = props.sampleInputs ?? [];
-  return (
-    <div className={getBlock()}>
-      <div className={getElement('title')}><b>Select a sample image</b> to {task.inputText.toLowerCase()}</div>
-      <div className={getElement('list')}>
-        {sampleInputs.map(makeSampleInput)}
-      </div>
-    </div>
-  );
+    function makeTaskTitle(props) {
+        switch (props.type) {
+            case QuickInputType.Image:
+                return "Select an image";
+            case QuickInputType.Text:
+                return "Select text";
+        }
+    }
 }
 
