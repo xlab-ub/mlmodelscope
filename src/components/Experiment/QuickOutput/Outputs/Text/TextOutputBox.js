@@ -16,7 +16,9 @@ export function TextOutputBox(props) {
         <OutputDuration duration={props.duration} />
       </div>
       <p className={getElement("subtitle")}>{task.outputText}</p>
-      <div className={getElement("output-container")}>
+      <div
+        className={getElement("output-container output-container-background")}
+      >
         <p className={getElement("output-container-text")}>{props.output}</p>
       </div>
 

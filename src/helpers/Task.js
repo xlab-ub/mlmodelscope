@@ -5,6 +5,7 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "./TaskIDs";
 import React from "react";
 import { ReactComponent as ImageClassification } from "../resources/icons/icon-imageClassification.svg";
@@ -115,6 +116,17 @@ export default class Task {
     tutorialDescription: "[insert text tutorial page description here]",
     inputType: TaskInputTypes.Text,
   });
+  static text_to_code = new Task({
+    name: "Text to Code",
+    description: "[insert text to code description here]",
+    id: textToCode,
+    inputText: "[insert text to code input help text here]",
+    outputText: "[insert text to code output help text here]",
+    icon: (props) => <></>,
+    sampleInputs: [],
+    tutorialDescription: "[insert text to code tutorial page description here]",
+    inputType: TaskInputTypes.Text,
+  });
 
   constructor(options) {
     this.name = options.name ?? "";
@@ -149,6 +161,8 @@ export default class Task {
         return Task.image_instance_segmentation;
       case text:
         return Task.text;
+      case textToCode:
+        return Task.text_to_code;
 
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
@@ -193,6 +207,18 @@ export default class Task {
   }
 
   static getStaticTasks() {
+    return [
+      this.getStaticTask(image_classification),
+      this.getStaticTask(object_detection),
+      this.getStaticTask(image_enhancement),
+      this.getStaticTask(semantic_segmentation),
+      this.getStaticTask(instance_segmentation),
+      this.getStaticTask(text),
+      this.getStaticTask(textToCode),
+    ];
+  }
+
+  static getDemoTasks() {
     return [
       this.getStaticTask(image_classification),
       this.getStaticTask(object_detection),

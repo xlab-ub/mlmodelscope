@@ -10,12 +10,14 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "../../helpers/TaskIDs";
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
 import SemanticSegmentationSummary from "./Summaries/SemanticSegmentationSummary";
 import { ExperimentDetailModalTypes } from "../../routes/ExperimentDetailContainer";
 import TrialFailed from "./TrialFailed";
 import TextSummary from "./Summaries/TextSummary";
+import TextToCodeSummary from "./Summaries/TextToCodeSummary";
 
 export default function TrialOutputWrapper(props) {
   const handleClose = () => {
@@ -62,6 +64,8 @@ export default function TrialOutputWrapper(props) {
           );
         case text:
           return <TextSummary trial={props.trial} value={props.value} />;
+        case textToCode:
+          return <TextToCodeSummary trial={props.trial} value={props.value} />;
       }
 
       return <></>;

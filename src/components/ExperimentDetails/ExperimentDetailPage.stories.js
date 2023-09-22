@@ -18,6 +18,7 @@ import { ExperimentDetailModalTypes } from "../../routes/ExperimentDetailContain
 import Task from "../../helpers/Task";
 import Footer from "../Footer/Footer";
 import { TestTextOutput } from "../Experiment/QuickOutput/Outputs/Text/testData/testTextOutput";
+import { TestTextToCodeOutput } from "../Experiment/QuickOutput/Outputs/TextToCode/testData/testTextToCodeOutput";
 
 export default {
   title: "Experiments/Model Comparison Page",
@@ -578,6 +579,12 @@ export const TextThreeTrials = Template.bind({});
 TextThreeTrials.args = {
   trials: [TestTextOutput, TestTextOutput, TestTextOutput],
   task: Task.text,
+};
+
+export const TextToCodeTwoTrials = Template.bind({});
+TextToCodeTwoTrials.args = {
+  trials: [TestTextToCodeOutput, TestTextToCodeOutput],
+  task: Task.text_to_code,
 };
 
 export const TrialFailedThreeTrials = Template.bind({});

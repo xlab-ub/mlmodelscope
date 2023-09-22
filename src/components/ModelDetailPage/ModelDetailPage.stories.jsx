@@ -9,6 +9,7 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "../../helpers/TaskIDs";
 import { TestObjectDetectionResult } from "../Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
 import { TestImageSegmentationResult } from "../Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
@@ -19,6 +20,7 @@ import {
 import { TestImageClassificationResult } from "../Experiment/QuickOutput/Outputs/Classification/Features";
 import { TestInstanceSegmentationOutput } from "../Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 import { TestTextOutput } from "../Experiment/QuickOutput/Outputs/Text/testData/testTextOutput";
+import { TestTextToCodeOutput } from "../Experiment/QuickOutput/Outputs/TextToCode/testData/testTextToCodeOutput";
 
 export default {
   title: "Models/Model Detail Page",
@@ -203,3 +205,15 @@ TextPendingOutput.args = makeArgs(text, {
 
 export const TextOutput = Template.bind({});
 TextOutput.args = makeArgs(text, TestTextOutput);
+
+export const TextToCode = Template.bind({});
+TextToCode.args = makeArgs(textToCode);
+
+export const TextToCodePendingOutput = Template.bind({});
+TextToCodePendingOutput.args = makeArgs(textToCode, {
+  id: "7618d464-b5ed-432f-8f88-b33504c6bb0a",
+  inputs: ["def hello():\n    print('hello')"],
+});
+
+export const TextToCodeOutput = Template.bind({});
+TextToCodeOutput.args = makeArgs(textToCode, TestTextToCodeOutput);

@@ -9,6 +9,7 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "../../../helpers/TaskIDs";
 import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
 import ImageEnhancement from "./Outputs/ImageEnhancement/ImageEnhancement";
@@ -17,6 +18,8 @@ import ProcessFailed from "./ProcessFailed";
 import "./QuickOutput.scss";
 import useBEMNaming from "../../../common/useBEMNaming";
 import TextOutput from "./Outputs/Text/TextOutput";
+import { TextToCode } from "../../ModelDetailPage/ModelDetailPage.stories";
+import TextToCodeOutput from "./Outputs/TextToCode/TextToCodeOutput";
 
 const defaultProps = {
   className: "quick-output",
@@ -91,7 +94,13 @@ export default function QuickOutput(givenProps) {
               trial={props.trialOutput}
             />
           );
-
+        case textToCode:
+          return (
+            <TextToCodeOutput
+              onBackClicked={props.onBackClicked}
+              trial={props.trialOutput}
+            />
+          );
         default:
           return (
             <>

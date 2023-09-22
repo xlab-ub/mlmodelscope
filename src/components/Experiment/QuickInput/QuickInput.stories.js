@@ -6,6 +6,7 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "../../../helpers/TaskIDs";
 import {
   SampleImageClassificationInputs,
@@ -63,10 +64,28 @@ ImageEnhancement.args = {
 
 export const Text = Template.bind({});
 Text.args = {
-  sampleInputs: [],
+  sampleInputs: [
+    "The quick brown fox jumps over the lazy dog",
+    "The five boxing wizards jump quickly",
+    "look at the dog",
+  ],
   model: {
     output: {
       type: text,
+    },
+  },
+};
+
+export const TextToCode = Template.bind({});
+TextToCode.args = {
+  sampleInputs: [
+    "The quick brown fox jumps over the lazy dog",
+    "The five boxing wizards jump quickly",
+    "look at the dog",
+  ],
+  model: {
+    output: {
+      type: textToCode,
     },
   },
 };

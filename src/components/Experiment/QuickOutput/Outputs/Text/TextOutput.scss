@@ -1,6 +1,6 @@
 @import "../../../../../App";
 
-.text-output {
+.text-output, .text-to-code-output {
   display: flex;
   flex-direction: row;
   gap: 72px;
@@ -74,10 +74,8 @@
   }
 
   &__output-container {
-    background-color: $azulLightest;
     margin-top: 32px;
     min-height: 128px;
-    padding: 16px 12px 12px;
     width: 100%;
 
     @include maxWidth(500px) {
@@ -86,6 +84,11 @@
 
     &-text {
       @include body();
+    }
+
+    &-background {
+      background-color: $azulLightest;
+      padding: 16px 12px 12px;
     }
   }
 

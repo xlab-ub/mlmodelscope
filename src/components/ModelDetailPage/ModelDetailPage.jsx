@@ -11,13 +11,15 @@ import {
   object_detection,
   semantic_segmentation,
   text,
+  textToCode,
 } from "../../helpers/TaskIDs";
 import {
-    SampleImageClassificationInputs,
-    SampleImageEnhancementInputs,
-    SampleObjectDetectionInputs,
-    SampleSegmentationInputs,
-    SampleTextInputs,
+  SampleImageClassificationInputs,
+  SampleImageEnhancementInputs,
+  SampleObjectDetectionInputs,
+  SampleSegmentationInputs,
+  SampleTextInputs,
+  SampleTextToCodeInputs,
 } from "../../helpers/sampleImages";
 
 const ModelDetailPage = (props) => {
@@ -36,9 +38,26 @@ const ModelDetailPage = (props) => {
         return SampleSegmentationInputs;
       case text:
         return SampleTextInputs;
+      case textToCode:
+        return SampleTextToCodeInputs;
       case image_classification:
       default:
         return SampleImageClassificationInputs;
+    }
+  };
+
+  const getInputType = () => {
+    switch (outputType) {
+      case text:
+      case textToCode:
+        return "text";
+      case object_detection:
+      case image_enhancement:
+      case image_classification:
+      case semantic_segmentation:
+      case instance_segmentation:
+      default:
+        return "image";
     }
   };
 
@@ -63,7 +82,7 @@ const ModelDetailPage = (props) => {
           onBackClicked={props.onBackToModelClicked}
           compare={props.compare}
           trialOutput={props.trialOutput}
-          inputType={outputType === text ? "text" : "image"}
+          inputType={getInputType()}
         />
       );
     }
