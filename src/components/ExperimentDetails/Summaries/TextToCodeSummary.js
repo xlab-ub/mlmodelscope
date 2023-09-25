@@ -2,6 +2,7 @@ import useBEMNaming from "../../../common/useBEMNaming";
 import useTextOutput from "../../Experiment/QuickOutput/Outputs/Text/useTextOutput";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { CodePreview } from "../../Experiment/QuickOutput/Outputs/_Common/components/CodePreview";
 
 export default function TextToCodeSummary(props) {
   const { getBlock, getElement } = useBEMNaming("text-to-code-summary");
@@ -11,9 +12,7 @@ export default function TextToCodeSummary(props) {
     <div className={getBlock()}>
       <p className={getElement("subtitle")}>Output:</p>
 
-      <SyntaxHighlighter showLineNumbers language="python">
-        {output}
-      </SyntaxHighlighter>
+      <CodePreview>{output}</CodePreview>
     </div>
   );
 }

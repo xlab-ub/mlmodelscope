@@ -3,11 +3,11 @@ import "../Text/TextOutput.scss";
 import useBEMNaming from "../../../../../common/useBEMNaming";
 import useTextOutput from "../Text/useTextOutput";
 import OutputDuration from "../_Common/components/OutputDuration";
-import SyntaxHighlighter from "react-syntax-highlighter";
 import Rating from "../Classification/Rating";
 import TextOutputInputSection from "../Text/TextOutputInputSection";
 import { textToCode } from "../../../../../helpers/TaskIDs";
 import Task from "../../../../../helpers/Task";
+import { CodePreview } from "../_Common/components/CodePreview";
 
 export default function TextToCodeOutput(props) {
   const { getBlock, getElement } = useBEMNaming("text-to-code-output");
@@ -35,9 +35,7 @@ export default function TextToCodeOutput(props) {
         </div>
         <p className={getElement("subtitle")}>{task.outputText}</p>
         <div className={getElement("output-container")}>
-          <SyntaxHighlighter showLineNumbers language="python">
-            {output}
-          </SyntaxHighlighter>
+          <CodePreview>{output}</CodePreview>
         </div>
 
         <Rating />
