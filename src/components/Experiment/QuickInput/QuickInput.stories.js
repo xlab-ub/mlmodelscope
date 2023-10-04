@@ -5,7 +5,7 @@ import {
   image_enhancement,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "../../../helpers/TaskIDs";
 import {
@@ -71,7 +71,7 @@ Text.args = {
   ],
   model: {
     output: {
-      type: text,
+      type: textToText,
     },
   },
 };

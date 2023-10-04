@@ -1,4 +1,4 @@
-import { text } from "../../../../../../helpers/TaskIDs";
+import { textToText } from "../../../../../../helpers/TaskIDs";
 
 export const TestTextOutputGeneratedToken = {
   id: "9d52d414-cc78-4cd5-a292-afdc0b9332ec",
@@ -165,7 +165,7 @@ export const TestTextOutput = {
     name: "Mask_RCNN_Inception_v2_COCO",
     output: {
       description: "the output instance segment",
-      type: text,
+      type: textToText,
     },
     url: {
       github:

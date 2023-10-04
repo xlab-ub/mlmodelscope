@@ -3,11 +3,11 @@ import OutputDuration from "../_Common/components/OutputDuration";
 import Rating from "../Classification/Rating";
 import React from "react";
 import Task from "../../../../../helpers/Task";
-import { text } from "../../../../../helpers/TaskIDs";
+import { textToText } from "../../../../../helpers/TaskIDs";
 
 export function TextOutputBox(props) {
   const { getElement } = useBEMNaming("text-output");
-  const task = Task.getStaticTask(text);
+  const task = Task.getStaticTask(textToText);
 
   return (
     <div className={getElement("results")}>

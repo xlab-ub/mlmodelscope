@@ -4,7 +4,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "./TaskIDs";
 import React from "react";
@@ -106,9 +106,9 @@ export default class Task {
       "Image enhancement models improve the resolution of an image, making it crisper and clearer.",
   });
   static text = new Task({
-    name: "Text",
+    name: "Text to Text",
     description: "[insert text description here]",
-    id: text,
+    id: textToText,
     inputText: "[insert text input help text here]",
     outputText: "[insert text output help text here]",
     icon: (props) => <></>,
@@ -159,7 +159,7 @@ export default class Task {
       case instance_segmentation:
       case Task.image_instance_segmentation.name:
         return Task.image_instance_segmentation;
-      case text:
+      case textToText:
         return Task.text;
       case textToCode:
         return Task.text_to_code;
@@ -181,7 +181,7 @@ export default class Task {
         return DefaultSemanticSegmentationModel;
       case instance_segmentation:
         return DefaultInstanceSegmentationModel;
-      case text:
+      case textToText:
         return DefaultTextModel;
 
       default:
@@ -201,7 +201,7 @@ export default class Task {
         return TestImageSegmentationResult;
       case instance_segmentation:
         return TestInstanceSegmentationOutput;
-      case text:
+      case textToText:
         return TestTextOutput;
     }
   }
@@ -213,7 +213,7 @@ export default class Task {
       this.getStaticTask(image_enhancement),
       this.getStaticTask(semantic_segmentation),
       this.getStaticTask(instance_segmentation),
-      this.getStaticTask(text),
+      this.getStaticTask(textToText),
       this.getStaticTask(textToCode),
     ];
   }
@@ -225,7 +225,7 @@ export default class Task {
       this.getStaticTask(image_enhancement),
       this.getStaticTask(semantic_segmentation),
       this.getStaticTask(instance_segmentation),
-      this.getStaticTask(text),
+      this.getStaticTask(textToText),
     ];
   }
 }

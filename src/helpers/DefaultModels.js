@@ -1,4 +1,4 @@
-import { text } from "./TaskIDs";
+import { textToText } from "./TaskIDs";
 
 export const DefaultImageClassificationModel = {
   id: 1,
@@ -265,7 +265,7 @@ export const DefaultTextModel = {
   name: "DeepLabv3_MobileNet_v2_DM_05_PASCAL_VOC_Train_Aug",
   output: {
     description: "the output semantic segment",
-    type: text,
+    type: textToText,
   },
   url: {
     github:

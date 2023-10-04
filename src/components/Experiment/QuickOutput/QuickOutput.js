@@ -8,7 +8,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "../../../helpers/TaskIDs";
 import ObjectDetection from "./Outputs/ObjectDetection/ObjectDetection";
@@ -87,7 +87,7 @@ export default function QuickOutput(givenProps) {
               trial={props.trialOutput}
             />
           );
-        case text:
+        case textToText:
           return (
             <TextOutput
               onBackClicked={props.onBackClicked}

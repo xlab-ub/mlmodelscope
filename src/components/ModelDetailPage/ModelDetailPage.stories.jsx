@@ -8,7 +8,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "../../helpers/TaskIDs";
 import { TestObjectDetectionResult } from "../Experiment/QuickOutput/Outputs/ObjectDetection/testData/TestFeatures";
@@ -195,16 +195,16 @@ InstanceSegmentationOutput.args = makeArgs(
 );
 
 export const Text = Template.bind({});
-Text.args = makeArgs(text);
+Text.args = makeArgs(textToText);
 
 export const TextPendingOutput = Template.bind({});
-TextPendingOutput.args = makeArgs(text, {
+TextPendingOutput.args = makeArgs(textToText, {
   id: "7618d464-b5ed-432f-8f88-b33504c6bb0a",
   inputs: ["Translate into Spanish: Hello, how are you?"],
 });
 
 export const TextOutput = Template.bind({});
-TextOutput.args = makeArgs(text, TestTextOutput);
+TextOutput.args = makeArgs(textToText, TestTextOutput);
 
 export const TextToCode = Template.bind({});
 TextToCode.args = makeArgs(textToCode);

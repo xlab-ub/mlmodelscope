@@ -7,7 +7,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
 } from "../../../helpers/TaskIDs";
 import { SampleInputs } from "./Tabs/SampleInput/SampleInputsTab.test";
 
@@ -75,10 +75,15 @@ describe("QuickInput", () => {
   });
 
   describe("Text Input Type", () => {
-    it.each([text])("renders the correct input type for type %s", (type) => {
-      renderModel(makeModel(type));
+    it.each([textToText])(
+      "renders the correct input type for type %s",
+      (type) => {
+        renderModel(makeModel(type));
 
-      expect(result.container.querySelector(".quick-text-input")).toBeTruthy();
-    });
+        expect(
+          result.container.querySelector(".quick-text-input")
+        ).toBeTruthy();
+      }
+    );
   });
 });

@@ -9,7 +9,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "../../helpers/TaskIDs";
 import ImageEnhancementSummary from "./Summaries/ImageEnhancementSummary";
@@ -62,7 +62,7 @@ export default function TrialOutputWrapper(props) {
               trial={props.trial}
             />
           );
-        case text:
+        case textToText:
           return <TextSummary trial={props.trial} value={props.value} />;
         case textToCode:
           return <TextToCodeSummary trial={props.trial} value={props.value} />;

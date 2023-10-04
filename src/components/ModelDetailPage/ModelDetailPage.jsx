@@ -10,7 +10,7 @@ import {
   instance_segmentation,
   object_detection,
   semantic_segmentation,
-  text,
+  textToText,
   textToCode,
 } from "../../helpers/TaskIDs";
 import {
@@ -36,7 +36,7 @@ const ModelDetailPage = (props) => {
       case semantic_segmentation:
       case instance_segmentation:
         return SampleSegmentationInputs;
-      case text:
+      case textToText:
         return SampleTextInputs;
       case textToCode:
         return SampleTextToCodeInputs;
@@ -48,7 +48,7 @@ const ModelDetailPage = (props) => {
 
   const getInputType = () => {
     switch (outputType) {
-      case text:
+      case textToText:
       case textToCode:
         return "text";
       case object_detection:

@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import ModelDetailPage from "./ModelDetailPage";
 import React from "react";
-import { image_classification, text } from "../../helpers/TaskIDs";
+import { image_classification, textToText } from "../../helpers/TaskIDs";
 import { makeTestModel } from "./MakeTestModel";
 
 describe("ModelDetailPage", () => {
@@ -38,7 +38,7 @@ describe("ModelDetailPage", () => {
 
   describe("Text", () => {
     beforeEach(() => {
-      let testModel = makeTestModel(text);
+      let testModel = makeTestModel(textToText);
 
       result = render(
         <ModelDetailPage
