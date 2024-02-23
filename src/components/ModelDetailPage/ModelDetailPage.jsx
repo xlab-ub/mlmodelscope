@@ -49,6 +49,7 @@ const ModelDetailPage = (props) => {
   const getInputType = () => {
     switch (outputType) {
       case textToText:
+        return "text";
       case textToCode:
         return "text";
       case object_detection:

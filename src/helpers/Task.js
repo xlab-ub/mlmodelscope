@@ -6,6 +6,7 @@ import {
   semantic_segmentation,
   textToText,
   textToCode,
+  
 } from "./TaskIDs";
 import React from "react";
 import { ReactComponent as ImageClassification } from "../resources/icons/icon-imageClassification.svg";
@@ -105,7 +106,7 @@ export default class Task {
     tutorialDescription:
       "Image enhancement models improve the resolution of an image, making it crisper and clearer.",
   });
-  static text = new Task({
+  static text_to_text = new Task({
     name: "Text to Text",
     description: "[insert text description here]",
     id: textToText,
@@ -120,6 +121,17 @@ export default class Task {
     name: "Text to Code",
     description: "[insert text to code description here]",
     id: textToCode,
+    inputText: "[insert text to code input help text here]",
+    outputText: "[insert text to code output help text here]",
+    icon: (props) => <></>,
+    sampleInputs: [],
+    tutorialDescription: "[insert text to code tutorial page description here]",
+    inputType: TaskInputTypes.Text,
+  });
+  static video_to_text = new Task({
+    name: "Text to Code",
+    description: "[insert text to code description here]",
+    id: video_to_text,
     inputText: "[insert text to code input help text here]",
     outputText: "[insert text to code output help text here]",
     icon: (props) => <></>,
@@ -160,9 +172,11 @@ export default class Task {
       case Task.image_instance_segmentation.name:
         return Task.image_instance_segmentation;
       case textToText:
-        return Task.text;
+        return Task.text_to_text;
       case textToCode:
         return Task.text_to_code;
+      case video_to_text:
+        return Task.video_to_text;
 
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
@@ -203,6 +217,8 @@ export default class Task {
         return TestInstanceSegmentationOutput;
       case textToText:
         return TestTextOutput;
+      case video_to_text:
+        return TestTextOutput;
     }
   }
 
@@ -215,6 +231,7 @@ export default class Task {
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
       this.getStaticTask(textToCode),
+      this.getStaticTask(video_to_text),
     ];
   }
 
