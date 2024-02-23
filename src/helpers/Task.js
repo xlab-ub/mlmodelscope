@@ -128,17 +128,7 @@ export default class Task {
     tutorialDescription: "[insert text to code tutorial page description here]",
     inputType: TaskInputTypes.Text,
   });
-  static video_to_text = new Task({
-    name: "Text to Code",
-    description: "[insert text to code description here]",
-    id: video_to_text,
-    inputText: "[insert text to code input help text here]",
-    outputText: "[insert text to code output help text here]",
-    icon: (props) => <></>,
-    sampleInputs: [],
-    tutorialDescription: "[insert text to code tutorial page description here]",
-    inputType: TaskInputTypes.Text,
-  });
+
 
   constructor(options) {
     this.name = options.name ?? "";
@@ -175,8 +165,7 @@ export default class Task {
         return Task.text_to_text;
       case textToCode:
         return Task.text_to_code;
-      case video_to_text:
-        return Task.video_to_text;
+
 
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
@@ -217,8 +206,7 @@ export default class Task {
         return TestInstanceSegmentationOutput;
       case textToText:
         return TestTextOutput;
-      case video_to_text:
-        return TestTextOutput;
+
     }
   }
 
@@ -231,7 +219,7 @@ export default class Task {
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
       this.getStaticTask(textToCode),
-      this.getStaticTask(video_to_text),
+
     ];
   }
 
