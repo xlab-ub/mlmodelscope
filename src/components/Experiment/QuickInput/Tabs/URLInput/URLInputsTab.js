@@ -13,13 +13,13 @@ export default function URLInputsTab(props) {
   const getInputClassName = (index) => getElement(getUrlValidity(index) ? "url url-error" : "url")
   return (
     <div className={getBlock()}>
-      <div className={getElement('title')}><b>Copy an image URL (image address) and paste</b>
+      <div className={getElement('title')}><b>Copy {props.type} URL ({props.type} address) and paste</b>
         {" "}to {task.inputText.toLowerCase()}</div>
       {(values).map((value, index) => <>
-        <input className={getInputClassName(index)} placeholder="Paste any image URL" type="url" value={value}
+        <input className={getInputClassName(index)} placeholder={`Paste any ${props.type} URL`} type="url" value={value}
                onChange={(e) => urlChanged(e, index)}/>
         {getUrlValidity(index) &&
-          <p className={getElement("error-text")}>Not a valid URL. Right click on an image to copy the image
+          <p className={getElement("error-text")}>Not a valid URL. Right click on {props.type} to copy the {props.type}
             address.</p>}
       </>)}
       {props.multiple && <button onClick={props.addInput} className={getElement("add-btn")}><PlusSign

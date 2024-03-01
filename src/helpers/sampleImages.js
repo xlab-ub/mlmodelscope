@@ -84,3 +84,18 @@ export const SampleTextToCodeInputs = [
   "Consectetur adipiscing elit",
   "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
 ];
+
+export const SampleVideoInputs = [
+  {
+    src: "https://xlab1.netlify.app/samples/video/ocean.mp4",
+    alt: "ocean",
+  },
+  {
+    src: "https://xlab1.netlify.app/samples/video/flower.mp4",
+    alt: "flowers",
+  },
+  {
+    src: "https://xlab1.netlify.app/samples/video/cat.mp4",
+    alt: "cat",
+  },
+];

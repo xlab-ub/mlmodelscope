@@ -15,8 +15,8 @@ export default function UploadInputsTab(props) {
 
   return (
     <div className={getBlock()}>
-      <p className={getElement("help-text")}><b>Upload { props.type}</b> to {task.inputText.toLowerCase()} </p>
-      <Dashboard uppy={uppy} width={"100%"}/>
+      <p className={getElement("help-text")}><b>Upload a video</b> to {task.inputText.toLowerCase()} </p>
+      <Dashboard uppy={uppy} width={"100%"} />
     </div>
   );
 }

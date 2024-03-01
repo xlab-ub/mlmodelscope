@@ -2,6 +2,7 @@ import React from "react";
 import "./QuickImageInput.scss";
 import QuickImageInput from "./QuickImageInput";
 import QuickTextInput from "./QuickTextInput";
+import QuickVideoInput from "./QuickVideoInput";
 import Task from "../../../helpers/Task";
 import { TaskInputTypes } from "../../../helpers/TaskInputTypes";
 
@@ -13,7 +14,11 @@ export default function QuickInput(props) {
       return <QuickTextInput {...props} />;
 
     case TaskInputTypes.Image:
-    default:
       return <QuickImageInput {...props} />;
+    case TaskInputTypes.Video:
+      return <QuickVideoInput {...props} />;
+    
+      default:
+        return <QuickImageInput {...props} />;
   }
 }

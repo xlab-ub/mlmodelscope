@@ -6,6 +6,7 @@ import {
   semantic_segmentation,
   textToText,
   textToCode,
+  videoClassification
 } from "./TaskIDs";
 import React from "react";
 import { ReactComponent as ImageClassification } from "../resources/icons/icon-imageClassification.svg";
@@ -13,6 +14,7 @@ import { ReactComponent as ObjectDetection } from "../resources/icons/icon-objec
 import { ReactComponent as SemanticSegmentation } from "../resources/icons/icon-semanticSegmentation.svg";
 import { ReactComponent as InstanceSegmentation } from "../resources/icons/icon-instanceSegmentation.svg";
 import { ReactComponent as ImageEnhancement } from "../resources/icons/icon-imageEnhancement.svg";
+import { ReactComponent as VideoClassification } from "../resources/icons/icon-videoClassification.svg";
 import {
   DefaultImageClassificationModel,
   DefaultImageEnhancementModel,
@@ -26,6 +28,7 @@ import {
   SampleImageEnhancementInputs,
   SampleObjectDetectionInputs,
   SampleSegmentationInputs,
+  SampleVideoInputs,
 } from "./sampleImages";
 import { TestImageClassificationResult } from "../components/Experiment/QuickOutput/Outputs/Classification/Features";
 import { TestImageEnhancementData } from "../components/Experiment/QuickOutput/Outputs/ImageEnhancement/testData/TestFeatures";
@@ -49,6 +52,21 @@ export default class Task {
     sampleInputs: SampleImageClassificationInputs,
     tutorialDescription:
       "Image classification models can recognize a single object in an image.",
+  });
+  static video_classification = new Task({
+    name: "Video Classification",
+    description:
+      "Used for automated categorization of video inputs.",
+    modelDescription:
+    "Used for automated categorization of video inputs.",
+    id: videoClassification,
+    inputText: "See how well this model can categorize a video.",
+    outputText: "Class labels for the input video:",
+    icon: (props) => <VideoClassification {...props} />,
+    inputType: TaskInputTypes.Video,
+    sampleInputs: SampleVideoInputs,
+    tutorialDescription:
+      "Video classification models can recognize a single object in an image.",
   });
   static click_through_rate = new Task({
     name: "Click-Through Rate",
@@ -163,6 +181,8 @@ export default class Task {
         return Task.text;
       case textToCode:
         return Task.text_to_code;
+      case videoClassification:
+        return Task.video_classification;
 
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
@@ -183,6 +203,8 @@ export default class Task {
         return DefaultInstanceSegmentationModel;
       case textToText:
         return DefaultTextModel;
+      case videoClassification:
+        return DefaultImageClassificationModel;
 
       default:
         return undefined;
@@ -203,6 +225,7 @@ export default class Task {
         return TestInstanceSegmentationOutput;
       case textToText:
         return TestTextOutput;
+      
     }
   }
 
@@ -215,6 +238,7 @@ export default class Task {
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
       this.getStaticTask(textToCode),
+      this.getStaticTask(videoClassification),
     ];
   }
 
@@ -226,6 +250,7 @@ export default class Task {
       this.getStaticTask(semantic_segmentation),
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
+      this.getStaticTask(videoClassification),
     ];
   }
 }
