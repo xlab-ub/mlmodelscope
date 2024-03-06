@@ -23,6 +23,8 @@ export default function SampleInputsTab(props) {
                 return makeSampleImageInput(url, index);
             case QuickInputType.Text:
                 return makeSampleTextInput(url, index);
+            case QuickInputType.Audio:
+                return makeSampleAudioInput(url, index);
         }
     }
 
@@ -38,6 +40,15 @@ export default function SampleInputsTab(props) {
         return (
             <button onClick={() => selectInput(index)} key={index} className={getElement(getInputClassName(text))}>
                 <div>{text}</div>
+            </button>
+        )
+    }
+
+    function makeSampleAudioInput(url, index) {
+        return (
+            <button onClick={() => selectInput(index)} key={index} className={getElement(getInputClassName(url))}>
+                 <div>{url.title}</div>
+                 <audio controls src={url.src} />
             </button>
         )
     }
@@ -59,7 +70,8 @@ export default function SampleInputsTab(props) {
                 return "Select an image";
             case QuickInputType.Text:
                 return "Select text";
+            case QuickInputType.Audio:
+                return "Select an audio file";
         }
     }
 }
-

@@ -18,7 +18,7 @@ import ProcessFailed from "./ProcessFailed";
 import "./QuickOutput.scss";
 import useBEMNaming from "../../../common/useBEMNaming";
 import TextOutput from "./Outputs/Text/TextOutput";
-import { TextToCode } from "../../ModelDetailPage/ModelDetailPage.stories";
+// import { TextToCode } from "../../ModelDetailPage/ModelDetailPage.stories"; Unused
 import TextToCodeOutput from "./Outputs/TextToCode/TextToCodeOutput";
 
 const defaultProps = {
@@ -27,7 +27,7 @@ const defaultProps = {
   input: "",
   compare: () => {},
   processFailed: false,
-  inputType: "image",
+  inputType: "image", // Todo: Change this default?
 };
 
 export default function QuickOutput(givenProps) {

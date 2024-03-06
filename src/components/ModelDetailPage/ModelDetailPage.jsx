@@ -12,6 +12,7 @@ import {
   semantic_segmentation,
   textToText,
   textToCode,
+  audioToText,
 } from "../../helpers/TaskIDs";
 import {
   SampleImageClassificationInputs,
@@ -20,7 +21,8 @@ import {
   SampleSegmentationInputs,
   SampleTextInputs,
   SampleTextToCodeInputs,
-} from "../../helpers/sampleImages";
+  SampleAudioToTextInputs,
+} from "../../helpers/sampleImages";  // This file should be renamed
 
 const ModelDetailPage = (props) => {
   const jumpRef = useRef();
@@ -40,6 +42,8 @@ const ModelDetailPage = (props) => {
         return SampleTextInputs;
       case textToCode:
         return SampleTextToCodeInputs;
+      case audioToText:
+        return SampleAudioToTextInputs;
       case image_classification:
       default:
         return SampleImageClassificationInputs;
@@ -48,6 +52,8 @@ const ModelDetailPage = (props) => {
 
   const getInputType = () => {
     switch (outputType) {
+      case audioToText:
+        return "audio";
       case textToText:
         return "text";
       case textToCode:

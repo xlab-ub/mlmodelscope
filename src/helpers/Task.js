@@ -6,7 +6,7 @@ import {
   semantic_segmentation,
   textToText,
   textToCode,
-  
+  audioToText,
 } from "./TaskIDs";
 import React from "react";
 import { ReactComponent as ImageClassification } from "../resources/icons/icon-imageClassification.svg";
@@ -14,6 +14,8 @@ import { ReactComponent as ObjectDetection } from "../resources/icons/icon-objec
 import { ReactComponent as SemanticSegmentation } from "../resources/icons/icon-semanticSegmentation.svg";
 import { ReactComponent as InstanceSegmentation } from "../resources/icons/icon-instanceSegmentation.svg";
 import { ReactComponent as ImageEnhancement } from "../resources/icons/icon-imageEnhancement.svg";
+import { ReactComponent as AudioToText } from "../resources/icons/icon-audioToText.svg";
+
 import {
   DefaultImageClassificationModel,
   DefaultImageEnhancementModel,
@@ -21,6 +23,7 @@ import {
   DefaultObjectDetectionModel,
   DefaultSemanticSegmentationModel,
   DefaultTextModel,
+  DefaultAudioToTextModel
 } from "./DefaultModels";
 import {
   SampleImageClassificationInputs,
@@ -34,6 +37,7 @@ import { TestObjectDetectionResult } from "../components/Experiment/QuickOutput/
 import { TestImageSegmentationResult } from "../components/Experiment/QuickOutput/Outputs/SemanticSegmentation/testData/TestFeatures";
 import { TestInstanceSegmentationOutput } from "../components/Experiment/QuickOutput/Outputs/InstanceSegmentation/testData/TestFeatures";
 import { TestTextOutput } from "../components/Experiment/QuickOutput/Outputs/Text/testData/testTextOutput";
+import { TestAudioToTextOutput } from "../components/Experiment/QuickOutput/Outputs/AudioToText/testData/testAudioToTextOutput";
 import { TaskInputTypes } from "./TaskInputTypes";
 
 export default class Task {
@@ -128,6 +132,17 @@ export default class Task {
     tutorialDescription: "[insert text to code tutorial page description here]",
     inputType: TaskInputTypes.Text,
   });
+  static audio_to_text = new Task({
+    name: "Audio to Text",
+    description: "Used to transcribe an audio file to text. Can help you understand what is said.",
+    id: audioToText,
+    inputText: "See how well this model can recognize and transcribe an audio (voice) input.",
+    outputText: "Transcribed text:",
+    icon: (props) => <AudioToText {...props} />,
+    sampleInputs: [],
+    tutorialDescription: "Audio to text models transcribe audio files, allowing you to read what is said.",
+    inputType: TaskInputTypes.Audio,
+  });  
 
 
   constructor(options) {
@@ -165,8 +180,8 @@ export default class Task {
         return Task.text_to_text;
       case textToCode:
         return Task.text_to_code;
-
-
+      case audioToText:
+        return Task.audio_to_text;
       default:
         return new Task({ name: "unknown", description: "unknown task name" });
     }
@@ -187,6 +202,12 @@ export default class Task {
       case textToText:
         return DefaultTextModel;
 
+      case textToCode:
+        // Should this be different from text-to-text?
+        return DefaultTextModel;
+      case audioToText:
+        return DefaultAudioToTextModel;
+
       default:
         return undefined;
     }
@@ -206,7 +227,8 @@ export default class Task {
         return TestInstanceSegmentationOutput;
       case textToText:
         return TestTextOutput;
-
+      case audioToText:
+        return TestAudioToTextOutput;
     }
   }
 
@@ -219,7 +241,7 @@ export default class Task {
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
       this.getStaticTask(textToCode),
-
+      this.getStaticTask(audioToText),
     ];
   }
 
@@ -231,6 +253,7 @@ export default class Task {
       this.getStaticTask(semantic_segmentation),
       this.getStaticTask(instance_segmentation),
       this.getStaticTask(textToText),
+      this.getStaticTask(audioToText),
     ];
   }
 }
