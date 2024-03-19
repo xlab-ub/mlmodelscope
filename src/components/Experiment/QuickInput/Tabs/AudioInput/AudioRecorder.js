@@ -1,12 +1,15 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 
+import { useUploadInputControl } from "../UploadInput/useUploadInputControl";
+import { getAllowedFileTypes } from "../../../../../helpers/UppyFileTypeCheckerPlugin";
+
+import { Dashboard } from "@uppy/react";
+
 import MicrophoneIcon from "../../../../../resources/icons/icon-microphone-white.png"
 import DownloadIcon from "../../../../../resources/icons/icon-download.png"
 
 import "./AudioRecorder.scss";
-import {getAllowedFileTypes, useUploadInputControl} from "../UploadInput/useUploadInputControl";
-import { Dashboard } from "@uppy/react";
 
 const mimeType = "audio/webm";
 
@@ -112,15 +115,7 @@ export default function AudioRecorder(props) {
             source: 'Local'
         });
 
-        // console.log('uppyFile: ', uppyFile)
         setUppyFileId(uppyFile)
-
-        // Note: Can/do we actually want to automatically upload the file?
-        // const result = await uppy.upload(uppyFile);
-        // console.log(result);
-
-        // TODO: Check this on Staging, but useUploadInputControl should handle 
-        // setting props.setSelectedInput, which will then enable the "Run Model" button
     }
 
 

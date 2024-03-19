@@ -3,35 +3,19 @@ import Uppy from '@uppy/core';
 import AwsS3Multipart from "@uppy/aws-s3-multipart";
 import {useEffect, useMemo, useState} from "react";
 
-import { audioToText, image_classification, image_enhancement, object_detection, semantic_segmentation } from '../../../../../helpers/TaskIDs';
-
-export const getAllowedFileTypes = (task) => {
-  switch (task) {
-    case audioToText:
-      return ['audio/*', 'video/*'];
-    case image_classification:
-    case image_enhancement:
-    case object_detection:
-    case semantic_segmentation:
-      return ['image/*'];
-    default:
-      // Allow all file types
-      return ['*/*'];
-  }
-}
+import UppyFileTypeCheckerPlugin from "../../../../../helpers/UppyFileTypeCheckerPlugin";
 
 export const useUploadInputControl = (props) => {
   const [activeUser, setActiveUser] = useState("anonymous");
 
   const onBeforeUpload = (files) => {
-    Object.keys(files)
-      .forEach(key => {
+    Object.keys(files).forEach(key => {
         let file = files[key];
         files[key] = {
           ...file,
           name: `${activeUser}/${file.name}`,
         }
-      })
+      });
 
     return files;
   }
@@ -55,15 +39,23 @@ export const useUploadInputControl = (props) => {
     let u = Uppy({
       autoProceed: true,
       restrictions: {
-        allowedFileTypes: props.allowedFileTypes,
+        // Uppy file-type restrictions will default the upload pop-up to the 
+        // allowed file types and reject any other types
+        allowedFileTypes: props.allowedFileTypes.mimeTypes,
         maxNumberOfFiles: props.multiple ? 99 : 1,
       },
       onBeforeUpload: onBeforeUpload
-    })
+    });
+
     u.use(AwsS3Multipart, {
       limit: 5,
       companionUrl: process.env.REACT_APP_COMPANION_URL
     });
+
+    // Adding extra type-checking to prevent against files with renamed 
+    // extentions from being maliciously uploaded
+    u.use(UppyFileTypeCheckerPlugin, {allowedFileTypes: props.allowedFileTypes.fileTypes});
+
     u.on("complete", onComplete);
     
     return u;
